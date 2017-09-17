@@ -1,7 +1,7 @@
 ---
 title: "Hello R Markdown 한글 타이틀"
 author: "Frida Gomam"
-date: 2015-07-23T21:13:14-05:00
+date: 2017-09-17T21:13:14-05:00
 categories: ["R"]
 tags: ["R Markdown", "plot", "regression"]
 ---
@@ -10,7 +10,7 @@ tags: ["R Markdown", "plot", "regression"]
 knitr::opts_chunk$set(collapse = TRUE)
 ```
 
-# R Markdown
+# R Markdown 소제목에 한글 써보자 
 
 This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
 
@@ -35,3 +35,9 @@ pie(
   init.angle = -50, border = NA
 )
 ```
+
+# 수식은 어떻게 나올까? 
+
+\begin{align}
+Z^i = \sum_{j=1}^{n} \alpha \beta ( x_k + y_k) 
+\end{align}
