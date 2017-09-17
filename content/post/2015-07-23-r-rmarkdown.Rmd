@@ -1,10 +1,12 @@
 ---
-#date: 2015-07-23T21:13:14-05:00
-date: 2015-07-23
 title: "Hello R Markdown"
 author: "Frida Gomam"
-categories: ["R"]
-tags: ["R Markdown", "plot", "regression"]
+date: '2015-07-23'
+tags:
+- R Markdown
+- plot
+- regression
+categories: R
 ---
 
 ```{r setup, include=FALSE}
@@ -42,3 +44,5 @@ pie(
 \begin{align}
 Y = \sum_{k=1}^{n} \alpha \beta x_k 
 \end{align}
+
+# Test 
