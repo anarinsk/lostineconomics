@@ -1,4 +1,4 @@
-theme = "after-dark"
+theme = "blank"
 languageCode = "en-us"
-title = "Lost in Economics"
-baseurl = "https://lostineconomics.netlify.com/"
+title = "lost in economics"
+baseurl = "http://lostineconomics.netlify.com/"
