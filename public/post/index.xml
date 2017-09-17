@@ -10,7 +10,7 @@
     <atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
-      <title>Hello R Markdown</title>
+      <title>Hello R Markdown 아르 마크다운</title>
       <link>/post/2015-07-23-r-rmarkdown/</link>
       <pubDate>Thu, 23 Jul 2015 21:13:14 -0500</pubDate>
       
@@ -37,6 +37,10 @@ fit
 ## (Intercept)        speed  
 ##     -17.579        3.932&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
+&lt;div id=&#34;--&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;한글 장 제목&lt;/h1&gt;
+&lt;p&gt;어떠세요? 잘 돌아가나요?&lt;/p&gt;
+&lt;/div&gt;
 &lt;div id=&#34;including-plots&#34; class=&#34;section level1&#34;&gt;
 &lt;h1&gt;Including Plots&lt;/h1&gt;
 &lt;p&gt;You can also embed plots. See Figure &lt;a href=&#34;#fig:pie&#34;&gt;1&lt;/a&gt; for example:&lt;/p&gt;
@@ -53,6 +57,13 @@ pie(
 Figure 1: A fancy pie chart.
 &lt;/p&gt;
 &lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;-&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;수식 처리&lt;/h1&gt;
+&lt;p&gt;rmd 문서에서는 &lt;span class=&#34;math inline&#34;&gt;\(\LaTeX\)&lt;/span&gt;을 쓸 수 있답니다. 보여드리죠?&lt;/p&gt;
+&lt;span class=&#34;math display&#34;&gt;\[\begin{align}
+Z^i_j = \sum_{k=1}^n (x_k + y_k) 
+\end{align}\]&lt;/span&gt;
 &lt;/div&gt;
 </description>
     </item>

@@ -1,5 +1,5 @@
 ---
-title: "Hello R Markdown"
+title: "Hello R Markdown 아르 마크다운"
 author: "Frida Gomam"
 date: 2015-07-23T21:13:14-05:00
 categories: ["R"]
@@ -22,6 +22,10 @@ fit <- lm(dist ~ speed, data = cars)
 fit
 ```
 
+# 한글 장 제목 
+
+어떠세요? 잘 돌아가나요? 
+
 # Including Plots
 
 You can also embed plots. See Figure \@ref(fig:pie) for example:
@@ -35,3 +39,11 @@ pie(
   init.angle = -50, border = NA
 )
 ```
+
+# 수식 처리 
+
+rmd 문서에서는 $\LaTeX$을 쓸 수 있답니다. 보여드리죠? 
+
+\begin{align}
+Z^i_j = \sum_{k=1}^n (x_k + y_k) 
+\end{align}
