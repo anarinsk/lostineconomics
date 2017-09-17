@@ -6,6 +6,6 @@ title: Home
 
 # lost_in_economics
 
-## _Keep it simple, but not simpler_
+## _faithless in theory, but still stuck in methods_
 
-This is personal blog by Junsok Huhh. 
+This is personal blog by Junsok Huhh. This site is built by Hugo and theme XMIN by [Yihui Xie](https://themes.gohugo.io/hugo-xmin/)
