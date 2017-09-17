@@ -1,5 +1,5 @@
 ---
-title: "Hello R Markdown"
+title: "Hello R Markdown 알 마크다운"
 author: "Frida Gomam"
 date: "2017-08-21"
 categories: ["R"]
@@ -22,6 +22,10 @@ fit <- lm(dist ~ speed, data = cars)
 fit
 ```
 
+# 한글 장 제목 시험 
+
+한글은 잘 나옵니까? 그래요? 
+
 # Including Plots
 
 You can also embed plots. See Figure \@ref(fig:pie) for example:
@@ -36,4 +40,10 @@ pie(
 )
 ```
 
-# Test Test
+# Math Expression 
+
+$\LaTeX$ 표현은 어떤가요? 잘 나올까요? 
+
+\begin{align}
+Y^i_j = \sum_{k=1}^{n} \beta (x_k +z_k)
+\end{align}
