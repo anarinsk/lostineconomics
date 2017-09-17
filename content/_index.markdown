@@ -2,7 +2,7 @@
 title: Home
 ---
 
-[<img src="https://cdn2.iconfinder.com/data/icons/pet-3/24/pet-lost-256.png" style="max-width:15%;min-width:40px;float:right;" alt="Economics" />](https://lostineconomics.netlify.com)
+[<img src="http://1.bp.blogspot.com/-Y9ut2H1BPZk/Tb4JFzcB6VI/AAAAAAAAAAw/HillXLY_iAQ/s748/017605-black-paint-splatter-icon-symbols-shapes-smiley-face1.png"" style="max-width:30%;min-width:40px;float:right;" alt="Economics" />](https://lostineconomics.netlify.com)
 
 # lost_in_economics
 
