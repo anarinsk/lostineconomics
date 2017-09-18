@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>r on lost in economics</title>
-    <link>/categories/r/index.xml</link>
-    <description>Recent content in r on lost in economics</description>
+    <title>self-taught on lost in economics</title>
+    <link>/tags/self-taught/index.xml</link>
+    <description>Recent content in self-taught on lost in economics</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <atom:link href="/categories/r/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="/tags/self-taught/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>안녕 R Markdown</title>

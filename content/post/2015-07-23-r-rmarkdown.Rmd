@@ -1,14 +1,15 @@
 ---
-title: "Hello R Markdown 아르 마크다운"
-author: "Frida Gomam"
-date: 2015-07-23T21:13:14-05:00
+title: "안녕 R Markdown"
+author: Junsok Huhh
+date: 2017-09-18T21:13:14-05:00
 categories: ["R"]
-tags: ["R Markdown", "plot", "regression"]
+tags: ["R Markdown", "self-taught"]
 ---
   
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(collapse = TRUE)
 ```
+원래 문서는 Frida Gomam이 작성한, [Hello R Markdown](https://knausb.github.io/2015/07/hello-r-markdown/)이다. 여기서는 내 입맛에 맞게 문서를 고쳤으므로 저자를 바꾸었다. 
 
 # R Markdown
 
@@ -24,7 +25,7 @@ fit
 
 # 한글 장 제목 
 
-어떠세요? 잘 돌아가나요? 
+한글 장 제목도 잘 처리된다는 것을 위와 같이 알 수 있다. 
   
 # Including Plots
   
@@ -42,7 +43,7 @@ pie(
 
 # 수식 처리 
 
-rmd 문서에서는 $\mathrm\LaTeX$을 쓸 수 있답니다. 보여드리죠? 
+rmd 문서에서는 $\mathrm\LaTeX$을 쓸 수 있다. 이것이 아주 좋은 점이다. 약간만 손을 보면, tex 문서로 아예 뽑아낼 수 있다. 
   
 \begin{align}
 Z^i_j = \sum_{k=1}^n (x_k + y_k) 
