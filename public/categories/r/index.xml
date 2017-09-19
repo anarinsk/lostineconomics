@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>r on lost in economics</title>
-    <link>/categories/r/index.xml</link>
-    <description>Recent content in r on lost in economics</description>
+    <title>R on lost in economics</title>
+    <link>/categories/r/</link>
+    <description>Recent content in R on lost in economics</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <atom:link href="/categories/r/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 18 Sep 2017 21:13:14 -0500</lastBuildDate>
+    
+	<atom:link href="/categories/r/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>안녕 R Markdown</title>
@@ -14,58 +17,33 @@
       <pubDate>Mon, 18 Sep 2017 21:13:14 -0500</pubDate>
       
       <guid>/post/2017/09/18/%EC%95%88%EB%85%95-r-markdown/</guid>
-      <description>&lt;p&gt;원래 문서는 Frida Gomam이 작성한, &lt;a href=&#34;https://knausb.github.io/2015/07/hello-r-markdown/&#34;&gt;Hello R Markdown&lt;/a&gt;이다. 여기서는 내 입맛에 맞게 문서를 고쳤으므로 저자를 바꾸었다.&lt;/p&gt;
-&lt;div id=&#34;r-markdown&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;R Markdown&lt;/h1&gt;
-&lt;p&gt;This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see &lt;a href=&#34;http://rmarkdown.rstudio.com&#34; class=&#34;uri&#34;&gt;http://rmarkdown.rstudio.com&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;You can embed an R code chunk like this:&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;summary(cars)
-##      speed           dist       
-##  Min.   : 4.0   Min.   :  2.00  
-##  1st Qu.:12.0   1st Qu.: 26.00  
-##  Median :15.0   Median : 36.00  
-##  Mean   :15.4   Mean   : 42.98  
-##  3rd Qu.:19.0   3rd Qu.: 56.00  
-##  Max.   :25.0   Max.   :120.00
-fit &amp;lt;- lm(dist ~ speed, data = cars)
-fit
-## 
-## Call:
-## lm(formula = dist ~ speed, data = cars)
-## 
-## Coefficients:
-## (Intercept)        speed  
-##     -17.579        3.932&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;div id=&#34;--&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;한글 장 제목&lt;/h1&gt;
-&lt;p&gt;한글 장 제목도 잘 처리된다는 것을 위와 같이 알 수 있다.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;including-plots&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;Including Plots&lt;/h1&gt;
-&lt;p&gt;You can also embed plots. See Figure &lt;a href=&#34;#fig:pie&#34;&gt;1&lt;/a&gt; for example:&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;par(mar = c(0, 1, 0, 1))
-pie(
-  c(280, 60, 20),
-  c(&amp;#39;Sky&amp;#39;, &amp;#39;Sunny side of pyramid&amp;#39;, &amp;#39;Shady side of pyramid&amp;#39;),
-  col = c(&amp;#39;#0292D8&amp;#39;, &amp;#39;#F7EA39&amp;#39;, &amp;#39;#C4B632&amp;#39;),
-  init.angle = -50, border = NA
-)&lt;/code&gt;&lt;/pre&gt;
-&lt;div class=&#34;figure&#34;&gt;&lt;span id=&#34;fig:pie&#34;&gt;&lt;/span&gt;
-&lt;img src=&#34;/post/2015-07-23-r-rmarkdown_files/figure-html/pie-1.png&#34; alt=&#34;A fancy pie chart.&#34; width=&#34;672&#34; /&gt;
-&lt;p class=&#34;caption&#34;&gt;
-Figure 1: A fancy pie chart.
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div id=&#34;-&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;수식 처리&lt;/h1&gt;
-&lt;p&gt;rmd 문서에서는 &lt;span class=&#34;math inline&#34;&gt;\(\mathrm\LaTeX\)&lt;/span&gt;을 쓸 수 있다. 이것이 아주 좋은 점이다. 약간만 손을 보면, tex 문서로 아예 뽑아낼 수 있다.&lt;/p&gt;
-&lt;span class=&#34;math display&#34;&gt;\[\begin{align}
-Z^i_j = \sum_{k=1}^n (x_k + y_k) 
-\end{align}\]&lt;/span&gt;
-&lt;/div&gt;
-</description>
+      <description>원래 문서는 Frida Gomam이 작성한, Hello R Markdown이다. 여기서는 내 입맛에 맞게 문서를 고쳤으므로 저자를 바꾸었다.
+R MarkdownThis is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see http://rmarkdown.rstudio.com.
+You can embed an R code chunk like this:
+summary(cars)## speed dist ## Min. : 4.0 Min. : 2.00 ## 1st Qu.:12.0 1st Qu.</description>
+    </item>
+    
+    <item>
+      <title>Blog by Hogo</title>
+      <link>/post/2017/09/19/blog-by-hogo/</link>
+      <pubDate>Tue, 19 Sep 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2017/09/19/blog-by-hogo/</guid>
+      <description>Prologue어쨌든 자신만의 공간을 지니는 것은 로망이다. 이 로망을 웹에서 실현해본 사람들은 넷스케이프를 써보고, 웹에디터(나모 웹에디터?)를 통해 자신만의 홈페이지를 만들어본 경험이 있는 세대에 속할 것이다. 내용에 집중해야 한다는 것은 맞다. 네이버, 다음, 구글 등은 편리하게 글을 올리고 입소문을 태울 수 있고 관리가 편한 블로그의 틀을 이미 제공한다. 그렇다면, 왜 독자적인 공간을 만들어야 하는가?
+대기업이 싫어서서비스 주소가 마음에 안들어서디자인이나 형식이 과해서뭐 이유야 여러가지가 있겠지만 직접 만드는 것에는 나름의 의의는 있겠다.</description>
+    </item>
+    
+    <item>
+      <title>Data Talks</title>
+      <link>/note/2017/09/19/data-talks/</link>
+      <pubDate>Tue, 19 Sep 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/note/2017/09/19/data-talks/</guid>
+      <description>Prologue개인적이든 직업적인 이유든 데이터를 볼 일이 많습니다. 인상적으로 본 데이터를 소개하는 섹션 노트 페이지를 한번 만들어 봅니다. 제가 여기저기서 본 것들을 가져옵니다. 독창성 같은 건 기대하지 마시기를…
+Alchol vs Suicide인과관계는 아니니까, 그렇구나 하고 말지요.
+How death has changed over 100 years in Britain엄청난 비주얼라이제이션입니다. 일종의 동영상이라고 할 수 있을텐데, 공중보건의 주요한 사건과 죽음의 양상을 잘 이야기해주고 있습니다.
+출처: Guardian
+2,000 Years of Economic History in One Chart혹자의 이야기처럼, 중국은 “열강”이 아닌 적이 별로 없었던 나라입니다.</description>
     </item>
     
   </channel>

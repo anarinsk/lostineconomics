@@ -1,0 +1,55 @@
+---
+title: "Data Talks"
+author: Junsok Huhh
+date: 2017-09-19
+categories: ["R", "Data", "Visualization"]
+tags: ["Google", "China"]
+---
+  
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(collapse = TRUE)
+```
+
+# Prologue 
+
+개인적이든 직업적인 이유든 데이터를 볼 일이 많습니다. 인상적으로 본 데이터를 소개하는 섹션 노트 페이지를 한번 만들어 봅니다. 제가 여기저기서 본 것들을 가져옵니다. 독창성 같은 건 기대하지 마시기를... 
+
+# Alchol vs Suicide 
+
+인과관계는 아니니까, 그렇구나 하고 말지요. 
+
+![](https://i.redd.it/15ps6g0lupmz.png)
+
+# How death has changed over 100 years in Britain
+
+엄청난 비주얼라이제이션입니다. 일종의 동영상이라고 할 수 있을텐데, 공중보건의 주요한 사건과 죽음의 양상을 잘 이야기해주고 있습니다. 
+
+출처: [Guardian](https://www.theguardian.com/lifeandstyle/ng-interactive/2017/sep/18/how-death-has-changed-over-100-years-in-britain)
+
+# 2,000 Years of Economic History in One Chart 
+
+혹자의 이야기처럼, 중국은 "열강"이 아닌 적이 별로 없었던 나라입니다. 요즘이 정상으로 돌아오고 있는 국면일 수도 있겠지요. 
+
+ ![](http://2oqz471sa19h3vbwa53m33yj.wpengine.netdna-cdn.com/wp-content/uploads/2017/09/share-of-gdp-history1070.jpg)
+
+출처: [Visual Capitalist](http://www.visualcapitalist.com/2000-years-economic-history-one-chart)
+
+# Google Public Data 
+
+아직은 World Bank 데이터 밖에 없는 것 같습니다만, 구글이 하는 일이니 소리소문 없이 좋아지리라 생각합니다. 
+
+[Google Public Data](https://www.google.com/publicdata/explore?ds=d5bncppjof8f9_&met_y=sp_pop_totl&hl=en&dl=en)
+
+# Baltimore Neighborhood Health 
+
+훌륭합니다! 제가 볼티모어 거주자가 아니라서 보는 감상이 덜합니다. 한국 도시들도 이런 거 만들어주세요! 
+
+[Baltimore Sun](http://data.baltimoresun.com/news/neighborhood-health/)
+
+# Rise of Streaming 
+
+올해 에미상에서 "Handmaid's Tale"의 작품상 수상이 화제입니다. 에미 후보작들의 변화는 가정용 엔터테인먼트의 변화를 잘 보여줍니다. 
+
+![](https://i.redd.it/8fu135v7comz.png)
+
+
