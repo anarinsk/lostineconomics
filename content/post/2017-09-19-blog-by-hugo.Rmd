@@ -87,13 +87,13 @@ git push
 2. 나머지 설정은 아래 스크린 샷에 나온 것처럼 한다. 
 3. 주의할 것은 Hugo 버전 세팅이다. 테마마다 필요로 하는 휴고 버전이 다르니까 주의해서 설정하라. 
 
-![](https://bookdown.org/yihui/blogdown/images/netlify-settings.png) 
+![](https://bookdown.org/yihui/blogdown/images/netlify-settings.png){width=400px}
 
 이제 Netlify에서 전개과정을 끝내면 직접 잘 서비스가 되고 있는지 확인해볼 수 있다. 주소의 앞단도 바꿀 수 있으니 이건 마음대로 알아서 하시라. 
 
 # 그림 하나로 요약! 
 
-![](https://apreshill.rbind.io/img/posts/2017-06-12-up-and-running-with-blogdown/blogdown-signpost-4.png)
+![](https://apreshill.rbind.io/img/posts/2017-06-12-up-and-running-with-blogdown/blogdown-signpost-4.png){width=400px}
 
 
 나의 설명이 부족하거나 이해가 되지 않는 분은 [여기](https://apreshill.rbind.io/post/up-and-running-with-blogdown/)를 참고하실 수 있다. 
