@@ -1,5 +1,5 @@
 ---
-title: "Data Talks"
+title: "Data Talk"
 author: Junsok Huhh
 date: 2017-09-19
 categories: ["R", "Data", "Visualization"]
