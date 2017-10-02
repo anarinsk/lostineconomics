@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  
+  <url>
+    <loc>/post/2017/10/02/how-to-manage-your-personal-project/</loc>
+    <lastmod>2017-10-02T00:00:00+00:00</lastmod>
+  </url>
   
   <url>
     <loc>/post/2017/09/18/%EC%95%88%EB%85%95-r-markdown/</loc>
@@ -38,17 +42,95 @@
   </url>
   
   <url>
+    <loc>/post/1/01/01/</loc>
+  </url>
+  
+  <url>
+    <loc>/post/1/01/01/</loc>
+  </url>
+  
+  <url>
+    <loc>/post/1/01/01/</loc>
+  </url>
+  
+  <url>
+    <loc>/post/1/01/01/</loc>
+  </url>
+  
+  <url>
+    <loc>/post/1/01/01/</loc>
+  </url>
+  
+  <url>
+    <loc>/post/1/01/01/</loc>
+  </url>
+  
+  <url>
+    <loc>/post/1/01/01/</loc>
+  </url>
+  
+  <url>
+    <loc>/post/1/01/01/</loc>
+  </url>
+  
+  <url>
+    <loc>/post/1/01/01/</loc>
+  </url>
+  
+  <url>
+    <loc>/post/1/01/01/</loc>
+  </url>
+  
+  <url>
+    <loc>/post/1/01/01/</loc>
+  </url>
+  
+  <url>
+    <loc>/post/1/01/01/</loc>
+  </url>
+  
+  <url>
+    <loc>/post/1/01/01/</loc>
+  </url>
+  
+  <url>
+    <loc>/post/1/01/01/</loc>
+  </url>
+  
+  <url>
     <loc>/about/</loc>
   </url>
   
   <url>
-    <loc>/tags/blogdown/</loc>
+    <loc>/categories/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/</loc>
+    <lastmod>2017-10-02T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/note/</loc>
     <lastmod>2017-09-19T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/categories/</loc>
+    <loc>/post/</loc>
+    <lastmod>2017-10-02T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/blogdown/</loc>
+    <lastmod>2017-09-19T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -83,11 +165,6 @@
   </url>
   
   <url>
-    <loc>/</loc>
-    <lastmod>2017-09-18T21:13:14-05:00</lastmod>
-  </url>
-  
-  <url>
     <loc>/tags/hugo/</loc>
     <lastmod>2017-09-19T00:00:00+00:00</lastmod>
     <priority>0</priority>
@@ -112,32 +189,56 @@
   </url>
   
   <url>
-    <loc>/note/</loc>
-    <lastmod>2017-09-19T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>/tags/pandoc/</loc>
     <lastmod>2016-02-14T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/post/</loc>
-    <lastmod>2017-09-18T21:13:14-05:00</lastmod>
+    <loc>/tags/project-management/</loc>
+    <lastmod>2017-10-02T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/projecttemplate/</loc>
+    <lastmod>2017-10-02T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/r/</loc>
+    <lastmod>2017-10-02T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>/categories/r/</loc>
-    <lastmod>2017-09-18T21:13:14-05:00</lastmod>
+    <lastmod>2017-10-02T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>/tags/r-markdown/</loc>
     <lastmod>2017-09-18T21:13:14-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/r-package/</loc>
+    <lastmod>2017-10-02T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/categories/reseaach_method/</loc>
+    <lastmod>2017-10-02T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/research/</loc>
+    <lastmod>2017-10-02T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -150,12 +251,6 @@
   <url>
     <loc>/tags/self-taught/</loc>
     <lastmod>2017-09-18T21:13:14-05:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/</loc>
-    <lastmod>2017-09-19T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
