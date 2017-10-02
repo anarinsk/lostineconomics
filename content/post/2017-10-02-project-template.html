@@ -75,14 +75,14 @@ create.project(&#39;letters&#39;)</code></pre>
 <p>이런 흐름으로 작업할 수 있겠다. 역시 상세한 내용은 앞서 링크한 프로젝트의 홈페이지를 읽어보시면 되겠다. 혹시 해당 구조가 너무 중후장대하다고 생각된다면, 패키지는 앞서의 구조보다 경파한 세팅도 지원한다.</p>
 <pre class="r"><code>create.project(minimal = TRUE)</code></pre>
 <p>이렇게 프로젝트를 생성하면, 아래와 같이 최소 폴더들만 생성된다.</p>
-<ol style="list-style-type: decimal">
+<ul>
 <li><code>cache/</code></li>
 <li><code>config/</code></li>
 <li><code>data/</code></li>
 <li><code>munge/</code></li>
 <li><code>src/</code></li>
-<li>README</li>
-</ol>
+<li><code>README</code></li>
+</ul>
 <div id="---" class="section level2">
 <h2>다른 대안 및 장점</h2>
 <p>사실 RStudio 안에는 프로젝트 생성 기능이 포함되어 있다. 그런데, 써본 분들은 알겠지만 다소 직관적이지 않고, RStudio가 반드시 필요하다. 반면, <code>ProjectTemplate</code> 패키지는 의존성도 없을 뿐 아니라, 훨씬 더 직관적이고 직접적이다.</p>

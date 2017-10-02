@@ -90,12 +90,12 @@ create.project(minimal = TRUE)
 
 이렇게 프로젝트를 생성하면, 아래와 같이 최소 폴더들만 생성된다. 
 
-  1. `cache/` 
-  2. `config/` 
-  3. `data/` 
-  4. `munge/` 
-  5. `src/`
-  6. README 
+  * `cache/` 
+  * `config/` 
+  * `data/` 
+  * `munge/` 
+  * `src/`
+  * `README` 
  
 ## 다른 대안 및 장점 
 
