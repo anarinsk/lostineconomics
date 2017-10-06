@@ -3,8 +3,8 @@ title: Event Horizon
 author: 허준석 
 date: '2017-10-06'
 slug: eventhorizon
-categories: [Holy_mix]
-tags: [cinema]
+categories: ['Holy_mix']
+tags: ['cinema']
 ---
 
 # 가끔은 잘 될 때도 있다 
