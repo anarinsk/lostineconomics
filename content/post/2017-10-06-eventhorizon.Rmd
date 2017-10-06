@@ -2,8 +2,8 @@
 title: "Event Horizon"
 author: Junsok Huhh
 date: 2017-10-06
-categories: ['Holy_mix']
-tags: ['cinema']
+categories: ["Holy_mix"]
+tags: ["cinema"]
 ---
 
 # 가끔은 잘 될 때도 있다 
