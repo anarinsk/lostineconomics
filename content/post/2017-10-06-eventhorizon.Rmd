@@ -1,8 +1,8 @@
 ---
-title: Event Horizon
+title: "Event Horizon"
 author: 허준석 
 date: '2017-10-06'
-slug: eventhorizon
+#slug: eventhorizon
 categories: ['Holy_mix']
 tags: ['cinema']
 ---
@@ -29,10 +29,10 @@ tags: ['cinema']
 
 -----
 
-![](http://3.bp.blogspot.com/-Z-qTgArSWos/UyIjz1M1yGI/AAAAAAAAoz0/vxzpl2KUqLM/s1600/eventhorizon14.png) 
+![](http://3.bp.blogspot.com/-Z-qTgArSWos/UyIjz1M1yGI/AAAAAAAAoz0/vxzpl2KUqLM/s1600/eventhorizon14.png){ width=72% } 
 -----
 
-지옥에 스스로 뛰어든 일종의 악마로 묘사된 이벤트 호라이즌의 설계자이나 과학자인 윌리엄 위어의 모습은 존 카펜터의 필생의 걸작 "In the Mouth of Darkness"의 모습을 그대로 가져왔다. 아마도 배우도 일부러 같은 배우로 선발한 것이 아닐까 싶을 정도로 비슷하다. 아마도 호러 영화의 팬이라면, 카펜터의 이 영화 혹은 헬레이저의 핀헤드와의 유사성을 어렵지 않게 떠올릴 수 있지 않을까? 지옥의 사자로 분한 위어의 모습이 좀 과하게 그려진 면은 있지만, 시각적인 모습과 분위가 만은 나쁘지 않다. 
+지옥에 스스로 뛰어든 일종의 악마로 묘사된 이벤트 호라이즌의 설계자이나 과학자인 윌리엄 위어의 모습은 존 카펜터의 필생의 걸작 ["In the Mouth of Darkness"](http://www.imdb.com/title/tt0113409/)의 모습을 그대로 가져왔다. 아마도 배우도 일부러 같은 배우로 선발한 것이 아닐까 싶을 정도로 비슷하다. 아마도 호러 영화의 팬이라면, 카펜터의 이 영화 혹은 헬레이저의 핀헤드와의 유사성을 어렵지 않게 떠올릴 수 있지 않을까? 지옥의 사자로 분한 위어의 모습이 좀 과하게 그려진 면은 있지만, 시각적인 모습과 분위가 만은 나쁘지 않다. 카펜터의 걸작 중 걸작 "매드니스"에 대해서는 나중에 기회가 있으면 다시 다뤄보도록 하자. 
 
 # 길게 쓴 이유 
 
