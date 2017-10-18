@@ -6,9 +6,19 @@
     <description>Recent content in Categories on lost in economics</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
+    <lastBuildDate>Wed, 18 Oct 2017 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/categories/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Ams</title>
+      <link>/categories/ams/</link>
+      <pubDate>Wed, 18 Oct 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/categories/ams/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Data</title>
@@ -56,6 +66,15 @@
     </item>
     
     <item>
+      <title>Math_symbol</title>
+      <link>/categories/math_symbol/</link>
+      <pubDate>Wed, 18 Oct 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/categories/math_symbol/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Mathematics</title>
       <link>/categories/mathematics/</link>
       <pubDate>Wed, 18 Oct 2017 00:00:00 +0000</pubDate>
@@ -79,6 +98,15 @@
       <pubDate>Mon, 02 Oct 2017 00:00:00 +0000</pubDate>
       
       <guid>/categories/reseach_method/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Typesetting</title>
+      <link>/categories/typesetting/</link>
+      <pubDate>Wed, 18 Oct 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/categories/typesetting/</guid>
       <description></description>
     </item>
     
