@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>/post/2017/10/18/proof-for-blotto-gradiator-game/</loc>
+    <lastmod>2017-10-18T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/post/2017/09/18/%EC%95%88%EB%85%95-r-markdown/</loc>
     <lastmod>2017-09-18T21:13:14-05:00</lastmod>
   </url>
@@ -71,6 +76,12 @@
   </url>
   
   <url>
+    <loc>/categories/game_theory/</loc>
+    <lastmod>2017-10-18T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>/tags/github/</loc>
     <lastmod>2017-09-19T00:00:00+00:00</lastmod>
     <priority>0</priority>
@@ -84,7 +95,7 @@
   
   <url>
     <loc>/</loc>
-    <lastmod>2017-09-18T21:13:14-05:00</lastmod>
+    <lastmod>2017-10-18T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -112,6 +123,12 @@
   </url>
   
   <url>
+    <loc>/categories/mathematics/</loc>
+    <lastmod>2017-10-18T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>/note/</loc>
     <lastmod>2017-09-19T00:00:00+00:00</lastmod>
     <priority>0</priority>
@@ -125,7 +142,13 @@
   
   <url>
     <loc>/post/</loc>
-    <lastmod>2017-09-18T21:13:14-05:00</lastmod>
+    <lastmod>2017-10-18T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/proof/</loc>
+    <lastmod>2017-10-18T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
