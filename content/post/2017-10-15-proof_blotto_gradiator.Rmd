@@ -60,3 +60,7 @@ G_Y & = \{ y_1, y_2, (y_q), \ldots,y_j \}
 \end{align*}
 
 위의 값을 정리하면 $\frac{X}{X+Y}$가 된다. $\square$
+
+# bagatelle
+
+사실 이 글은 Rmarkdown에서 수식이 보기 좋게 들어가는지 시험할 요량으로 썼다. Whatever...  
