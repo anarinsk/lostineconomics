@@ -8,6 +8,16 @@
   </url>
   
   <url>
+    <loc>/post/2017/10/06/event-horizon/</loc>
+    <lastmod>2017-10-06T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/2017/10/02/how-to-manage-your-personal-project/</loc>
+    <lastmod>2017-10-02T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/post/2017/09/18/%EC%95%88%EB%85%95-r-markdown/</loc>
     <lastmod>2017-09-18T21:13:14-05:00</lastmod>
   </url>
@@ -64,6 +74,12 @@
   </url>
   
   <url>
+    <loc>/tags/cinema/</loc>
+    <lastmod>2017-10-06T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>/categories/data/</loc>
     <lastmod>2017-09-19T00:00:00+00:00</lastmod>
     <priority>0</priority>
@@ -90,6 +106,12 @@
   <url>
     <loc>/tags/google/</loc>
     <lastmod>2017-09-19T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/categories/holy_mix/</loc>
+    <lastmod>2017-10-06T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -147,14 +169,32 @@
   </url>
   
   <url>
+    <loc>/tags/project-management/</loc>
+    <lastmod>2017-10-02T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/projecttemplate/</loc>
+    <lastmod>2017-10-02T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>/tags/proof/</loc>
     <lastmod>2017-10-18T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
+    <loc>/tags/r/</loc>
+    <lastmod>2017-10-02T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>/categories/r/</loc>
-    <lastmod>2017-09-18T21:13:14-05:00</lastmod>
+    <lastmod>2017-10-02T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -165,8 +205,26 @@
   </url>
   
   <url>
+    <loc>/tags/r-package/</loc>
+    <lastmod>2017-10-02T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>/tags/rstudio/</loc>
     <lastmod>2016-02-14T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/categories/reseach_method/</loc>
+    <lastmod>2017-10-02T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/research/</loc>
+    <lastmod>2017-10-02T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   

@@ -30,6 +30,15 @@
     </item>
     
     <item>
+      <title>Cinema</title>
+      <link>/tags/cinema/</link>
+      <pubDate>Fri, 06 Oct 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/cinema/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Github</title>
       <link>/tags/github/</link>
       <pubDate>Tue, 19 Sep 2017 00:00:00 +0000</pubDate>
@@ -84,11 +93,38 @@
     </item>
     
     <item>
+      <title>Project management</title>
+      <link>/tags/project-management/</link>
+      <pubDate>Mon, 02 Oct 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/project-management/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ProjectTemplate</title>
+      <link>/tags/projecttemplate/</link>
+      <pubDate>Mon, 02 Oct 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/projecttemplate/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Proof</title>
       <link>/tags/proof/</link>
       <pubDate>Wed, 18 Oct 2017 00:00:00 +0000</pubDate>
       
       <guid>/tags/proof/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>R</title>
+      <link>/tags/r/</link>
+      <pubDate>Mon, 02 Oct 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/r/</guid>
       <description></description>
     </item>
     
@@ -102,11 +138,29 @@
     </item>
     
     <item>
+      <title>R-package</title>
+      <link>/tags/r-package/</link>
+      <pubDate>Mon, 02 Oct 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/r-package/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>RStudio</title>
       <link>/tags/rstudio/</link>
       <pubDate>Sun, 14 Feb 2016 00:00:00 +0000</pubDate>
       
       <guid>/tags/rstudio/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Research</title>
+      <link>/tags/research/</link>
+      <pubDate>Mon, 02 Oct 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/research/</guid>
       <description></description>
     </item>
     
