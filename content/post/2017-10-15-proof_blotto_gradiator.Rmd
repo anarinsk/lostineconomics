@@ -55,10 +55,8 @@ G_Y & = \{ y_1, y_2, \dotsc, (y_q), \dotsc, y_j \}
 여기서 $( )$는 해당 검투사가 자신의 팀에서 제외됨을 의미한다. 이렇게 한 플레이어가 제외될 경우는 다시 $i + j = k$가 된다. 따라서 induction 원칙에 따라서 승부는 각 팀의 전투력의 합에 의해서만 결정된다. 이를 종합하면, $G_X$가 승리할 확률은 아래와 같이 계산될 수 있다. 
 
 \begin{align*}
-\frac{x_p}{x_p + y_q} \frac{X + y_q}{X + Y} + \frac{y_q}{x_p + y_q} \frac{X - y_q}{X + Y}
+\frac{x_p}{x_p + y_q} \frac{X + y_q}{X + Y} + \frac{y_q}{x_p + y_q} \frac{X - y_q}{X + Y} = \frac{X}{X+Y} ~~~~~ \square
 \end{align*}
-
-위의 값을 정리하면 $\frac{X}{X+Y}$가 된다. $\square$
 
 # bagatelle
 
