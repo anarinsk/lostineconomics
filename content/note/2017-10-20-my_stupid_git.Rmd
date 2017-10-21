@@ -1,0 +1,253 @@
+---
+title: "My Stupid Git Experience" 
+author: "Junsok Huhh"
+date: 2017-10-20
+tags: ['git', 'version_control']
+categories: ['computing']
+---
+
+# Disclaimer 
+
+이 문서는 `git`을 다루면서 저질렀던 개인적을 실수를 모아 놓은 것이다. 아마도 문서 자체가 조금씩 진화할 것이므로 어떤 시점에서 보신다면 몹시 허접할 수 있도 있겠다. git에 대해서 잘 아는 분들은 패스하시라. 
+
+-----
+
+# Basic structure 
+
+![](images/dr_structure.png)
+
+* `working dir`: local의 작업디렉토리 
+* `index`: staging area. 커밋될 파일들을 올려 두는 공간
+* `HEAD`: 최후의 커밋
+
+-----
+
+# Basic command 
+
+## Initiation in local 
+
+ * 로컬머신에서 git을 개시하는 방법부터 알아보자. 
+ * git으로 관리하고 싶은 directory에서 아래와 같은 명령어를 쳐 준다. 
+ 
+```{}
+echo "# YOUR_README_NAME" >> README.md 
+git init
+git add README.md 
+git commit -m "YOUR_COMMIT_MESSAGE/first commit"
+git remote add origin <<https://YOUR_REMOTE_GIT_URL>>
+git push -u origin master 
+```
+ 
+* `<<https://YOUR_REMOTE_GIT_URL>>`: 외부 리포가 적절하게 세팅이 되어 있어야 한다. github를 쓴다면, readme 없이 새 repository를 터주는 작업 만으로 끝이다. 
+* `echo...`: "# YOUR_README_NAME" 내용을 `README.md`로 생성한 후
+* `git init`: 해당 디렉토리에 git을 개시한다. 
+* `git remote add`: git의 remote 저장소를 `origin`이라는 이름으로 지정 
+* `git push -u origin master`: `-u`는 업스트림 브랜치를 master로 기본설정해준다. 이후 `git push`, `git pull`은 자동으로 `origin <-> master`가 된다. 
+
+## `add`, `commit`, `push`
+
+```{}
+git status  
+git add .
+#or
+git add -u
+git commit -m "YOUR_COMMENT"
+git push 
+```
+
+* git 운용의 기본적인 흐름 혹은 기본 셋 
+* `push`만 명령하면 되는 것은 앞서 `git push -u origin master` origin master로 local과 remote repository의  upstream을 정해두었기 때문이다. 
+
+------
+
+# In-depth command 
+
+## `remote` 
+
+```{}
+> git remote  
+
+origin 
+
+> git remote -v 
+
+git status  
+git add .
+git commit -m "YOUR_COMMENT"
+git push 
+```
+
+`git remote` : remote로 어떤 대상이 설정되어 있는지 볼 수 있다. 
+`git remote -v`: remote의 구체적인 내용을 조회해볼 수 있다. 
+
+## `pull`
+
+* `pull` 명령어는 기본적으로 `fetch`(가져오기)와 `merge`(병합하기)를 동시에 구현하는 것이다. 보통 `fetch`는 repository의 내용을 가져와 `fetch_head`라는 local branch에 임시로 저장해둔다. `merge`는 이렇게 가져온 데이터를 원래 흐름과 병합하는 것이다. 이 둘을 동시에 구현하는 것이 `pull`이다. 
+
+* 논리적으로 봤을 때, origin과 master에서 모두 변경 사항이 있을 경우는 둘에 충돌이 일어날 수 밖에 없다. 이런 경우 이 충돌을 해결해줘야 `push`가 가능하다. 
+
+* 깔끔한 이력 관리를 위해서는 아래와 같이 rebase를 활용해서 pull을 해주면 좋다. rebase를 해주면 별도의 브랜치를 만들지 않겠다는 의도를 분명히 하는 것이고, 이에 따라서 log가 깔끔하고 단순해진다. 
+
+```{}
+> git pull --rebase
+```
+
+## `commit`
+
+```{}
+git commit --amend --no-edit
+```
+
+* ` --amend --no-edit`: 전에 commit message를 그대로 쓰고 commit한다. 
+
+-----
+
+# `branch`
+
+## Basic 
+
+```{}
+git branch <BRANCH_NAME>
+git checkout
+git checkout -b <BRANCH_NAME>
+```
+
+* `git branch`: 브랜치를 조회하거나, `<BRANCH_NAME>`을 붙여 브랜치를 생성한다. 
+* `checkout`이란 다른 브랜치로 빠져나가는 것을 의미한다. 
+* `-b`: 브랜치를 만들면서 체크아웃을 하기 위해서는 이 옵션을 사용한다. 
+
+```{}
+git merge <COMMIT_NAME> 
+git branch -d <BRANCH_NAME>
+```
+
+* `merge`: 커밋된 다른 지점과 현재 브랜치를 병합한다. 
+* `-d`: 브랜치를 삭제하기 위해서 사용하는 명령어
+
+## conflict
+
+![](images/conflict.png)
+```{}
+git checkout master
+git merge issue3
+```
+
+* 이때 어떤 파일에 대해서 master의 내용과 issue의 내용이 서로 다른 부분이 있다고 하자. 
+* 병합이 무리 없이 가능하다면 그대로 병합한다. 즉, A와 B가 있을 떄 B가 A의 내용을 포함하고 있다면, 병합이 가능하다. 
+* 파일 자체가 다른 경우는 인간의 판단이 필요하다. 해당 파일을 열면 아래와 같이 표현되어 있다. 
+
+```{}
+원숭이도 이해할 수 있는 Git 명령어
+add: 변경 사항을 만들어서 인덱스에 등록해보기
+<<<<<<< HEAD
+commit: 인덱스의 상태를 기록하기
+=======
+pull: 원격 저장소의 내용을 가져오기
+>>>>>>> issue3
+```
+
+* `<<<<<< HEAD`는 `====`까지 HEAD의 부분이고, `>>>>>>> issue3`의 부분이다. 
+
+-----
+
+# `rebase`
+
+## 개념 
+
+* 특정한 브랜치를 다른 브랜치로 합친 후에 이전 브랜치는 없애고 싶을 때, 한번에 처리하는 명령어가 rebase다.
+
+![](images/rebase_1.png)
+
+원래 상태는 HEAD를 master로 하고 브랜치는 다음과 같이 3가지다. 
+
+```{}
+git checkout issue3
+git rebase master 
+```
+
+issue3로 체크아웃을 한 뒤에 해당 브랜치를 master로 rebase한다. 만일 두 노드 사이에 충돌이 없다면 rebase가 되곘지만, 충돌이 있을 경우에는 해당 파일을 수정해줘야 한다. 수정 후 아래와 같이 rebase한다. 
+
+![](images/rebase_2.png)
+
+```{}
+git add myfile.txt 
+git rebase --continue 
+```
+
+![](images/rebase_3.png)
+
+```{}
+git checkout master 
+git merge issue3
+```
+
+`master`로 체크아웃한 이후에 issue3 merge하면 아래와 같이 가지가 정리된다. 
+
+![](images/rebase_4.png)
+
+# `branch`
+
+https://backlog.com/git-tutorial/kr/stepup/stepup2_1.html
+
+-----
+
+# Case by case 
+
+## Github의 내용을 강제로 local로 덮어쓰고 싶을 때 
+
+* 그냥 지우고 다시 clone을 할 수도 있다. 혹은 
+
+```{}
+git fetch --all
+git reset --hard origin/master
+git pull origin master
+```
+
+## local에 있는 내용을 강제로 github으로 보내고 싶을 때 
+
+```{}
+git pull --rebase
+git push
+git stash pop
+```
+
+# Miscellaneous
+
+## `.gitignore` 
+
+* vim으로 만들 수도 있다. 물론, txt editor로 만들어도 무방하다. 
+
+```{}
+vim .gitignore 
+```
+
+* vim 화면 위쪽에 입력하려면 i(insert)를 치고, 제외할 타잎을 넣는다. 
+
+```{}
+*.Rhistory 
+*.RData 
+```
+
+* ESC를 치면 화면 아래 command 창으로 이동한다. :qw(quit & write)를 입력한다. 
+
+# Homework
+
+## `log`
+
+```{}
+git log --pretty=oneline
+````
+
+[링크](https://git-scm.com/book/ko/v1/Git%EC%9D%98-%EA%B8%B0%EC%B4%88-%EC%BB%A4%EB%B0%8B-%ED%9E%88%EC%8A%A4%ED%86%A0%EB%A6%AC-%EC%A1%B0%ED%9A%8C%ED%95%98%EA%B8%B0)
+
+
+
+
+# Other link 
+
+http://meetup.toast.com/posts/116
+
+
+
+
+
