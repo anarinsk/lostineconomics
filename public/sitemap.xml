@@ -165,15 +165,12 @@
   </url>
   
   <url>
-<<<<<<< HEAD
     <loc>/categories/hugo/</loc>
     <lastmod>2016-02-14T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-=======
->>>>>>> add my_stupid_git_ex
     <loc>/tags/hugo/</loc>
     <lastmod>2017-09-19T00:00:00+00:00</lastmod>
     <priority>0</priority>

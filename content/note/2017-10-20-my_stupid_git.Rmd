@@ -14,7 +14,7 @@ categories: ['computing']
 
 # Basic structure 
 
-![](images/dr_structure.png)
+![](img/dr_structure.png)
 
 * `working dir`: local의 작업디렉토리 
 * `index`: staging area. 커밋될 파일들을 올려 두는 공간
