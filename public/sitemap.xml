@@ -165,24 +165,14 @@
   </url>
   
   <url>
-<<<<<<< HEAD
-    <loc>/categories/hugo/</loc>
-    <lastmod>2016-02-14T00:00:00+00:00</lastmod>
-=======
     <loc>/tags/hugo/</loc>
     <lastmod>2017-09-19T00:00:00+00:00</lastmod>
->>>>>>> test static/img
     <priority>0</priority>
   </url>
   
   <url>
-<<<<<<< HEAD
-    <loc>/tags/hugo/</loc>
-    <lastmod>2017-09-19T00:00:00+00:00</lastmod>
-=======
     <loc>/categories/hugo/</loc>
     <lastmod>2016-02-14T00:00:00+00:00</lastmod>
->>>>>>> test static/img
     <priority>0</priority>
   </url>
   

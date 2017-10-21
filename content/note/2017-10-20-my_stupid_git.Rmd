@@ -100,7 +100,12 @@ git commit --amend --no-edit
 
 * ` --amend --no-edit`: 전에 commit message를 그대로 쓰고 commit한다. 
 
+```{}
+git push -f [origin] [master]
+```
 -----
+
+* `-f`: commit을 새로 만든 것이 아니기 때문에, 그대로 push를 하게 되면 origin과 맞지 않게 된다. 강제로 push를 해서 맞춰주는 명령어다. 
 
 # `branch`
 
