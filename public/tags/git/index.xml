@@ -125,7 +125,7 @@ git branch -d &amp;lt;BRANCH_NAME&amp;gt;&lt;/code&gt;&lt;/pre&gt;
 &lt;div id=&#34;conflict&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;conflict&lt;/h2&gt;
 &lt;div class=&#34;figure&#34;&gt;
-&lt;img src=&#34;images/conflict.png&#34; /&gt;
+&lt;img src=&#34;img/conflict.png&#34; /&gt;
 
 &lt;/div&gt;
 &lt;pre&gt;&lt;code&gt;git checkout master
@@ -156,7 +156,7 @@ pull: 원격 저장소의 내용을 가져오기
 &lt;li&gt;특정한 브랜치를 다른 브랜치로 합친 후에 이전 브랜치는 없애고 싶을 때, 한번에 처리하는 명령어가 rebase다.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;div class=&#34;figure&#34;&gt;
-&lt;img src=&#34;images/rebase_1.png&#34; /&gt;
+&lt;img src=&#34;img/rebase_1.png&#34; /&gt;
 
 &lt;/div&gt;
 &lt;p&gt;원래 상태는 HEAD를 master로 하고 브랜치는 다음과 같이 3가지다.&lt;/p&gt;
@@ -164,20 +164,20 @@ pull: 원격 저장소의 내용을 가져오기
 git rebase master &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;issue3로 체크아웃을 한 뒤에 해당 브랜치를 master로 rebase한다. 만일 두 노드 사이에 충돌이 없다면 rebase가 되곘지만, 충돌이 있을 경우에는 해당 파일을 수정해줘야 한다. 수정 후 아래와 같이 rebase한다.&lt;/p&gt;
 &lt;div class=&#34;figure&#34;&gt;
-&lt;img src=&#34;images/rebase_2.png&#34; /&gt;
+&lt;img src=&#34;img/rebase_2.png&#34; /&gt;
 
 &lt;/div&gt;
 &lt;pre&gt;&lt;code&gt;git add myfile.txt 
 git rebase --continue &lt;/code&gt;&lt;/pre&gt;
 &lt;div class=&#34;figure&#34;&gt;
-&lt;img src=&#34;images/rebase_3.png&#34; /&gt;
+&lt;img src=&#34;img/rebase_3.png&#34; /&gt;
 
 &lt;/div&gt;
 &lt;pre&gt;&lt;code&gt;git checkout master 
 git merge issue3&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;code&gt;master&lt;/code&gt;로 체크아웃한 이후에 issue3 merge하면 아래와 같이 가지가 정리된다.&lt;/p&gt;
 &lt;div class=&#34;figure&#34;&gt;
-&lt;img src=&#34;images/rebase_4.png&#34; /&gt;
+&lt;img src=&#34;img/rebase_4.png&#34; /&gt;
 
 &lt;/div&gt;
 &lt;/div&gt;

@@ -126,7 +126,7 @@ git branch -d <BRANCH_NAME>
 
 ## conflict
 
-![](images/conflict.png)
+![](img/conflict.png)
 ```{}
 git checkout master
 git merge issue3
@@ -156,7 +156,7 @@ pull: 원격 저장소의 내용을 가져오기
 
 * 특정한 브랜치를 다른 브랜치로 합친 후에 이전 브랜치는 없애고 싶을 때, 한번에 처리하는 명령어가 rebase다.
 
-![](images/rebase_1.png)
+![](img/rebase_1.png)
 
 원래 상태는 HEAD를 master로 하고 브랜치는 다음과 같이 3가지다. 
 
@@ -167,14 +167,14 @@ git rebase master
 
 issue3로 체크아웃을 한 뒤에 해당 브랜치를 master로 rebase한다. 만일 두 노드 사이에 충돌이 없다면 rebase가 되곘지만, 충돌이 있을 경우에는 해당 파일을 수정해줘야 한다. 수정 후 아래와 같이 rebase한다. 
 
-![](images/rebase_2.png)
+![](img/rebase_2.png)
 
 ```{}
 git add myfile.txt 
 git rebase --continue 
 ```
 
-![](images/rebase_3.png)
+![](img/rebase_3.png)
 
 ```{}
 git checkout master 
@@ -183,7 +183,7 @@ git merge issue3
 
 `master`로 체크아웃한 이후에 issue3 merge하면 아래와 같이 가지가 정리된다. 
 
-![](images/rebase_4.png)
+![](img/rebase_4.png)
 
 # `branch`
 
@@ -239,8 +239,6 @@ git log --pretty=oneline
 ````
 
 [링크](https://git-scm.com/book/ko/v1/Git%EC%9D%98-%EA%B8%B0%EC%B4%88-%EC%BB%A4%EB%B0%8B-%ED%9E%88%EC%8A%A4%ED%86%A0%EB%A6%AC-%EC%A1%B0%ED%9A%8C%ED%95%98%EA%B8%B0)
-
-
 
 
 # Other link 
