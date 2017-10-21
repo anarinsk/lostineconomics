@@ -94,11 +94,18 @@ git push
 
 ## `commit`
 
+* `git commit -m "<<YOUR_MESSAGE>>"`: 기본적인 문법 
+
+### 이전 `commit-push`된 버전을 수정하고 싶다면
+
+* 뭔가를 수정했다. 하지만 새로운 commit을 만들고 싶지 않다. 
+
 ```{}
 git commit --amend --no-edit
 ```
 
 * ` --amend --no-edit`: 전에 commit message를 그대로 쓰고 commit한다. 
+* 문제는 이대로 push를 할 수 없다는 것이다. 앞서 push된 버전과 현 수정된 버전이 동일한 commit인데, 내용이 다르다. 즉, SHA-1이 다르다. 이때 강제로 `push`를 하고 싶다면 아래와 같이 한다. 
 
 ```{}
 git push -f [origin] [master]

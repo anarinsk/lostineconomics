@@ -112,15 +112,25 @@ git push </code></pre>
 </div>
 <div id="commit" class="section level2">
 <h2><code>commit</code></h2>
+<ul>
+<li><code>git commit -m &quot;&lt;&lt;YOUR_MESSAGE&gt;&gt;&quot;</code>: 기본적인 문법</li>
+</ul>
+<div id="-commit-push---" class="section level3">
+<h3>이전 <code>commit-push</code>된 버전을 수정하고 싶다면</h3>
+<ul>
+<li>뭔가를 수정했다. 하지만 새로운 commit을 만들고 싶지 않다.</li>
+</ul>
 <pre><code>git commit --amend --no-edit</code></pre>
 <ul>
 <li><code>--amend --no-edit</code>: 전에 commit message를 그대로 쓰고 commit한다.</li>
+<li>문제는 이대로 push를 할 수 없다는 것이다. 앞서 push된 버전과 현 수정된 버전이 동일한 commit인데, 내용이 다르다. 즉, SHA-1이 다르다. 이때 강제로 <code>push</code>를 하고 싶다면 아래와 같이 한다.</li>
 </ul>
 <pre><code>git push -f [origin] [master]</code></pre>
 <hr />
 <ul>
 <li><code>-f</code>: commit을 새로 만든 것이 아니기 때문에, 그대로 push를 하게 되면 origin과 맞지 않게 된다. 강제로 push를 해서 맞춰주는 명령어다.</li>
 </ul>
+</div>
 </div>
 </div>
 <div id="branch" class="section level1">
