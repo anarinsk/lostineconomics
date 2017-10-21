@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>My Stupid Git Experience | lost in economics</title>
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/fonts.css" />
+    
+  </head>
+
+  <body>
+    <nav>
+    <ul class="menu">
+      
+      <li><a href="/">Home</a></li>
+      
+      <li><a href="/categories/">Categories</a></li>
+      
+      <li><a href="/tags/">Tags</a></li>
+      
+    </ul>
+    <hr/>
+    </nav>
+
+<div class="article-meta">
+<h1><span class="title">My Stupid Git Experience</span></h1>
+<h2 class="author">Junsok Huhh</h2>
+
+</div>
+
+<main>
+<div id="disclaimer" class="section level1">
+<h1>Disclaimer</h1>
+<p>이 문서는 <code>git</code>을 다루면서 저질렀던 개인적을 실수를 모아 놓은 것이다. 아마도 문서 자체가 조금씩 진화할 것이므로 어떤 시점에서 보신다면 몹시 허접할 수 있도 있겠다. git에 대해서 잘 아는 분들은 패스하시라.</p>
+<hr />
+</div>
+<div id="basic-structure" class="section level1">
+<h1>Basic structure</h1>
+<div class="figure">
+<img src="images/dr_structure.png" />
+
+</div>
+<ul>
+<li><code>working dir</code>: local의 작업디렉토리</li>
+<li><code>index</code>: staging area. 커밋될 파일들을 올려 두는 공간</li>
+<li><code>HEAD</code>: 최후의 커밋</li>
+</ul>
+<hr />
+</div>
+<div id="basic-command" class="section level1">
+<h1>Basic command</h1>
+<div id="initiation-in-local" class="section level2">
+<h2>Initiation in local</h2>
+<ul>
+<li>로컬머신에서 git을 개시하는 방법부터 알아보자.</li>
+<li>git으로 관리하고 싶은 directory에서 아래와 같은 명령어를 쳐 준다.</li>
+</ul>
+<pre><code>echo &quot;# YOUR_README_NAME&quot; &gt;&gt; README.md 
+git init
+git add README.md 
+git commit -m &quot;YOUR_COMMIT_MESSAGE/first commit&quot;
+git remote add origin &lt;&lt;https://YOUR_REMOTE_GIT_URL&gt;&gt;
+git push -u origin master </code></pre>
+<ul>
+<li><code>&lt;&lt;https://YOUR_REMOTE_GIT_URL&gt;&gt;</code>: 외부 리포가 적절하게 세팅이 되어 있어야 한다. github를 쓴다면, readme 없이 새 repository를 터주는 작업 만으로 끝이다.</li>
+<li><code>echo...</code>: “# YOUR_README_NAME” 내용을 <code>README.md</code>로 생성한 후</li>
+<li><code>git init</code>: 해당 디렉토리에 git을 개시한다.</li>
+<li><code>git remote add</code>: git의 remote 저장소를 <code>origin</code>이라는 이름으로 지정</li>
+<li><code>git push -u origin master</code>: <code>-u</code>는 업스트림 브랜치를 master로 기본설정해준다. 이후 <code>git push</code>, <code>git pull</code>은 자동으로 <code>origin &lt;-&gt; master</code>가 된다.</li>
+</ul>
+</div>
+<div id="add-commit-push" class="section level2">
+<h2><code>add</code>, <code>commit</code>, <code>push</code></h2>
+<pre><code>git status  
+git add .
+#or
+git add -u
+git commit -m &quot;YOUR_COMMENT&quot;
+git push </code></pre>
+<ul>
+<li>git 운용의 기본적인 흐름 혹은 기본 셋</li>
+<li><code>push</code>만 명령하면 되는 것은 앞서 <code>git push -u origin master</code> origin master로 local과 remote repository의 upstream을 정해두었기 때문이다.</li>
+</ul>
+<hr />
+</div>
+</div>
+<div id="in-depth-command" class="section level1">
+<h1>In-depth command</h1>
+<div id="remote" class="section level2">
+<h2><code>remote</code></h2>
+<pre><code>&gt; git remote  
+
+origin 
+
+&gt; git remote -v 
+
+git status  
+git add .
+git commit -m &quot;YOUR_COMMENT&quot;
+git push </code></pre>
+<p><code>git remote</code> : remote로 어떤 대상이 설정되어 있는지 볼 수 있다. <code>git remote -v</code>: remote의 구체적인 내용을 조회해볼 수 있다.</p>
+</div>
+<div id="pull" class="section level2">
+<h2><code>pull</code></h2>
+<ul>
+<li><p><code>pull</code> 명령어는 기본적으로 <code>fetch</code>(가져오기)와 <code>merge</code>(병합하기)를 동시에 구현하는 것이다. 보통 <code>fetch</code>는 repository의 내용을 가져와 <code>fetch_head</code>라는 local branch에 임시로 저장해둔다. <code>merge</code>는 이렇게 가져온 데이터를 원래 흐름과 병합하는 것이다. 이 둘을 동시에 구현하는 것이 <code>pull</code>이다.</p></li>
+<li><p>논리적으로 봤을 때, origin과 master에서 모두 변경 사항이 있을 경우는 둘에 충돌이 일어날 수 밖에 없다. 이런 경우 이 충돌을 해결해줘야 <code>push</code>가 가능하다.</p></li>
+<li><p>깔끔한 이력 관리를 위해서는 아래와 같이 rebase를 활용해서 pull을 해주면 좋다. rebase를 해주면 별도의 브랜치를 만들지 않겠다는 의도를 분명히 하는 것이고, 이에 따라서 log가 깔끔하고 단순해진다.</p></li>
+</ul>
+<pre><code>&gt; git pull --rebase</code></pre>
+</div>
+<div id="commit" class="section level2">
+<h2><code>commit</code></h2>
+<pre><code>git commit --amend --no-edit</code></pre>
+<ul>
+<li><code>--amend --no-edit</code>: 전에 commit message를 그대로 쓰고 commit한다.</li>
+</ul>
+<hr />
+</div>
+</div>
+<div id="branch" class="section level1">
+<h1><code>branch</code></h1>
+<div id="basic" class="section level2">
+<h2>Basic</h2>
+<pre><code>git branch &lt;BRANCH_NAME&gt;
+git checkout
+git checkout -b &lt;BRANCH_NAME&gt;</code></pre>
+<ul>
+<li><code>git branch</code>: 브랜치를 조회하거나, <code>&lt;BRANCH_NAME&gt;</code>을 붙여 브랜치를 생성한다.</li>
+<li><code>checkout</code>이란 다른 브랜치로 빠져나가는 것을 의미한다.</li>
+<li><code>-b</code>: 브랜치를 만들면서 체크아웃을 하기 위해서는 이 옵션을 사용한다.</li>
+</ul>
+<pre><code>git merge &lt;COMMIT_NAME&gt; 
+git branch -d &lt;BRANCH_NAME&gt;</code></pre>
+<ul>
+<li><code>merge</code>: 커밋된 다른 지점과 현재 브랜치를 병합한다.</li>
+<li><code>-d</code>: 브랜치를 삭제하기 위해서 사용하는 명령어</li>
+</ul>
+</div>
+<div id="conflict" class="section level2">
+<h2>conflict</h2>
+<div class="figure">
+<img src="images/conflict.png" />
+
+</div>
+<pre><code>git checkout master
+git merge issue3</code></pre>
+<ul>
+<li>이때 어떤 파일에 대해서 master의 내용과 issue의 내용이 서로 다른 부분이 있다고 하자.</li>
+<li>병합이 무리 없이 가능하다면 그대로 병합한다. 즉, A와 B가 있을 떄 B가 A의 내용을 포함하고 있다면, 병합이 가능하다.</li>
+<li>파일 자체가 다른 경우는 인간의 판단이 필요하다. 해당 파일을 열면 아래와 같이 표현되어 있다.</li>
+</ul>
+<pre><code>원숭이도 이해할 수 있는 Git 명령어
+add: 변경 사항을 만들어서 인덱스에 등록해보기
+&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+commit: 인덱스의 상태를 기록하기
+=======
+pull: 원격 저장소의 내용을 가져오기
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; issue3</code></pre>
+<ul>
+<li><code>&lt;&lt;&lt;&lt;&lt;&lt; HEAD</code>는 <code>====</code>까지 HEAD의 부분이고, <code>&gt;&gt;&gt;&gt;&gt;&gt;&gt; issue3</code>의 부분이다.</li>
+</ul>
+<hr />
+</div>
+</div>
+<div id="rebase" class="section level1">
+<h1><code>rebase</code></h1>
+<div class="section level2">
+<h2>개념</h2>
+<ul>
+<li>특정한 브랜치를 다른 브랜치로 합친 후에 이전 브랜치는 없애고 싶을 때, 한번에 처리하는 명령어가 rebase다.</li>
+</ul>
+<div class="figure">
+<img src="images/rebase_1.png" />
+
+</div>
+<p>원래 상태는 HEAD를 master로 하고 브랜치는 다음과 같이 3가지다.</p>
+<pre><code>git checkout issue3
+git rebase master </code></pre>
+<p>issue3로 체크아웃을 한 뒤에 해당 브랜치를 master로 rebase한다. 만일 두 노드 사이에 충돌이 없다면 rebase가 되곘지만, 충돌이 있을 경우에는 해당 파일을 수정해줘야 한다. 수정 후 아래와 같이 rebase한다.</p>
+<div class="figure">
+<img src="images/rebase_2.png" />
+
+</div>
+<pre><code>git add myfile.txt 
+git rebase --continue </code></pre>
+<div class="figure">
+<img src="images/rebase_3.png" />
+
+</div>
+<pre><code>git checkout master 
+git merge issue3</code></pre>
+<p><code>master</code>로 체크아웃한 이후에 issue3 merge하면 아래와 같이 가지가 정리된다.</p>
+<div class="figure">
+<img src="images/rebase_4.png" />
+
+</div>
+</div>
+</div>
+<div id="branch-1" class="section level1">
+<h1><code>branch</code></h1>
+<p><a href="https://backlog.com/git-tutorial/kr/stepup/stepup2_1.html" class="uri">https://backlog.com/git-tutorial/kr/stepup/stepup2_1.html</a></p>
+<hr />
+</div>
+<div id="case-by-case" class="section level1">
+<h1>Case by case</h1>
+<div id="github---local---" class="section level2">
+<h2>Github의 내용을 강제로 local로 덮어쓰고 싶을 때</h2>
+<ul>
+<li>그냥 지우고 다시 clone을 할 수도 있다. 혹은</li>
+</ul>
+<pre><code>git fetch --all
+git reset --hard origin/master
+git pull origin master</code></pre>
+</div>
+<div id="local----github---" class="section level2">
+<h2>local에 있는 내용을 강제로 github으로 보내고 싶을 때</h2>
+<pre><code>git pull --rebase
+git push
+git stash pop</code></pre>
+</div>
+</div>
+<div id="miscellaneous" class="section level1">
+<h1>Miscellaneous</h1>
+<div id="gitignore" class="section level2">
+<h2><code>.gitignore</code></h2>
+<ul>
+<li>vim으로 만들 수도 있다. 물론, txt editor로 만들어도 무방하다.</li>
+</ul>
+<pre><code>vim .gitignore </code></pre>
+<ul>
+<li>vim 화면 위쪽에 입력하려면 i(insert)를 치고, 제외할 타잎을 넣는다.</li>
+</ul>
+<pre><code>*.Rhistory 
+*.RData </code></pre>
+<ul>
+<li>ESC를 치면 화면 아래 command 창으로 이동한다. :qw(quit &amp; write)를 입력한다.</li>
+</ul>
+</div>
+</div>
+<div id="homework" class="section level1">
+<h1>Homework</h1>
+<div id="log" class="section level2">
+<h2><code>log</code></h2>
+<pre><code>git log --pretty=oneline</code></pre>
+<p><a href="https://git-scm.com/book/ko/v1/Git%EC%9D%98-%EA%B8%B0%EC%B4%88-%EC%BB%A4%EB%B0%8B-%ED%9E%88%EC%8A%A4%ED%86%A0%EB%A6%AC-%EC%A1%B0%ED%9A%8C%ED%95%98%EA%B8%B0">링크</a></p>
+</div>
+</div>
+<div id="other-link" class="section level1">
+<h1>Other link</h1>
+<p><a href="http://meetup.toast.com/posts/116" class="uri">http://meetup.toast.com/posts/116</a></p>
+</div>
+
+</main>
+
+  <footer>
+  <script src="//yihui.name/js/math-code.js"></script>
+<script async src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+<script async src="//yihui.name/js/center-img.js"></script>
+
+  
+  <hr/>
+  &copy; <a href="http://lostineconomics.com">Junsok Huhh</a> 2017 | <a href="https://github.com/anarinsk">Github</a>
+  
+  </footer>
+  </body>
+</html>
+
