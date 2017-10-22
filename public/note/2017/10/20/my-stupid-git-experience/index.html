@@ -26,7 +26,7 @@
 <div class="article-meta">
 <h1><span class="title">My Stupid Git Experience</span></h1>
 <h2 class="author">Junsok Huhh</h2>
-
+<h2 class="date">2017/10/20</h2>
 </div>
 
 <main>
@@ -56,10 +56,7 @@
 <h1>Basic command</h1>
 <div id="initiation-in-local" class="section level2">
 <h2>Initiation in local</h2>
-<ul>
-<li>로컬머신에서 git을 개시하는 방법부터 알아보자.</li>
-<li>git으로 관리하고 싶은 directory에서 아래와 같은 명령어를 쳐 준다.</li>
-</ul>
+<p>로컬머신에서 git을 개시하는 방법부터 알아보자. git으로 관리하고 싶은 directory에서 아래와 같은 명령어를 쳐 준다.</p>
 <pre><code>echo &quot;# YOUR_README_NAME&quot; &gt;&gt; README.md 
 git init
 git add README.md 
@@ -127,9 +124,7 @@ git push </code></pre>
 </ul>
 <div id="-commit-push---" class="section level3">
 <h3>이전 <code>commit-push</code>된 버전을 수정하고 싶다면</h3>
-<ul>
-<li>뭔가를 수정했다. 하지만 새로운 commit을 만들고 싶지 않다.</li>
-</ul>
+<p>뭔가를 수정했다. 하지만 새로운 commit을 만들고 싶지 않다.</p>
 <pre><code>git commit --amend --no-edit</code></pre>
 <ul>
 <li><code>--amend --no-edit</code>: 전에 commit message를 그대로 쓰고 commit한다.
@@ -147,6 +142,9 @@ git push </code></pre>
 </div>
 <div id="concept-of-branch" class="section level1">
 <h1>Concept of <code>branch</code></h1>
+<ul>
+<li>이 꼭지는 <a href="https://backlog.com/git-tutorial/kr/">backlog.com</a>을 많이 참고했습니다.</li>
+</ul>
 <p>브랜치란 현재 <code>HEAD</code> 스냅샷에 대해서 다른 이름을 부여해주는 작업이다. 일단, 아무런 변경이 없는 이상 브랜치는 분기되지 않고 노드에 함께 머물러 있다. 일단 기본적인 명령어는 아래와 같다.</p>
 <div id="basic" class="section level2">
 <h2>Basic</h2>
@@ -180,18 +178,18 @@ git branch -d &lt;BRANCH_NAME&gt;</code></pre>
 <img src="img/branch1.png" />
 
 </div>
-<p>이 상태에서 issue2의 어떤 내용을 수정했다고 하자.</p>
+<p>issue2의 어떤 내용을 수정했다고 하자.</p>
 <div class="figure">
 <img src="img/branch2.png" />
 
 </div>
 <pre><code>&gt; git checkout issue3</code></pre>
-<p>그리거 뭔가 내용을 또 수정했다고 하자.</p>
+<p>issue3 branch에서 어떤 내용을 또 수정했다고 하자.</p>
 <div class="figure">
 <img src="img/branch3.png" />
 
 </div>
-<p>그리고 master를 issue2와 병합하면 다음의 그림과 같은 상탤가 된다.</p>
+<p>그리고 master를 issue2와 병합하면 다음의 그림과 같은 상태로 이해하면 된다.</p>
 <div class="figure">
 <img src="img/conflict.png" />
 
@@ -224,9 +222,9 @@ pull: 원격 저장소의 내용을 가져오기
 <h1>What is <code>rebase</code></h1>
 <div class="section level2">
 <h2>개념</h2>
+<p>특정한 브랜치를 다른 브랜치로 합친 후에 이전 브랜치는 없애고 싶을 때, 한번에 처리하는 명령어가 rebase다.</p>
 <ul>
-<li>특정한 브랜치를 다른 브랜치로 합친 후에 이전 브랜치는 없애고 싶을 때, 한번에 처리하는 명령어가 rebase다.</li>
-<li>리베이스는 병합될 브랜치에서 시작한다.</li>
+<li>리베이스는 병합될 브랜치에서 시작!</li>
 </ul>
 <div class="figure">
 <img src="img/rebase_1.png" />
@@ -260,9 +258,7 @@ git merge issue3</code></pre>
 <h1>Case by case</h1>
 <div id="github---local---" class="section level2">
 <h2>Github의 내용을 강제로 local로 덮어쓰고 싶을 때</h2>
-<ul>
-<li>그냥 지우고 다시 clone을 할 수도 있다. 혹은</li>
-</ul>
+<p>그냥 지우고 다시 clone을 할 수도 있다. 하지만 아래 같이 해주면 불필요한 동기화를 막을 수 있다.</p>
 <pre><code>git fetch --all
 git reset --hard origin/master
 git pull origin master</code></pre>
@@ -279,9 +275,7 @@ git stash pop</code></pre>
 <h1>Miscellaneous</h1>
 <div id="gitignore" class="section level2">
 <h2><code>.gitignore</code></h2>
-<ul>
-<li>vim으로 만들 수도 있다. 물론, txt editor로 만들어도 무방하다.</li>
-</ul>
+<p>vim으로 만들 수도 있다. 물론, 흔한 txt editor로 만들어도 무방하다.</p>
 <pre><code>vim .gitignore </code></pre>
 <ul>
 <li>vim 화면 위쪽에 입력하려면 i(insert)를 치고, 제외할 타잎을 넣는다.</li>
@@ -300,7 +294,12 @@ git stash pop</code></pre>
 <div id="log" class="section level2">
 <h2><code>log</code></h2>
 <p>여러가지 옵션이 있고 활용하면 좋을 듯 하지만, 당분간 나에게는 히스토리를 그냥 순서대로 보여주는 아래 명령어 정도면 충분할 듯 싶다.</p>
-<pre><code>git log --pretty=oneline</code></pre>
+<pre><code>git log --pretty=oneline
+git log --pretty=format:&quot;%h - %an, %ar : %s&quot;</code></pre>
+<ul>
+<li><code>git log --pretty=oneline</code>: oneline으로 보여준다.</li>
+<li><code>git log --pretty=format:&quot;%h - %an, %ar : %s&quot;</code>: 포매팅한다.</li>
+</ul>
 <p><a href="https://git-scm.com/book/ko/v1/Git%EC%9D%98-%EA%B8%B0%EC%B4%88-%EC%BB%A4%EB%B0%8B-%ED%9E%88%EC%8A%A4%ED%86%A0%EB%A6%AC-%EC%A1%B0%ED%9A%8C%ED%95%98%EA%B8%B0">링크</a></p>
 </div>
 <div id="other-link" class="section level2">

@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>math_symbol on lost in economics</title>
-    <link>/categories/math_symbol/index.xml</link>
-    <description>Recent content in math_symbol on lost in economics</description>
+    <title>Math_symbol on lost in economics</title>
+    <link>/categories/math_symbol/</link>
+    <description>Recent content in Math_symbol on lost in economics</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <atom:link href="/categories/math_symbol/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 18 Oct 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/categories/math_symbol/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>All dots are not created same...</title>
@@ -14,32 +17,8 @@
       <pubDate>Wed, 18 Oct 2017 00:00:00 +0000</pubDate>
       
       <guid>/note/2017/10/18/all-dots-are-not-created-same.../</guid>
-      <description>&lt;div id=&#34;cdots-ldots-and-so-on&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;&lt;code&gt;\cdots&lt;/code&gt;, &lt;code&gt;\ldots&lt;/code&gt;, and so on&lt;/h1&gt;
-&lt;p&gt;&lt;span class=&#34;math inline&#34;&gt;\(\mathrm \LaTeX\)&lt;/span&gt;으로 조판하는 분들에게는 때때로 아리송한 사항들이 몇 개 있다. 작정하고 알아보기에는 사소하고 그렇다고 넘어가기엔 찜찜한, 뭐 그런 것들이다. 요즘은 무늬나마 공부하는 사람일 때 만큼 &lt;span class=&#34;math inline&#34;&gt;\(\mathrm \LaTeX\)&lt;/span&gt;을 쓰지 않는다. 그래도 가끔 쓰기는 해서일까? 이런 사소한 내용에 더 큰 궁금증을 느낄 때가 많다.&lt;/p&gt;
-&lt;p&gt;문득, &lt;code&gt;\cdots&lt;/code&gt;(&lt;span class=&#34;math inline&#34;&gt;\(\cdots\)&lt;/span&gt;)과 &lt;code&gt;\ldots&lt;/code&gt;(&lt;span class=&#34;math inline&#34;&gt;\(\ldots\)&lt;/span&gt;)은 어떻게 다르지, 라는 질문이 떠올랐다. 분명, 수학 기호의 일부이기 때문에 다르기는 다를텐데 말이다. 천조국수학회(AMS)에서 관리하는 수학 조판 패키지인 &lt;code&gt;amsmath&lt;/code&gt; 패키지의 &lt;a href=&#34;http://www.tug.org/teTeX/tetex-texmfdist/doc/latex/amsmath/amsldoc.pdf&#34;&gt;이용자 매뉴얼&lt;/a&gt;에 따르면 ’점 세개’로 표기되는 기호들은 명령어 차원에서 구분된다. 즉, 외견상 같은 모양을 하고 있더라도 구분해서 쓰라는 취지인 셈이다. AMS 패키지 매뉴얼은 현재 2.0이 최신 버전이고 만들어진 날짜는 2002년 2월 25일이다… (그간 이 매뉴얼을 꼼꼼하게 볼 생각을 하지 않았다니 ㅠㅠ)&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;according-to-ams-package-guide&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;According to AMS package guide&lt;/h1&gt;
-&lt;p&gt;가이드 12쪽에 보면 ’점 세개’는 아래와 같이 다섯가지로 구분되어 있다.&lt;/p&gt;
-&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
-&lt;li&gt;&lt;code&gt;\dotsc&lt;/code&gt; for “dots with commas”&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;\dotsb&lt;/code&gt; for “dots with binary operators / relations”&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;\dotsm&lt;/code&gt; for “multiplication dots”&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;\dotsi&lt;/code&gt; for “dots with integrals”&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;\dotso&lt;/code&gt; for “other dots” (none of the above)&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;AMS 구분을 보고 무릎을 ‘탁’ 쳤다. 바로 이거야!&lt;/p&gt;
-&lt;p&gt;직접 조판해보자.&lt;/p&gt;
-&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
-&lt;li&gt;&lt;code&gt;\dotsc&lt;/code&gt;: &lt;span class=&#34;math inline&#34;&gt;\(A_1, A_2, \dotsc\)&lt;/span&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;\dotsb&lt;/code&gt;: &lt;span class=&#34;math inline&#34;&gt;\(A_1 + A_2 + \dotsb\)&lt;/span&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;\dotsm&lt;/code&gt;: &lt;span class=&#34;math inline&#34;&gt;\(A_1 A_2 \dotsm\)&lt;/span&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;\dotsi&lt;/code&gt;: &lt;span class=&#34;math inline&#34;&gt;\(\begin{aligned}  \int_{A_1} \int_{A_2} \dotsi  \end{aligned}\)&lt;/span&gt;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;뭐 다 비슷비슷해 보일 수 있으나, 참으로 감동이 아닌가!&lt;/p&gt;
-&lt;/div&gt;
-</description>
+      <description>\cdots, \ldots, and so on\(\mathrm \LaTeX\)으로 조판하는 분들에게는 때때로 아리송한 사항들이 몇 개 있다. 작정하고 알아보기에는 사소하고 그렇다고 넘어가기엔 찜찜한, 뭐 그런 것들이다. 요즘은 무늬나마 공부하는 사람일 때 만큼 \(\mathrm \LaTeX\)을 쓰지 않는다. 그래도 가끔 쓰기는 해서일까? 이런 사소한 내용에 더 큰 궁금증을 느낄 때가 많다.
+문득, \cdots(\(\cdots\))과 \ldots(\(\ldots\))은 어떻게 다르지, 라는 질문이 떠올랐다. 분명, 수학 기호의 일부이기 때문에 다르기는 다를텐데 말이다. 천조국수학회(AMS)에서 관리하는 수학 조판 패키지인 amsmath 패키지의 이용자 매뉴얼에 따르면 ’점 세개’로 표기되는 기호들은 명령어 차원에서 구분된다.</description>
     </item>
     
   </channel>

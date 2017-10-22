@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>hugo on lost in economics</title>
-    <link>/tags/hugo/index.xml</link>
-    <description>Recent content in hugo on lost in economics</description>
+    <title>Hugo on lost in economics</title>
+    <link>/tags/hugo/</link>
+    <description>Recent content in Hugo on lost in economics</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <atom:link href="/tags/hugo/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 19 Sep 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/hugo/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>Blog by Hogo</title>
@@ -14,92 +17,8 @@
       <pubDate>Tue, 19 Sep 2017 00:00:00 +0000</pubDate>
       
       <guid>/post/2017/09/19/blog-by-hogo/</guid>
-      <description>&lt;div id=&#34;prologue&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;Prologue&lt;/h1&gt;
-&lt;p&gt;어쨌든 자신만의 공간을 지니는 것은 로망이다. 이 로망을 웹에서 실현해본 사람들은 넷스케이프를 써보고, 웹에디터(나모 웹에디터?)를 통해 자신만의 홈페이지를 만들어본 경험이 있는 세대에 속할 것이다. 내용에 집중해야 한다는 것은 맞다. 네이버, 다음, 구글 등은 편리하게 글을 올리고 입소문을 태울 수 있고 관리가 편한 블로그의 틀을 이미 제공한다. 그렇다면, 왜 독자적인 공간을 만들어야 하는가?&lt;/p&gt;
-&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
-&lt;li&gt;대기업이 싫어서&lt;/li&gt;
-&lt;li&gt;서비스 주소가 마음에 안들어서&lt;/li&gt;
-&lt;li&gt;디자인이나 형식이 과해서&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;뭐 이유야 여러가지가 있겠지만 직접 만드는 것에는 나름의 의의는 있겠다. 문제는 어떻게 만들 수 있느냐는 것이다. 통상적인 절차에 따르면 다음과 같을 것이다.&lt;/p&gt;
-&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
-&lt;li&gt;웹 호스팅 서비스를 탐색한다.&lt;/li&gt;
-&lt;li&gt;웹 사이트 혹은 블로그를 운영할 기술적인 프레임웤을 선택한다.&lt;/li&gt;
-&lt;li&gt;도메인 등속을 구입한다.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;돈이 든다는 것 이외에 위의 절차에는 따라붙은 귀찮음이 있다. 작든 크든 운영자가 된다는 것은 일정한 시간과 비용을 수반할 수 밖에 없다. 페이지 혹은 블로그를 제한적인 목적과 용도로 운영한다마녀, 이러한 비용은 배보다 배꼽이 더 큰 것일 수 있다. 이 문제를 해결할 수는 없을까?&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;static-web&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;Static Web&lt;/h1&gt;
-&lt;p&gt;아래 그림으로 비교적 분명하게 설명이 되리라고 본다. Static Web은 기존에 만들어진 문서를 클라이언트로 뿌려주는 일만 한다. 반면, Dynamic web은 클라이언트의 요청을 세밀하게 분석해서 그에 맞게 문서를 제조해서 클라이언트로 뿌려준다.&lt;/p&gt;
-&lt;div class=&#34;figure&#34;&gt;
-&lt;img src=&#34;https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Scheme_static_page_en.svg/750px-Scheme_static_page_en.svg.png&#34; /&gt;
-
-&lt;/div&gt;
-&lt;p&gt;&lt;a href=&#34;https://en.wikipedia.org/wiki/Static_web_page&#34;&gt;그림 출처&lt;/a&gt;&lt;/p&gt;
-&lt;div class=&#34;figure&#34;&gt;
-&lt;img src=&#34;https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Scheme_dynamic_page_en.svg/750px-Scheme_dynamic_page_en.svg.png&#34; /&gt;
-
-&lt;/div&gt;
-&lt;p&gt;&lt;a href=&#34;https://en.wikipedia.org/wiki/Dynamic_web_page&#34;&gt;그림 출처&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;당연히 웹의 발전이 정적웹에서 동적웹으로 갔을 것이라고 추론할 수 있다. 물론, 진보에는 댓가가 따르기 마련이다.&lt;/p&gt;
-&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
-&lt;li&gt;우선 서비스가 무거워진다. WordPress 같은 날렵한 서비스를 써도 서비스가 무거워진다. (그러다가 결국 큰 회사에서 호스팅하는 서비스로 옮겨간다)&lt;/li&gt;
-&lt;li&gt;아무리 프레임웤을 잘 만든다고 해도 버그나 해킹에 취약하다.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;이 웹페이지의 경우에도 마찬가지만, 내 목적은 그냥 내가 하고 싶은 말을 몇마디 적고 공유하는 것이다. SQL 같은 거 붙이거나 관리하는 거 몹시 부답스럽다. 독자들로부터의 피드백, 이런 거 필요 없다. 그럴 때 정적웹이 딱인 것이다.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;rstudio-blogdown&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;RStudio &amp;amp; Blogdown&lt;/h1&gt;
-&lt;p&gt;html을 생짜로 코딩할게 아니라면, 이 대목의 문제는 에디터를 택하는 문제다. 여기서 에디터라 함은, 최대한 자연어에 가깝게 내용을 작성하고 이걸 html로 바꿔주는 그런 녀석을 의미할 것이다. 다행히 최근 등장한 마크업 언어 Markdown은 이 문제에 대한 거의 완벽한 해결책이다. 최소한의 스크립팅으로 최대한의 효과를 거둬준다. Rmarkdown은 일반 Markdown과 호환되면서 R에 특화된 내용을 갖고 있다. 당연히 RStudio에서 지원하는 포맷이므로 RStudio에서 쉽게 쓸 수 있다.&lt;/p&gt;
-&lt;p&gt;그리고 Blogdown은 RStudio를 기반으로 하는 R 패키지다. 정적웹의 꼴을 만들어주는 역할을 한다고 보시면 쉽다. 로컬에 일단 꼴을 설치하고 집을 툭닥툭닥 짓는다고 비유하면 적당하겠다. RStudio의 &lt;a href=&#34;https://blog.rstudio.com/2017/09/11/announcing-blogdown/&#34;&gt;공식 제품&lt;/a&gt;의 하나로 편입되었다. 패키지 설치 후에 명령어로 쉽게 공간들을 생성할 수 있다. 그리고 또하나의 장점이라면 Hugo의 &lt;a href=&#34;https://themes.gohugo.io/&#34;&gt;다양한 테마&lt;/a&gt;들을 손쉽게 끌어다 붙일 수 있다. 패키지 제작자 Yihui Xie가 아주 상세한 &lt;a href=&#34;https://bookdown.org/yihui/blogdown/installation.html&#34;&gt;설치가이드&lt;/a&gt; 또한 제공하고 있다.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;github-and-its-kind&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;GitHub, and its kind&lt;/h1&gt;
-&lt;p&gt;&lt;a href=&#34;https://github.com&#34;&gt;github&lt;/a&gt;와 git에 대해서는 굳이 말할 필요가 없을 듯 하다. 혹자는 리누스 토발즈의 최대 업적이 리눅스가 아니라 git 시스템이라고 할 정도이니 말이다. 좌간, 스태틱웹을 구현하는 데 있어 github는 일종의 숙주다. git은 원래와 같은 리포티터리 관리 및 협업용으로 쓰는게 아니라 스태틱웹의 내용을 저장해놓는 창고로 쓴다. 뭐 그러면 어떠랴.&lt;/p&gt;
-&lt;p&gt;대략적인 작업의 흐름은 아래와 같다. github를 기준으로 서술하지만, 나머지 git 관련 사이트도 대동소이하리라고 본다.&lt;/p&gt;
-&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
-&lt;li&gt;github 계정을 만든다. public으로 만든다.&lt;/li&gt;
-&lt;li&gt;계정을 만들 때, &lt;code&gt;README.md&lt;/code&gt; 파일을 포함해서 만들지 않으면 화면 위에 로컬의 폴더를 어떻게 git의 관할 하에 놓는지에 대한 가이드가 뜬다. 그대로 하면 된다. 대충 아래와 같이 생겼다.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;pre class=&#34;bash&#34;&gt;&lt;code&gt;echo &amp;quot;# YOUR_GIT_REPO&amp;quot; &amp;gt;&amp;gt; README.md
-git init
-git add README.md
-git commit -m &amp;quot;first commit&amp;quot;
-git remote add origin https://github.com/YOUR_GIT_ACCOUNT/YOUR_GIT_REPO.git
-git push -u origin master&lt;/code&gt;&lt;/pre&gt;
-&lt;ol start=&#34;3&#34; style=&#34;list-style-type: decimal&#34;&gt;
-&lt;li&gt;이렇게 세팅을 한 후에 이제 github와 로컬의 내용을 동기화해야 한다.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;pre class=&#34;bash&#34;&gt;&lt;code&gt;git add . 
-git commit -m &amp;quot;YOUR_MESSEAGE&amp;quot;
-git push &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;여기까지 마치면 git의 &lt;code&gt;YOUR_GIT_REPO&lt;/code&gt;로 로컬의 내용이 올라가게 된다. 여기까지 마치면 스태틱웹 제공을 위한 온라인의 숙주가 마련된 셈이다.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;netlify.com&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;Netlify.com&lt;/h1&gt;
-&lt;p&gt;숙주가 마련되었지만, 바로 hmtl을 클라이언트로 쏴주는 것은 아니다. github가 이걸 막고 있기 때문인데, 이 때문에 약간 배치(deploy) 과정이 필요하다. Xie는 &lt;a href=&#34;https://bookdown.org/yihui/blogdown/netlify.html&#34;&gt;세가지 정도의 옵션&lt;/a&gt; 제시하고 있으나, 그냥 닥치고 &lt;a href=&#34;https://www.netlify.com/&#34;&gt;Netlify.com&lt;/a&gt;을 쓰는 편이 좋다. 이 서비스가 문을 닫았다면, 모를까 그게 아니라면 다른 서비스보다 이 용도로는 훨씬 편리하다.&lt;/p&gt;
-&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
-&lt;li&gt;계정 만들고 자신의 온라인 git repo와 연결한다.&lt;/li&gt;
-&lt;li&gt;나머지 설정은 아래 스크린 샷에 나온 것처럼 한다.&lt;/li&gt;
-&lt;li&gt;주의할 것은 Hugo 버전 세팅이다. 테마마다 필요로 하는 휴고 버전이 다르니까 주의해서 설정하라.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;div class=&#34;figure&#34;&gt;
-&lt;img src=&#34;https://bookdown.org/yihui/blogdown/images/netlify-settings.png&#34; width=&#34;600&#34; /&gt;
-
-&lt;/div&gt;
-&lt;p&gt;이제 Netlify에서 전개과정을 끝내면 직접 잘 서비스가 되고 있는지 확인해볼 수 있다. 주소의 앞단도 바꿀 수 있으니 이건 마음대로 알아서 하시라.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;--&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;그림 하나로 요약!&lt;/h1&gt;
-&lt;div class=&#34;figure&#34;&gt;
-&lt;img src=&#34;https://apreshill.rbind.io/img/posts/2017-06-12-up-and-running-with-blogdown/blogdown-signpost-4.png&#34; width=&#34;600&#34; /&gt;
-
-&lt;/div&gt;
-&lt;p&gt;나의 설명이 부족하거나 이해가 되지 않는 분은 &lt;a href=&#34;https://apreshill.rbind.io/post/up-and-running-with-blogdown/&#34;&gt;여기&lt;/a&gt;를 참고하실 수 있다.&lt;/p&gt;
-&lt;/div&gt;
-</description>
+      <description>Prologue어쨌든 자신만의 공간을 지니는 것은 로망이다. 이 로망을 웹에서 실현해본 사람들은 넷스케이프를 써보고, 웹에디터(나모 웹에디터?)를 통해 자신만의 홈페이지를 만들어본 경험이 있는 세대에 속할 것이다. 내용에 집중해야 한다는 것은 맞다. 네이버, 다음, 구글 등은 편리하게 글을 올리고 입소문을 태울 수 있고 관리가 편한 블로그의 틀을 이미 제공한다. 그렇다면, 왜 독자적인 공간을 만들어야 하는가?
+대기업이 싫어서서비스 주소가 마음에 안들어서디자인이나 형식이 과해서뭐 이유야 여러가지가 있겠지만 직접 만드는 것에는 나름의 의의는 있겠다.</description>
     </item>
     
   </channel>

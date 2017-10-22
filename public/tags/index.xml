@@ -39,6 +39,15 @@
     </item>
     
     <item>
+      <title>Git</title>
+      <link>/tags/git/</link>
+      <pubDate>Fri, 20 Oct 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/git/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Github</title>
       <link>/tags/github/</link>
       <pubDate>Tue, 19 Sep 2017 00:00:00 +0000</pubDate>
@@ -188,6 +197,15 @@
       <pubDate>Wed, 14 Jun 2017 00:00:00 +0000</pubDate>
       
       <guid>/tags/tutorial/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Version_control</title>
+      <link>/tags/version_control/</link>
+      <pubDate>Fri, 20 Oct 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/version_control/</guid>
       <description></description>
     </item>
     

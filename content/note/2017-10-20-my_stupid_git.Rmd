@@ -28,8 +28,7 @@ categories: ['computing']
 
 ## Initiation in local 
 
- * 로컬머신에서 git을 개시하는 방법부터 알아보자. 
- * git으로 관리하고 싶은 directory에서 아래와 같은 명령어를 쳐 준다. 
+로컬머신에서 git을 개시하는 방법부터 알아보자. git으로 관리하고 싶은 directory에서 아래와 같은 명령어를 쳐 준다. 
  
 ```{}
 echo "# YOUR_README_NAME" >> README.md 
@@ -102,7 +101,7 @@ git push
 
 ### 이전 `commit-push`된 버전을 수정하고 싶다면
 
-* 뭔가를 수정했다. 하지만 새로운 commit을 만들고 싶지 않다. 
+뭔가를 수정했다. 하지만 새로운 commit을 만들고 싶지 않다. 
 
 ```{}
 git commit --amend --no-edit
@@ -120,6 +119,8 @@ git push -f [origin] [master]
 ----
 
 # Concept of `branch`
+
+* 이 꼭지는 [backlog.com](https://backlog.com/git-tutorial/kr/)을 많이 참고했습니다. 
 
 브랜치란 현재 `HEAD` 스냅샷에 대해서 다른 이름을 부여해주는 작업이다. 일단, 아무런 변경이 없는 이상 브랜치는 분기되지 않고 노드에 함께 머물러 있다. 일단 기본적인 명령어는 아래와 같다.  
 
@@ -160,7 +161,7 @@ git branch -d <BRANCH_NAME>
 
 ![](img/branch1.png)
 
-이 상태에서 issue2의 어떤 내용을 수정했다고 하자. 
+issue2의 어떤 내용을 수정했다고 하자. 
 
 ![](img/branch2.png)
 
@@ -168,17 +169,18 @@ git branch -d <BRANCH_NAME>
 > git checkout issue3
 ```
 
-그리거 뭔가 내용을 또 수정했다고 하자. 
+issue3 branch에서 어떤 내용을 또 수정했다고 하자. 
 
 ![](img/branch3.png)
 
-그리고 master를 issue2와 병합하면 다음의 그림과 같은 상탤가 된다. 
+그리고 master를 issue2와 병합하면 다음의 그림과 같은 상태로 이해하면 된다. 
 
 ![](img/conflict.png)
 
 ## Conflict
 
 위의 그림에서 아래의 명령어를 수행한다고 하자. 
+
 ```{}
 git checkout master
 git merge issue3
@@ -206,8 +208,9 @@ pull: 원격 저장소의 내용을 가져오기
 
 ## 개념 
 
-* 특정한 브랜치를 다른 브랜치로 합친 후에 이전 브랜치는 없애고 싶을 때, 한번에 처리하는 명령어가 rebase다.
-* 리베이스는 병합될 브랜치에서 시작한다. 
+특정한 브랜치를 다른 브랜치로 합친 후에 이전 브랜치는 없애고 싶을 때, 한번에 처리하는 명령어가 rebase다.
+
+* 리베이스는 병합될 브랜치에서 시작!
 
 ![](img/rebase_1.png)
 
@@ -244,7 +247,7 @@ git merge issue3
 
 ## Github의 내용을 강제로 local로 덮어쓰고 싶을 때 
 
-* 그냥 지우고 다시 clone을 할 수도 있다. 혹은 
+그냥 지우고 다시 clone을 할 수도 있다. 하지만 아래 같이 해주면 불필요한 동기화를 막을 수 있다. 
 
 ```{}
 git fetch --all
@@ -266,7 +269,7 @@ git stash pop
 
 ## `.gitignore` 
 
-* vim으로 만들 수도 있다. 물론, txt editor로 만들어도 무방하다. 
+vim으로 만들 수도 있다. 물론, 흔한 txt editor로 만들어도 무방하다. 
 
 ```{}
 vim .gitignore 
@@ -293,7 +296,11 @@ vim .gitignore
 
 ```{}
 git log --pretty=oneline
-````
+git log --pretty=format:"%h - %an, %ar : %s"
+```
+
+* `git log --pretty=oneline`: oneline으로 보여준다. 
+* `git log --pretty=format:"%h - %an, %ar : %s"`: 포매팅한다. 
 
 [링크](https://git-scm.com/book/ko/v1/Git%EC%9D%98-%EA%B8%B0%EC%B4%88-%EC%BB%A4%EB%B0%8B-%ED%9E%88%EC%8A%A4%ED%86%A0%EB%A6%AC-%EC%A1%B0%ED%9A%8C%ED%95%98%EA%B8%B0)
 
