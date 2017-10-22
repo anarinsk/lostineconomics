@@ -18,9 +18,11 @@ categories: ['computing']
 
 * `working dir`: local의 작업디렉토리 
 * `index`: staging area. 커밋될 파일들을 올려 두는 공간
-* `HEAD`: 최후의 커밋
+* `HEAD`: 마지막으로 커밋이 이루어진 branch 
 
------
+![](img/git-operations.png)
+
+--------
 
 # Basic command 
 
@@ -33,7 +35,7 @@ categories: ['computing']
 echo "# YOUR_README_NAME" >> README.md 
 git init
 git add README.md 
-git commit -m "YOUR_COMMIT_MESSAGE/first commit"
+git commit -m "YOUR_COMMIT_MESSAGE(e.g. first commit)"
 git remote add origin <<https://YOUR_REMOTE_GIT_URL>>
 git push -u origin master 
 ```
@@ -55,7 +57,7 @@ git commit -m "YOUR_COMMENT"
 git push 
 ```
 
-* git 운용의 기본적인 흐름 혹은 기본 셋 
+* git 운용의 기본적인 흐름 혹은 기본 명령어 셋 
 * `push`만 명령하면 되는 것은 앞서 `git push -u origin master` origin master로 local과 remote repository의  upstream을 정해두었기 때문이다. 
 
 ------
@@ -82,15 +84,17 @@ git push
 
 ## `pull`
 
-* `pull` 명령어는 기본적으로 `fetch`(가져오기)와 `merge`(병합하기)를 동시에 구현하는 것이다. 보통 `fetch`는 repository의 내용을 가져와 `fetch_head`라는 local branch에 임시로 저장해둔다. `merge`는 이렇게 가져온 데이터를 원래 흐름과 병합하는 것이다. 이 둘을 동시에 구현하는 것이 `pull`이다. 
+* `pull`: `fetch`(가져오기)와 `merge`(병합하기)를 동시에 구현 
+    * `fetch`: repository의 내용을 가져와 `FETCH_HEAD`라는 local branch에 임시로 저장
+    * `merge`: `fetch` 불러온 데이터를 원래 흐름과 병합 
 
-* 논리적으로 봤을 때, origin과 master에서 모두 변경 사항이 있을 경우는 둘에 충돌이 일어날 수 밖에 없다. 이런 경우 이 충돌을 해결해줘야 `push`가 가능하다. 
-
-* 깔끔한 이력 관리를 위해서는 아래와 같이 rebase를 활용해서 pull을 해주면 좋다. rebase를 해주면 별도의 브랜치를 만들지 않겠다는 의도를 분명히 하는 것이고, 이에 따라서 log가 깔끔하고 단순해진다. 
+* origin과 master에서 모두 변경 사항이 있을 경우는 둘에 충돌이 일어날 수 밖에 없다. 이런 경우 이 충돌을 해결해줘야 `push`가 가능하다. 
 
 ```{}
 > git pull --rebase
 ```
+
+* 깔끔한 이력 관리를 위해서는 rebase를 활용해서 pull을 해주면 좋다. rebase를 해주면 별도의 브랜치를 만들지 않겠다는 의도를 분명히 하는 것이고, 이에 따라서 log가 깔끔하고 단순해진다. 
 
 ## `commit`
 
@@ -105,16 +109,19 @@ git commit --amend --no-edit
 ```
 
 * ` --amend --no-edit`: 전에 commit message를 그대로 쓰고 commit한다. 
-* 문제는 이대로 push를 할 수 없다는 것이다. 앞서 push된 버전과 현 수정된 버전이 동일한 commit인데, 내용이 다르다. 즉, SHA-1이 다르다. 이때 강제로 `push`를 하고 싶다면 아래와 같이 한다. 
+    * 이대로 push를 할 수 없다. 앞서 push된 버전과 현 수정된 버전이 같은 commit인데 내용은 다르다. 즉, SHA-1이 다르다. 이때 강제로 `push`를 하고 싶다면 아래와 같이 한다. 
 
 ```{}
 git push -f [origin] [master]
 ```
------
 
 * `-f`: commit을 새로 만든 것이 아니기 때문에, 그대로 push를 하게 되면 origin과 맞지 않게 된다. 강제로 push를 해서 맞춰주는 명령어다. 
 
-# `branch`
+----
+
+# Concept of `branch`
+
+브랜치란 현재 `HEAD` 스냅샷에 대해서 다른 이름을 부여해주는 작업이다. 일단, 아무런 변경이 없는 이상 브랜치는 분기되지 않고 노드에 함께 머물러 있다. 일단 기본적인 명령어는 아래와 같다.  
 
 ## Basic 
 
@@ -133,19 +140,52 @@ git merge <COMMIT_NAME>
 git branch -d <BRANCH_NAME>
 ```
 
-* `merge`: 커밋된 다른 지점과 현재 브랜치를 병합한다. 
+* `merge`: 커밋된 다른 지점과 현재 HEAD의 브랜치를 병합한다. 
 * `-d`: 브랜치를 삭제하기 위해서 사용하는 명령어
 
-## conflict
+## In practice
+
+```{}
+> git branch issue2
+> git branch issue3
+> git checkout issue2
+  Switched to branch 'issue2'
+> git branch
+* issue2
+  issue3
+  master
+```
+
+위 명령어를 수행한 상태의 그림이다. 
+
+![](img/branch1.png)
+
+이 상태에서 issue2의 어떤 내용을 수정했다고 하자. 
+
+![](img/branch2.png)
+
+```{}
+> git checkout issue3
+```
+
+그리거 뭔가 내용을 또 수정했다고 하자. 
+
+![](img/branch3.png)
+
+그리고 master를 issue2와 병합하면 다음의 그림과 같은 상탤가 된다. 
 
 ![](img/conflict.png)
+
+## Conflict
+
+위의 그림에서 아래의 명령어를 수행한다고 하자. 
 ```{}
 git checkout master
 git merge issue3
 ```
 
-* 이때 어떤 파일에 대해서 master의 내용과 issue의 내용이 서로 다른 부분이 있다고 하자. 
-* 병합이 무리 없이 가능하다면 그대로 병합한다. 즉, A와 B가 있을 떄 B가 A의 내용을 포함하고 있다면, 병합이 가능하다. 
+* 이때 어떤 파일에 대해서 `HEAD`의 master의 내용과 issue3의 내용이 서로 다른 부분이 있다고 하자. 
+* 병합이 무리 없이 가능하다면 그대로 병합된다. 즉, A와 B가 있을 떄 B가 A의 내용을 포함하고 있다면, 병합이 가능하다. 
 * 파일 자체가 다른 경우는 인간의 판단이 필요하다. 해당 파일을 열면 아래와 같이 표현되어 있다. 
 
 ```{}
@@ -162,11 +202,12 @@ pull: 원격 저장소의 내용을 가져오기
 
 -----
 
-# `rebase`
+# What is `rebase`
 
 ## 개념 
 
 * 특정한 브랜치를 다른 브랜치로 합친 후에 이전 브랜치는 없애고 싶을 때, 한번에 처리하는 명령어가 rebase다.
+* 리베이스는 병합될 브랜치에서 시작한다. 
 
 ![](img/rebase_1.png)
 
@@ -197,10 +238,6 @@ git merge issue3
 
 ![](img/rebase_4.png)
 
-# `branch`
-
-https://backlog.com/git-tutorial/kr/stepup/stepup2_1.html
-
 -----
 
 # Case by case 
@@ -223,6 +260,8 @@ git push
 git stash pop
 ```
 
+-----
+
 # Miscellaneous
 
 ## `.gitignore` 
@@ -242,9 +281,15 @@ vim .gitignore
 
 * ESC를 치면 화면 아래 command 창으로 이동한다. :qw(quit & write)를 입력한다. 
 
+-----
+
 # Homework
 
+앞으로 더 알아야 하지만 지금은 그냥 넘어갈 내용들이다. 
+
 ## `log`
+
+여러가지 옵션이 있고 활용하면 좋을 듯 하지만, 당분간 나에게는 히스토리를 그냥 순서대로 보여주는 아래 명령어 정도면 충분할 듯 싶다. 
 
 ```{}
 git log --pretty=oneline
@@ -253,7 +298,7 @@ git log --pretty=oneline
 [링크](https://git-scm.com/book/ko/v1/Git%EC%9D%98-%EA%B8%B0%EC%B4%88-%EC%BB%A4%EB%B0%8B-%ED%9E%88%EC%8A%A4%ED%86%A0%EB%A6%AC-%EC%A1%B0%ED%9A%8C%ED%95%98%EA%B8%B0)
 
 
-# Other link 
+## Other link 
 
 http://meetup.toast.com/posts/116
 
