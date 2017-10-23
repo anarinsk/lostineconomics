@@ -1,5 +1,5 @@
 ---
-title: "My Stupid Git Experience" 
+title: "My Stupid Git Experience, part 1" 
 author: "Junsok Huhh"
 date: 2017-10-20
 tags: ['git', 'version_control']
@@ -8,7 +8,7 @@ categories: ['computing']
 
 # Disclaimer 
 
-이 문서는 `git`을 다루면서 저질렀던 개인적을 실수를 모아 놓은 것이다. 아마도 문서 자체가 조금씩 진화할 것이므로 어떤 시점에서 보신다면 몹시 허접할 수 있도 있겠다. git에 대해서 잘 아는 분들은 패스하시라. 
+이 문서는 `git`을 다루면서 저질렀던 개인적을 실수를 모아 놓은 것이다. 아마도 문서 자체가 조금씩 진화할 것이므로 어떤 시점에서 보신다면 몹시 허접할 수 있도 있겠다. git에 대해서 잘 아는 분들은 패스하시라. 일단, `branch`를 심각하게 쓰지 않는다면 여기 나온 정도로 충분할 것 같다. 
 
 -----
 
@@ -241,6 +241,10 @@ git merge issue3
 
 ![](img/rebase_4.png)
 
+## Also 
+
+* `merge`와 `rebase`의 개념적인 차이에 대해서는 [Link](https://backlog.com/git-tutorial/kr/stepup/stepup1_4.html)를 참고 
+
 -----
 
 # Case by case 
@@ -302,7 +306,7 @@ git log --pretty=format:"%h - %an, %ar : %s"
 * `git log --pretty=oneline`: oneline으로 보여준다. 
 * `git log --pretty=format:"%h - %an, %ar : %s"`: 포매팅한다. 
 
-[링크](https://git-scm.com/book/ko/v1/Git%EC%9D%98-%EA%B8%B0%EC%B4%88-%EC%BB%A4%EB%B0%8B-%ED%9E%88%EC%8A%A4%ED%86%A0%EB%A6%AC-%EC%A1%B0%ED%9A%8C%ED%95%98%EA%B8%B0)
+`log`에 대해서는 다음을 참고: [링크](https://git-scm.com/book/ko/v1/Git%EC%9D%98-%EA%B8%B0%EC%B4%88-%EC%BB%A4%EB%B0%8B-%ED%9E%88%EC%8A%A4%ED%86%A0%EB%A6%AC-%EC%A1%B0%ED%9A%8C%ED%95%98%EA%B8%B0)
 
 
 ## Other link 

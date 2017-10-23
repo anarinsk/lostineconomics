@@ -12,13 +12,13 @@
     
     
     <item>
-      <title>My Stupid Git Experience</title>
-      <link>/note/2017/10/20/my-stupid-git-experience/</link>
+      <title>My Stupid Git Experience, part 1</title>
+      <link>/note/2017/10/20/my-stupid-git-experience-part-1/</link>
       <pubDate>Fri, 20 Oct 2017 00:00:00 +0000</pubDate>
       
-      <guid>/note/2017/10/20/my-stupid-git-experience/</guid>
-      <description>Disclaimer이 문서는 git을 다루면서 저질렀던 개인적을 실수를 모아 놓은 것이다. 아마도 문서 자체가 조금씩 진화할 것이므로 어떤 시점에서 보신다면 몹시 허접할 수 있도 있겠다. git에 대해서 잘 아는 분들은 패스하시라.
-Basic structureworking dir: local의 작업디렉토리index: staging area. 커밋될 파일들을 올려 두는 공간HEAD: 마지막으로 커밋이 이루어진 branchBasic commandInitiation in local로컬머신에서 git을 개시하는 방법부터 알아보자. git으로 관리하고 싶은 directory에서 아래와 같은 명령어를 쳐 준다.</description>
+      <guid>/note/2017/10/20/my-stupid-git-experience-part-1/</guid>
+      <description>Disclaimer이 문서는 git을 다루면서 저질렀던 개인적을 실수를 모아 놓은 것이다. 아마도 문서 자체가 조금씩 진화할 것이므로 어떤 시점에서 보신다면 몹시 허접할 수 있도 있겠다. git에 대해서 잘 아는 분들은 패스하시라. 일단, branch를 심각하게 쓰지 않는다면 여기 나온 정도로 충분할 것 같다.
+Basic structureworking dir: local의 작업디렉토리index: staging area. 커밋될 파일들을 올려 두는 공간HEAD: 마지막으로 커밋이 이루어진 branchBasic commandInitiation in local로컬머신에서 git을 개시하는 방법부터 알아보자.</description>
     </item>
     
     <item>
