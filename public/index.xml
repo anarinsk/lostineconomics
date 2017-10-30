@@ -6,10 +6,21 @@
     <description>Recent content in Home on lost in economics</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 20 Oct 2017 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 30 Oct 2017 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Regression Modelling with Tidyverse</title>
+      <link>/post/2017/10/30/regression-modelling-with-tidyverse/</link>
+      <pubDate>Mon, 30 Oct 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2017/10/30/regression-modelling-with-tidyverse/</guid>
+      <description>tidyverse로 묶인 패키지 군에 대한 찬미는 뭐 이제… 이번 포스팅에서는 modelr, broom, purrr을 통해서 ‘유연하게’(MB말투로는 “스마아~트하게”) 회귀분석하는 방법을 간략하게 끄적이겠다.
+Unconventional data.framedata.frame에는 데이터만 들어갈 수 있을까? 아니다! data.frame을 엑셀 시트처럼만 생각하면 data.frame에게 송구할 일이다. data.frame 안에는 마트로쉬카 인형처럼 또다른 data.frame을 넣을 수 있다. H. Wickham은 이를 “nested data.frame”이라고 부른다.
+data.frame 뿐일까! 사실 R의 다른 객체들도 셀 안에 넣을 수 있다. 이 장점을 살리면, 필요한 데이터에 대한 필요한 모델을 유연하게 생성할 수 있다.</description>
+    </item>
     
     <item>
       <title>My Stupid Git Experience, part 1</title>

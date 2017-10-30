@@ -1,0 +1,88 @@
+---
+title: "Regression Modelling with Tidyverse"
+author: "Junsok Huhh"
+date: 2017-10-30
+tags: ['modelling', 'regression']
+categories: ['R'] 
+---
+
+`tidyverse`로 묶인 패키지 군에 대한 찬미는 뭐 이제... 이번 포스팅에서는 `modelr`, `broom`, `purrr`을 통해서 '유연하게'(MB말투로는 "스마아~트하게") 회귀분석하는 방법을 간략하게 끄적이겠다. 
+
+# Unconventional `data.frame` 
+
+data.frame에는 데이터만 들어갈 수 있을까? 아니다! data.frame을 엑셀 시트처럼만 생각하면 data.frame에게 송구할 일이다. data.frame 안에는 마트로쉬카 인형처럼 또다른 data.frame을 넣을 수 있다. H. Wickham은 이를 "nested data.frame"이라고 부른다. 
+
+data.frame 뿐일까! 사실 R의 다른 객체들도 셀 안에 넣을 수 있다. 이 장점을 살리면, 필요한 데이터에 대한 필요한 모델을 유연하게 생성할 수 있다. 
+
+일단, 필요한 라이브러리를 불러오자. 
+
+```{r message=FALSE, warning=FALSE}
+library(tidyverse)
+library(modelr)
+library(broom)
+library(gapminder)
+```
+
+편의상 네이티브 data.frame 대신 tidyverse의 data.frame 대체물인 `tibble`을 쓰도록 하겠다. 여기서 활용할 `gapminder` 데이터 셋은 각국의 기대 수명과 각종 변수들을 담고 있다. 데이터 셋의 대략적인 생김새는 아래와 같다. 각각의 컬럼은 국가, 대륙, 년도, 기대 수명, 인구, 그리고 1인당 GDP를 나타낸다. 
+
+```{r}
+data(gapminder) 
+gapminder
+```
+
+이제 모델링 작업 들어간다. 
+
+```{r}
+tribble(~funcs,  ~models,       ~dat,
+        glm,    "lifeExp ~ gdpPercap",   gapminder,
+        glm,    "log(lifeExp) ~ log(gdpPercap)",   gapminder,
+        lm,     "log(lifeExp) ~ log(gdpPercap)",   filter(gapminder, continent == "Asia"), 
+        lm,     "log(lifeExp) ~ log(gdpPercap)",   filter(gapminder, continent == "Africa"),
+        lm,     "log(lifeExp) ~ continent + log(gdpPercap)",   gapminder
+) -> my_model_gapminder
+
+my_model_gapminder
+```
+
+`my_model_gapminder`는 어떤 형태의 tibble일까? 먼저 `funcs` 컬럼은 돌릴 (회귀)분석 방법이 담겨 있다. 쿼테이션 마크가 없음에 유의하자. 스트링이 아니라는 이야기다. `glm`, `lm` 등의 함수가 바로 들어가 있다. `models` 칼럼은 분석 모형을 담고 있다. 마지막으로 dat는 해당 모델의 추정에 사용될 데이터셋을 의미한다. 보시면, 3, 4 모델에서는 각기 "Asia"와 "Africa" 대륙만 필터링한 데이터를 추정에 활용했음을 알 수 있다. 
+
+이런 형태가 왜 좋을까? `my_model_gapminder`을 들여다보고 있으면 대충 감이 온다. 행 단위로 보면, funcs의 (회귀)분석 방법을 사용하되, arguments로 각각 models와 dat를 넣겠다는 의도다. 이 일만 구현해주면 된다. 즉, `my_model_gapminder`은 일종의 modelling set인 셈이다. 
+
+`modelr`패키지의 함수 `fit_with`를 쓰면 이 작업을 간단하게 구현할 수 있다. `fit_with`는 input arguments로 (분석) 함수, 모델, 그리고 데이터를 받는다. 위에서 만든  `my_model_gapminder`의 매 열이 `fit_with`의 arguments로 들어간다. 이렇게 3개 이상의 input이 있을 경우 `purrr` 패키지의 `pmap` 함수를 쓰면 된다. 
+
+```{r}
+my_model_gapminder %>% 
+  mutate(fit = flatten(pmap(.l = list(.f = funcs, .formulas = models, data = dat), 
+                            .f = modelr::fit_with)))
+```
+
+앞서 만든 `my_model_gapminder`에 fit이라는 컬럼을 새로 붙였다. fit 안에는 회귀분석의 결과물이 통채로 담기게 된다. 이렇게 해두면 해당 결과물을 꺼내 예측을 하는 데 쓰거나 그림을 그리거나 하는 등 필요에 따라 손쉽게 활용할 수 있다. fit의 파라미터들의 추정치과 p-값을 정리해서 보고 싶다면 다음과 같이 작업하면 된다.  
+
+```{r}
+my_format <- function(x){sprintf("%0.3f", x)}
+my_model_gapminder %>% 
+  mutate(fit = flatten(pmap(.l = list(.f = funcs, .formulas = models, data = dat), 
+                            .f = modelr::fit_with))) %>% 
+  .$fit %>% 
+  map_dfr(tidy, .id = "models") %>% 
+  mutate_if(is.numeric, my_format) -> res1
+
+res1
+```
+
+`broom` 패키지의 `tidy` 함수는 복잡한 개체들로 구성된 대상을 tibble로 손쉽게 정리해주는 역할을 한다. `tidy` 명령어는 회귀분석 객체를 위에 보는 것처럼 tibble로 깔끔하게 정리한다. `broom` 패키지는 모델의 분석 결과를 data.frame으로 가공해 활용도를 높이자는 취지를 갖고 있다. 보통 R의 경우 분석의 결과물들이 list의 복잡한 형태로 산출된다. R의 데이터 구조를 아주 잘 안다면 모를까, 그렇지 않은 사람들에게는 꽤 골치아픈 대목의 하나인데, `broom`은 이러한 불편함을 해소한다. 말 그대로 빗자루의 역할을 하는 패키지다. [여기](https://cran.r-project.org/web/packages/broom/vignettes/broom.html)서 한번 둘러보기를 권한다. 
+
+# Lazy application 
+
+간단한 응용으로 각 terms들의 신뢰구간을 뽑아보도록 하자. 일단, 95%의 신뢰구간은 아래와 같이 간단하게 생성할 수 있다. `confint` 함수를 쓰면 되지만, 신뢰구간을 tibble로 만들어 주기 위해서 `broom`패키지에 포함된 `confint_tidy`를 쓰면 된다. 게으른 응용이므로 추가는 생략한다. 
+
+```{r}
+my_model_gapminder %>% 
+  mutate(fit = flatten(pmap(.l = list(.f = funcs, .formulas = models, data = dat), 
+                            .f = modelr::fit_with))) %>% 
+  .$fit %>% 
+  map_dfr(confint_tidy, .id = "models") %>% 
+  mutate_if(is.numeric, my_format) %>% 
+  mutate(term = res1$term) %>% 
+  select(models, term, everything())
+```

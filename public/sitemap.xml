@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>/post/2017/10/30/regression-modelling-with-tidyverse/</loc>
+    <lastmod>2017-10-30T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/note/2017/10/20/my-stupid-git-experience-part-1/</loc>
     <lastmod>2017-10-20T00:00:00+00:00</lastmod>
   </url>
@@ -146,7 +151,7 @@
   
   <url>
     <loc>/</loc>
-    <lastmod>2017-10-20T00:00:00+00:00</lastmod>
+    <lastmod>2017-10-30T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -192,6 +197,12 @@
   </url>
   
   <url>
+    <loc>/tags/modelling/</loc>
+    <lastmod>2017-10-30T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>/note/</loc>
     <lastmod>2017-10-20T00:00:00+00:00</lastmod>
     <priority>0</priority>
@@ -205,7 +216,7 @@
   
   <url>
     <loc>/post/</loc>
-    <lastmod>2017-10-18T00:00:00+00:00</lastmod>
+    <lastmod>2017-10-30T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -235,7 +246,7 @@
   
   <url>
     <loc>/categories/r/</loc>
-    <lastmod>2017-10-02T00:00:00+00:00</lastmod>
+    <lastmod>2017-10-30T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -254,6 +265,12 @@
   <url>
     <loc>/tags/rstudio/</loc>
     <lastmod>2016-02-14T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/regression/</loc>
+    <lastmod>2017-10-30T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
