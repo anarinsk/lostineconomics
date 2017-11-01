@@ -14,7 +14,7 @@ data.frame에는 데이터만 들어갈 수 있을까? 아니다! data.frame을 
 
 data.frame 뿐일까! 사실 R의 다른 객체들도 셀 안에 넣을 수 있다. 이 장점을 살리면, 필요한 데이터에 대한 필요한 모델을 유연하게 생성할 수 있다. 
 
-일단, 필요한 라이브러리를 불러오자. 
+일단, 필요한 라이브러리를 불러오자.
 
 ```{r message=FALSE, warning=FALSE}
 library(tidyverse)
@@ -70,7 +70,9 @@ my_model_gapminder %>%
 res1
 ```
 
-`broom` 패키지의 `tidy` 함수는 복잡한 개체들로 구성된 대상을 tibble로 손쉽게 정리해주는 역할을 한다. `tidy` 명령어는 회귀분석 객체를 위에 보는 것처럼 tibble로 깔끔하게 정리한다. `broom` 패키지는 모델의 분석 결과를 data.frame으로 가공해 활용도를 높이자는 취지를 갖고 있다. 보통 R의 경우 분석의 결과물들이 list의 복잡한 형태로 산출된다. R의 데이터 구조를 아주 잘 안다면 모를까, 그렇지 않은 사람들에게는 꽤 골치아픈 대목의 하나인데, `broom`은 이러한 불편함을 해소한다. 말 그대로 빗자루의 역할을 하는 패키지다. [여기](https://cran.r-project.org/web/packages/broom/vignettes/broom.html)서 한번 둘러보기를 권한다. 
+`broom` 패키지의 `tidy` 함수는 복잡한 개체들로 구성된 대상을 tibble로 손쉽게 정리해주는 역할을 한다.[^tidy] 
+
+[^tidy]: `tidy` 명령어는 회귀분석 객체를 위에 보는 것처럼 tibble로 깔끔하게 정리한다. `broom` 패키지는 모델의 분석 결과를 data.frame으로 가공해 활용도를 높이자는 취지를 갖고 있다. 보통 R의 경우 분석의 결과물들이 list의 복잡한 형태로 산출된다. R의 데이터 구조를 아주 잘 안다면 모를까, 그렇지 않은 사람들에게는 꽤 골치아픈 대목의 하나인데, `broom`은 이러한 불편함을 해소한다. 말 그대로 빗자루의 역할을 하는 패키지다. [여기](https://cran.r-project.org/web/packages/broom/vignettes/broom.html)서 한번 둘러보기를 권한다. 
 
 # Lazy application 
 

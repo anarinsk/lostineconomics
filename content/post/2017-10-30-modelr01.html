@@ -93,7 +93,7 @@ res1</code></pre>
 ## 12      5   continentEurope    0.166     0.012    14.357   0.000
 ## 13      5  continentOceania    0.152     0.029     5.187   0.000
 ## 14      5    log(gdpPercap)    0.112     0.004    31.843   0.000</code></pre>
-<p><code>broom</code> 패키지의 <code>tidy</code> 함수는 복잡한 개체들로 구성된 대상을 tibble로 손쉽게 정리해주는 역할을 한다. <code>tidy</code> 명령어는 회귀분석 객체를 위에 보는 것처럼 tibble로 깔끔하게 정리한다. <code>broom</code> 패키지는 모델의 분석 결과를 data.frame으로 가공해 활용도를 높이자는 취지를 갖고 있다. 보통 R의 경우 분석의 결과물들이 list의 복잡한 형태로 산출된다. R의 데이터 구조를 아주 잘 안다면 모를까, 그렇지 않은 사람들에게는 꽤 골치아픈 대목의 하나인데, <code>broom</code>은 이러한 불편함을 해소한다. 말 그대로 빗자루의 역할을 하는 패키지다. <a href="https://cran.r-project.org/web/packages/broom/vignettes/broom.html">여기</a>서 한번 둘러보기를 권한다.</p>
+<p><code>broom</code> 패키지의 <code>tidy</code> 함수는 복잡한 개체들로 구성된 대상을 tibble로 손쉽게 정리해주는 역할을 한다.<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a></p>
 </div>
 <div id="lazy-application" class="section level1">
 <h1>Lazy application</h1>
@@ -121,4 +121,10 @@ res1</code></pre>
 ## 12      5   continentEurope    0.143     0.189
 ## 13      5  continentOceania    0.095     0.210
 ## 14      5    log(gdpPercap)    0.105     0.119</code></pre>
+</div>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p><code>tidy</code> 명령어는 회귀분석 객체를 위에 보는 것처럼 tibble로 깔끔하게 정리한다. <code>broom</code> 패키지는 모델의 분석 결과를 data.frame으로 가공해 활용도를 높이자는 취지를 갖고 있다. 보통 R의 경우 분석의 결과물들이 list의 복잡한 형태로 산출된다. R의 데이터 구조를 아주 잘 안다면 모를까, 그렇지 않은 사람들에게는 꽤 골치아픈 대목의 하나인데, <code>broom</code>은 이러한 불편함을 해소한다. 말 그대로 빗자루의 역할을 하는 패키지다. <a href="https://cran.r-project.org/web/packages/broom/vignettes/broom.html">여기</a>서 한번 둘러보기를 권한다.<a href="#fnref1">↩</a></p></li>
+</ol>
 </div>
