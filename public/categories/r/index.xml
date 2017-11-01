@@ -6,10 +6,20 @@
     <description>Recent content in R on lost in economics</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 30 Oct 2017 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 01 Nov 2017 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/categories/r/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Adding bigfoot.js to Hugo</title>
+      <link>/note/2017/11/01/adding-bigfoot.js-to-hugo/</link>
+      <pubDate>Wed, 01 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/note/2017/11/01/adding-bigfoot.js-to-hugo/</guid>
+      <description>BIGFOOT!웹서핑을 하다가 이 녀석을 보고야 말았다, bigfoot.js. 웹 문서 표준들 고도화된 지금의 시점에서 인터넷을 통해 노출하는 문서에서 표현의 방법이 제약되는 경우는 거의 없다. 표, 수식, 그림 등을 동원해 소통하는 데에 pdf 보다 나은 사례도 많다. 당장 이 문서가 작성되고 있는 markdown이 대표적이다.
+개인적으로 각주 처리면 좀 더 ‘멋지게’ 되면 좋겠는데, 싶었다. 마치 등이 살짝 가려운 데 긁지 못하는 격이랄까. 이때 bigfoot.js를 보게된 것이다! 각주를 누르면 버블로 해당 텍스트가 그 자리에 등장한다.</description>
+    </item>
     
     <item>
       <title>Regression Modelling with Tidyverse</title>

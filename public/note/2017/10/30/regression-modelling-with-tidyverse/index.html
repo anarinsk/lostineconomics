@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Regression Modelling with Tidyverse | lost in economics</title>
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/fonts.css" />
+    
+  </head>
+
+  <body>
+    <nav>
+    <ul class="menu">
+      
+      <li><a href="/">Home</a></li>
+      
+      <li><a href="/categories/">Categories</a></li>
+      
+      <li><a href="/tags/">Tags</a></li>
+      
+    </ul>
+    <hr/>
+    </nav>
+
+<div class="article-meta">
+<h1><span class="title">Regression Modelling with Tidyverse</span></h1>
+<h2 class="author">Junsok Huhh</h2>
+<h2 class="date">2017/10/30</h2>
+</div>
+
+<main>
+<p><code>tidyverse</code>로 묶인 패키지 군에 대한 찬미는 뭐 이제… 이번 포스팅에서는 <code>modelr</code>, <code>broom</code>, <code>purrr</code>을 통해서 ‘유연하게’(MB말투로는 “스마아~트하게”) 회귀분석하는 방법을 간략하게 끄적이겠다.</p>
+<div id="unconventional-data.frame" class="section level1">
+<h1>Unconventional <code>data.frame</code></h1>
+<p>data.frame에는 데이터만 들어갈 수 있을까? 아니다! data.frame을 엑셀 시트처럼만 생각하면 data.frame에게 송구할 일이다. data.frame 안에는 마트로쉬카 인형처럼 또다른 data.frame을 넣을 수 있다. H. Wickham은 이를 “nested data.frame”이라고 부른다.</p>
+<p>data.frame 뿐일까! 사실 R의 다른 객체들도 셀 안에 넣을 수 있다. 이 장점을 살리면, 필요한 데이터에 대한 필요한 모델을 유연하게 생성할 수 있다.</p>
+<p>일단, 필요한 라이브러리를 불러오자.</p>
+<pre class="r"><code>library(tidyverse)
+library(modelr)
+library(broom)
+library(gapminder)</code></pre>
+<p>편의상 네이티브 data.frame 대신 tidyverse의 data.frame 대체물인 <code>tibble</code>을 쓰도록 하겠다. 여기서 활용할 <code>gapminder</code> 데이터 셋은 각국의 기대 수명과 각종 변수들을 담고 있다. 데이터 셋의 대략적인 생김새는 아래와 같다. 각각의 컬럼은 국가, 대륙, 년도, 기대 수명, 인구, 그리고 1인당 GDP를 나타낸다.</p>
+<pre class="r"><code>data(gapminder) 
+gapminder</code></pre>
+<pre><code>## # A tibble: 1,704 x 6
+##        country continent  year lifeExp      pop gdpPercap
+##         &lt;fctr&gt;    &lt;fctr&gt; &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;
+##  1 Afghanistan      Asia  1952  28.801  8425333  779.4453
+##  2 Afghanistan      Asia  1957  30.332  9240934  820.8530
+##  3 Afghanistan      Asia  1962  31.997 10267083  853.1007
+##  4 Afghanistan      Asia  1967  34.020 11537966  836.1971
+##  5 Afghanistan      Asia  1972  36.088 13079460  739.9811
+##  6 Afghanistan      Asia  1977  38.438 14880372  786.1134
+##  7 Afghanistan      Asia  1982  39.854 12881816  978.0114
+##  8 Afghanistan      Asia  1987  40.822 13867957  852.3959
+##  9 Afghanistan      Asia  1992  41.674 16317921  649.3414
+## 10 Afghanistan      Asia  1997  41.763 22227415  635.3414
+## # ... with 1,694 more rows</code></pre>
+<p>이제 모델링 작업 들어간다.</p>
+<pre class="r"><code>tribble(~funcs,  ~models,       ~dat,
+        glm,    &quot;lifeExp ~ gdpPercap&quot;,   gapminder,
+        glm,    &quot;log(lifeExp) ~ log(gdpPercap)&quot;,   gapminder,
+        lm,     &quot;log(lifeExp) ~ log(gdpPercap)&quot;,   filter(gapminder, continent == &quot;Asia&quot;), 
+        lm,     &quot;log(lifeExp) ~ log(gdpPercap)&quot;,   filter(gapminder, continent == &quot;Africa&quot;),
+        lm,     &quot;log(lifeExp) ~ continent + log(gdpPercap)&quot;,   gapminder
+) -&gt; my_model_gapminder
+
+my_model_gapminder</code></pre>
+<pre><code>## # A tibble: 5 x 3
+##    funcs                                    models                  dat
+##   &lt;list&gt;                                     &lt;chr&gt;               &lt;list&gt;
+## 1  &lt;fun&gt;                       lifeExp ~ gdpPercap &lt;tibble [1,704 x 6]&gt;
+## 2  &lt;fun&gt;             log(lifeExp) ~ log(gdpPercap) &lt;tibble [1,704 x 6]&gt;
+## 3  &lt;fun&gt;             log(lifeExp) ~ log(gdpPercap)   &lt;tibble [396 x 6]&gt;
+## 4  &lt;fun&gt;             log(lifeExp) ~ log(gdpPercap)   &lt;tibble [624 x 6]&gt;
+## 5  &lt;fun&gt; log(lifeExp) ~ continent + log(gdpPercap) &lt;tibble [1,704 x 6]&gt;</code></pre>
+<p><code>my_model_gapminder</code>는 어떤 형태의 tibble일까? 먼저 <code>funcs</code> 컬럼은 돌릴 (회귀)분석 방법이 담겨 있다. 쿼테이션 마크가 없음에 유의하자. 스트링이 아니라는 이야기다. <code>glm</code>, <code>lm</code> 등의 함수가 바로 들어가 있다. <code>models</code> 칼럼은 분석 모형을 담고 있다. 마지막으로 dat는 해당 모델의 추정에 사용될 데이터셋을 의미한다. 보시면, 3, 4 모델에서는 각기 “Asia”와 “Africa” 대륙만 필터링한 데이터를 추정에 활용했음을 알 수 있다.</p>
+<p>이런 형태가 왜 좋을까? <code>my_model_gapminder</code>을 들여다보고 있으면 대충 감이 온다. 행 단위로 보면, funcs의 (회귀)분석 방법을 사용하되, arguments로 각각 models와 dat를 넣겠다는 의도다. 이 일만 구현해주면 된다. 즉, <code>my_model_gapminder</code>은 일종의 modelling set인 셈이다.</p>
+<p><code>modelr</code>패키지의 함수 <code>fit_with</code>를 쓰면 이 작업을 간단하게 구현할 수 있다. <code>fit_with</code>는 input arguments로 (분석) 함수, 모델, 그리고 데이터를 받는다. 위에서 만든 <code>my_model_gapminder</code>의 매 열이 <code>fit_with</code>의 arguments로 들어간다. 이렇게 3개 이상의 input이 있을 경우 <code>purrr</code> 패키지의 <code>pmap</code> 함수를 쓰면 된다.</p>
+<pre class="r"><code>my_model_gapminder %&gt;% 
+  mutate(fit = flatten(pmap(.l = list(.f = funcs, .formulas = models, data = dat), 
+                            .f = modelr::fit_with)))</code></pre>
+<pre><code>## # A tibble: 5 x 4
+##    funcs                                    models                  dat
+##   &lt;list&gt;                                     &lt;chr&gt;               &lt;list&gt;
+## 1  &lt;fun&gt;                       lifeExp ~ gdpPercap &lt;tibble [1,704 x 6]&gt;
+## 2  &lt;fun&gt;             log(lifeExp) ~ log(gdpPercap) &lt;tibble [1,704 x 6]&gt;
+## 3  &lt;fun&gt;             log(lifeExp) ~ log(gdpPercap)   &lt;tibble [396 x 6]&gt;
+## 4  &lt;fun&gt;             log(lifeExp) ~ log(gdpPercap)   &lt;tibble [624 x 6]&gt;
+## 5  &lt;fun&gt; log(lifeExp) ~ continent + log(gdpPercap) &lt;tibble [1,704 x 6]&gt;
+## # ... with 1 more variables: fit &lt;list&gt;</code></pre>
+<p>앞서 만든 <code>my_model_gapminder</code>에 fit이라는 컬럼을 새로 붙였다. fit 안에는 회귀분석의 결과물이 통채로 담기게 된다. 이렇게 해두면 해당 결과물을 꺼내 예측을 하는 데 쓰거나 그림을 그리거나 하는 등 필요에 따라 손쉽게 활용할 수 있다. fit의 파라미터들의 추정치과 p-값을 정리해서 보고 싶다면 다음과 같이 작업하면 된다.</p>
+<pre class="r"><code>my_format &lt;- function(x){sprintf(&quot;%0.3f&quot;, x)}
+my_model_gapminder %&gt;% 
+  mutate(fit = flatten(pmap(.l = list(.f = funcs, .formulas = models, data = dat), 
+                            .f = modelr::fit_with))) %&gt;% 
+  .$fit %&gt;% 
+  map_dfr(tidy, .id = &quot;models&quot;) %&gt;% 
+  mutate_if(is.numeric, my_format) -&gt; res1
+
+res1</code></pre>
+<pre><code>##    models              term estimate std.error statistic p.value
+## 1       1       (Intercept)   53.956     0.315   171.290   0.000
+## 2       1         gdpPercap    0.001     0.000    29.658   0.000
+## 3       2       (Intercept)    2.864     0.023   123.017   0.000
+## 4       2    log(gdpPercap)    0.147     0.003    51.945   0.000
+## 5       3       (Intercept)    3.196     0.051    63.247   0.000
+## 6       3    log(gdpPercap)    0.109     0.006    17.608   0.000
+## 7       4       (Intercept)    3.070     0.054    56.813   0.000
+## 8       4    log(gdpPercap)    0.111     0.007    14.943   0.000
+## 9       5       (Intercept)    3.062     0.026   117.692   0.000
+## 10      5 continentAmericas    0.133     0.011    12.519   0.000
+## 11      5     continentAsia    0.110     0.009    12.037   0.000
+## 12      5   continentEurope    0.166     0.012    14.357   0.000
+## 13      5  continentOceania    0.152     0.029     5.187   0.000
+## 14      5    log(gdpPercap)    0.112     0.004    31.843   0.000</code></pre>
+<p><code>broom</code> 패키지의 <code>tidy</code> 함수는 복잡한 개체들로 구성된 대상을 tibble로 손쉽게 정리해주는 역할을 한다.<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a></p>
+</div>
+<div id="lazy-application" class="section level1">
+<h1>Lazy application</h1>
+<p>간단한 응용으로 각 terms들의 신뢰구간을 뽑아보도록 하자. 일단, 95%의 신뢰구간은 아래와 같이 간단하게 생성할 수 있다. <code>confint</code> 함수를 쓰면 되지만, 신뢰구간을 tibble로 만들어 주기 위해서 <code>broom</code>패키지에 포함된 <code>confint_tidy</code>를 쓰면 된다. 게으른 응용이므로 추가는 생략한다.</p>
+<pre class="r"><code>my_model_gapminder %&gt;% 
+  mutate(fit = flatten(pmap(.l = list(.f = funcs, .formulas = models, data = dat), 
+                            .f = modelr::fit_with))) %&gt;% 
+  .$fit %&gt;% 
+  map_dfr(confint_tidy, .id = &quot;models&quot;) %&gt;% 
+  mutate_if(is.numeric, my_format) %&gt;% 
+  mutate(term = res1$term) %&gt;% 
+  select(models, term, everything())</code></pre>
+<pre><code>##    models              term conf.low conf.high
+## 1       1       (Intercept)   53.338    54.573
+## 2       1         gdpPercap    0.001     0.001
+## 3       2       (Intercept)    2.819     2.910
+## 4       2    log(gdpPercap)    0.141     0.152
+## 5       3       (Intercept)    3.096     3.295
+## 6       3    log(gdpPercap)    0.097     0.121
+## 7       4       (Intercept)    2.964     3.176
+## 8       4    log(gdpPercap)    0.096     0.125
+## 9       5       (Intercept)    3.011     3.113
+## 10      5 continentAmericas    0.112     0.154
+## 11      5     continentAsia    0.092     0.128
+## 12      5   continentEurope    0.143     0.189
+## 13      5  continentOceania    0.095     0.210
+## 14      5    log(gdpPercap)    0.105     0.119</code></pre>
+</div>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p><code>tidy</code> 명령어는 회귀분석 객체를 위에 보는 것처럼 tibble로 깔끔하게 정리한다. <code>broom</code> 패키지는 모델의 분석 결과를 data.frame으로 가공해 활용도를 높이자는 취지를 갖고 있다. 보통 R의 경우 분석의 결과물들이 list의 복잡한 형태로 산출된다. R의 데이터 구조를 아주 잘 안다면 모를까, 그렇지 않은 사람들에게는 꽤 골치아픈 대목의 하나인데, <code>broom</code>은 이러한 불편함을 해소한다. 말 그대로 빗자루의 역할을 하는 패키지다. <a href="https://cran.r-project.org/web/packages/broom/vignettes/broom.html">여기</a>서 한번 둘러보기를 권한다.<a href="#fnref1">↩</a></p></li>
+</ol>
+</div>
+
+</main>
+
+  <footer>
+
+<link rel="stylesheet" href="/css/barefoot.min.css">
+<script src="/js/barefoot.min.js"></script>
+
+<script>
+  lf = new BareFoot();
+  lf.init();
+</script>
+  <script src="//yihui.name/js/math-code.js"></script>
+<script async src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+<script async src="//yihui.name/js/center-img.js"></script>
+
+  
+  <hr/>
+  &copy; <a href="http://lostineconomics.com">Junsok Huhh</a> 2017 | <a href="https://github.com/anarinsk">Github</a>
+  
+  </footer>
+  </body>
+</html>
+

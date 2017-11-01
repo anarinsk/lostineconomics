@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Adding bigfoot.js to Hugo | lost in economics</title>
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/fonts.css" />
+    
+  </head>
+
+  <body>
+    <nav>
+    <ul class="menu">
+      
+      <li><a href="/">Home</a></li>
+      
+      <li><a href="/categories/">Categories</a></li>
+      
+      <li><a href="/tags/">Tags</a></li>
+      
+    </ul>
+    <hr/>
+    </nav>
+
+<div class="article-meta">
+<h1><span class="title">Adding bigfoot.js to Hugo</span></h1>
+<h2 class="author">Junsok Huhh</h2>
+<h2 class="date">2017/11/01</h2>
+</div>
+
+<main>
+<div id="bigfoot" class="section level1">
+<h1>BIGFOOT!</h1>
+<p>웹서핑을 하다가 이 녀석을 보고야 말았다, <a href="http://bigfootjs.com/">bigfoot.js</a>. 웹 문서 표준들 고도화된 지금의 시점에서 인터넷을 통해 노출하는 문서에서 표현의 방법이 제약되는 경우는 거의 없다. 표, 수식, 그림 등을 동원해 소통하는 데에 pdf 보다 나은 사례도 많다. 당장 이 문서가 작성되고 있는 markdown이 대표적이다.</p>
+<p>개인적으로 각주 처리면 좀 더 ‘멋지게’ 되면 좋겠는데, 싶었다. 마치 등이 살짝 가려운 데 긁지 못하는 격이랄까. 이때 <code>bigfoot.js</code>를 보게된 것이다! 각주를 누르면 버블로 해당 텍스트가 그 자리에 등장한다. 이거야말로 인터랙티브 문서가 지닌 장점이 아닌가!</p>
+<p>그래서 바로 검색 들어 갔다. 우선, 필요한 요소를 챙겨보자.</p>
+<ol style="list-style-type: decimal">
+<li><code>bigfoot.js</code>를 구현하는 자바 스크립트</li>
+<li>해당 자바스크립트를 이 공간이 사용하고 있는 Hugo framework에 배치하기</li>
+</ol>
+<p>이 두가지만 얼추 해결되면 될 듯 싶었다. 어제 밤에 딱 10분 검색해서 찾아냈다.<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a></p>
+</div>
+<div id="how-to-installsource" class="section level1">
+<h1>How to install<a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a></h1>
+<p>원래 <code>bigfoot.js</code>는 큰 점 세계가 나오는 형태여서 숫자로 표기되는 전통적인 각주와는 어울리지 않는다. <code>bigfoot.js</code>는 보다 간략한 형태의 <code>barefoot.min.js</code>도 제공한다. 이 녀석을 붙여보기로 하자.</p>
+<ol style="list-style-type: decimal">
+<li><a href="https://github.com/philgruneich/barefoot">barefoot github</a>에서 <code>barefoot.min.js</code>, <code>barefoot.min.css</code>를 다운 받는다.</li>
+<li><code>barefoot.min.js</code>을 <code>static/js</code>에 넣어준다. 혹시 <code>static</code> 디렉토리 안에 <code>js</code>가 없다면 만들면 된다.</li>
+<li><code>barefoot.min.css</code>을 <code>static/css</code>에 넣어준다.</li>
+<li><code>themes/[YOUR_THEME_NAME]//layouts/partials/footer.html</code>을 열어서 아래 코드를 적절한 위치에 삽입한다.</li>
+</ol>
+<pre><code>&lt;link rel=&quot;stylesheet&quot; href=&quot;/css/barefoot.min.css&quot;&gt;
+
+&lt;script src=&quot;/js/barefoot.min.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+  lf = new BareFoot();
+  lf.init();
+&lt;/script&gt;</code></pre>
+</div>
+<div id="how-to-use" class="section level1">
+<h1>How to use</h1>
+<p>그냥 markdown에 각주 쓰듯이 쓰면 되겠다.</p>
+<pre><code>This is barefoot![^baref]
+
+[^baref]: 이것은 베어풋으로 붙인 각주입니다! </code></pre>
+<p>This is barefoot!<a href="#fn3" class="footnoteRef" id="fnref3"><sup>3</sup></a></p>
+</div>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>부끄럽지만 몹시 뿌듯하고 기뻤다! ㅎ<a href="#fnref1">↩</a></p></li>
+<li id="fn2"><p>이 내용의 출처는 <a href="http://egeiro.net/post/barefoot-notes/">여기</a>다.<a href="#fnref2">↩</a></p></li>
+<li id="fn3"><p>이것은 베어풋으로 붙인 각주입니다!<a href="#fnref3">↩</a></p></li>
+</ol>
+</div>
+
+</main>
+
+  <footer>
+
+<link rel="stylesheet" href="/css/barefoot.min.css">
+<script src="/js/barefoot.min.js"></script>
+
+<script>
+  lf = new BareFoot();
+  lf.init();
+</script>
+  <script src="//yihui.name/js/math-code.js"></script>
+<script async src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+<script async src="//yihui.name/js/center-img.js"></script>
+
+  
+  <hr/>
+  &copy; <a href="http://lostineconomics.com">Junsok Huhh</a> 2017 | <a href="https://github.com/anarinsk">Github</a>
+  
+  </footer>
+  </body>
+</html>
+
