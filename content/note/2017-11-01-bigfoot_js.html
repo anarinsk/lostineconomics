@@ -10,8 +10,8 @@ categories: ['R', 'Hugo']
 
 <div id="bigfoot" class="section level1">
 <h1>BIGFOOT!</h1>
-<p>웹서핑을 하다가 이 녀석을 보고야 말았다, <a href="http://bigfootjs.com/">bigfoot.js</a>. 웹 문서 표준들 고도화된 지금의 시점에서 인터넷을 통해 노출하는 문서에서 표현의 방법이 제약되는 경우는 거의 없다. 표, 수식, 그림 등을 동원해 소통하는 데에 pdf 보다 나은 사례도 많다. 당장 이 문서가 작성되고 있는 markdown이 대표적이다.</p>
-<p>개인적으로 각주 처리면 좀 더 ‘멋지게’ 되면 좋겠는데, 싶었다. 마치 등이 살짝 가려운 데 긁지 못하는 격이랄까. 이때 <code>bigfoot.js</code>를 보게된 것이다! 각주를 누르면 버블로 해당 텍스트가 그 자리에 등장한다. 이거야말로 인터랙티브 문서가 지닌 장점이 아닌가!</p>
+<p>웹서핑을 하다가 이 녀석을 보고야 말았다, <a href="http://bigfootjs.com/">bigfoot.js</a>. 웹 문서가 고도화된 지금 인터넷으로 노출하는 문서에서 표현의 방법으로 답답함을 느끼는 일은 거의 없을 터다. 표, 수식, 그림 등을 동원해 소통할 때 pdf 등의 프린트 기반 문서들과 비교해 보다 기발하고 뛰어난 사례들도 많다. 당장 이 문서가 작성되고 있는 markdown이 그 대표 사례다.</p>
+<p>어쨌든 왠만한 것들이 쉽게 된다는 걸 알게 되면, 작은 차이들이 눈에 들어오기 마련이다. 각주 처리만 좀 더 ‘멋지게’ 되면 좋겠는데, 싶었다. 마치 등이 살짝 가려운 데 긁지 못하는 격이랄까. 이때 <code>bigfoot.js</code>를 보게된 것이다! 각주를 누르면 버블로 해당 텍스트가 그 자리에 등장한다. 이거야말로 인터랙티브 문서가 지닌 장점이 아닌가!</p>
 <p>그래서 바로 검색 들어 갔다. 우선, 필요한 요소를 챙겨보자.</p>
 <ol style="list-style-type: decimal">
 <li><code>bigfoot.js</code>를 구현하는 자바 스크립트</li>
@@ -21,12 +21,12 @@ categories: ['R', 'Hugo']
 </div>
 <div id="how-to-installsource" class="section level1">
 <h1>How to install<a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a></h1>
-<p>원래 <code>bigfoot.js</code>는 큰 점 세계가 나오는 형태여서 숫자로 표기되는 전통적인 각주와는 어울리지 않는다. <code>bigfoot.js</code>는 보다 간략한 형태의 <code>barefoot.min.js</code>도 제공한다. 이 녀석을 붙여보기로 하자.</p>
+<p>원래 <code>bigfoot.js</code>는 ’점 세개’가 나오는 형태여서 숫자로 표기되는 전통적인 각주와는 어울리지 않는다. <code>bigfoot.js</code>는 보다 간략한 형태의 <code>barefoot.min.js</code>도 제공한다. 이 녀석을 붙여보기로 하자.</p>
 <ol style="list-style-type: decimal">
 <li><a href="https://github.com/philgruneich/barefoot">barefoot github</a>에서 <code>barefoot.min.js</code>, <code>barefoot.min.css</code>를 다운 받는다.</li>
 <li><code>barefoot.min.js</code>을 <code>static/js</code>에 넣어준다. 혹시 <code>static</code> 디렉토리 안에 <code>js</code>가 없다면 만들면 된다.</li>
 <li><code>barefoot.min.css</code>을 <code>static/css</code>에 넣어준다.</li>
-<li><code>themes/[YOUR_THEME_NAME]//layouts/partials/footer.html</code>을 열어서 아래 코드를 적절한 위치에 삽입한다.</li>
+<li><code>themes/[YOUR_THEME_NAME]/layouts/partials/footer.html</code>을 열어서 아래 코드를 적절한 위치에 삽입한다.</li>
 </ol>
 <pre><code>&lt;link rel=&quot;stylesheet&quot; href=&quot;/css/barefoot.min.css&quot;&gt;
 
