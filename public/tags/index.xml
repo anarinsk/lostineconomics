@@ -39,11 +39,29 @@
     </item>
     
     <item>
+      <title>Choropleth</title>
+      <link>/tags/choropleth/</link>
+      <pubDate>Fri, 03 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/choropleth/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Cinema</title>
       <link>/tags/cinema/</link>
       <pubDate>Fri, 06 Oct 2017 00:00:00 +0000</pubDate>
       
       <guid>/tags/cinema/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Ggplot2</title>
+      <link>/tags/ggplot2/</link>
+      <pubDate>Fri, 03 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/ggplot2/</guid>
       <description></description>
     </item>
     
@@ -242,6 +260,15 @@
       <pubDate>Fri, 20 Oct 2017 00:00:00 +0000</pubDate>
       
       <guid>/tags/version_control/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Visualization</title>
+      <link>/tags/visualization/</link>
+      <pubDate>Fri, 03 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/visualization/</guid>
       <description></description>
     </item>
     

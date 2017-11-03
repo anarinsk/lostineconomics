@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>/post/2017/11/03/sf-package-with-ggplot2/</loc>
+    <lastmod>2017-11-03T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/note/2017/11/01/adding-bigfoot.js-to-hugo/</loc>
     <lastmod>2017-11-01T00:00:00+00:00</lastmod>
   </url>
@@ -107,6 +112,12 @@
   </url>
   
   <url>
+    <loc>/tags/choropleth/</loc>
+    <lastmod>2017-11-03T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>/tags/cinema/</loc>
     <lastmod>2017-10-06T00:00:00+00:00</lastmod>
     <priority>0</priority>
@@ -137,6 +148,12 @@
   </url>
   
   <url>
+    <loc>/tags/ggplot2/</loc>
+    <lastmod>2017-11-03T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>/tags/git/</loc>
     <lastmod>2017-10-20T00:00:00+00:00</lastmod>
     <priority>0</priority>
@@ -162,7 +179,7 @@
   
   <url>
     <loc>/</loc>
-    <lastmod>2017-11-01T00:00:00+00:00</lastmod>
+    <lastmod>2017-11-03T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -233,7 +250,7 @@
   
   <url>
     <loc>/post/</loc>
-    <lastmod>2017-10-30T00:00:00+00:00</lastmod>
+    <lastmod>2017-11-03T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -263,7 +280,7 @@
   
   <url>
     <loc>/categories/r/</loc>
-    <lastmod>2017-11-01T00:00:00+00:00</lastmod>
+    <lastmod>2017-11-03T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -276,6 +293,12 @@
   <url>
     <loc>/tags/r-package/</loc>
     <lastmod>2017-10-02T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/categories/r-package/</loc>
+    <lastmod>2017-11-03T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -330,6 +353,12 @@
   <url>
     <loc>/tags/version_control/</loc>
     <lastmod>2017-10-20T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/visualization/</loc>
+    <lastmod>2017-11-03T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   

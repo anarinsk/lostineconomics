@@ -6,10 +6,20 @@
     <description>Recent content in R on lost in economics</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 01 Nov 2017 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 03 Nov 2017 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/categories/r/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>sf package with ggplot2</title>
+      <link>/post/2017/11/03/sf-package-with-ggplot2/</link>
+      <pubDate>Fri, 03 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2017/11/03/sf-package-with-ggplot2/</guid>
+      <description>Motivation일반인이 지도로 할 수 있는 가장 쉬운 시각화는? 누구나 한번은 봤을 단계구분도(cholopleth map)다. 이 작업을 직접 하기 위해 필요한 요소들부터 따져보자.
+지도를 그리기 위한 공간 데이터단계로 표현될 변수 (투표율, 소득 등등)1,2를 연결할 방법1,2를 지도로 구현할 방법단계구분도 자체는 상당히 직관적이고, 때문에 많이 활용된다. 하지막 막상 단계구분도를 생성하고자 할때 작업이 그다지 간단하지 않다. R을 갖고 이 작업을 어떻게 수행할 수 있을까? 단계구분도를 생성하는 것 자체가 그리 어렵지는 않다.</description>
+    </item>
     
     <item>
       <title>Adding bigfoot.js to Hugo</title>
