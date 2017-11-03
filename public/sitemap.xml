@@ -198,13 +198,13 @@
   </url>
   
   <url>
-    <loc>/categories/hugo/</loc>
+    <loc>/tags/hugo/</loc>
     <lastmod>2017-11-01T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/tags/hugo/</loc>
+    <loc>/categories/hugo/</loc>
     <lastmod>2017-11-01T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
@@ -276,14 +276,14 @@
   </url>
   
   <url>
-    <loc>/categories/r/</loc>
-    <lastmod>2017-11-03T00:00:00+00:00</lastmod>
+    <loc>/tags/r/</loc>
+    <lastmod>2017-10-02T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/tags/r/</loc>
-    <lastmod>2017-10-02T00:00:00+00:00</lastmod>
+    <loc>/categories/r/</loc>
+    <lastmod>2017-11-03T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -294,14 +294,14 @@
   </url>
   
   <url>
-    <loc>/categories/r-package/</loc>
-    <lastmod>2017-11-03T00:00:00+00:00</lastmod>
+    <loc>/tags/r-package/</loc>
+    <lastmod>2017-10-02T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/tags/r-package/</loc>
-    <lastmod>2017-10-02T00:00:00+00:00</lastmod>
+    <loc>/categories/r-package/</loc>
+    <lastmod>2017-11-03T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -354,14 +354,14 @@
   </url>
   
   <url>
-    <loc>/categories/visualization/</loc>
-    <lastmod>2017-09-19T00:00:00+00:00</lastmod>
+    <loc>/tags/visualization/</loc>
+    <lastmod>2017-11-03T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/tags/visualization/</loc>
-    <lastmod>2017-11-03T00:00:00+00:00</lastmod>
+    <loc>/categories/visualization/</loc>
+    <lastmod>2017-09-19T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
