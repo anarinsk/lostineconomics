@@ -2,14 +2,12 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Home on lost in economics</title>
-    <link>/</link>
+    <link>/index.xml</link>
     <description>Recent content in Home on lost in economics</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Wed, 01 Nov 2017 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
-    
+    <atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Adding bigfoot.js to Hugo</title>
@@ -17,8 +15,51 @@
       <pubDate>Wed, 01 Nov 2017 00:00:00 +0000</pubDate>
       
       <guid>/note/2017/11/01/adding-bigfoot.js-to-hugo/</guid>
-      <description>BIGFOOT!웹서핑을 하다가 이 녀석을 보고야 말았다, bigfoot.js. 웹 문서가 고도화된 지금 인터넷으로 노출하는 문서에서 표현의 방법으로 답답함을 느끼는 일은 거의 없을 터다. 표, 수식, 그림 등을 동원해 소통할 때 pdf 등의 프린트 기반 문서들과 비교해 보다 기발하고 뛰어난 사례들도 많다. 당장 이 문서가 작성되고 있는 markdown이 그 대표 사례다.
-어쨌든 왠만한 것들이 쉽게 된다는 걸 알게 되면, 작은 차이들이 눈에 들어오기 마련이다. 각주 처리만 좀 더 ‘멋지게’ 되면 좋겠는데, 싶었다.</description>
+      <description>&lt;div id=&#34;bigfoot&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;BIGFOOT!&lt;/h1&gt;
+&lt;p&gt;웹서핑을 하다가 이 녀석을 보고야 말았다, &lt;a href=&#34;http://bigfootjs.com/&#34;&gt;bigfoot.js&lt;/a&gt;. 웹 문서가 고도화된 지금 인터넷으로 노출하는 문서에서 표현의 방법으로 답답함을 느끼는 일은 거의 없을 터다. 표, 수식, 그림 등을 동원해 소통할 때 pdf 등의 프린트 기반 문서들과 비교해 보다 기발하고 뛰어난 사례들도 많다. 당장 이 문서가 작성되고 있는 markdown이 그 대표 사례다.&lt;/p&gt;
+&lt;p&gt;어쨌든 왠만한 것들이 쉽게 된다는 걸 알게 되면, 작은 차이들이 눈에 들어오기 마련이다. 각주 처리만 좀 더 ‘멋지게’ 되면 좋겠는데, 싶었다. 마치 등이 살짝 가려운 데 긁지 못하는 격이랄까. 이때 &lt;code&gt;bigfoot.js&lt;/code&gt;를 보게된 것이다! 각주를 누르면 버블로 해당 텍스트가 그 자리에 등장한다. 이거야말로 인터랙티브 문서가 지닌 장점이 아닌가!&lt;/p&gt;
+&lt;p&gt;그래서 바로 검색 들어 갔다. 우선, 필요한 요소를 챙겨보자.&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;&lt;code&gt;bigfoot.js&lt;/code&gt;를 구현하는 자바 스크립트&lt;/li&gt;
+&lt;li&gt;해당 자바스크립트를 이 공간이 사용하고 있는 Hugo framework에 배치하기&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;이 두가지만 얼추 해결되면 될 듯 싶었다. 어제 밤에 딱 10분 검색해서 찾아냈다.&lt;a href=&#34;#fn1&#34; class=&#34;footnoteRef&#34; id=&#34;fnref1&#34;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;how-to-installsource&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;How to install&lt;a href=&#34;#fn2&#34; class=&#34;footnoteRef&#34; id=&#34;fnref2&#34;&gt;&lt;sup&gt;2&lt;/sup&gt;&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;원래 &lt;code&gt;bigfoot.js&lt;/code&gt;는 ’점 세개’가 나오는 형태여서 숫자로 표기되는 전통적인 각주와는 어울리지 않는다. &lt;code&gt;bigfoot.js&lt;/code&gt;는 보다 간략한 형태의 &lt;code&gt;barefoot.min.js&lt;/code&gt;도 제공한다. 이 녀석을 붙여보기로 하자.&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/philgruneich/barefoot&#34;&gt;barefoot github&lt;/a&gt;에서 &lt;code&gt;barefoot.min.js&lt;/code&gt;, &lt;code&gt;barefoot.min.css&lt;/code&gt;를 다운 받는다.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;barefoot.min.js&lt;/code&gt;을 &lt;code&gt;static/js&lt;/code&gt;에 넣어준다. 혹시 &lt;code&gt;static&lt;/code&gt; 디렉토리 안에 &lt;code&gt;js&lt;/code&gt;가 없다면 만들면 된다.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;barefoot.min.css&lt;/code&gt;을 &lt;code&gt;static/css&lt;/code&gt;에 넣어준다.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;themes/[YOUR_THEME_NAME]/layouts/partials/footer.html&lt;/code&gt;을 열어서 아래 코드를 적절한 위치에 삽입한다.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;link rel=&amp;quot;stylesheet&amp;quot; href=&amp;quot;/css/barefoot.min.css&amp;quot;&amp;gt;
+
+&amp;lt;script src=&amp;quot;/js/barefoot.min.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
+&amp;lt;script&amp;gt;
+  lf = new BareFoot();
+  lf.init();
+&amp;lt;/script&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;how-to-use&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;How to use&lt;/h1&gt;
+&lt;p&gt;그냥 markdown에 각주 쓰듯이 쓰면 되겠다.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;This is barefoot![^baref]
+
+[^baref]: 이것은 베어풋으로 붙인 각주입니다! &lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This is barefoot!&lt;a href=&#34;#fn3&#34; class=&#34;footnoteRef&#34; id=&#34;fnref3&#34;&gt;&lt;sup&gt;3&lt;/sup&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;footnotes&#34;&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id=&#34;fn1&#34;&gt;&lt;p&gt;부끄럽지만 몹시 뿌듯하고 기뻤다! ㅎ&lt;a href=&#34;#fnref1&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&#34;fn2&#34;&gt;&lt;p&gt;이 내용의 출처는 &lt;a href=&#34;http://egeiro.net/post/barefoot-notes/&#34;&gt;여기&lt;/a&gt;다.&lt;a href=&#34;#fnref2&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&#34;fn3&#34;&gt;&lt;p&gt;이것은 베어풋으로 붙인 각주입니다!&lt;a href=&#34;#fnref3&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+</description>
     </item>
     
     <item>
@@ -27,9 +68,127 @@
       <pubDate>Mon, 30 Oct 2017 00:00:00 +0000</pubDate>
       
       <guid>/post/2017/10/30/regression-modelling-with-tidyverse/</guid>
-      <description>tidyverse로 묶인 패키지 군에 대한 찬미는 뭐 이제… 이번 포스팅에서는 modelr, broom, purrr을 통해서 ‘유연하게’(MB말투로는 “스마아~트하게”) 회귀분석하는 방법을 간략하게 끄적이겠다.
-Unconventional data.framedata.frame에는 데이터만 들어갈 수 있을까? 아니다! data.frame을 엑셀 시트처럼만 생각하면 data.frame에게 송구할 일이다. data.frame 안에는 마트로쉬카 인형처럼 또다른 data.frame을 넣을 수 있다. H. Wickham은 이를 “nested data.frame”이라고 부른다.
-data.frame 뿐일까! 사실 R의 다른 객체들도 셀 안에 넣을 수 있다. 이 장점을 살리면, 필요한 데이터에 대한 필요한 모델을 유연하게 생성할 수 있다.</description>
+      <description>&lt;p&gt;&lt;code&gt;tidyverse&lt;/code&gt;로 묶인 패키지 군에 대한 찬미는 뭐 이제… 이번 포스팅에서는 &lt;code&gt;modelr&lt;/code&gt;, &lt;code&gt;broom&lt;/code&gt;, &lt;code&gt;purrr&lt;/code&gt;을 통해서 ‘유연하게’(MB말투로는 “스마아~트하게”) 회귀분석하는 방법을 간략하게 끄적이겠다.&lt;/p&gt;
+&lt;div id=&#34;unconventional-data.frame&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Unconventional &lt;code&gt;data.frame&lt;/code&gt;&lt;/h1&gt;
+&lt;p&gt;data.frame에는 데이터만 들어갈 수 있을까? 아니다! data.frame을 엑셀 시트처럼만 생각하면 data.frame에게 송구할 일이다. data.frame 안에는 마트로쉬카 인형처럼 또다른 data.frame을 넣을 수 있다. H. Wickham은 이를 “nested data.frame”이라고 부른다.&lt;/p&gt;
+&lt;p&gt;data.frame 뿐일까! 사실 R의 다른 객체들도 셀 안에 넣을 수 있다. 이 장점을 살리면, 필요한 데이터에 대한 필요한 모델을 유연하게 생성할 수 있다.&lt;/p&gt;
+&lt;p&gt;일단, 필요한 라이브러리를 불러오자.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyverse)
+library(modelr)
+library(broom)
+library(gapminder)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;편의상 네이티브 data.frame 대신 tidyverse의 data.frame 대체물인 &lt;code&gt;tibble&lt;/code&gt;을 쓰도록 하겠다. 여기서 활용할 &lt;code&gt;gapminder&lt;/code&gt; 데이터 셋은 각국의 기대 수명과 각종 변수들을 담고 있다. 데이터 셋의 대략적인 생김새는 아래와 같다. 각각의 컬럼은 국가, 대륙, 년도, 기대 수명, 인구, 그리고 1인당 GDP를 나타낸다.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;data(gapminder) 
+gapminder&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 1,704 x 6
+##        country continent  year lifeExp      pop gdpPercap
+##         &amp;lt;fctr&amp;gt;    &amp;lt;fctr&amp;gt; &amp;lt;int&amp;gt;   &amp;lt;dbl&amp;gt;    &amp;lt;int&amp;gt;     &amp;lt;dbl&amp;gt;
+##  1 Afghanistan      Asia  1952  28.801  8425333  779.4453
+##  2 Afghanistan      Asia  1957  30.332  9240934  820.8530
+##  3 Afghanistan      Asia  1962  31.997 10267083  853.1007
+##  4 Afghanistan      Asia  1967  34.020 11537966  836.1971
+##  5 Afghanistan      Asia  1972  36.088 13079460  739.9811
+##  6 Afghanistan      Asia  1977  38.438 14880372  786.1134
+##  7 Afghanistan      Asia  1982  39.854 12881816  978.0114
+##  8 Afghanistan      Asia  1987  40.822 13867957  852.3959
+##  9 Afghanistan      Asia  1992  41.674 16317921  649.3414
+## 10 Afghanistan      Asia  1997  41.763 22227415  635.3414
+## # ... with 1,694 more rows&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;이제 모델링 작업 들어간다.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;tribble(~funcs,  ~models,       ~dat,
+        glm,    &amp;quot;lifeExp ~ gdpPercap&amp;quot;,   gapminder,
+        glm,    &amp;quot;log(lifeExp) ~ log(gdpPercap)&amp;quot;,   gapminder,
+        lm,     &amp;quot;log(lifeExp) ~ log(gdpPercap)&amp;quot;,   filter(gapminder, continent == &amp;quot;Asia&amp;quot;), 
+        lm,     &amp;quot;log(lifeExp) ~ log(gdpPercap)&amp;quot;,   filter(gapminder, continent == &amp;quot;Africa&amp;quot;),
+        lm,     &amp;quot;log(lifeExp) ~ continent + log(gdpPercap)&amp;quot;,   gapminder
+) -&amp;gt; my_model_gapminder
+
+my_model_gapminder&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 5 x 3
+##    funcs                                    models                  dat
+##   &amp;lt;list&amp;gt;                                     &amp;lt;chr&amp;gt;               &amp;lt;list&amp;gt;
+## 1  &amp;lt;fun&amp;gt;                       lifeExp ~ gdpPercap &amp;lt;tibble [1,704 x 6]&amp;gt;
+## 2  &amp;lt;fun&amp;gt;             log(lifeExp) ~ log(gdpPercap) &amp;lt;tibble [1,704 x 6]&amp;gt;
+## 3  &amp;lt;fun&amp;gt;             log(lifeExp) ~ log(gdpPercap)   &amp;lt;tibble [396 x 6]&amp;gt;
+## 4  &amp;lt;fun&amp;gt;             log(lifeExp) ~ log(gdpPercap)   &amp;lt;tibble [624 x 6]&amp;gt;
+## 5  &amp;lt;fun&amp;gt; log(lifeExp) ~ continent + log(gdpPercap) &amp;lt;tibble [1,704 x 6]&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;code&gt;my_model_gapminder&lt;/code&gt;는 어떤 형태의 tibble일까? 먼저 &lt;code&gt;funcs&lt;/code&gt; 컬럼은 돌릴 (회귀)분석 방법이 담겨 있다. 쿼테이션 마크가 없음에 유의하자. 스트링이 아니라는 이야기다. &lt;code&gt;glm&lt;/code&gt;, &lt;code&gt;lm&lt;/code&gt; 등의 함수가 바로 들어가 있다. &lt;code&gt;models&lt;/code&gt; 칼럼은 분석 모형을 담고 있다. 마지막으로 dat는 해당 모델의 추정에 사용될 데이터셋을 의미한다. 보시면, 3, 4 모델에서는 각기 “Asia”와 “Africa” 대륙만 필터링한 데이터를 추정에 활용했음을 알 수 있다.&lt;/p&gt;
+&lt;p&gt;이런 형태가 왜 좋을까? &lt;code&gt;my_model_gapminder&lt;/code&gt;을 들여다보고 있으면 대충 감이 온다. 행 단위로 보면, funcs의 (회귀)분석 방법을 사용하되, arguments로 각각 models와 dat를 넣겠다는 의도다. 이 일만 구현해주면 된다. 즉, &lt;code&gt;my_model_gapminder&lt;/code&gt;은 일종의 modelling set인 셈이다.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;modelr&lt;/code&gt;패키지의 함수 &lt;code&gt;fit_with&lt;/code&gt;를 쓰면 이 작업을 간단하게 구현할 수 있다. &lt;code&gt;fit_with&lt;/code&gt;는 input arguments로 (분석) 함수, 모델, 그리고 데이터를 받는다. 위에서 만든 &lt;code&gt;my_model_gapminder&lt;/code&gt;의 매 열이 &lt;code&gt;fit_with&lt;/code&gt;의 arguments로 들어간다. 이렇게 3개 이상의 input이 있을 경우 &lt;code&gt;purrr&lt;/code&gt; 패키지의 &lt;code&gt;pmap&lt;/code&gt; 함수를 쓰면 된다.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;my_model_gapminder %&amp;gt;% 
+  mutate(fit = flatten(pmap(.l = list(.f = funcs, .formulas = models, data = dat), 
+                            .f = modelr::fit_with)))&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 5 x 4
+##    funcs                                    models                  dat
+##   &amp;lt;list&amp;gt;                                     &amp;lt;chr&amp;gt;               &amp;lt;list&amp;gt;
+## 1  &amp;lt;fun&amp;gt;                       lifeExp ~ gdpPercap &amp;lt;tibble [1,704 x 6]&amp;gt;
+## 2  &amp;lt;fun&amp;gt;             log(lifeExp) ~ log(gdpPercap) &amp;lt;tibble [1,704 x 6]&amp;gt;
+## 3  &amp;lt;fun&amp;gt;             log(lifeExp) ~ log(gdpPercap)   &amp;lt;tibble [396 x 6]&amp;gt;
+## 4  &amp;lt;fun&amp;gt;             log(lifeExp) ~ log(gdpPercap)   &amp;lt;tibble [624 x 6]&amp;gt;
+## 5  &amp;lt;fun&amp;gt; log(lifeExp) ~ continent + log(gdpPercap) &amp;lt;tibble [1,704 x 6]&amp;gt;
+## # ... with 1 more variables: fit &amp;lt;list&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;앞서 만든 &lt;code&gt;my_model_gapminder&lt;/code&gt;에 fit이라는 컬럼을 새로 붙였다. fit 안에는 회귀분석의 결과물이 통채로 담기게 된다. 이렇게 해두면 해당 결과물을 꺼내 예측을 하는 데 쓰거나 그림을 그리거나 하는 등 필요에 따라 손쉽게 활용할 수 있다. fit의 파라미터들의 추정치과 p-값을 정리해서 보고 싶다면 다음과 같이 작업하면 된다.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;my_format &amp;lt;- function(x){sprintf(&amp;quot;%0.3f&amp;quot;, x)}
+my_model_gapminder %&amp;gt;% 
+  mutate(fit = flatten(pmap(.l = list(.f = funcs, .formulas = models, data = dat), 
+                            .f = modelr::fit_with))) %&amp;gt;% 
+  .$fit %&amp;gt;% 
+  map_dfr(tidy, .id = &amp;quot;models&amp;quot;) %&amp;gt;% 
+  mutate_if(is.numeric, my_format) -&amp;gt; res1
+
+res1&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##    models              term estimate std.error statistic p.value
+## 1       1       (Intercept)   53.956     0.315   171.290   0.000
+## 2       1         gdpPercap    0.001     0.000    29.658   0.000
+## 3       2       (Intercept)    2.864     0.023   123.017   0.000
+## 4       2    log(gdpPercap)    0.147     0.003    51.945   0.000
+## 5       3       (Intercept)    3.196     0.051    63.247   0.000
+## 6       3    log(gdpPercap)    0.109     0.006    17.608   0.000
+## 7       4       (Intercept)    3.070     0.054    56.813   0.000
+## 8       4    log(gdpPercap)    0.111     0.007    14.943   0.000
+## 9       5       (Intercept)    3.062     0.026   117.692   0.000
+## 10      5 continentAmericas    0.133     0.011    12.519   0.000
+## 11      5     continentAsia    0.110     0.009    12.037   0.000
+## 12      5   continentEurope    0.166     0.012    14.357   0.000
+## 13      5  continentOceania    0.152     0.029     5.187   0.000
+## 14      5    log(gdpPercap)    0.112     0.004    31.843   0.000&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;code&gt;broom&lt;/code&gt; 패키지의 &lt;code&gt;tidy&lt;/code&gt; 함수는 복잡한 개체들로 구성된 대상을 tibble로 손쉽게 정리해주는 역할을 한다.&lt;a href=&#34;#fn1&#34; class=&#34;footnoteRef&#34; id=&#34;fnref1&#34;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;lazy-application&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Lazy application&lt;/h1&gt;
+&lt;p&gt;간단한 응용으로 각 terms들의 신뢰구간을 뽑아보도록 하자. 일단, 95%의 신뢰구간은 아래와 같이 간단하게 생성할 수 있다. &lt;code&gt;confint&lt;/code&gt; 함수를 쓰면 되지만, 신뢰구간을 tibble로 만들어 주기 위해서 &lt;code&gt;broom&lt;/code&gt;패키지에 포함된 &lt;code&gt;confint_tidy&lt;/code&gt;를 쓰면 된다. 게으른 응용이므로 추가는 생략한다.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;my_model_gapminder %&amp;gt;% 
+  mutate(fit = flatten(pmap(.l = list(.f = funcs, .formulas = models, data = dat), 
+                            .f = modelr::fit_with))) %&amp;gt;% 
+  .$fit %&amp;gt;% 
+  map_dfr(confint_tidy, .id = &amp;quot;models&amp;quot;) %&amp;gt;% 
+  mutate_if(is.numeric, my_format) %&amp;gt;% 
+  mutate(term = res1$term) %&amp;gt;% 
+  select(models, term, everything())&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##    models              term conf.low conf.high
+## 1       1       (Intercept)   53.338    54.573
+## 2       1         gdpPercap    0.001     0.001
+## 3       2       (Intercept)    2.819     2.910
+## 4       2    log(gdpPercap)    0.141     0.152
+## 5       3       (Intercept)    3.096     3.295
+## 6       3    log(gdpPercap)    0.097     0.121
+## 7       4       (Intercept)    2.964     3.176
+## 8       4    log(gdpPercap)    0.096     0.125
+## 9       5       (Intercept)    3.011     3.113
+## 10      5 continentAmericas    0.112     0.154
+## 11      5     continentAsia    0.092     0.128
+## 12      5   continentEurope    0.143     0.189
+## 13      5  continentOceania    0.095     0.210
+## 14      5    log(gdpPercap)    0.105     0.119&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div class=&#34;footnotes&#34;&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id=&#34;fn1&#34;&gt;&lt;p&gt;&lt;code&gt;tidy&lt;/code&gt; 명령어는 회귀분석 객체를 위에 보는 것처럼 tibble로 깔끔하게 정리한다. &lt;code&gt;broom&lt;/code&gt; 패키지는 모델의 분석 결과를 data.frame으로 가공해 활용도를 높이자는 취지를 갖고 있다. 보통 R의 경우 분석의 결과물들이 list의 복잡한 형태로 산출된다. R의 데이터 구조를 아주 잘 안다면 모를까, 그렇지 않은 사람들에게는 꽤 골치아픈 대목의 하나인데, &lt;code&gt;broom&lt;/code&gt;은 이러한 불편함을 해소한다. 말 그대로 빗자루의 역할을 하는 패키지다. &lt;a href=&#34;https://cran.r-project.org/web/packages/broom/vignettes/broom.html&#34;&gt;여기&lt;/a&gt;서 한번 둘러보기를 권한다.&lt;a href=&#34;#fnref1&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+</description>
     </item>
     
     <item>
@@ -38,8 +197,290 @@ data.frame 뿐일까! 사실 R의 다른 객체들도 셀 안에 넣을 수 있�
       <pubDate>Fri, 20 Oct 2017 00:00:00 +0000</pubDate>
       
       <guid>/note/2017/10/20/my-stupid-git-experience-part-1/</guid>
-      <description>Disclaimer이 문서는 git을 다루면서 저질렀던 개인적을 실수를 모아 놓은 것이다. 아마도 문서 자체가 조금씩 진화할 것이므로 어떤 시점에서 보신다면 몹시 허접할 수 있도 있겠다. git에 대해서 잘 아는 분들은 패스하시라. 일단, branch를 심각하게 쓰지 않는다면 여기 나온 정도로 충분할 것 같다.
-Basic structureworking dir: local의 작업디렉토리index: staging area. 커밋될 파일들을 올려 두는 공간HEAD: 마지막으로 커밋이 이루어진 branchBasic commandInitiation in local로컬머신에서 git을 개시하는 방법부터 알아보자.</description>
+      <description>&lt;div id=&#34;disclaimer&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Disclaimer&lt;/h1&gt;
+&lt;p&gt;이 문서는 &lt;code&gt;git&lt;/code&gt;을 다루면서 저질렀던 개인적을 실수를 모아 놓은 것이다. 아마도 문서 자체가 조금씩 진화할 것이므로 어떤 시점에서 보신다면 몹시 허접할 수 있도 있겠다. git에 대해서 잘 아는 분들은 패스하시라. 일단, &lt;code&gt;branch&lt;/code&gt;를 심각하게 쓰지 않는다면 여기 나온 정도로 충분할 것 같다.&lt;/p&gt;
+&lt;hr /&gt;
+&lt;/div&gt;
+&lt;div id=&#34;basic-structure&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Basic structure&lt;/h1&gt;
+&lt;div class=&#34;figure&#34;&gt;
+&lt;img src=&#34;img/dr_structure.png&#34; /&gt;
+
+&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;working dir&lt;/code&gt;: local의 작업디렉토리&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;index&lt;/code&gt;: staging area. 커밋될 파일들을 올려 두는 공간&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;HEAD&lt;/code&gt;: 마지막으로 커밋이 이루어진 branch&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;figure&#34;&gt;
+&lt;img src=&#34;img/git-operations.png&#34; /&gt;
+
+&lt;/div&gt;
+&lt;hr /&gt;
+&lt;/div&gt;
+&lt;div id=&#34;basic-command&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Basic command&lt;/h1&gt;
+&lt;div id=&#34;initiation-in-local&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Initiation in local&lt;/h2&gt;
+&lt;p&gt;로컬머신에서 git을 개시하는 방법부터 알아보자. git으로 관리하고 싶은 directory에서 아래와 같은 명령어를 쳐 준다.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;echo &amp;quot;# YOUR_README_NAME&amp;quot; &amp;gt;&amp;gt; README.md 
+git init
+git add README.md 
+git commit -m &amp;quot;YOUR_COMMIT_MESSAGE(e.g. first commit)&amp;quot;
+git remote add origin &amp;lt;&amp;lt;https://YOUR_REMOTE_GIT_URL&amp;gt;&amp;gt;
+git push -u origin master &lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;&amp;lt;&amp;lt;https://YOUR_REMOTE_GIT_URL&amp;gt;&amp;gt;&lt;/code&gt;: 외부 리포가 적절하게 세팅이 되어 있어야 한다. github를 쓴다면, readme 없이 새 repository를 터주는 작업 만으로 끝이다.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;echo...&lt;/code&gt;: “# YOUR_README_NAME” 내용을 &lt;code&gt;README.md&lt;/code&gt;로 생성한 후&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;git init&lt;/code&gt;: 해당 디렉토리에 git을 개시한다.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;git remote add&lt;/code&gt;: git의 remote 저장소를 &lt;code&gt;origin&lt;/code&gt;이라는 이름으로 지정&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;git push -u origin master&lt;/code&gt;: &lt;code&gt;-u&lt;/code&gt;는 업스트림 브랜치를 master로 기본설정해준다. 이후 &lt;code&gt;git push&lt;/code&gt;, &lt;code&gt;git pull&lt;/code&gt;은 자동으로 &lt;code&gt;origin &amp;lt;-&amp;gt; master&lt;/code&gt;가 된다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;add-commit-push&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;&lt;code&gt;add&lt;/code&gt;, &lt;code&gt;commit&lt;/code&gt;, &lt;code&gt;push&lt;/code&gt;&lt;/h2&gt;
+&lt;pre&gt;&lt;code&gt;git status  
+git add .
+#or
+git add -u
+git commit -m &amp;quot;YOUR_COMMENT&amp;quot;
+git push &lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;git 운용의 기본적인 흐름 혹은 기본 명령어 셋&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;push&lt;/code&gt;만 명령하면 되는 것은 앞서 &lt;code&gt;git push -u origin master&lt;/code&gt; origin master로 local과 remote repository의 upstream을 정해두었기 때문이다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;in-depth-command&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;In-depth command&lt;/h1&gt;
+&lt;div id=&#34;remote&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;&lt;code&gt;remote&lt;/code&gt;&lt;/h2&gt;
+&lt;pre&gt;&lt;code&gt;&amp;gt; git remote  
+
+origin 
+
+&amp;gt; git remote -v 
+
+git status  
+git add .
+git commit -m &amp;quot;YOUR_COMMENT&amp;quot;
+git push &lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;code&gt;git remote&lt;/code&gt; : remote로 어떤 대상이 설정되어 있는지 볼 수 있다. &lt;code&gt;git remote -v&lt;/code&gt;: remote의 구체적인 내용을 조회해볼 수 있다.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;pull&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;&lt;code&gt;pull&lt;/code&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;pull&lt;/code&gt;: &lt;code&gt;fetch&lt;/code&gt;(가져오기)와 &lt;code&gt;merge&lt;/code&gt;(병합하기)를 동시에 구현
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;fetch&lt;/code&gt;: repository의 내용을 가져와 &lt;code&gt;FETCH_HEAD&lt;/code&gt;라는 local branch에 임시로 저장&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;merge&lt;/code&gt;: &lt;code&gt;fetch&lt;/code&gt; 불러온 데이터를 원래 흐름과 병합&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;origin과 master에서 모두 변경 사항이 있을 경우는 둘에 충돌이 일어날 수 밖에 없다. 이런 경우 이 충돌을 해결해줘야 &lt;code&gt;push&lt;/code&gt;가 가능하다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code&gt;&amp;gt; git pull --rebase&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;깔끔한 이력 관리를 위해서는 rebase를 활용해서 pull을 해주면 좋다. rebase를 해주면 별도의 브랜치를 만들지 않겠다는 의도를 분명히 하는 것이고, 이에 따라서 log가 깔끔하고 단순해진다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;commit&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;&lt;code&gt;commit&lt;/code&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;git commit -m &amp;quot;&amp;lt;&amp;lt;YOUR_MESSAGE&amp;gt;&amp;gt;&amp;quot;&lt;/code&gt;: 기본적인 문법&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div id=&#34;-commit-push---&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;이전 &lt;code&gt;commit-push&lt;/code&gt;된 버전을 수정하고 싶다면&lt;/h3&gt;
+&lt;p&gt;뭔가를 수정했다. 하지만 새로운 commit을 만들고 싶지 않다.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;git commit --amend --no-edit&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;--amend --no-edit&lt;/code&gt;: 전에 commit message를 그대로 쓰고 commit한다.
+&lt;ul&gt;
+&lt;li&gt;이대로 push를 할 수 없다. 앞서 push된 버전과 현 수정된 버전이 같은 commit인데 내용은 다르다. 즉, SHA-1이 다르다. 이때 강제로 &lt;code&gt;push&lt;/code&gt;를 하고 싶다면 아래와 같이 한다.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code&gt;git push -f [origin] [master]&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;-f&lt;/code&gt;: commit을 새로 만든 것이 아니기 때문에, 그대로 push를 하게 되면 origin과 맞지 않게 된다. 강제로 push를 해서 맞춰주는 명령어다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;concept-of-branch&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Concept of &lt;code&gt;branch&lt;/code&gt;&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;이 꼭지는 &lt;a href=&#34;https://backlog.com/git-tutorial/kr/&#34;&gt;backlog.com&lt;/a&gt;을 많이 참고했습니다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;브랜치란 현재 &lt;code&gt;HEAD&lt;/code&gt; 스냅샷에 대해서 다른 이름을 부여해주는 작업이다. 일단, 아무런 변경이 없는 이상 브랜치는 분기되지 않고 노드에 함께 머물러 있다. 일단 기본적인 명령어는 아래와 같다.&lt;/p&gt;
+&lt;div id=&#34;basic&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Basic&lt;/h2&gt;
+&lt;pre&gt;&lt;code&gt;git branch &amp;lt;BRANCH_NAME&amp;gt;
+git checkout
+git checkout -b &amp;lt;BRANCH_NAME&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;git branch&lt;/code&gt;: 브랜치를 조회하거나, &lt;code&gt;&amp;lt;BRANCH_NAME&amp;gt;&lt;/code&gt;을 붙여 브랜치를 생성한다.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;checkout&lt;/code&gt;이란 다른 브랜치로 빠져나가는 것을 의미한다.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;-b&lt;/code&gt;: 브랜치를 만들면서 체크아웃을 하기 위해서는 이 옵션을 사용한다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code&gt;git merge &amp;lt;COMMIT_NAME&amp;gt; 
+git branch -d &amp;lt;BRANCH_NAME&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;merge&lt;/code&gt;: 커밋된 다른 지점과 현재 HEAD의 브랜치를 병합한다.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;-d&lt;/code&gt;: 브랜치를 삭제하기 위해서 사용하는 명령어&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;in-practice&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;In practice&lt;/h2&gt;
+&lt;pre&gt;&lt;code&gt;&amp;gt; git branch issue2
+&amp;gt; git branch issue3
+&amp;gt; git checkout issue2
+  Switched to branch &amp;#39;issue2&amp;#39;
+&amp;gt; git branch
+* issue2
+  issue3
+  master&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;위 명령어를 수행한 상태의 그림이다.&lt;/p&gt;
+&lt;div class=&#34;figure&#34;&gt;
+&lt;img src=&#34;img/branch1.png&#34; /&gt;
+
+&lt;/div&gt;
+&lt;p&gt;issue2의 어떤 내용을 수정했다고 하자.&lt;/p&gt;
+&lt;div class=&#34;figure&#34;&gt;
+&lt;img src=&#34;img/branch2.png&#34; /&gt;
+
+&lt;/div&gt;
+&lt;pre&gt;&lt;code&gt;&amp;gt; git checkout issue3&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;issue3 branch에서 어떤 내용을 또 수정했다고 하자.&lt;/p&gt;
+&lt;div class=&#34;figure&#34;&gt;
+&lt;img src=&#34;img/branch3.png&#34; /&gt;
+
+&lt;/div&gt;
+&lt;p&gt;그리고 master를 issue2와 병합하면 다음의 그림과 같은 상태로 이해하면 된다.&lt;/p&gt;
+&lt;div class=&#34;figure&#34;&gt;
+&lt;img src=&#34;img/conflict.png&#34; /&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;conflict&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Conflict&lt;/h2&gt;
+&lt;p&gt;위의 그림에서 아래의 명령어를 수행한다고 하자.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;git checkout master
+git merge issue3&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;이때 어떤 파일에 대해서 &lt;code&gt;HEAD&lt;/code&gt;의 master의 내용과 issue3의 내용이 서로 다른 부분이 있다고 하자.&lt;/li&gt;
+&lt;li&gt;병합이 무리 없이 가능하다면 그대로 병합된다. 즉, A와 B가 있을 떄 B가 A의 내용을 포함하고 있다면, 병합이 가능하다.&lt;/li&gt;
+&lt;li&gt;파일 자체가 다른 경우는 인간의 판단이 필요하다. 해당 파일을 열면 아래와 같이 표현되어 있다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code&gt;원숭이도 이해할 수 있는 Git 명령어
+add: 변경 사항을 만들어서 인덱스에 등록해보기
+&amp;lt;&amp;lt;&amp;lt;&amp;lt;&amp;lt;&amp;lt;&amp;lt; HEAD
+commit: 인덱스의 상태를 기록하기
+=======
+pull: 원격 저장소의 내용을 가져오기
+&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt; issue3&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;&amp;lt;&amp;lt;&amp;lt;&amp;lt;&amp;lt;&amp;lt; HEAD&lt;/code&gt;는 &lt;code&gt;====&lt;/code&gt;까지 HEAD의 부분이고, &lt;code&gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt; issue3&lt;/code&gt;의 부분이다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;what-is-rebase&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;What is &lt;code&gt;rebase&lt;/code&gt;&lt;/h1&gt;
+&lt;div class=&#34;section level2&#34;&gt;
+&lt;h2&gt;개념&lt;/h2&gt;
+&lt;p&gt;특정한 브랜치를 다른 브랜치로 합친 후에 이전 브랜치는 없애고 싶을 때, 한번에 처리하는 명령어가 rebase다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;리베이스는 병합될 브랜치에서 시작!&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;figure&#34;&gt;
+&lt;img src=&#34;img/rebase_1.png&#34; /&gt;
+
+&lt;/div&gt;
+&lt;p&gt;원래 상태는 HEAD를 master로 하고 브랜치는 다음과 같이 3가지다.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;git checkout issue3
+git rebase master &lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;issue3로 체크아웃을 한 뒤에 해당 브랜치를 master로 rebase한다. 만일 두 노드 사이에 충돌이 없다면 rebase가 되곘지만, 충돌이 있을 경우에는 해당 파일을 수정해줘야 한다. 수정 후 아래와 같이 rebase한다.&lt;/p&gt;
+&lt;div class=&#34;figure&#34;&gt;
+&lt;img src=&#34;img/rebase_2.png&#34; /&gt;
+
+&lt;/div&gt;
+&lt;pre&gt;&lt;code&gt;git add myfile.txt 
+git rebase --continue &lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;figure&#34;&gt;
+&lt;img src=&#34;img/rebase_3.png&#34; /&gt;
+
+&lt;/div&gt;
+&lt;pre&gt;&lt;code&gt;git checkout master 
+git merge issue3&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;code&gt;master&lt;/code&gt;로 체크아웃한 이후에 issue3 merge하면 아래와 같이 가지가 정리된다.&lt;/p&gt;
+&lt;div class=&#34;figure&#34;&gt;
+&lt;img src=&#34;img/rebase_4.png&#34; /&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;also&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Also&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;merge&lt;/code&gt;와 &lt;code&gt;rebase&lt;/code&gt;의 개념적인 차이에 대해서는 &lt;a href=&#34;https://backlog.com/git-tutorial/kr/stepup/stepup1_4.html&#34;&gt;Link&lt;/a&gt;를 참고&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;case-by-case&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Case by case&lt;/h1&gt;
+&lt;div id=&#34;github---local---&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Github의 내용을 강제로 local로 덮어쓰고 싶을 때&lt;/h2&gt;
+&lt;p&gt;그냥 지우고 다시 clone을 할 수도 있다. 하지만 아래 같이 해주면 불필요한 동기화를 막을 수 있다.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;git fetch --all
+git reset --hard origin/master
+git pull origin master&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;local----github---&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;local에 있는 내용을 강제로 github으로 보내고 싶을 때&lt;/h2&gt;
+&lt;pre&gt;&lt;code&gt;git pull --rebase
+git push
+git stash pop&lt;/code&gt;&lt;/pre&gt;
+&lt;hr /&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;miscellaneous&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Miscellaneous&lt;/h1&gt;
+&lt;div id=&#34;gitignore&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;&lt;code&gt;.gitignore&lt;/code&gt;&lt;/h2&gt;
+&lt;p&gt;vim으로 만들 수도 있다. 물론, 흔한 txt editor로 만들어도 무방하다.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;vim .gitignore &lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;vim 화면 위쪽에 입력하려면 i(insert)를 치고, 제외할 타잎을 넣는다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code&gt;*.Rhistory 
+*.RData &lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;ESC를 치면 화면 아래 command 창으로 이동한다. :qw(quit &amp;amp; write)를 입력한다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;homework&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Homework&lt;/h1&gt;
+&lt;p&gt;앞으로 더 알아야 하지만 지금은 그냥 넘어갈 내용들이다.&lt;/p&gt;
+&lt;div id=&#34;log&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;&lt;code&gt;log&lt;/code&gt;&lt;/h2&gt;
+&lt;p&gt;여러가지 옵션이 있고 활용하면 좋을 듯 하지만, 당분간 나에게는 히스토리를 그냥 순서대로 보여주는 아래 명령어 정도면 충분할 듯 싶다.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;git log --pretty=oneline
+git log --pretty=format:&amp;quot;%h - %an, %ar : %s&amp;quot;&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;git log --pretty=oneline&lt;/code&gt;: oneline으로 보여준다.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;git log --pretty=format:&amp;quot;%h - %an, %ar : %s&amp;quot;&lt;/code&gt;: 포매팅한다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;log&lt;/code&gt;에 대해서는 다음을 참고: &lt;a href=&#34;https://git-scm.com/book/ko/v1/Git%EC%9D%98-%EA%B8%B0%EC%B4%88-%EC%BB%A4%EB%B0%8B-%ED%9E%88%EC%8A%A4%ED%86%A0%EB%A6%AC-%EC%A1%B0%ED%9A%8C%ED%95%98%EA%B8%B0&#34;&gt;링크&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;other-link&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Other link&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;http://meetup.toast.com/posts/116&#34; class=&#34;uri&#34;&gt;http://meetup.toast.com/posts/116&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
     </item>
     
     <item>
@@ -48,8 +489,32 @@ data.frame 뿐일까! 사실 R의 다른 객체들도 셀 안에 넣을 수 있�
       <pubDate>Wed, 18 Oct 2017 00:00:00 +0000</pubDate>
       
       <guid>/note/2017/10/18/all-dots-are-not-created-same.../</guid>
-      <description>\cdots, \ldots, and so on\(\mathrm \LaTeX\)으로 조판하는 분들에게는 때때로 아리송한 사항들이 몇 개 있다. 작정하고 알아보기에는 사소하고 그렇다고 넘어가기엔 찜찜한, 뭐 그런 것들이다. 요즘은 무늬나마 공부하는 사람일 때 만큼 \(\mathrm \LaTeX\)을 쓰지 않는다. 그래도 가끔 쓰기는 해서일까? 이런 사소한 내용에 더 큰 궁금증을 느낄 때가 많다.
-문득, \cdots(\(\cdots\))과 \ldots(\(\ldots\))은 어떻게 다르지, 라는 질문이 떠올랐다. 분명, 수학 기호의 일부이기 때문에 다르기는 다를텐데 말이다. 천조국수학회(AMS)에서 관리하는 수학 조판 패키지인 amsmath 패키지의 이용자 매뉴얼에 따르면 ’점 세개’로 표기되는 기호들은 명령어 차원에서 구분된다.</description>
+      <description>&lt;div id=&#34;cdots-ldots-and-so-on&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;&lt;code&gt;\cdots&lt;/code&gt;, &lt;code&gt;\ldots&lt;/code&gt;, and so on&lt;/h1&gt;
+&lt;p&gt;&lt;span class=&#34;math inline&#34;&gt;\(\mathrm \LaTeX\)&lt;/span&gt;으로 조판하는 분들에게는 때때로 아리송한 사항들이 몇 개 있다. 작정하고 알아보기에는 사소하고 그렇다고 넘어가기엔 찜찜한, 뭐 그런 것들이다. 요즘은 무늬나마 공부하는 사람일 때 만큼 &lt;span class=&#34;math inline&#34;&gt;\(\mathrm \LaTeX\)&lt;/span&gt;을 쓰지 않는다. 그래도 가끔 쓰기는 해서일까? 이런 사소한 내용에 더 큰 궁금증을 느낄 때가 많다.&lt;/p&gt;
+&lt;p&gt;문득, &lt;code&gt;\cdots&lt;/code&gt;(&lt;span class=&#34;math inline&#34;&gt;\(\cdots\)&lt;/span&gt;)과 &lt;code&gt;\ldots&lt;/code&gt;(&lt;span class=&#34;math inline&#34;&gt;\(\ldots\)&lt;/span&gt;)은 어떻게 다르지, 라는 질문이 떠올랐다. 분명, 수학 기호의 일부이기 때문에 다르기는 다를텐데 말이다. 천조국수학회(AMS)에서 관리하는 수학 조판 패키지인 &lt;code&gt;amsmath&lt;/code&gt; 패키지의 &lt;a href=&#34;http://www.tug.org/teTeX/tetex-texmfdist/doc/latex/amsmath/amsldoc.pdf&#34;&gt;이용자 매뉴얼&lt;/a&gt;에 따르면 ’점 세개’로 표기되는 기호들은 명령어 차원에서 구분된다. 즉, 외견상 같은 모양을 하고 있더라도 구분해서 쓰라는 취지인 셈이다. AMS 패키지 매뉴얼은 현재 2.0이 최신 버전이고 만들어진 날짜는 2002년 2월 25일이다… (그간 이 매뉴얼을 꼼꼼하게 볼 생각을 하지 않았다니 ㅠㅠ)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;according-to-ams-package-guide&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;According to AMS package guide&lt;/h1&gt;
+&lt;p&gt;가이드 12쪽에 보면 ’점 세개’는 아래와 같이 다섯가지로 구분되어 있다.&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;&lt;code&gt;\dotsc&lt;/code&gt; for “dots with commas”&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;\dotsb&lt;/code&gt; for “dots with binary operators / relations”&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;\dotsm&lt;/code&gt; for “multiplication dots”&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;\dotsi&lt;/code&gt; for “dots with integrals”&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;\dotso&lt;/code&gt; for “other dots” (none of the above)&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;AMS 구분을 보고 무릎을 ‘탁’ 쳤다. 바로 이거야!&lt;/p&gt;
+&lt;p&gt;직접 조판해보자.&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;&lt;code&gt;\dotsc&lt;/code&gt;: &lt;span class=&#34;math inline&#34;&gt;\(A_1, A_2, \dotsc\)&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;\dotsb&lt;/code&gt;: &lt;span class=&#34;math inline&#34;&gt;\(A_1 + A_2 + \dotsb\)&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;\dotsm&lt;/code&gt;: &lt;span class=&#34;math inline&#34;&gt;\(A_1 A_2 \dotsm\)&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;\dotsi&lt;/code&gt;: &lt;span class=&#34;math inline&#34;&gt;\(\begin{aligned}  \int_{A_1} \int_{A_2} \dotsi  \end{aligned}\)&lt;/span&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;뭐 다 비슷비슷해 보일 수 있으나, 참으로 감동이 아닌가!&lt;/p&gt;
+&lt;/div&gt;
+</description>
     </item>
     
     <item>
@@ -58,8 +523,51 @@ data.frame 뿐일까! 사실 R의 다른 객체들도 셀 안에 넣을 수 있�
       <pubDate>Wed, 18 Oct 2017 00:00:00 +0000</pubDate>
       
       <guid>/post/2017/10/18/proof-for-blotto-gradiator-game/</guid>
-      <description>Blotto ‘Gradiator’ Game하임 샤피라가 쓴 재미 중심의 게임이론 책 “n분의 1의 함정”을 읽고 있다. 책에서 흥미롭게 변경된 Blotto game을 접했다. 일단, Blotto game에 대해서는 wiki링크를 참고하시고. 샤피라가 제시한 Blotto game을 살짝 변경한 “글레디에이터” 게임은 아래와 같다.
-플레이어는 두 검투사 팀이다. 양 팀에 속한 선수가 하나씩 일대일로 싸우고 각자의 전투력에 비례해서 승패가 결정된다. 이긴 쪽은 진 쪽의 전투력을 흡수해 다시 소속 팀으로 복귀하고, 진 쪽은 그대로 사라진다. 일대일 승부가 이어지고, 먼저 검투사를 소진하는 쪽이 패배한다.</description>
+      <description>&lt;div id=&#34;blotto-gradiator-game&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Blotto ‘Gradiator’ Game&lt;/h1&gt;
+&lt;p&gt;하임 샤피라가 쓴 재미 중심의 게임이론 책 &lt;a href=&#34;http://www.aladin.co.kr/shop/wproduct.aspx?ItemId=110477619&#34;&gt;“n분의 1의 함정”&lt;/a&gt;을 읽고 있다. 책에서 흥미롭게 변경된 Blotto game을 접했다. 일단, &lt;a href=&#34;https://en.wikipedia.org/wiki/Blotto_game&#34;&gt;Blotto game&lt;/a&gt;에 대해서는 wiki링크를 참고하시고. 샤피라가 제시한 Blotto game을 살짝 변경한 “글레디에이터” 게임은 아래와 같다.&lt;/p&gt;
+&lt;p&gt;플레이어는 두 검투사 팀이다. 양 팀에 속한 선수가 하나씩 일대일로 싸우고 각자의 전투력에 비례해서 승패가 결정된다. 이긴 쪽은 진 쪽의 전투력을 흡수해 다시 소속 팀으로 복귀하고, 진 쪽은 그대로 사라진다. 일대일 승부가 이어지고, 먼저 검투사를 소진하는 쪽이 패배한다.&lt;/p&gt;
+&lt;p&gt;승률을 높이기 위해서 검투사를 어떤 순서로 배치하는 것이 최적의 전략일까? 답부터 미리 말하자면, 이 게임에서 최적의 전략은 없다. 팀 전투력의 합이 중요할 뿐, 출전 순서는 전혀 결과에 영향을 주지 않는다. 이와 비슷한 종류의 카드배틀 게임이 지닌 ’당연한 문법’을 부정하는 것처럼 보이기도 한다. 책에서 샤피라는 말로 증명했다. 자투리 시간에 차근차근 한번 생각해봤다.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;proof&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Proof&lt;/h1&gt;
+&lt;p&gt;검투사의 팀 &lt;span class=&#34;math inline&#34;&gt;\(G_X\)&lt;/span&gt;와 &lt;span class=&#34;math inline&#34;&gt;\(G_Y\)&lt;/span&gt;가 있다. 각 팀에 소속된 검투사의 집합을 다음과 같이 표시해보자.&lt;/p&gt;
+&lt;span class=&#34;math display&#34;&gt;\[\begin{align*}
+G_X &amp;amp; = \{ x_1, x_2, \dotsc, x_i \} \\
+G_Y &amp;amp; = \{ y_1, y_2, \dotsc, y_j \}
+\end{align*}\]&lt;/span&gt;
+&lt;p&gt;&lt;span class=&#34;math inline&#34;&gt;\(i\)&lt;/span&gt;와 &lt;span class=&#34;math inline&#34;&gt;\(j\)&lt;/span&gt;가 각기 줄어들지 않는 순서로 배치되어 있다고 보자. 이때, 최적 전략을 찾는 문제는 두 팀 각각 &lt;span class=&#34;math inline&#34;&gt;\(i\)&lt;/span&gt; 그리고 &lt;span class=&#34;math inline&#34;&gt;\(j\)&lt;/span&gt;까지 반복되지 않는 자연수를 나열하는 것이다. 이제 ‘최적 전략이 없다,’ 즉 오직 전투력의 합이 중요하다는 사실을 증명해보자. ’최적전략의 비존재’는 다음과 같이 나타낼 수 있다. &lt;span class=&#34;math inline&#34;&gt;\(X = \sum_{k=1}^{i} x_k\)&lt;/span&gt;, &lt;span class=&#34;math inline&#34;&gt;\(Y = \sum_{k=1}^{j} y_k\)&lt;/span&gt; 일 때, &lt;span class=&#34;math inline&#34;&gt;\(G_X\)&lt;/span&gt; 팀의 승률이&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
+\frac{X}{X+Y}
+\]&lt;/span&gt; 에 따라서 결정된다.&lt;/p&gt;
+&lt;p&gt;사실 ’비존재’는 Induction으로 쉽게 증명할 수 있다. 나 같은 둔재는 좀 오래 끄적거려야 했으나, 똘똘한 분들에게는 한주먹거리도 아닐 터다.&lt;/p&gt;
+&lt;div id=&#34;i-j-1&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;&lt;span class=&#34;math inline&#34;&gt;\(i = j = 1\)&lt;/span&gt;&lt;/h2&gt;
+&lt;p&gt;이 경우는 순서를 따질 수 없다. 따라서 ’비존재’가 성립한다.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;i-j-k&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;&lt;span class=&#34;math inline&#34;&gt;\(i + j = k\)&lt;/span&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;span class=&#34;math inline&#34;&gt;\(i\)&lt;/span&gt;와 &lt;span class=&#34;math inline&#34;&gt;\(j\)&lt;/span&gt;는 &lt;span class=&#34;math inline&#34;&gt;\(1\)&lt;/span&gt;보다 크거나 같고, &lt;span class=&#34;math inline&#34;&gt;\(k = 3, 4, \dotsc\)&lt;/span&gt; 라고 하자. Induction 원칙에 따라서 &lt;span class=&#34;math inline&#34;&gt;\(k\)&lt;/span&gt;일 때 ’비존재’가 성립한다고 가정하자. 이때, &lt;span class=&#34;math inline&#34;&gt;\(x\)&lt;/span&gt;, &lt;span class=&#34;math inline&#34;&gt;\(y+1\)&lt;/span&gt;로 &lt;span class=&#34;math inline&#34;&gt;\(G_Y\)&lt;/span&gt; 팀의 검투사가 한 명 늘었다고 하자. 적당한 표시자 &lt;span class=&#34;math inline&#34;&gt;\(p\)&lt;/span&gt;, &lt;span class=&#34;math inline&#34;&gt;\(q\)&lt;/span&gt;에 대해서 추가된 &lt;span class=&#34;math inline&#34;&gt;\(G_Y\)&lt;/span&gt;의 검투사 &lt;span class=&#34;math inline&#34;&gt;\(q\)&lt;/span&gt;가 &lt;span class=&#34;math inline&#34;&gt;\(G_X\)&lt;/span&gt;의 검투사 &lt;span class=&#34;math inline&#34;&gt;\(p\)&lt;/span&gt;와 대결한다고 하자. 추가된 검투사가 이길 경우는 양 팀의 검투사 조합은 다음과 같이 표기할 수 있다.&lt;/p&gt;
+&lt;span class=&#34;math display&#34;&gt;\[\begin{align*}
+G_X &amp;amp; = \{ x_1, x_2, \dotsc, (x_p), \dotsc, x_i \} \\
+G_Y &amp;amp; = \{ y_1, y_2, \dotsc, y_q + x_p, \dotsc, y_j \}
+\end{align*}\]&lt;/span&gt;
+&lt;p&gt;반대로 추가된 검투사가 질 경우는 다음과 같다.&lt;/p&gt;
+&lt;span class=&#34;math display&#34;&gt;\[\begin{align*}
+G_X &amp;amp; = \{ x_1, x_2, \dotsc, x_p + y_q, \dotsc, x_i \} \\
+G_Y &amp;amp; = \{ y_1, y_2, \dotsc, (y_q), \dotsc, y_j \}
+\end{align*}\]&lt;/span&gt;
+&lt;p&gt;여기서 &lt;span class=&#34;math inline&#34;&gt;\(( )\)&lt;/span&gt;는 해당 검투사가 자신의 팀에서 제외됨을 의미한다. 이렇게 한 플레이어가 제외될 경우는 다시 &lt;span class=&#34;math inline&#34;&gt;\(i + j = k\)&lt;/span&gt;가 된다. 따라서 induction 원칙에 따라서 승부는 각 팀의 전투력의 합에 의해서만 결정된다. 이를 종합하면, &lt;span class=&#34;math inline&#34;&gt;\(G_X\)&lt;/span&gt;가 승리할 확률은 아래와 같이 계산될 수 있다.&lt;/p&gt;
+&lt;span class=&#34;math display&#34;&gt;\[\begin{align*}
+\frac{x_p}{x_p + y_q} \frac{X + y_q}{X + Y} + \frac{y_q}{x_p + y_q} \frac{X - y_q}{X + Y} = \frac{X}{X+Y} ~~~~~ \square
+\end{align*}\]&lt;/span&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;bagatelle&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;bagatelle&lt;/h1&gt;
+&lt;p&gt;사실 이 글은 Rmarkdown에서 수식이 보기 좋게 들어가는지 시험할 요량으로 썼다. Whatever…&lt;/p&gt;
+&lt;/div&gt;
+</description>
     </item>
     
     <item>
@@ -68,8 +576,43 @@ data.frame 뿐일까! 사실 R의 다른 객체들도 셀 안에 넣을 수 있�
       <pubDate>Fri, 06 Oct 2017 00:00:00 +0000</pubDate>
       
       <guid>/post/2017/10/06/event-horizon/</guid>
-      <description>가끔은 잘 될 때도 있다감독의 역량은 영화의 품질을 정하는 궁극의 성분이다. 영화에 따라 배우의 연기를 건지거나, 음악을 건지거나, 어떤 순간을 건지거나, 미술 등등을 건질 수 있겠다. 하지만 영화의 ’좋고 나쁨’을 정해야 하는 이항선택의 고독한 순간이란게 있다면, 결국 연출이 좌우한다. 물론 운이 끼어들지 않은 재능이란 없을 터. 뛰어난 감독이라고 걸작만 양산하지 못하고, 못난 감독이라고 졸작만 배출하는 것은 아니다. 그러니 이 인생 한번 살아볼만한 걸까? (ㅎ 그래도 나는 안될꺼야~)
-Paul Anderson이 사람을 혼동하지 마시라.</description>
+      <description>&lt;div id=&#34;----&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;가끔은 잘 될 때도 있다&lt;/h1&gt;
+&lt;p&gt;감독의 역량은 영화의 품질을 정하는 궁극의 성분이다. 영화에 따라 배우의 연기를 건지거나, 음악을 건지거나, 어떤 순간을 건지거나, 미술 등등을 건질 수 있겠다. 하지만 영화의 ’좋고 나쁨’을 정해야 하는 이항선택의 고독한 순간이란게 있다면, 결국 연출이 좌우한다. 물론 운이 끼어들지 않은 재능이란 없을 터. 뛰어난 감독이라고 걸작만 양산하지 못하고, 못난 감독이라고 졸작만 배출하는 것은 아니다. 그러니 이 인생 한번 살아볼만한 걸까? (ㅎ 그래도 나는 안될꺼야~)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;paul-anderson&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Paul Anderson&lt;/h1&gt;
+&lt;p&gt;이 사람을 혼동하지 마시라. 21세기 최고의 재능을 뽐내고 있는 “매그놀리아”, “There Will Be Blood”의 Paul Thomas (PT) Anderson과 이 분은 다른 사람이다. 이 P 앤더슨 감독의 보다 널리 알려진 작품으로는 게임 “바이오 하자드”를 영화로 만든 “Resident Evil”(북미에서 게임이 이 제목으로 나왔다) 시리즈가 있겠다. 이 영화를 통해 만난 밀라 요보비치와 결혼하셨으니, 영화는 망가졌어도 나름 개인의 행복은 찾았다고 해야 할까. 좌우간, “Event Horizon”은 이 폴 앤더슨 감독이 1997년에 연출한 호러 영화다.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;--&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;우주라는 호러 공간&lt;/h1&gt;
+&lt;p&gt;’우주라면 미지 세계로의 탐험!’이라는 소년적 발상이 앞서는 분이 있을지 모르겠다. 하지만 보통 ’미지’는 공포를 동반한다. 우주가 미지의 극단이라면, 우주는 호러 영화를 펼칠 수 있는 이상적인 공간인 셈이다. 알폰소 쿠아론의 “그래비티”는 이 방면으로 우아하고 고급스럽게 전개된 걸작이다. 이런 접근을 택하는 영화들이 아직도 끊이지 않는 것을 보면, 우주라는 미지가 지닌 공포의 끌림을 이해할 수 있다. 얼마전 개봉한 제이크 질렌할 주연의 “라이프 Life”도 이 같은 발상에서 출발한 영화다. (그리고 영화가 이 방면으로 그리 성공적이진 못했다…)&lt;/p&gt;
+&lt;p&gt;그런데 우주라는 공간적 배경은 다른 이유로 호러와 잘 어울리지 않는다. 호러 영화는 저예산으로 (연출과 대본 모두를 포괄하는 의미에서) 작가의 발상이 멱살을 잡고 가는 쭉가는 장르다. 뛰어난 시각 효과 등속의 영화적인 부분은 대개 부차적이다. 나와 같은 열성 팬이라면 이런 부분이 허접해도 충분히 용서할 수 있다. 호러의 한방을 제대로 살린다면 말이다. 우주라는 배경이 일단 제품의 생산원가를 올리지 않을까? 아울러 우주를 다루는 경우 각본이건 연출이건 연기건 필요 이상으로 심각해지기 쉽다. 영화관계자 누구의 과욕인지는 모르겠으나, 심오한 주제를 다룰 것 같은 분위기를 있는대로 내다가 김이 쭉 빠지거나 수습하지 못하는 경우도 많다. 한마디로 우주가 지닌 심오함으로 승부를 내고 싶다면, 큐브릭이나 타르코프스키 같은 ’비범함’을 지녀야 할 것이다.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;--&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;지옥, 우주의 끝&lt;/h1&gt;
+&lt;p&gt;그래서 나는 우주를 소박하고 단순하게 다룬 영화를 좋아한다. “에이리언”이 그렇고 (표류한 우주선 발견하고, 구조를 위헤 슬쩍 들어갔다가, 정체미상의 공포 존재와 조우해 죽도록 고생한다), 이 영화 “이벤트 호라이즌” 도 그렇다. 솔직히 이 영화는 그 설정을 “에이리언”에서 많이 가져왔다. 비밀 임무를 띠고 어떤 우주선이 실종된 “이벤트 호라이즌”을 찾아 망망 우주를 찾아 헤맨다. 마침내 이벤트 호라이즌을 발견하지만 악몽은 이제부터 시작이다. 여자 승무원이 최후까지 생존한다든가 마지막 장면에서 같은 계열의 악몽이 한번 더 반복된다든가 하는 식으로 이 영화 역시 장르의 오랜 관습에 충실하다. 그렇다면 이 영화는 무엇이 새로운가? 눈여겨 볼 점은 두가지 정도다.&lt;/p&gt;
+&lt;p&gt;첫째, 만일 ‘지옥’ 혹은 그에 상당한 어떤 상태가 있다면 우주 어딘가에 있지 않을까? 누군가 지옥문을 열게 된다면 우주의 시공간을 왜곡해서 그렇게 되지 않을까? 사실 “어벤저스”도 이 발상에 기대고 있는 셈이다. 다만 예산의 제약 때문에 “이벤트 호라이즌”과 같은 영화에서는 ’지옥’이 실감나게 묘사될 수 없다. 그렇다면, 지옥을 건너온 유령선 “이벤트 호라이즌”을 통해서 지옥의 축소판을 보여줄 수 있지 않을까? 장소 자체가 악마(’아미타빌’이나 “사이코”의 베이츠 모텔 뒤 언덕집을 떠올려보자)라는 호러 영화의 정통성을 우주적으로 계승한 이 영화의 발상은 꽤 근사하다. (물론, 이 발상이 좀 더 본격적으로 전개되었다면 좋겠다는 아쉬움은 있다.)&lt;/p&gt;
+&lt;p&gt;1997년이라는 제작 년도를 고려해도 영화의 허술한 시각 효과가 솔직히 거슬린다. 하지만 CG와 실사를 결합해 만들어낸 “이벤트 호라이즌”이라는 핵심 공포 공간의 풍경은 지금봐도 압도적이다. 지옥문의 여는 포털인 ’코어’와 그 통로인 원형 회전방의 모습은 저예산 공포 영화에서 비슷한 예를 찾기 힘들 만큼 뛰어나다.&lt;/p&gt;
+&lt;div class=&#34;figure&#34;&gt;
+&lt;img src=&#34;https://images-na.ssl-images-amazon.com/images/G/01/digital/video/hero/Movies/1997/B005DNO76W_eventhorizon_UXPA1._V143581242_RI_SX940_.jpg&#34; style=&#34;width:72.0%&#34; /&gt;
+
+&lt;/div&gt;
+&lt;hr /&gt;
+&lt;div id=&#34;section&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;&lt;img src=&#34;http://3.bp.blogspot.com/-Z-qTgArSWos/UyIjz1M1yGI/AAAAAAAAoz0/vxzpl2KUqLM/s1600/eventhorizon14.png&#34; style=&#34;width:72.0%&#34; /&gt;&lt;/h2&gt;
+&lt;p&gt;알고 보니 지옥에 스스로 뛰어든 것이더라는 이 우주선의 설계자인 윌리엄 위어의 모습은 존 카펜터 감독님 필생의 걸작 &lt;a href=&#34;http://www.imdb.com/title/tt0113409/&#34;&gt;“In the Mouth of Darkness”&lt;/a&gt;에서 ‘그대로’ 가져왔다. 아마도 배우도 샘 닐로 택한 것이 아닐까 싶을 정도다. 호러 영화의 팬이라면 카펜터의 이 영화 혹은 헬레이저의 핀헤드와의 위어 사이의 유사성을 어렵지 않게 볼 수 있을 것이다. 지옥의 촉진자(말 그대로 “HellRaiser”!)를 자처한 과학자 위어의 모습이 좀 지나친 느낌도 있지만, 선배 감독에 대한 이런 은은한 오마주는 나쁘지 않다. 카펜터 감독의 “매드니스”에 대해서는 나중에 기회가 있으면 다시 다뤄보도록 하자.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;--&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;길게 쓴 이유&lt;/h1&gt;
+&lt;p&gt;넷플릭스에 &lt;a href=&#34;https://www.netflix.com/title/1179574&#34;&gt;이 영화&lt;/a&gt;가 올라왔더라. 지옥전령 샘 닐 이외에도 ‘모피어스’ 로렌스 피쉬번의 아직 날렵할 때의 모습도 영화에서 만날 수 있다. 1999년 영화 “매트릭스” 네오에게 무술을 전수하며 “You think that’s air you’re breathing?”의 대사를 날리던 그 때를 기억하시는가!&lt;/p&gt;
+&lt;div class=&#34;figure&#34;&gt;
+&lt;img src=&#34;http://cdn1.sciencefiction.com/wp-content/uploads/2017/03/Matrix_LaurenceFishburn-Morpheus.jpg&#34; style=&#34;width:72.0%&#34; /&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
     </item>
     
     <item>
@@ -78,8 +621,87 @@ data.frame 뿐일까! 사실 R의 다른 객체들도 셀 안에 넣을 수 있�
       <pubDate>Mon, 02 Oct 2017 00:00:00 +0000</pubDate>
       
       <guid>/post/2017/10/02/how-to-manage-your-personal-project/</guid>
-      <description>Prologue코딩을 잘하는 것도 아니고 많이 하는 것도 아니고 그래서 많이 아는 것도 아니다. 하지만, 그 별 것 아닌 일도 하게 될 때 가장 고민스러운 대목은 다음의 두가지다.
-문제해결작업의 연속성아주 거대하고 어려운 문제가 아니라면 첫번째는 시간을 부으면 어떻게든 해결은 된다. 물론, 내 경우 능력이 부족해서 언제나 우아하게 해결되지 않은 경우가 많기는 하지만… 해결 이후 많이 하게 되는 고민은 일정 시간이 지니고 잊게 된다는 슬픈 사실이다. 해결의 열기와 집중은 시간이 지나면 가시기 마련이다.</description>
+      <description>&lt;div id=&#34;prologue&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Prologue&lt;/h1&gt;
+&lt;p&gt;코딩을 잘하는 것도 아니고 많이 하는 것도 아니고 그래서 많이 아는 것도 아니다. 하지만, 그 별 것 아닌 일도 하게 될 때 가장 고민스러운 대목은 다음의 두가지다.&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;문제해결&lt;/li&gt;
+&lt;li&gt;작업의 연속성&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;아주 거대하고 어려운 문제가 아니라면 첫번째는 시간을 부으면 어떻게든 해결은 된다. 물론, 내 경우 능력이 부족해서 언제나 우아하게 해결되지 않은 경우가 많기는 하지만… 해결 이후 많이 하게 되는 고민은 일정 시간이 지니고 잊게 된다는 슬픈 사실이다. 해결의 열기와 집중은 시간이 지나면 가시기 마련이다. 한마디로 ’어제의 나’를 ’오늘의 나’로 온전히 데려오지 못하는 것이다. 정말로 어제-오늘 간격이라면 크게 걱정할 필요가 없고 일주일 정도도 괜찮을 것 같다. 하지만, 3개월이라면? 6개월이라면? 더 안 좋은 경우도 있다. 프로젝트/연구가 길어서 한달 정도 걸린다고 하자. 달 끝에 달 초에 한 것을 소환하고 싶다! 하지만 안타깝게도 잘 기억이 잘 나지 않을지 모른다.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;-&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;문서화의 딜레마&lt;/h1&gt;
+&lt;p&gt;이럴 때 필요한 것이 문서화다. 문서화 작업은 꼭 협업에만 필요한 것은 아니다. 혼자 일할 때도 문서화 는 필요하다. 오히려 더 절실히 필요할지도 모르겠다. 그런데, 문서화 작업은 일종의 ‘무한회귀’의 문제를 낳을 때가 있다. 아마도 스터디노트 같은 것은 만들어본 분이라면 정도의 차이는 있겠지만 비슷한 것을 느껴보았을 것이다. 어떤 코드/내용을 설명하기 위해 문서화를 했다고 하자. 그런데, 문서의 양과 종류가 많아지면서 이 문서에 대한 문서가 필요하게 된다. 이렇듯 많은 경우 ’메타’ 문서의 증식을 막기 쉽지 않고, 그 와중에 길을 잃기 십상이다.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;---&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;(개인적) 프로젝트 관리의 필요성&lt;/h1&gt;
+&lt;p&gt;그래서 필요한 게 프로젝트 관리도구이다. 모두가 소통할 수 있는 방식으로 common knowledge를 정하고 이 틀 아래에서 작업하는 것이다. 어떤 프로젝트인지 조직의 성격이 어떤 것인지에 따라서 여러가지 선택지들이 있고, 이 문제는 여기서 다룰 문제는 아니 옆으로 치워두자. 일단 &lt;code&gt;R&lt;/code&gt;을 기반으로 프로젝트/연구를 한다고 가정하겠다. 필요한 요소가 무엇일까? 대충 생각나는대로 적어보자면,&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;수집한 원 데이터의 보관&lt;/li&gt;
+&lt;li&gt;원 데이터의 정리(munging; 발음은 “먼징”이다. 동사의 발음은 “먼지”다!)&lt;/li&gt;
+&lt;li&gt;2의 과정에서 동원된 코드의 보관 및 적절한 해설&lt;/li&gt;
+&lt;li&gt;필요한 연구 주제를 탐구하기 위한 코드들 및 비주얼라이제이션 결과물들&lt;/li&gt;
+&lt;li&gt;연구 주제에 필요한 참고 문헌&lt;/li&gt;
+&lt;li&gt;최종 리포트&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;일단 이정도가 떠오른다. 이 정도의 내용들이 이력관리가 가능하면서 가급적 빠른 ’회상’이 가능하다면 좋을 것이다. 일단, 이력관리에 관한한 git을 뛰어넘은 도구가 없으니 이 대목은 넘어가도록 하자.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;package-projecttemplate&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Package &lt;code&gt;ProjectTemplate&lt;/code&gt;&lt;/h1&gt;
+&lt;p&gt;나도 이런 요구를 어느 정도라도 만족시키는 툴 혹은 패키지가 있을까 싶었고 많이 찾았고 이것저것 많이 해보기도 했다. 최근에서야 아주 괜찮은 R 패키지를 만나게 되었다.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://projecttemplate.net&#34;&gt;Project Template&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;이 페키지를 (개인) 프로젝트 관리를 간단하고 비교적 완벽하게 지원한다. 패키지를 시작하는 흐름은 다음과 같다.&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;패키지 설치&lt;/li&gt;
+&lt;li&gt;프로젝트 생성&lt;/li&gt;
+&lt;li&gt;설치후 필요한 커스터마이즈&lt;/li&gt;
+&lt;li&gt;패키지 로드 후 작업&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;패키지 설치는 통상적으로 아래와 같이 그냥 하면 된다.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;install.packages(&amp;#39;ProjectTemplate&amp;#39;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;라이브러리를 로드하고 이후 프로젝트 생성은 프로젝트가 떨어졌으면 하는 위치에 작업 폴더를 맞추고 아래의 명령을 실행한다.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(&amp;#39;ProjectTemplate&amp;#39;)
+create.project(&amp;#39;letters&amp;#39;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;이후 letters라는 하위 폴더 안에 다음과 같은 구조의 폴더가 생성된다.&lt;/p&gt;
+&lt;div class=&#34;figure&#34;&gt;
+&lt;img src=&#34;http://projecttemplate.net/directories.png&#34; /&gt;
+
+&lt;/div&gt;
+&lt;hr /&gt;
+&lt;p&gt;각 폴더의 역할에 대해서는 &lt;a href=&#34;http://projecttemplate.net/architecture.html&#34;&gt;여기&lt;/a&gt;를 참고하면 되겠다. 일단, 주요한 폴더에 대해서만 설명해보자.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;config&lt;/code&gt;: 프로젝트 설정을 다룬다. 예를 들어, 시작시 라이브러리를 로드할 것인지 등등을 세세하게 설정할 수 있다.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;cache&lt;/code&gt;: 작업 과정에서 활용되는 중간재(데이터, 코드등) 중에서 미리 로드될 내용들을 넣는다.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;munge&lt;/code&gt;: 데이터 다루기에서 가장 중요한 데이터 정리 과정의 코드 및 문서를 넣는다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;대충 시험삼아 테스트 프로젝트를 시험해 해보았다. 아래와 같은 프로세스로 손쉽게 프로젝트를 생성하고 관리할 수 있었다.&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;&lt;code&gt;config&lt;/code&gt;를 적절하게 설정한다.&lt;/li&gt;
+&lt;li&gt;원자료를 구해서 &lt;code&gt;data&lt;/code&gt; 폴더에 적절하게 박아 넣는다.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;munge&lt;/code&gt; 폴더에 데이터 정리 코드를 넣는다.&lt;/li&gt;
+&lt;li&gt;정리된 중간 데이터 및 함수가 생성되면 &lt;code&gt;cache&lt;/code&gt;에 넣는다.&lt;/li&gt;
+&lt;li&gt;아직 미숙한 연구 질문 따위를 &lt;code&gt;tests&lt;/code&gt;를 통해서 이렇게 저렇게 시험해본다.&lt;/li&gt;
+&lt;li&gt;방향이 확실하게 정해지면 &lt;code&gt;src&lt;/code&gt;를 통해 코드 작업을 진행한다.&lt;/li&gt;
+&lt;li&gt;코드가 안정화되고 완성되고 흥미로운 결과가 발견되면 &lt;code&gt;reports&lt;/code&gt;를 통해 작업한다.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;이런 흐름으로 작업할 수 있겠다. 역시 상세한 내용은 앞서 링크한 프로젝트의 홈페이지를 읽어보시면 되겠다. 혹시 해당 구조가 너무 중후장대하다고 생각된다면, 패키지는 앞서의 구조보다 경파한 세팅도 지원한다.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;create.project(minimal = TRUE)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;이렇게 프로젝트를 생성하면, 아래와 같이 최소 폴더들만 생성된다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;cache/&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;config/&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;data/&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;munge/&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;src/&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;README&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div id=&#34;---&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;다른 대안 및 장점&lt;/h2&gt;
+&lt;p&gt;사실 RStudio 안에는 프로젝트 생성 기능이 포함되어 있다. 그런데, 써본 분들은 알겠지만 다소 직관적이지 않고, RStudio가 반드시 필요하다. 반면, &lt;code&gt;ProjectTemplate&lt;/code&gt; 패키지는 의존성도 없을 뿐 아니라, 훨씬 더 직관적이고 직접적이다.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
     </item>
     
     <item>
@@ -88,10 +710,58 @@ data.frame 뿐일까! 사실 R의 다른 객체들도 셀 안에 넣을 수 있�
       <pubDate>Mon, 18 Sep 2017 21:13:14 -0500</pubDate>
       
       <guid>/post/2017/09/18/%EC%95%88%EB%85%95-r-markdown/</guid>
-      <description>원래 문서는 Frida Gomam이 작성한, Hello R Markdown이다. 여기서는 내 입맛에 맞게 문서를 고쳤으므로 저자를 바꾸었다.
-R MarkdownThis is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see http://rmarkdown.rstudio.com.
-You can embed an R code chunk like this:
-summary(cars)## speed dist ## Min. : 4.0 Min. : 2.00 ## 1st Qu.:12.0 1st Qu.</description>
+      <description>&lt;p&gt;원래 문서는 Frida Gomam이 작성한, &lt;a href=&#34;https://knausb.github.io/2015/07/hello-r-markdown/&#34;&gt;Hello R Markdown&lt;/a&gt;이다. 여기서는 내 입맛에 맞게 문서를 고쳤으므로 저자를 바꾸었다.&lt;/p&gt;
+&lt;div id=&#34;r-markdown&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;R Markdown&lt;/h1&gt;
+&lt;p&gt;This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see &lt;a href=&#34;http://rmarkdown.rstudio.com&#34; class=&#34;uri&#34;&gt;http://rmarkdown.rstudio.com&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;You can embed an R code chunk like this:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;summary(cars)
+##      speed           dist       
+##  Min.   : 4.0   Min.   :  2.00  
+##  1st Qu.:12.0   1st Qu.: 26.00  
+##  Median :15.0   Median : 36.00  
+##  Mean   :15.4   Mean   : 42.98  
+##  3rd Qu.:19.0   3rd Qu.: 56.00  
+##  Max.   :25.0   Max.   :120.00
+fit &amp;lt;- lm(dist ~ speed, data = cars)
+fit
+## 
+## Call:
+## lm(formula = dist ~ speed, data = cars)
+## 
+## Coefficients:
+## (Intercept)        speed  
+##     -17.579        3.932&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;--&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;한글 장 제목&lt;/h1&gt;
+&lt;p&gt;한글 장 제목도 잘 처리된다는 것을 위와 같이 알 수 있다.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;including-plots&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Including Plots&lt;/h1&gt;
+&lt;p&gt;You can also embed plots. See Figure &lt;a href=&#34;#fig:pie&#34;&gt;1&lt;/a&gt; for example:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;par(mar = c(0, 1, 0, 1))
+pie(
+  c(280, 60, 20),
+  c(&amp;#39;Sky&amp;#39;, &amp;#39;Sunny side of pyramid&amp;#39;, &amp;#39;Shady side of pyramid&amp;#39;),
+  col = c(&amp;#39;#0292D8&amp;#39;, &amp;#39;#F7EA39&amp;#39;, &amp;#39;#C4B632&amp;#39;),
+  init.angle = -50, border = NA
+)&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;figure&#34;&gt;&lt;span id=&#34;fig:pie&#34;&gt;&lt;/span&gt;
+&lt;img src=&#34;/post/2015-07-23-r-rmarkdown_files/figure-html/pie-1.png&#34; alt=&#34;A fancy pie chart.&#34; width=&#34;672&#34; /&gt;
+&lt;p class=&#34;caption&#34;&gt;
+Figure 1: A fancy pie chart.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;-&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;수식 처리&lt;/h1&gt;
+&lt;p&gt;rmd 문서에서는 &lt;span class=&#34;math inline&#34;&gt;\(\mathrm\LaTeX\)&lt;/span&gt;을 쓸 수 있다. 이것이 아주 좋은 점이다. 게다가 rmarkdown은 header를 약간 손 보면, tex, beamer 기반의 pdf로 뽑아낼 수 있다. 여기에 약간 tricky하고 재미있는 대목이 있는데, 이건 다음에 기회가 되면 적어보도록 하겠다.&lt;/p&gt;
+&lt;span class=&#34;math display&#34;&gt;\[\begin{align}
+Z^i_j = \sum_{k=1}^n (x_k + y_k) 
+\end{align}\]&lt;/span&gt;
+&lt;/div&gt;
+</description>
     </item>
     
     <item>
@@ -100,8 +770,92 @@ summary(cars)## speed dist ## Min. : 4.0 Min. : 2.00 ## 1st Qu.:12.0 1st Qu.</d
       <pubDate>Tue, 19 Sep 2017 00:00:00 +0000</pubDate>
       
       <guid>/post/2017/09/19/blog-by-hogo/</guid>
-      <description>Prologue어쨌든 자신만의 공간을 지니는 것은 로망이다. 이 로망을 웹에서 실현해본 사람들은 넷스케이프를 써보고, 웹에디터(나모 웹에디터?)를 통해 자신만의 홈페이지를 만들어본 경험이 있는 세대에 속할 것이다. 내용에 집중해야 한다는 것은 맞다. 네이버, 다음, 구글 등은 편리하게 글을 올리고 입소문을 태울 수 있고 관리가 편한 블로그의 틀을 이미 제공한다. 그렇다면, 왜 독자적인 공간을 만들어야 하는가?
-대기업이 싫어서서비스 주소가 마음에 안들어서디자인이나 형식이 과해서뭐 이유야 여러가지가 있겠지만 직접 만드는 것에는 나름의 의의는 있겠다.</description>
+      <description>&lt;div id=&#34;prologue&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Prologue&lt;/h1&gt;
+&lt;p&gt;어쨌든 자신만의 공간을 지니는 것은 로망이다. 이 로망을 웹에서 실현해본 사람들은 넷스케이프를 써보고, 웹에디터(나모 웹에디터?)를 통해 자신만의 홈페이지를 만들어본 경험이 있는 세대에 속할 것이다. 내용에 집중해야 한다는 것은 맞다. 네이버, 다음, 구글 등은 편리하게 글을 올리고 입소문을 태울 수 있고 관리가 편한 블로그의 틀을 이미 제공한다. 그렇다면, 왜 독자적인 공간을 만들어야 하는가?&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;대기업이 싫어서&lt;/li&gt;
+&lt;li&gt;서비스 주소가 마음에 안들어서&lt;/li&gt;
+&lt;li&gt;디자인이나 형식이 과해서&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;뭐 이유야 여러가지가 있겠지만 직접 만드는 것에는 나름의 의의는 있겠다. 문제는 어떻게 만들 수 있느냐는 것이다. 통상적인 절차에 따르면 다음과 같을 것이다.&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;웹 호스팅 서비스를 탐색한다.&lt;/li&gt;
+&lt;li&gt;웹 사이트 혹은 블로그를 운영할 기술적인 프레임웤을 선택한다.&lt;/li&gt;
+&lt;li&gt;도메인 등속을 구입한다.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;돈이 든다는 것 이외에 위의 절차에는 따라붙은 귀찮음이 있다. 작든 크든 운영자가 된다는 것은 일정한 시간과 비용을 수반할 수 밖에 없다. 페이지 혹은 블로그를 제한적인 목적과 용도로 운영한다마녀, 이러한 비용은 배보다 배꼽이 더 큰 것일 수 있다. 이 문제를 해결할 수는 없을까?&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;static-web&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Static Web&lt;/h1&gt;
+&lt;p&gt;아래 그림으로 비교적 분명하게 설명이 되리라고 본다. Static Web은 기존에 만들어진 문서를 클라이언트로 뿌려주는 일만 한다. 반면, Dynamic web은 클라이언트의 요청을 세밀하게 분석해서 그에 맞게 문서를 제조해서 클라이언트로 뿌려준다.&lt;/p&gt;
+&lt;div class=&#34;figure&#34;&gt;
+&lt;img src=&#34;https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Scheme_static_page_en.svg/750px-Scheme_static_page_en.svg.png&#34; /&gt;
+
+&lt;/div&gt;
+&lt;p&gt;&lt;a href=&#34;https://en.wikipedia.org/wiki/Static_web_page&#34;&gt;그림 출처&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&#34;figure&#34;&gt;
+&lt;img src=&#34;https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Scheme_dynamic_page_en.svg/750px-Scheme_dynamic_page_en.svg.png&#34; /&gt;
+
+&lt;/div&gt;
+&lt;p&gt;&lt;a href=&#34;https://en.wikipedia.org/wiki/Dynamic_web_page&#34;&gt;그림 출처&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;당연히 웹의 발전이 정적웹에서 동적웹으로 갔을 것이라고 추론할 수 있다. 물론, 진보에는 댓가가 따르기 마련이다.&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;우선 서비스가 무거워진다. WordPress 같은 날렵한 서비스를 써도 서비스가 무거워진다. (그러다가 결국 큰 회사에서 호스팅하는 서비스로 옮겨간다)&lt;/li&gt;
+&lt;li&gt;아무리 프레임웤을 잘 만든다고 해도 버그나 해킹에 취약하다.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;이 웹페이지의 경우에도 마찬가지만, 내 목적은 그냥 내가 하고 싶은 말을 몇마디 적고 공유하는 것이다. SQL 같은 거 붙이거나 관리하는 거 몹시 부답스럽다. 독자들로부터의 피드백, 이런 거 필요 없다. 그럴 때 정적웹이 딱인 것이다.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;rstudio-blogdown&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;RStudio &amp;amp; Blogdown&lt;/h1&gt;
+&lt;p&gt;html을 생짜로 코딩할게 아니라면, 이 대목의 문제는 에디터를 택하는 문제다. 여기서 에디터라 함은, 최대한 자연어에 가깝게 내용을 작성하고 이걸 html로 바꿔주는 그런 녀석을 의미할 것이다. 다행히 최근 등장한 마크업 언어 Markdown은 이 문제에 대한 거의 완벽한 해결책이다. 최소한의 스크립팅으로 최대한의 효과를 거둬준다. Rmarkdown은 일반 Markdown과 호환되면서 R에 특화된 내용을 갖고 있다. 당연히 RStudio에서 지원하는 포맷이므로 RStudio에서 쉽게 쓸 수 있다.&lt;/p&gt;
+&lt;p&gt;그리고 Blogdown은 RStudio를 기반으로 하는 R 패키지다. 정적웹의 꼴을 만들어주는 역할을 한다고 보시면 쉽다. 로컬에 일단 꼴을 설치하고 집을 툭닥툭닥 짓는다고 비유하면 적당하겠다. RStudio의 &lt;a href=&#34;https://blog.rstudio.com/2017/09/11/announcing-blogdown/&#34;&gt;공식 제품&lt;/a&gt;의 하나로 편입되었다. 패키지 설치 후에 명령어로 쉽게 공간들을 생성할 수 있다. 그리고 또하나의 장점이라면 Hugo의 &lt;a href=&#34;https://themes.gohugo.io/&#34;&gt;다양한 테마&lt;/a&gt;들을 손쉽게 끌어다 붙일 수 있다. 패키지 제작자 Yihui Xie가 아주 상세한 &lt;a href=&#34;https://bookdown.org/yihui/blogdown/installation.html&#34;&gt;설치가이드&lt;/a&gt; 또한 제공하고 있다.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;github-and-its-kind&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;GitHub, and its kind&lt;/h1&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com&#34;&gt;github&lt;/a&gt;와 git에 대해서는 굳이 말할 필요가 없을 듯 하다. 혹자는 리누스 토발즈의 최대 업적이 리눅스가 아니라 git 시스템이라고 할 정도이니 말이다. 좌간, 스태틱웹을 구현하는 데 있어 github는 일종의 숙주다. git은 원래와 같은 리포티터리 관리 및 협업용으로 쓰는게 아니라 스태틱웹의 내용을 저장해놓는 창고로 쓴다. 뭐 그러면 어떠랴.&lt;/p&gt;
+&lt;p&gt;대략적인 작업의 흐름은 아래와 같다. github를 기준으로 서술하지만, 나머지 git 관련 사이트도 대동소이하리라고 본다.&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;github 계정을 만든다. public으로 만든다.&lt;/li&gt;
+&lt;li&gt;계정을 만들 때, &lt;code&gt;README.md&lt;/code&gt; 파일을 포함해서 만들지 않으면 화면 위에 로컬의 폴더를 어떻게 git의 관할 하에 놓는지에 대한 가이드가 뜬다. 그대로 하면 된다. 대충 아래와 같이 생겼다.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre class=&#34;bash&#34;&gt;&lt;code&gt;echo &amp;quot;# YOUR_GIT_REPO&amp;quot; &amp;gt;&amp;gt; README.md
+git init
+git add README.md
+git commit -m &amp;quot;first commit&amp;quot;
+git remote add origin https://github.com/YOUR_GIT_ACCOUNT/YOUR_GIT_REPO.git
+git push -u origin master&lt;/code&gt;&lt;/pre&gt;
+&lt;ol start=&#34;3&#34; style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;이렇게 세팅을 한 후에 이제 github와 로컬의 내용을 동기화해야 한다.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre class=&#34;bash&#34;&gt;&lt;code&gt;git add . 
+git commit -m &amp;quot;YOUR_MESSEAGE&amp;quot;
+git push &lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;여기까지 마치면 git의 &lt;code&gt;YOUR_GIT_REPO&lt;/code&gt;로 로컬의 내용이 올라가게 된다. 여기까지 마치면 스태틱웹 제공을 위한 온라인의 숙주가 마련된 셈이다.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;netlify.com&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Netlify.com&lt;/h1&gt;
+&lt;p&gt;숙주가 마련되었지만, 바로 hmtl을 클라이언트로 쏴주는 것은 아니다. github가 이걸 막고 있기 때문인데, 이 때문에 약간 배치(deploy) 과정이 필요하다. Xie는 &lt;a href=&#34;https://bookdown.org/yihui/blogdown/netlify.html&#34;&gt;세가지 정도의 옵션&lt;/a&gt; 제시하고 있으나, 그냥 닥치고 &lt;a href=&#34;https://www.netlify.com/&#34;&gt;Netlify.com&lt;/a&gt;을 쓰는 편이 좋다. 이 서비스가 문을 닫았다면, 모를까 그게 아니라면 다른 서비스보다 이 용도로는 훨씬 편리하다.&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;계정 만들고 자신의 온라인 git repo와 연결한다.&lt;/li&gt;
+&lt;li&gt;나머지 설정은 아래 스크린 샷에 나온 것처럼 한다.&lt;/li&gt;
+&lt;li&gt;주의할 것은 Hugo 버전 세팅이다. 테마마다 필요로 하는 휴고 버전이 다르니까 주의해서 설정하라.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&#34;figure&#34;&gt;
+&lt;img src=&#34;https://bookdown.org/yihui/blogdown/images/netlify-settings.png&#34; width=&#34;600&#34; /&gt;
+
+&lt;/div&gt;
+&lt;p&gt;이제 Netlify에서 전개과정을 끝내면 직접 잘 서비스가 되고 있는지 확인해볼 수 있다. 주소의 앞단도 바꿀 수 있으니 이건 마음대로 알아서 하시라.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;--&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;그림 하나로 요약!&lt;/h1&gt;
+&lt;div class=&#34;figure&#34;&gt;
+&lt;img src=&#34;https://apreshill.rbind.io/img/posts/2017-06-12-up-and-running-with-blogdown/blogdown-signpost-4.png&#34; width=&#34;600&#34; /&gt;
+
+&lt;/div&gt;
+&lt;p&gt;나의 설명이 부족하거나 이해가 되지 않는 분은 &lt;a href=&#34;https://apreshill.rbind.io/post/up-and-running-with-blogdown/&#34;&gt;여기&lt;/a&gt;를 참고하실 수 있다.&lt;/p&gt;
+&lt;/div&gt;
+</description>
     </item>
     
     <item>
@@ -110,11 +864,51 @@ summary(cars)## speed dist ## Min. : 4.0 Min. : 2.00 ## 1st Qu.:12.0 1st Qu.</d
       <pubDate>Tue, 19 Sep 2017 00:00:00 +0000</pubDate>
       
       <guid>/note/2017/09/19/data-talk/</guid>
-      <description>Prologue개인적이든 직업적인 이유든 데이터를 볼 일이 많습니다. 인상적으로 본 데이터를 소개하는 꼭지를 한번 만들어 봅니다. 제가 여기저기서 본 것들을 가져옵니다. 독창성 같은 건 기대하지 마시기를… 아울러 업데이트도 기분 내킬 때!
-Alchol vs Suicide인과관계는 아니니까, 그렇구나 하고 말지요.
-How death has changed over 100 years in Britain엄청난 비주얼라이제이션입니다. 일종의 동영상이라고 할 수 있을텐데, 공중보건의 주요한 사건과 죽음의 양상을 잘 이야기해주고 있습니다.
-Guardian
-2,000 Years of Economic History in One Chart혹자의 이야기처럼, 중국은 “열강”이 아닌 적이 별로 없었던 나라입니다.</description>
+      <description>&lt;div id=&#34;prologue&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Prologue&lt;/h1&gt;
+&lt;p&gt;개인적이든 직업적인 이유든 데이터를 볼 일이 많습니다. 인상적으로 본 데이터를 소개하는 꼭지를 한번 만들어 봅니다. 제가 여기저기서 본 것들을 가져옵니다. 독창성 같은 건 기대하지 마시기를… 아울러 업데이트도 기분 내킬 때!&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;alchol-vs-suicide&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Alchol vs Suicide&lt;/h1&gt;
+&lt;p&gt;인과관계는 아니니까, 그렇구나 하고 말지요.&lt;/p&gt;
+&lt;div class=&#34;figure&#34;&gt;
+&lt;img src=&#34;https://i.redd.it/15ps6g0lupmz.png&#34; /&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;how-death-has-changed-over-100-years-in-britain&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;How death has changed over 100 years in Britain&lt;/h1&gt;
+&lt;p&gt;엄청난 비주얼라이제이션입니다. 일종의 동영상이라고 할 수 있을텐데, 공중보건의 주요한 사건과 죽음의 양상을 잘 이야기해주고 있습니다.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.theguardian.com/lifeandstyle/ng-interactive/2017/sep/18/how-death-has-changed-over-100-years-in-britain&#34;&gt;Guardian&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;years-of-economic-history-in-one-chart&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;2,000 Years of Economic History in One Chart&lt;/h1&gt;
+&lt;p&gt;혹자의 이야기처럼, 중국은 “열강”이 아닌 적이 별로 없었던 나라입니다. 요즘이 정상으로 돌아오고 있는 국면일 수도 있겠지요.&lt;/p&gt;
+&lt;div class=&#34;figure&#34;&gt;
+&lt;img src=&#34;http://2oqz471sa19h3vbwa53m33yj.wpengine.netdna-cdn.com/wp-content/uploads/2017/09/share-of-gdp-history1070.jpg&#34; /&gt;
+
+&lt;/div&gt;
+&lt;p&gt;&lt;a href=&#34;http://www.visualcapitalist.com/2000-years-economic-history-one-chart&#34;&gt;Visual Capitalist&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;google-public-data&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Google Public Data&lt;/h1&gt;
+&lt;p&gt;아직은 World Bank 데이터 밖에 없는 것 같습니다만, 구글이 하는 일이니 소리소문 없이 좋아지리라 생각합니다.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.google.com/publicdata/explore?ds=d5bncppjof8f9_&amp;amp;met_y=sp_pop_totl&amp;amp;hl=en&amp;amp;dl=en&#34;&gt;Google Public Data&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;baltimore-neighborhood-health&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Baltimore Neighborhood Health&lt;/h1&gt;
+&lt;p&gt;훌륭합니다! 제가 볼티모어 거주자가 아니라서 보는 감상의 깊이가 다릅니다. 한국 도시들도 이런 거 만들어주세요!&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://data.baltimoresun.com/news/neighborhood-health/&#34;&gt;Baltimore Sun&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;rise-of-streaming&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Rise of Streaming&lt;/h1&gt;
+&lt;p&gt;올해 에미상에서 “Handmaid’s Tale”의 작품상 수상이 화제입니다. 에미 후보작들의 변화는 가정용 엔터테인먼트의 변화를 잘 보여줍니다.&lt;/p&gt;
+&lt;div class=&#34;figure&#34;&gt;
+&lt;img src=&#34;https://i.redd.it/8fu135v7comz.png&#34; /&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
     </item>
     
     <item>
@@ -123,7 +917,10 @@ Guardian
       <pubDate>Wed, 14 Jun 2017 00:00:00 +0000</pubDate>
       
       <guid>/note/2017/06/14/another-note/</guid>
-      <description>I just discovered an awesome tutorial on blogdown written by Alison. I have to admit this is the best blogdown tutorial I have seen so far.</description>
+      <description>&lt;p&gt;I just discovered &lt;a href=&#34;https://apreshill.rbind.io/post/up-and-running-with-blogdown/&#34;&gt;an awesome tutorial&lt;/a&gt; on &lt;strong&gt;blogdown&lt;/strong&gt; written by Alison. I have to admit this is &lt;em&gt;the&lt;/em&gt; best &lt;strong&gt;blogdown&lt;/strong&gt; tutorial I have seen so far.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://apreshill.rbind.io/img/posts/2017-06-12-up-and-running-with-blogdown/blogdown-signpost-4.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+</description>
     </item>
     
     <item>
@@ -132,8 +929,15 @@ Guardian
       <pubDate>Tue, 13 Jun 2017 00:00:00 +0000</pubDate>
       
       <guid>/note/2017/06/13/a-quick-note/</guid>
-      <description>To me, the two most impressive websites based on blogdown are:
- Rob J Hyndman&amp;rsquo;s personal website. Live Free or Dichotomize by Lucy and Nick et al.  I&amp;rsquo;m sure there will be more.</description>
+      <description>&lt;p&gt;To me, the two most impressive websites based on &lt;strong&gt;blogdown&lt;/strong&gt; are:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;https://robjhyndman.com&#34;&gt;Rob J Hyndman&lt;/a&gt;&amp;rsquo;s personal website.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://livefreeordichotomize.com&#34;&gt;Live Free or Dichotomize&lt;/a&gt; by Lucy and Nick &lt;em&gt;et al&lt;/em&gt;.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;I&amp;rsquo;m sure there will be more.&lt;/p&gt;
+</description>
     </item>
     
     <item>
@@ -142,9 +946,152 @@ Guardian
       <pubDate>Sun, 14 Feb 2016 00:00:00 +0000</pubDate>
       
       <guid>/post/2016/02/14/a-plain-markdown-post/</guid>
-      <description>This sample post is mainly for blogdown users. If you do not use blogdown, you can skip the first section.
-1. Markdown or R Markdown This is a post written in plain Markdown (*.md) instead of R Markdown (*.Rmd). The major differences are:
- You cannot run any R code in a plain Markdown document, whereas in an R Markdown document, you can embed R code chunks (```{r}); A plain Markdown post is rendered through Blackfriday, and an R Markdown document is compiled by rmarkdown and Pandoc.</description>
+      <description>
+
+&lt;p&gt;This sample post is mainly for &lt;a href=&#34;https://github.com/rstudio/blogdown&#34;&gt;&lt;strong&gt;blogdown&lt;/strong&gt;&lt;/a&gt; users. If you do not use &lt;strong&gt;blogdown&lt;/strong&gt;, you can skip the first section.&lt;/p&gt;
+
+&lt;h1 id=&#34;1-markdown-or-r-markdown&#34;&gt;1. Markdown or R Markdown&lt;/h1&gt;
+
+&lt;p&gt;This is a post written in plain Markdown (&lt;code&gt;*.md&lt;/code&gt;) instead of R Markdown (&lt;code&gt;*.Rmd&lt;/code&gt;). The major differences are:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;You cannot run any R code in a plain Markdown document, whereas in an R Markdown document, you can embed R code chunks (&lt;code&gt;```{r}&lt;/code&gt;);&lt;/li&gt;
+&lt;li&gt;A plain Markdown post is rendered through &lt;a href=&#34;https://gohugo.io/overview/configuration/&#34;&gt;Blackfriday&lt;/a&gt;, and an R Markdown document is compiled by &lt;a href=&#34;http://rmarkdown.rstudio.com&#34;&gt;&lt;strong&gt;rmarkdown&lt;/strong&gt;&lt;/a&gt; and &lt;a href=&#34;http://pandoc.org&#34;&gt;Pandoc&lt;/a&gt;.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;There are many differences in syntax between Blackfriday&amp;rsquo;s Markdown and Pandoc&amp;rsquo;s Markdown. For example, you can write a task list with Blackfriday but not with Pandoc:&lt;/p&gt;
+
+&lt;ul class=&#34;task-list&#34;&gt;
+&lt;li&gt;&lt;input type=&#34;checkbox&#34; checked disabled class=&#34;task-list-item&#34;&gt; Write an R package.&lt;/li&gt;
+&lt;li&gt;&lt;input type=&#34;checkbox&#34; disabled class=&#34;task-list-item&#34;&gt; Write a book.&lt;/li&gt;
+&lt;li&gt;&lt;input type=&#34;checkbox&#34; disabled class=&#34;task-list-item&#34;&gt; &amp;hellip;&lt;/li&gt;
+&lt;li&gt;&lt;input type=&#34;checkbox&#34; disabled class=&#34;task-list-item&#34;&gt; Profit!&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Similarly, Blackfriday does not support LaTeX math and Pandoc does. I have added the MathJax support to this theme (&lt;a href=&#34;https://github.com/yihui/hugo-xmin&#34;&gt;hugo-xmin&lt;/a&gt;) but there is a caveat for plain Markdown posts: you have to include math expressions in a pair of backticks (inline: &lt;code&gt;`$ $`&lt;/code&gt;; display style: &lt;code&gt;`$$ $$`&lt;/code&gt;), e.g., &lt;code&gt;$S_n = \sum_{i=1}^n X_i$&lt;/code&gt;.&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:This-is-because&#34;&gt;&lt;a rel=&#34;footnote&#34; href=&#34;#fn:This-is-because&#34;&gt;1&lt;/a&gt;&lt;/sup&gt; For R Markdown posts, you do not need the backticks, because Pandoc can identify and process math expressions.&lt;/p&gt;
+
+&lt;p&gt;When creating a new post, you have to decide whether the post format is Markdown or R Markdown, and this can be done via the &lt;code&gt;rmd&lt;/code&gt; argument of the function &lt;code&gt;blogdown::new_post()&lt;/code&gt;, e.g.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;blogdown::new_post(&amp;quot;Post Title&amp;quot;, rmd = FALSE)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Actually I recommend you to use the RStudio addin &amp;ldquo;New Post&amp;rdquo; instead:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://bookdown.org/yihui/blogdown/images/new-post.png&#34; alt=&#34;RStudio addin New Post&#34; /&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;2-sample-text&#34;&gt;2. Sample Text&lt;/h1&gt;
+
+&lt;h2 id=&#34;second-level-header&#34;&gt;Second-level header&lt;/h2&gt;
+
+&lt;h3 id=&#34;third-level-header&#34;&gt;Third-level header&lt;/h3&gt;
+
+&lt;h4 id=&#34;fourth-level-header&#34;&gt;Fourth-level header&lt;/h4&gt;
+
+&lt;p&gt;A paragraph (with a footnote):&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Lorem ipsum&lt;/strong&gt; dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore &lt;em&gt;magna aliqua&lt;/em&gt;. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:I-m-sure-you-are&#34;&gt;&lt;a rel=&#34;footnote&#34; href=&#34;#fn:I-m-sure-you-are&#34;&gt;2&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+
+&lt;p&gt;A blockquote (a gray bar at the left and lightgray background):&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Quisque mattis volutpat lorem vitae feugiat. Praesent porta est quis porta imperdiet. Aenean porta, mi non cursus volutpat, mi est mollis libero, id suscipit orci urna a augue. In fringilla euismod lacus, vitae tristique massa ultricies vitae. Mauris accumsan ligula tristique, viverra nulla sed, porta sapien. Vestibulum facilisis nec nisl blandit convallis. Maecenas venenatis porta malesuada. Ut ac erat tortor. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nulla sodales quam sit amet tincidunt egestas. In et turpis at orci vestibulum ullamcorper. Aliquam sed ante libero. Sed hendrerit arcu lacus.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Some code (with a drop-shadow effect):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-js&#34;&gt;(function() {
+  var quotes = document.getElementsByTagName(&#39;blockquote&#39;), i, quote;
+  for (i = 0; i &amp;lt; quotes.length; i++) {
+    quote = quotes[i];
+    var n = quote.children.length;
+    if (n === 0) continue;
+    var el = quote.children[n - 1];
+    if (!el || el.nodeName !== &#39;P&#39;) continue;
+    // right-align a quote footer if it starts with ---
+    if (/^—/.test(el.textContent)) el.style.textAlign = &#39;right&#39;;
+  }
+})();
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;A table (centered by default):&lt;/p&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th align=&#34;right&#34;&gt;Sepal.Length&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;Sepal.Width&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;Petal.Length&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;Petal.Width&lt;/th&gt;
+&lt;th align=&#34;left&#34;&gt;Species&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td align=&#34;right&#34;&gt;5.1&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;3.5&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;1.4&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.2&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;setosa&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td align=&#34;right&#34;&gt;4.9&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;3.0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;1.4&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.2&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;setosa&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td align=&#34;right&#34;&gt;4.7&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;3.2&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;1.3&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.2&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;setosa&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td align=&#34;right&#34;&gt;4.6&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;3.1&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;1.5&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.2&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;setosa&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td align=&#34;right&#34;&gt;5.0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;3.6&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;1.4&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.2&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;setosa&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td align=&#34;right&#34;&gt;5.4&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;3.9&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;1.7&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.4&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;setosa&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;An image (automatically centered when it is appropriate):&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://slides.yihui.name/gif/happy-elmo.gif&#34; alt=&#34;Happy Elmo&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Looks good?&lt;/p&gt;
+&lt;div class=&#34;footnotes&#34;&gt;
+
+&lt;hr /&gt;
+
+&lt;ol&gt;
+&lt;li id=&#34;fn:This-is-because&#34;&gt;This is because we have to protect the math expressions from being interpreted as Markdown. &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:This-is-because&#34;&gt;↩&lt;/a&gt;&lt;/li&gt;
+&lt;li id=&#34;fn:I-m-sure-you-are&#34;&gt;I&amp;rsquo;m sure you are bored by the text here. &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:I-m-sure-you-are&#34;&gt;↩&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+</description>
     </item>
     
     <item>
@@ -153,8 +1100,18 @@ Guardian
       <pubDate>Thu, 23 Jul 2015 00:00:00 +0000</pubDate>
       
       <guid>/post/2015/07/23/lorem-ipsum/</guid>
-      <description>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-Quisque mattis volutpat lorem vitae feugiat.</description>
+      <description>&lt;p&gt;&lt;strong&gt;Lorem ipsum&lt;/strong&gt; dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore &lt;em&gt;magna aliqua&lt;/em&gt;. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.&lt;/p&gt;
+
+&lt;p&gt;Quisque mattis volutpat lorem vitae feugiat. Praesent porta est quis porta imperdiet. Aenean porta, mi non cursus volutpat, mi est mollis libero, id suscipit orci urna a augue. In fringilla euismod lacus, vitae tristique massa ultricies vitae. Mauris accumsan ligula tristique, viverra nulla sed, porta sapien. Vestibulum facilisis nec nisl blandit convallis. Maecenas venenatis porta malesuada. Ut ac erat tortor. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nulla sodales quam sit amet tincidunt egestas. In et turpis at orci vestibulum ullamcorper. Aliquam sed ante libero. Sed hendrerit arcu lacus.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Sed luctus volutpat sem in dapibus. Ut pellentesque vitae magna ac mattis. Sed vestibulum, nulla at condimentum semper, magna quam posuere dui, quis sagittis enim nisi eget ex. Vivamus tempor erat a sem dapibus porta. Fusce varius dapibus tempus. Nam bibendum dignissim fringilla. Phasellus eu justo facilisis, ullamcorper urna in, feugiat mauris. Quisque dignissim purus vitae ullamcorper scelerisque. Sed at magna at nisi consequat euismod. Curabitur justo ex, efficitur in fermentum luctus, tincidunt nec lectus. Aliquam a neque metus. Etiam nulla nunc, tristique vitae accumsan ullamcorper, placerat eget nunc. Cras porta eleifend dolor maximus molestie. Etiam vitae pellentesque turpis, quis accumsan ligula. Mauris auctor, nisi nec ullamcorper pulvinar, libero magna sagittis enim, sollicitudin dignissim urna justo et tortor.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Morbi non sem euismod, suscipit purus id, gravida velit. Quisque mollis luctus ligula non suscipit. Curabitur massa arcu, aliquam ac dolor a, pellentesque dignissim dui. Donec at vestibulum magna. Quisque fermentum, tortor id sodales egestas, ligula ligula interdum ipsum, et volutpat elit massa vitae nibh. Morbi eleifend libero quis pretium viverra. Etiam congue, velit ac vestibulum finibus, velit nibh fringilla purus, eu semper dui est eu nunc. Etiam feugiat scelerisque diam vitae sodales. Etiam luctus in urna eu lobortis. Nam vestibulum eros et nibh elementum ullamcorper. Nam tristique porttitor orci, nec pretium est vestibulum at. Quisque posuere semper orci, vel semper justo commodo sed. Nullam accumsan risus rhoncus fringilla porta. Morbi interdum condimentum pharetra. Donec eu elit quam. Vivamus eleifend posuere mi, vel accumsan urna sollicitudin ut.&lt;/p&gt;
+
+&lt;p&gt;Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nulla nec nunc felis. Sed bibendum vel leo id semper. Maecenas vitae iaculis ante. Nam ut tempor est, eu molestie augue. Quisque tincidunt sagittis odio sed tristique. Aenean et felis quis mi viverra consequat.&lt;/p&gt;
+</description>
     </item>
     
     <item>
@@ -163,7 +1120,105 @@ Quisque mattis volutpat lorem vitae feugiat.</description>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>/about/</guid>
-      <description>XMin is the first Hugo theme I have designed. The original reason that I wrote it was I needed a minimal example of Hugo themes when I was writing the blogdown book. Basically I wanted a simple theme that supports a navigation menu, a home page, other single pages, lists of pages, blog posts, categories, tags, and RSS. That is all. Nothing fancy. In terms of CSS and JavaScript, I really want to keep them minimal.</description>
+      <description>
+
+&lt;p&gt;&lt;strong&gt;XMin&lt;/strong&gt; is the first Hugo theme I have designed. The original reason that I wrote it was I needed a minimal example of Hugo themes when I was writing the  &lt;a href=&#34;https://github.com/rstudio/blogdown&#34;&gt;&lt;strong&gt;blogdown&lt;/strong&gt;&lt;/a&gt; book. Basically I wanted a simple theme that supports a navigation menu, a home page, other single pages, lists of pages, blog posts, categories, tags, and RSS. That is all. Nothing fancy. In terms of CSS and JavaScript, I really want to keep them minimal. In fact, this theme does not contain any JavaScript code at all, although on this example website I did introduce some JavaScript code (still relatively simple anyway). The theme does not contain any images, either, and is pretty much a plain-text theme.&lt;/p&gt;
+
+&lt;p&gt;The theme name &amp;ldquo;XMin&amp;rdquo; can be interpreted as &amp;ldquo;&lt;strong&gt;X&lt;/strong&gt;ie&amp;rsquo;s &lt;strong&gt;Min&lt;/strong&gt;imal theme&amp;rdquo; (Xie is my last name) or &amp;ldquo;e&lt;strong&gt;X&lt;/strong&gt;tremely &lt;strong&gt;Min&lt;/strong&gt;imal theme&amp;rdquo;.&lt;/p&gt;
+
+&lt;h1 id=&#34;config-toml&#34;&gt;config.toml&lt;/h1&gt;
+
+&lt;p&gt;For this example site, I defined permalinks for two sections, &lt;code&gt;post&lt;/code&gt; and &lt;code&gt;note&lt;/code&gt;, so that the links to pages under these directories will contain the date info, e.g., &lt;code&gt;https://xmin.yihui.name/post/2016/02/14/a-plain-markdown-post/&lt;/code&gt;. This is optional, and it is up to your personal taste of URLs.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[permalinks]
+    post = &amp;quot;/post/:year/:month/:day/:slug/&amp;quot;
+    note = &amp;quot;/note/:year/:month/:day/:slug/&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You can define the menu through &lt;code&gt;menu.main&lt;/code&gt;, e.g.,&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[[menu.main]]
+    name = &amp;quot;Home&amp;quot;
+    url = &amp;quot;/&amp;quot;
+    weight = 1
+[[menu.main]]
+    name = &amp;quot;About&amp;quot;
+    url = &amp;quot;/about/&amp;quot;
+    weight = 2
+[[menu.main]]
+    name = &amp;quot;Categories&amp;quot;
+    url = &amp;quot;/categories/&amp;quot;
+    weight = 3
+[[menu.main]]
+    name = &amp;quot;Tags&amp;quot;
+    url = &amp;quot;/tags/&amp;quot;
+    weight = 4
+[[menu.main]]
+    name = &amp;quot;Subscribe&amp;quot;
+    url = &amp;quot;/index.xml&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Alternatively, you can add &lt;code&gt;menu: main&lt;/code&gt; to the YAML metadata of any of your pages, so that these pages will appear in the menu.&lt;/p&gt;
+
+&lt;p&gt;The page footer can be defined in &lt;code&gt;.Params.footer&lt;/code&gt;, and the text is treated as Markdown, e.g.,&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[params]
+    footer = &amp;quot;&amp;amp;copy; [Yihui Xie](https://yihui.name) 2017&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;custom-layouts&#34;&gt;Custom layouts&lt;/h1&gt;
+
+&lt;p&gt;There are two layout files under &lt;code&gt;layouts/partials/&lt;/code&gt; that you may want to override: &lt;code&gt;head_custom.html&lt;/code&gt; and &lt;code&gt;foot_custom.html&lt;/code&gt;. This is how you inject arbitrary HTML code to the head and foot areas. For example, this site has a file &lt;code&gt;layouts/partials/foot_custom.html&lt;/code&gt; to support LaTeX math via MathJax and center images automatically:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;script src=&amp;quot;//yihui.name/js/math-code.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
+&amp;lt;script async src=&amp;quot;//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML&amp;quot;&amp;gt;
+&amp;lt;/script&amp;gt;
+
+&amp;lt;script async src=&amp;quot;//yihui.name/js/center-img.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You can certainly enable highlight.js for syntax highlighting by yourself through &lt;code&gt;head_custom.html&lt;/code&gt; and &lt;code&gt;foot_custom.html&lt;/code&gt; if you want.&lt;/p&gt;
+
+&lt;p&gt;If you do not like the default fonts (e.g., &lt;code&gt;Palatino&lt;/code&gt;), you may provide your own &lt;code&gt;static/css/fonts.css&lt;/code&gt; under the root directory of your website to override the &lt;code&gt;fonts.css&lt;/code&gt; in the theme.&lt;/p&gt;
+
+&lt;h1 id=&#34;other-features&#34;&gt;Other features&lt;/h1&gt;
+
+&lt;p&gt;I could have added more features to this theme, but I decided not to, since I have no intention to make this theme feature-rich. However, I will teach you how. I have prepared several examples via pull requests at &lt;a href=&#34;https://github.com/yihui/hugo-xmin/pulls&#34;&gt;https://github.com/yihui/hugo-xmin/pulls&lt;/a&gt;, so that you can see the implementations of these features when you check out the diffs in the pull requests. For example, you can:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://github.com/yihui/hugo-xmin/pull/3&#34;&gt;Enable Google Analytics&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://github.com/yihui/hugo-xmin/pull/4&#34;&gt;Enable Disqus comments&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://github.com/yihui/hugo-xmin/pull/5&#34;&gt;Enable highlight.js for syntax highlighting of code blocks&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://github.com/yihui/hugo-xmin/pull/2&#34;&gt;Display categories and tags on a page&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://github.com/yihui/hugo-xmin/pull/7&#34;&gt;Add a table of contents&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://github.com/yihui/hugo-xmin/pull/6&#34;&gt;Add a link in the footer of each page to &amp;ldquo;Edit this page&amp;rdquo; on Github&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;To fully understand these examples, you have to read &lt;a href=&#34;https://bookdown.org/yihui/blogdown/templates.html&#34;&gt;the section on Hugo templates&lt;/a&gt; in the &lt;strong&gt;blogdown&lt;/strong&gt; book.&lt;/p&gt;
+
+&lt;h1 id=&#34;design-philosophy&#34;&gt;Design philosophy&lt;/h1&gt;
+
+&lt;p&gt;Lastly, a few words about my design philosophy for this theme: I have been relying on existing frameworks like Bootstrap for years since I&amp;rsquo;m not really a designer, and I was always scared by the complexity of CSS.&lt;/p&gt;
+
+&lt;p&gt;When I started writing this theme, I asked myself, &amp;ldquo;&lt;em&gt;What if I just write from scratch?&lt;/em&gt;&amp;rdquo; No Bootstrap. No Normalize.css. I don&amp;rsquo;t care about IE (life could be so much easier without IE) or inconsistencies among browsers (for personal websites). As long as the theme looks okay in Chrome, Firefox, and Safari, I&amp;rsquo;m done. Thanks to the simplicity of Markdown, you cannot really produce very complicated HTML, and I think styling the HTML output from Markdown is much simpler than general HTML documents. For example, I do not need to care much about form elements like textareas or buttons.&lt;/p&gt;
+
+&lt;p&gt;After I finished this theme, I started to wonder why I&amp;rsquo;d need &lt;code&gt;normalize.css&lt;/code&gt; at all (it sounds like a religious belief). The default appearance of modern browsers actually looks pretty good in my eyes, after I tweak the typeface a little bit.&lt;/p&gt;
+
+&lt;p&gt;Compared to inconsistencies across browsers, I care much more about these properties of HTML elements:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Tables should always be centered, and striped tables are easier to read especially when they are wide. Tables should not have vertical borders.&lt;/li&gt;
+&lt;li&gt;An image should be centered if it is the only child element of a paragraph.&lt;/li&gt;
+&lt;li&gt;The &lt;code&gt;max-width&lt;/code&gt; of images, videos, and iframes should be &lt;code&gt;100%&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;I hope you can enjoy this theme. The source code is &lt;a href=&#34;https://github.com/yihui/hugo-xmin&#34;&gt;on Github&lt;/a&gt;. Happy hacking!&lt;/p&gt;
+</description>
     </item>
     
   </channel>

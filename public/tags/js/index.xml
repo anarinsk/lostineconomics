@@ -1,15 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Js on lost in economics</title>
-    <link>/tags/js/</link>
-    <description>Recent content in Js on lost in economics</description>
+    <title>js on lost in economics</title>
+    <link>/tags/js/index.xml</link>
+    <description>Recent content in js on lost in economics</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 01 Nov 2017 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="/tags/js/index.xml" rel="self" type="application/rss+xml" />
-    
+    <atom:link href="/tags/js/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Adding bigfoot.js to Hugo</title>
@@ -17,8 +14,51 @@
       <pubDate>Wed, 01 Nov 2017 00:00:00 +0000</pubDate>
       
       <guid>/note/2017/11/01/adding-bigfoot.js-to-hugo/</guid>
-      <description>BIGFOOT!웹서핑을 하다가 이 녀석을 보고야 말았다, bigfoot.js. 웹 문서가 고도화된 지금 인터넷으로 노출하는 문서에서 표현의 방법으로 답답함을 느끼는 일은 거의 없을 터다. 표, 수식, 그림 등을 동원해 소통할 때 pdf 등의 프린트 기반 문서들과 비교해 보다 기발하고 뛰어난 사례들도 많다. 당장 이 문서가 작성되고 있는 markdown이 그 대표 사례다.
-어쨌든 왠만한 것들이 쉽게 된다는 걸 알게 되면, 작은 차이들이 눈에 들어오기 마련이다. 각주 처리만 좀 더 ‘멋지게’ 되면 좋겠는데, 싶었다.</description>
+      <description>&lt;div id=&#34;bigfoot&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;BIGFOOT!&lt;/h1&gt;
+&lt;p&gt;웹서핑을 하다가 이 녀석을 보고야 말았다, &lt;a href=&#34;http://bigfootjs.com/&#34;&gt;bigfoot.js&lt;/a&gt;. 웹 문서가 고도화된 지금 인터넷으로 노출하는 문서에서 표현의 방법으로 답답함을 느끼는 일은 거의 없을 터다. 표, 수식, 그림 등을 동원해 소통할 때 pdf 등의 프린트 기반 문서들과 비교해 보다 기발하고 뛰어난 사례들도 많다. 당장 이 문서가 작성되고 있는 markdown이 그 대표 사례다.&lt;/p&gt;
+&lt;p&gt;어쨌든 왠만한 것들이 쉽게 된다는 걸 알게 되면, 작은 차이들이 눈에 들어오기 마련이다. 각주 처리만 좀 더 ‘멋지게’ 되면 좋겠는데, 싶었다. 마치 등이 살짝 가려운 데 긁지 못하는 격이랄까. 이때 &lt;code&gt;bigfoot.js&lt;/code&gt;를 보게된 것이다! 각주를 누르면 버블로 해당 텍스트가 그 자리에 등장한다. 이거야말로 인터랙티브 문서가 지닌 장점이 아닌가!&lt;/p&gt;
+&lt;p&gt;그래서 바로 검색 들어 갔다. 우선, 필요한 요소를 챙겨보자.&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;&lt;code&gt;bigfoot.js&lt;/code&gt;를 구현하는 자바 스크립트&lt;/li&gt;
+&lt;li&gt;해당 자바스크립트를 이 공간이 사용하고 있는 Hugo framework에 배치하기&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;이 두가지만 얼추 해결되면 될 듯 싶었다. 어제 밤에 딱 10분 검색해서 찾아냈다.&lt;a href=&#34;#fn1&#34; class=&#34;footnoteRef&#34; id=&#34;fnref1&#34;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;how-to-installsource&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;How to install&lt;a href=&#34;#fn2&#34; class=&#34;footnoteRef&#34; id=&#34;fnref2&#34;&gt;&lt;sup&gt;2&lt;/sup&gt;&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;원래 &lt;code&gt;bigfoot.js&lt;/code&gt;는 ’점 세개’가 나오는 형태여서 숫자로 표기되는 전통적인 각주와는 어울리지 않는다. &lt;code&gt;bigfoot.js&lt;/code&gt;는 보다 간략한 형태의 &lt;code&gt;barefoot.min.js&lt;/code&gt;도 제공한다. 이 녀석을 붙여보기로 하자.&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/philgruneich/barefoot&#34;&gt;barefoot github&lt;/a&gt;에서 &lt;code&gt;barefoot.min.js&lt;/code&gt;, &lt;code&gt;barefoot.min.css&lt;/code&gt;를 다운 받는다.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;barefoot.min.js&lt;/code&gt;을 &lt;code&gt;static/js&lt;/code&gt;에 넣어준다. 혹시 &lt;code&gt;static&lt;/code&gt; 디렉토리 안에 &lt;code&gt;js&lt;/code&gt;가 없다면 만들면 된다.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;barefoot.min.css&lt;/code&gt;을 &lt;code&gt;static/css&lt;/code&gt;에 넣어준다.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;themes/[YOUR_THEME_NAME]/layouts/partials/footer.html&lt;/code&gt;을 열어서 아래 코드를 적절한 위치에 삽입한다.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;link rel=&amp;quot;stylesheet&amp;quot; href=&amp;quot;/css/barefoot.min.css&amp;quot;&amp;gt;
+
+&amp;lt;script src=&amp;quot;/js/barefoot.min.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
+&amp;lt;script&amp;gt;
+  lf = new BareFoot();
+  lf.init();
+&amp;lt;/script&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;how-to-use&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;How to use&lt;/h1&gt;
+&lt;p&gt;그냥 markdown에 각주 쓰듯이 쓰면 되겠다.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;This is barefoot![^baref]
+
+[^baref]: 이것은 베어풋으로 붙인 각주입니다! &lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This is barefoot!&lt;a href=&#34;#fn3&#34; class=&#34;footnoteRef&#34; id=&#34;fnref3&#34;&gt;&lt;sup&gt;3&lt;/sup&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;footnotes&#34;&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id=&#34;fn1&#34;&gt;&lt;p&gt;부끄럽지만 몹시 뿌듯하고 기뻤다! ㅎ&lt;a href=&#34;#fnref1&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&#34;fn2&#34;&gt;&lt;p&gt;이 내용의 출처는 &lt;a href=&#34;http://egeiro.net/post/barefoot-notes/&#34;&gt;여기&lt;/a&gt;다.&lt;a href=&#34;#fnref2&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&#34;fn3&#34;&gt;&lt;p&gt;이것은 베어풋으로 붙인 각주입니다!&lt;a href=&#34;#fnref3&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+</description>
     </item>
     
   </channel>
