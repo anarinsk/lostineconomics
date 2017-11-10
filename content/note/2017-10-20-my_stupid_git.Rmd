@@ -31,12 +31,12 @@ categories: ['computing']
 로컬머신에서 git을 개시하는 방법부터 알아보자. git으로 관리하고 싶은 directory에서 아래와 같은 명령어를 쳐 준다. 
  
 ```{}
-echo "# YOUR_README_NAME" >> README.md 
-git init
-git add README.md 
-git commit -m "YOUR_COMMIT_MESSAGE(e.g. first commit)"
-git remote add origin <<https://YOUR_REMOTE_GIT_URL>>
-git push -u origin master 
+> echo "# YOUR_README_NAME" >> README.md 
+> git init
+> git add README.md 
+> git commit -m "YOUR_COMMIT_MESSAGE(e.g. first commit)"
+> git remote add origin <<https://YOUR_REMOTE_GIT_URL>>
+> git push -u origin master 
 ```
  
 * `<<https://YOUR_REMOTE_GIT_URL>>`: 외부 리포가 적절하게 세팅이 되어 있어야 한다. github를 쓴다면, readme 없이 새 repository를 터주는 작업 만으로 끝이다. 
@@ -48,12 +48,14 @@ git push -u origin master
 ## `add`, `commit`, `push`
 
 ```{}
-git status  
-git add .
+> git status  
+> git add .
+
 #or
-git add -u
-git commit -m "YOUR_COMMENT"
-git push 
+
+> git add -u
+> git commit -m "YOUR_COMMENT"
+> git push 
 ```
 
 * git 운용의 기본적인 흐름 혹은 기본 명령어 셋 
@@ -66,16 +68,15 @@ git push
 ## `remote` 
 
 ```{}
-> git remote  
-
-origin 
-
+> git remote origin 
 > git remote -v 
+```
 
-git status  
-git add .
-git commit -m "YOUR_COMMENT"
-git push 
+```{}
+> git status  
+> git add .
+> git commit -m "YOUR_COMMENT"
+> git push 
 ```
 
 `git remote` : remote로 어떤 대상이 설정되어 있는지 볼 수 있다. 
@@ -104,14 +105,14 @@ git push
 뭔가를 수정했다. 하지만 새로운 commit을 만들고 싶지 않다. 
 
 ```{}
-git commit --amend --no-edit
+> git commit --amend --no-edit
 ```
 
 * ` --amend --no-edit`: 전에 commit message를 그대로 쓰고 commit한다. 
     * 이대로 push를 할 수 없다. 앞서 push된 버전과 현 수정된 버전이 같은 commit인데 내용은 다르다. 즉, SHA-1이 다르다. 이때 강제로 `push`를 하고 싶다면 아래와 같이 한다. 
 
 ```{}
-git push -f [origin] [master]
+> git push -f [origin] [master]
 ```
 
 * `-f`: commit을 새로 만든 것이 아니기 때문에, 그대로 push를 하게 되면 origin과 맞지 않게 된다. 강제로 push를 해서 맞춰주는 명령어다. 
@@ -127,9 +128,9 @@ git push -f [origin] [master]
 ## Basic 
 
 ```{}
-git branch <BRANCH_NAME>
-git checkout
-git checkout -b <BRANCH_NAME>
+> git branch <BRANCH_NAME>
+> git checkout
+> git checkout -b <BRANCH_NAME>
 ```
 
 * `git branch`: 브랜치를 조회하거나, `<BRANCH_NAME>`을 붙여 브랜치를 생성한다. 
@@ -137,8 +138,8 @@ git checkout -b <BRANCH_NAME>
 * `-b`: 브랜치를 만들면서 체크아웃을 하기 위해서는 이 옵션을 사용한다. 
 
 ```{}
-git merge <COMMIT_NAME> 
-git branch -d <BRANCH_NAME>
+> git merge <COMMIT_NAME> 
+> git branch -d <BRANCH_NAME>
 ```
 
 * `merge`: 커밋된 다른 지점과 현재 HEAD의 브랜치를 병합한다. 
@@ -182,8 +183,8 @@ issue3 branch에서 어떤 내용을 또 수정했다고 하자.
 위의 그림에서 아래의 명령어를 수행한다고 하자. 
 
 ```{}
-git checkout master
-git merge issue3
+> git checkout master
+> git merge issue3
 ```
 
 * 이때 어떤 파일에 대해서 `HEAD`의 master의 내용과 issue3의 내용이 서로 다른 부분이 있다고 하자. 
@@ -217,8 +218,8 @@ pull: 원격 저장소의 내용을 가져오기
 원래 상태는 HEAD를 master로 하고 브랜치는 다음과 같이 3가지다. 
 
 ```{}
-git checkout issue3
-git rebase master 
+> git checkout issue3
+> git rebase master 
 ```
 
 issue3로 체크아웃을 한 뒤에 해당 브랜치를 master로 rebase한다. 만일 두 노드 사이에 충돌이 없다면 rebase가 되곘지만, 충돌이 있을 경우에는 해당 파일을 수정해줘야 한다. 수정 후 아래와 같이 rebase한다. 
@@ -226,15 +227,15 @@ issue3로 체크아웃을 한 뒤에 해당 브랜치를 master로 rebase한다.
 ![](img/rebase_2.png)
 
 ```{}
-git add myfile.txt 
-git rebase --continue 
+> git add myfile.txt 
+> git rebase --continue 
 ```
 
 ![](img/rebase_3.png)
 
 ```{}
-git checkout master 
-git merge issue3
+> git checkout master 
+> git merge issue3
 ```
 
 `master`로 체크아웃한 이후에 issue3 merge하면 아래와 같이 가지가 정리된다. 
@@ -254,17 +255,17 @@ git merge issue3
 그냥 지우고 다시 clone을 할 수도 있다. 하지만 아래 같이 해주면 불필요한 동기화를 막을 수 있다. 
 
 ```{}
-git fetch --all
-git reset --hard origin/master
-git pull origin master
+> git fetch --all
+> git reset --hard origin/master
+> git pull origin master
 ```
 
 ## local에 있는 내용을 강제로 github으로 보내고 싶을 때 
 
 ```{}
-git pull --rebase
-git push
-git stash pop
+> git pull --rebase
+> git push
+> git stash pop
 ```
 
 -----
@@ -290,7 +291,7 @@ vim .gitignore
 
 -----
 
-# Homework
+# Homework & Rule of Thumb 
 
 앞으로 더 알아야 하지만 지금은 그냥 넘어갈 내용들이다. 
 
@@ -299,14 +300,34 @@ vim .gitignore
 여러가지 옵션이 있고 활용하면 좋을 듯 하지만, 당분간 나에게는 히스토리를 그냥 순서대로 보여주는 아래 명령어 정도면 충분할 듯 싶다. 
 
 ```{}
-git log --pretty=oneline
-git log --pretty=format:"%h - %an, %ar : %s"
+> git log --pretty=oneline
+> git log --pretty=format:"%h - %an, %ar : %s"
 ```
 
 * `git log --pretty=oneline`: oneline으로 보여준다. 
 * `git log --pretty=format:"%h - %an, %ar : %s"`: 포매팅한다. 
 
 `log`에 대해서는 다음을 참고: [링크](https://git-scm.com/book/ko/v1/Git%EC%9D%98-%EA%B8%B0%EC%B4%88-%EC%BB%A4%EB%B0%8B-%ED%9E%88%EC%8A%A4%ED%86%A0%EB%A6%AC-%EC%A1%B0%ED%9A%8C%ED%95%98%EA%B8%B0)
+
+
+## Git과 github 계정의 연동 
+
+원래 local setting이 없는 머신에서 최초로 git 작업을 하면 아래의 사항을 처리해야 한다. 
+
+1. 이름과 이메일 어카운트 세팅
+2. repo 접근 권한
+
+```{}
+> git config --global user.email "##USER EMAIL##"
+> git config --global user.name "##USER NAME##"
+```
+
+repo로 날리게 되면 username과 password를 묻게 된다. 매번 하기 귀찮다면 다음과 같이 처리해준다. 
+
+```{}
+> git config --global credential.helper cache
+> git config --global push.default simple
+```
 
 
 ## Other link 

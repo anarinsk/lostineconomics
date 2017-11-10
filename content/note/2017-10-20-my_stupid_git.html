@@ -35,12 +35,12 @@ categories: ['computing']
 <div id="initiation-in-local" class="section level2">
 <h2>Initiation in local</h2>
 <p>로컬머신에서 git을 개시하는 방법부터 알아보자. git으로 관리하고 싶은 directory에서 아래와 같은 명령어를 쳐 준다.</p>
-<pre><code>echo &quot;# YOUR_README_NAME&quot; &gt;&gt; README.md 
-git init
-git add README.md 
-git commit -m &quot;YOUR_COMMIT_MESSAGE(e.g. first commit)&quot;
-git remote add origin &lt;&lt;https://YOUR_REMOTE_GIT_URL&gt;&gt;
-git push -u origin master </code></pre>
+<pre><code>&gt; echo &quot;# YOUR_README_NAME&quot; &gt;&gt; README.md 
+&gt; git init
+&gt; git add README.md 
+&gt; git commit -m &quot;YOUR_COMMIT_MESSAGE(e.g. first commit)&quot;
+&gt; git remote add origin &lt;&lt;https://YOUR_REMOTE_GIT_URL&gt;&gt;
+&gt; git push -u origin master </code></pre>
 <ul>
 <li><code>&lt;&lt;https://YOUR_REMOTE_GIT_URL&gt;&gt;</code>: 외부 리포가 적절하게 세팅이 되어 있어야 한다. github를 쓴다면, readme 없이 새 repository를 터주는 작업 만으로 끝이다.</li>
 <li><code>echo...</code>: “# YOUR_README_NAME” 내용을 <code>README.md</code>로 생성한 후</li>
@@ -51,12 +51,14 @@ git push -u origin master </code></pre>
 </div>
 <div id="add-commit-push" class="section level2">
 <h2><code>add</code>, <code>commit</code>, <code>push</code></h2>
-<pre><code>git status  
-git add .
+<pre><code>&gt; git status  
+&gt; git add .
+
 #or
-git add -u
-git commit -m &quot;YOUR_COMMENT&quot;
-git push </code></pre>
+
+&gt; git add -u
+&gt; git commit -m &quot;YOUR_COMMENT&quot;
+&gt; git push </code></pre>
 <ul>
 <li>git 운용의 기본적인 흐름 혹은 기본 명령어 셋</li>
 <li><code>push</code>만 명령하면 되는 것은 앞서 <code>git push -u origin master</code> origin master로 local과 remote repository의 upstream을 정해두었기 때문이다.</li>
@@ -68,16 +70,12 @@ git push </code></pre>
 <h1>In-depth command</h1>
 <div id="remote" class="section level2">
 <h2><code>remote</code></h2>
-<pre><code>&gt; git remote  
-
-origin 
-
-&gt; git remote -v 
-
-git status  
-git add .
-git commit -m &quot;YOUR_COMMENT&quot;
-git push </code></pre>
+<pre><code>&gt; git remote origin 
+&gt; git remote -v </code></pre>
+<pre><code>&gt; git status  
+&gt; git add .
+&gt; git commit -m &quot;YOUR_COMMENT&quot;
+&gt; git push </code></pre>
 <p><code>git remote</code> : remote로 어떤 대상이 설정되어 있는지 볼 수 있다. <code>git remote -v</code>: remote의 구체적인 내용을 조회해볼 수 있다.</p>
 </div>
 <div id="pull" class="section level2">
@@ -103,14 +101,14 @@ git push </code></pre>
 <div id="-commit-push---" class="section level3">
 <h3>이전 <code>commit-push</code>된 버전을 수정하고 싶다면</h3>
 <p>뭔가를 수정했다. 하지만 새로운 commit을 만들고 싶지 않다.</p>
-<pre><code>git commit --amend --no-edit</code></pre>
+<pre><code>&gt; git commit --amend --no-edit</code></pre>
 <ul>
 <li><code>--amend --no-edit</code>: 전에 commit message를 그대로 쓰고 commit한다.
 <ul>
 <li>이대로 push를 할 수 없다. 앞서 push된 버전과 현 수정된 버전이 같은 commit인데 내용은 다르다. 즉, SHA-1이 다르다. 이때 강제로 <code>push</code>를 하고 싶다면 아래와 같이 한다.</li>
 </ul></li>
 </ul>
-<pre><code>git push -f [origin] [master]</code></pre>
+<pre><code>&gt; git push -f [origin] [master]</code></pre>
 <ul>
 <li><code>-f</code>: commit을 새로 만든 것이 아니기 때문에, 그대로 push를 하게 되면 origin과 맞지 않게 된다. 강제로 push를 해서 맞춰주는 명령어다.</li>
 </ul>
@@ -126,16 +124,16 @@ git push </code></pre>
 <p>브랜치란 현재 <code>HEAD</code> 스냅샷에 대해서 다른 이름을 부여해주는 작업이다. 일단, 아무런 변경이 없는 이상 브랜치는 분기되지 않고 노드에 함께 머물러 있다. 일단 기본적인 명령어는 아래와 같다.</p>
 <div id="basic" class="section level2">
 <h2>Basic</h2>
-<pre><code>git branch &lt;BRANCH_NAME&gt;
-git checkout
-git checkout -b &lt;BRANCH_NAME&gt;</code></pre>
+<pre><code>&gt; git branch &lt;BRANCH_NAME&gt;
+&gt; git checkout
+&gt; git checkout -b &lt;BRANCH_NAME&gt;</code></pre>
 <ul>
 <li><code>git branch</code>: 브랜치를 조회하거나, <code>&lt;BRANCH_NAME&gt;</code>을 붙여 브랜치를 생성한다.</li>
 <li><code>checkout</code>이란 다른 브랜치로 빠져나가는 것을 의미한다.</li>
 <li><code>-b</code>: 브랜치를 만들면서 체크아웃을 하기 위해서는 이 옵션을 사용한다.</li>
 </ul>
-<pre><code>git merge &lt;COMMIT_NAME&gt; 
-git branch -d &lt;BRANCH_NAME&gt;</code></pre>
+<pre><code>&gt; git merge &lt;COMMIT_NAME&gt; 
+&gt; git branch -d &lt;BRANCH_NAME&gt;</code></pre>
 <ul>
 <li><code>merge</code>: 커밋된 다른 지점과 현재 HEAD의 브랜치를 병합한다.</li>
 <li><code>-d</code>: 브랜치를 삭제하기 위해서 사용하는 명령어</li>
@@ -176,8 +174,8 @@ git branch -d &lt;BRANCH_NAME&gt;</code></pre>
 <div id="conflict" class="section level2">
 <h2>Conflict</h2>
 <p>위의 그림에서 아래의 명령어를 수행한다고 하자.</p>
-<pre><code>git checkout master
-git merge issue3</code></pre>
+<pre><code>&gt; git checkout master
+&gt; git merge issue3</code></pre>
 <ul>
 <li>이때 어떤 파일에 대해서 <code>HEAD</code>의 master의 내용과 issue3의 내용이 서로 다른 부분이 있다고 하자.</li>
 <li>병합이 무리 없이 가능하다면 그대로 병합된다. 즉, A와 B가 있을 떄 B가 A의 내용을 포함하고 있다면, 병합이 가능하다.</li>
@@ -209,21 +207,21 @@ pull: 원격 저장소의 내용을 가져오기
 
 </div>
 <p>원래 상태는 HEAD를 master로 하고 브랜치는 다음과 같이 3가지다.</p>
-<pre><code>git checkout issue3
-git rebase master </code></pre>
+<pre><code>&gt; git checkout issue3
+&gt; git rebase master </code></pre>
 <p>issue3로 체크아웃을 한 뒤에 해당 브랜치를 master로 rebase한다. 만일 두 노드 사이에 충돌이 없다면 rebase가 되곘지만, 충돌이 있을 경우에는 해당 파일을 수정해줘야 한다. 수정 후 아래와 같이 rebase한다.</p>
 <div class="figure">
 <img src="img/rebase_2.png" />
 
 </div>
-<pre><code>git add myfile.txt 
-git rebase --continue </code></pre>
+<pre><code>&gt; git add myfile.txt 
+&gt; git rebase --continue </code></pre>
 <div class="figure">
 <img src="img/rebase_3.png" />
 
 </div>
-<pre><code>git checkout master 
-git merge issue3</code></pre>
+<pre><code>&gt; git checkout master 
+&gt; git merge issue3</code></pre>
 <p><code>master</code>로 체크아웃한 이후에 issue3 merge하면 아래와 같이 가지가 정리된다.</p>
 <div class="figure">
 <img src="img/rebase_4.png" />
@@ -243,15 +241,15 @@ git merge issue3</code></pre>
 <div id="github---local---" class="section level2">
 <h2>Github의 내용을 강제로 local로 덮어쓰고 싶을 때</h2>
 <p>그냥 지우고 다시 clone을 할 수도 있다. 하지만 아래 같이 해주면 불필요한 동기화를 막을 수 있다.</p>
-<pre><code>git fetch --all
-git reset --hard origin/master
-git pull origin master</code></pre>
+<pre><code>&gt; git fetch --all
+&gt; git reset --hard origin/master
+&gt; git pull origin master</code></pre>
 </div>
 <div id="local----github---" class="section level2">
 <h2>local에 있는 내용을 강제로 github으로 보내고 싶을 때</h2>
-<pre><code>git pull --rebase
-git push
-git stash pop</code></pre>
+<pre><code>&gt; git pull --rebase
+&gt; git push
+&gt; git stash pop</code></pre>
 <hr />
 </div>
 </div>
@@ -272,19 +270,32 @@ git stash pop</code></pre>
 <hr />
 </div>
 </div>
-<div id="homework" class="section level1">
-<h1>Homework</h1>
+<div id="homework-rule-of-thumb" class="section level1">
+<h1>Homework &amp; Rule of Thumb</h1>
 <p>앞으로 더 알아야 하지만 지금은 그냥 넘어갈 내용들이다.</p>
 <div id="log" class="section level2">
 <h2><code>log</code></h2>
 <p>여러가지 옵션이 있고 활용하면 좋을 듯 하지만, 당분간 나에게는 히스토리를 그냥 순서대로 보여주는 아래 명령어 정도면 충분할 듯 싶다.</p>
-<pre><code>git log --pretty=oneline
-git log --pretty=format:&quot;%h - %an, %ar : %s&quot;</code></pre>
+<pre><code>&gt; git log --pretty=oneline
+&gt; git log --pretty=format:&quot;%h - %an, %ar : %s&quot;</code></pre>
 <ul>
 <li><code>git log --pretty=oneline</code>: oneline으로 보여준다.</li>
 <li><code>git log --pretty=format:&quot;%h - %an, %ar : %s&quot;</code>: 포매팅한다.</li>
 </ul>
 <p><code>log</code>에 대해서는 다음을 참고: <a href="https://git-scm.com/book/ko/v1/Git%EC%9D%98-%EA%B8%B0%EC%B4%88-%EC%BB%A4%EB%B0%8B-%ED%9E%88%EC%8A%A4%ED%86%A0%EB%A6%AC-%EC%A1%B0%ED%9A%8C%ED%95%98%EA%B8%B0">링크</a></p>
+</div>
+<div id="git-github--" class="section level2">
+<h2>Git과 github 계정의 연동</h2>
+<p>원래 local setting이 없는 머신에서 최초로 git 작업을 하면 아래의 사항을 처리해야 한다.</p>
+<ol style="list-style-type: decimal">
+<li>이름과 이메일 어카운트 세팅</li>
+<li>repo 접근 권한</li>
+</ol>
+<pre><code>&gt; git config --global user.email &quot;##USER EMAIL##&quot;
+&gt; git config --global user.name &quot;##USER NAME##&quot;</code></pre>
+<p>repo로 날리게 되면 username과 password를 묻게 된다. 매번 하기 귀찮다면 다음과 같이 처리해준다.</p>
+<pre><code>&gt; git config --global credential.helper cache
+&gt; git config --global push.default simple</code></pre>
 </div>
 <div id="other-link" class="section level2">
 <h2>Other link</h2>
