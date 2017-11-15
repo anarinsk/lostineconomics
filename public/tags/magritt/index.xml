@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Magritt on lost in economics</title>
+    <link>/tags/magritt/</link>
+    <description>Recent content in Magritt on lost in economics</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 15 Nov 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/magritt/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Magrittr - Ceci n&#39;est pas un pipe.</title>
+      <link>/note/2017/11/15/magrittr---ceci-nest-pas-un-pipe./</link>
+      <pubDate>Wed, 15 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/note/2017/11/15/magrittr---ceci-nest-pas-un-pipe./</guid>
+      <description>pre.bluebox {background-color: #aabbff !important;}pre.redbox {background-color: #ffbbbb !important;}Magritt?\(~\) magrittr, 아마도 R 패키지 중에서 가장 재미있는 이름이 아닐까? 왜 마그리뜨지? magrittr 패키지는 명령어 처리를 쭉 이어줄 수 있게 해준다. 즉, 파이프(pipe)를 만들어주는 것인데, 파이프 담배와 연결시켜 “이것은 파이프가 아니다”라는 마그리뜨의 그림까지 연결된다. 이렇게 쭉 연결하는 것이 왜 좋을까? 글은 만연체가 좋지 않지만, 코딩에서 이렇게 파이프하는 습관은 (황당할 정도로 길지 않은 이상) 보다 일관된 형태의 작업을 가능하게 해준다.</description>
+    </item>
+    
+  </channel>
+</rss>

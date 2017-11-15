@@ -120,6 +120,15 @@
     </item>
     
     <item>
+      <title>Magritt</title>
+      <link>/tags/magritt/</link>
+      <pubDate>Wed, 15 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/magritt/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Markdown</title>
       <link>/tags/markdown/</link>
       <pubDate>Sun, 14 Feb 2016 00:00:00 +0000</pubDate>
@@ -152,6 +161,15 @@
       <pubDate>Sun, 14 Feb 2016 00:00:00 +0000</pubDate>
       
       <guid>/tags/pandoc/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Pipe</title>
+      <link>/tags/pipe/</link>
+      <pubDate>Wed, 15 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/pipe/</guid>
       <description></description>
     </item>
     

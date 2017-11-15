@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>hugo on lost in economics</title>
-    <link>/categories/hugo/index.xml</link>
-    <description>Recent content in hugo on lost in economics</description>
+    <title>Hugo on lost in economics</title>
+    <link>/categories/hugo/</link>
+    <description>Recent content in Hugo on lost in economics</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <atom:link href="/categories/hugo/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 01 Nov 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/categories/hugo/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>Adding bigfoot.js to Hugo</title>
@@ -14,51 +17,8 @@
       <pubDate>Wed, 01 Nov 2017 00:00:00 +0000</pubDate>
       
       <guid>/note/2017/11/01/adding-bigfoot.js-to-hugo/</guid>
-      <description>&lt;div id=&#34;bigfoot&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;BIGFOOT!&lt;/h1&gt;
-&lt;p&gt;웹서핑을 하다가 이 녀석을 보고야 말았다, &lt;a href=&#34;http://bigfootjs.com/&#34;&gt;bigfoot.js&lt;/a&gt;. 웹 문서가 고도화된 지금 인터넷으로 노출하는 문서에서 표현의 방법으로 답답함을 느끼는 일은 거의 없을 터다. 표, 수식, 그림 등을 동원해 소통할 때 pdf 등의 프린트 기반 문서들과 비교해 보다 기발하고 뛰어난 사례들도 많다. 당장 이 문서가 작성되고 있는 markdown이 그 대표 사례다.&lt;/p&gt;
-&lt;p&gt;어쨌든 왠만한 것들이 쉽게 된다는 걸 알게 되면, 작은 차이들이 눈에 들어오기 마련이다. 각주 처리만 좀 더 ‘멋지게’ 되면 좋겠는데, 싶었다. 마치 등이 살짝 가려운 데 긁지 못하는 격이랄까. 이때 &lt;code&gt;bigfoot.js&lt;/code&gt;를 보게된 것이다! 각주를 누르면 버블로 해당 텍스트가 그 자리에 등장한다. 이거야말로 인터랙티브 문서가 지닌 장점이 아닌가!&lt;/p&gt;
-&lt;p&gt;그래서 바로 검색 들어 갔다. 우선, 필요한 요소를 챙겨보자.&lt;/p&gt;
-&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
-&lt;li&gt;&lt;code&gt;bigfoot.js&lt;/code&gt;를 구현하는 자바 스크립트&lt;/li&gt;
-&lt;li&gt;해당 자바스크립트를 이 공간이 사용하고 있는 Hugo framework에 배치하기&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;이 두가지만 얼추 해결되면 될 듯 싶었다. 어제 밤에 딱 10분 검색해서 찾아냈다.&lt;a href=&#34;#fn1&#34; class=&#34;footnoteRef&#34; id=&#34;fnref1&#34;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;how-to-installsource&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;How to install&lt;a href=&#34;#fn2&#34; class=&#34;footnoteRef&#34; id=&#34;fnref2&#34;&gt;&lt;sup&gt;2&lt;/sup&gt;&lt;/a&gt;&lt;/h1&gt;
-&lt;p&gt;원래 &lt;code&gt;bigfoot.js&lt;/code&gt;는 ’점 세개’가 나오는 형태여서 숫자로 표기되는 전통적인 각주와는 어울리지 않는다. &lt;code&gt;bigfoot.js&lt;/code&gt;는 보다 간략한 형태의 &lt;code&gt;barefoot.min.js&lt;/code&gt;도 제공한다. 이 녀석을 붙여보기로 하자.&lt;/p&gt;
-&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/philgruneich/barefoot&#34;&gt;barefoot github&lt;/a&gt;에서 &lt;code&gt;barefoot.min.js&lt;/code&gt;, &lt;code&gt;barefoot.min.css&lt;/code&gt;를 다운 받는다.&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;barefoot.min.js&lt;/code&gt;을 &lt;code&gt;static/js&lt;/code&gt;에 넣어준다. 혹시 &lt;code&gt;static&lt;/code&gt; 디렉토리 안에 &lt;code&gt;js&lt;/code&gt;가 없다면 만들면 된다.&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;barefoot.min.css&lt;/code&gt;을 &lt;code&gt;static/css&lt;/code&gt;에 넣어준다.&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;themes/[YOUR_THEME_NAME]/layouts/partials/footer.html&lt;/code&gt;을 열어서 아래 코드를 적절한 위치에 삽입한다.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;pre&gt;&lt;code&gt;&amp;lt;link rel=&amp;quot;stylesheet&amp;quot; href=&amp;quot;/css/barefoot.min.css&amp;quot;&amp;gt;
-
-&amp;lt;script src=&amp;quot;/js/barefoot.min.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
-&amp;lt;script&amp;gt;
-  lf = new BareFoot();
-  lf.init();
-&amp;lt;/script&amp;gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;div id=&#34;how-to-use&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;How to use&lt;/h1&gt;
-&lt;p&gt;그냥 markdown에 각주 쓰듯이 쓰면 되겠다.&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;This is barefoot![^baref]
-
-[^baref]: 이것은 베어풋으로 붙인 각주입니다! &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;This is barefoot!&lt;a href=&#34;#fn3&#34; class=&#34;footnoteRef&#34; id=&#34;fnref3&#34;&gt;&lt;sup&gt;3&lt;/sup&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;footnotes&#34;&gt;
-&lt;hr /&gt;
-&lt;ol&gt;
-&lt;li id=&#34;fn1&#34;&gt;&lt;p&gt;부끄럽지만 몹시 뿌듯하고 기뻤다! ㅎ&lt;a href=&#34;#fnref1&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li id=&#34;fn2&#34;&gt;&lt;p&gt;이 내용의 출처는 &lt;a href=&#34;http://egeiro.net/post/barefoot-notes/&#34;&gt;여기&lt;/a&gt;다.&lt;a href=&#34;#fnref2&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li id=&#34;fn3&#34;&gt;&lt;p&gt;이것은 베어풋으로 붙인 각주입니다!&lt;a href=&#34;#fnref3&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;
-</description>
+      <description>BIGFOOT!웹서핑을 하다가 이 녀석을 보고야 말았다, bigfoot.js. 웹 문서가 고도화된 지금 인터넷으로 노출하는 문서에서 표현의 방법으로 답답함을 느끼는 일은 거의 없을 터다. 표, 수식, 그림 등을 동원해 소통할 때 pdf 등의 프린트 기반 문서들과 비교해 보다 기발하고 뛰어난 사례들도 많다. 당장 이 문서가 작성되고 있는 markdown이 그 대표 사례다.
+어쨌든 왠만한 것들이 쉽게 된다는 걸 알게 되면, 작은 차이들이 눈에 들어오기 마련이다. 각주 처리만 좀 더 ‘멋지게’ 되면 좋겠는데, 싶었다.</description>
     </item>
     
     <item>
@@ -67,152 +27,9 @@
       <pubDate>Sun, 14 Feb 2016 00:00:00 +0000</pubDate>
       
       <guid>/post/2016/02/14/a-plain-markdown-post/</guid>
-      <description>
-
-&lt;p&gt;This sample post is mainly for &lt;a href=&#34;https://github.com/rstudio/blogdown&#34;&gt;&lt;strong&gt;blogdown&lt;/strong&gt;&lt;/a&gt; users. If you do not use &lt;strong&gt;blogdown&lt;/strong&gt;, you can skip the first section.&lt;/p&gt;
-
-&lt;h1 id=&#34;1-markdown-or-r-markdown&#34;&gt;1. Markdown or R Markdown&lt;/h1&gt;
-
-&lt;p&gt;This is a post written in plain Markdown (&lt;code&gt;*.md&lt;/code&gt;) instead of R Markdown (&lt;code&gt;*.Rmd&lt;/code&gt;). The major differences are:&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;You cannot run any R code in a plain Markdown document, whereas in an R Markdown document, you can embed R code chunks (&lt;code&gt;```{r}&lt;/code&gt;);&lt;/li&gt;
-&lt;li&gt;A plain Markdown post is rendered through &lt;a href=&#34;https://gohugo.io/overview/configuration/&#34;&gt;Blackfriday&lt;/a&gt;, and an R Markdown document is compiled by &lt;a href=&#34;http://rmarkdown.rstudio.com&#34;&gt;&lt;strong&gt;rmarkdown&lt;/strong&gt;&lt;/a&gt; and &lt;a href=&#34;http://pandoc.org&#34;&gt;Pandoc&lt;/a&gt;.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;There are many differences in syntax between Blackfriday&amp;rsquo;s Markdown and Pandoc&amp;rsquo;s Markdown. For example, you can write a task list with Blackfriday but not with Pandoc:&lt;/p&gt;
-
-&lt;ul class=&#34;task-list&#34;&gt;
-&lt;li&gt;&lt;input type=&#34;checkbox&#34; checked disabled class=&#34;task-list-item&#34;&gt; Write an R package.&lt;/li&gt;
-&lt;li&gt;&lt;input type=&#34;checkbox&#34; disabled class=&#34;task-list-item&#34;&gt; Write a book.&lt;/li&gt;
-&lt;li&gt;&lt;input type=&#34;checkbox&#34; disabled class=&#34;task-list-item&#34;&gt; &amp;hellip;&lt;/li&gt;
-&lt;li&gt;&lt;input type=&#34;checkbox&#34; disabled class=&#34;task-list-item&#34;&gt; Profit!&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Similarly, Blackfriday does not support LaTeX math and Pandoc does. I have added the MathJax support to this theme (&lt;a href=&#34;https://github.com/yihui/hugo-xmin&#34;&gt;hugo-xmin&lt;/a&gt;) but there is a caveat for plain Markdown posts: you have to include math expressions in a pair of backticks (inline: &lt;code&gt;`$ $`&lt;/code&gt;; display style: &lt;code&gt;`$$ $$`&lt;/code&gt;), e.g., &lt;code&gt;$S_n = \sum_{i=1}^n X_i$&lt;/code&gt;.&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:This-is-because&#34;&gt;&lt;a rel=&#34;footnote&#34; href=&#34;#fn:This-is-because&#34;&gt;1&lt;/a&gt;&lt;/sup&gt; For R Markdown posts, you do not need the backticks, because Pandoc can identify and process math expressions.&lt;/p&gt;
-
-&lt;p&gt;When creating a new post, you have to decide whether the post format is Markdown or R Markdown, and this can be done via the &lt;code&gt;rmd&lt;/code&gt; argument of the function &lt;code&gt;blogdown::new_post()&lt;/code&gt;, e.g.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;blogdown::new_post(&amp;quot;Post Title&amp;quot;, rmd = FALSE)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Actually I recommend you to use the RStudio addin &amp;ldquo;New Post&amp;rdquo; instead:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;https://bookdown.org/yihui/blogdown/images/new-post.png&#34; alt=&#34;RStudio addin New Post&#34; /&gt;&lt;/p&gt;
-
-&lt;h1 id=&#34;2-sample-text&#34;&gt;2. Sample Text&lt;/h1&gt;
-
-&lt;h2 id=&#34;second-level-header&#34;&gt;Second-level header&lt;/h2&gt;
-
-&lt;h3 id=&#34;third-level-header&#34;&gt;Third-level header&lt;/h3&gt;
-
-&lt;h4 id=&#34;fourth-level-header&#34;&gt;Fourth-level header&lt;/h4&gt;
-
-&lt;p&gt;A paragraph (with a footnote):&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Lorem ipsum&lt;/strong&gt; dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore &lt;em&gt;magna aliqua&lt;/em&gt;. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:I-m-sure-you-are&#34;&gt;&lt;a rel=&#34;footnote&#34; href=&#34;#fn:I-m-sure-you-are&#34;&gt;2&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
-
-&lt;p&gt;A blockquote (a gray bar at the left and lightgray background):&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;Quisque mattis volutpat lorem vitae feugiat. Praesent porta est quis porta imperdiet. Aenean porta, mi non cursus volutpat, mi est mollis libero, id suscipit orci urna a augue. In fringilla euismod lacus, vitae tristique massa ultricies vitae. Mauris accumsan ligula tristique, viverra nulla sed, porta sapien. Vestibulum facilisis nec nisl blandit convallis. Maecenas venenatis porta malesuada. Ut ac erat tortor. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nulla sodales quam sit amet tincidunt egestas. In et turpis at orci vestibulum ullamcorper. Aliquam sed ante libero. Sed hendrerit arcu lacus.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Some code (with a drop-shadow effect):&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-js&#34;&gt;(function() {
-  var quotes = document.getElementsByTagName(&#39;blockquote&#39;), i, quote;
-  for (i = 0; i &amp;lt; quotes.length; i++) {
-    quote = quotes[i];
-    var n = quote.children.length;
-    if (n === 0) continue;
-    var el = quote.children[n - 1];
-    if (!el || el.nodeName !== &#39;P&#39;) continue;
-    // right-align a quote footer if it starts with ---
-    if (/^—/.test(el.textContent)) el.style.textAlign = &#39;right&#39;;
-  }
-})();
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;A table (centered by default):&lt;/p&gt;
-
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th align=&#34;right&#34;&gt;Sepal.Length&lt;/th&gt;
-&lt;th align=&#34;right&#34;&gt;Sepal.Width&lt;/th&gt;
-&lt;th align=&#34;right&#34;&gt;Petal.Length&lt;/th&gt;
-&lt;th align=&#34;right&#34;&gt;Petal.Width&lt;/th&gt;
-&lt;th align=&#34;left&#34;&gt;Species&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td align=&#34;right&#34;&gt;5.1&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;3.5&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;1.4&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;0.2&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;setosa&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td align=&#34;right&#34;&gt;4.9&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;3.0&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;1.4&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;0.2&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;setosa&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td align=&#34;right&#34;&gt;4.7&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;3.2&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;1.3&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;0.2&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;setosa&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td align=&#34;right&#34;&gt;4.6&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;3.1&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;1.5&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;0.2&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;setosa&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td align=&#34;right&#34;&gt;5.0&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;3.6&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;1.4&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;0.2&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;setosa&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td align=&#34;right&#34;&gt;5.4&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;3.9&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;1.7&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;0.4&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;setosa&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;An image (automatically centered when it is appropriate):&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;https://slides.yihui.name/gif/happy-elmo.gif&#34; alt=&#34;Happy Elmo&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Looks good?&lt;/p&gt;
-&lt;div class=&#34;footnotes&#34;&gt;
-
-&lt;hr /&gt;
-
-&lt;ol&gt;
-&lt;li id=&#34;fn:This-is-because&#34;&gt;This is because we have to protect the math expressions from being interpreted as Markdown. &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:This-is-because&#34;&gt;↩&lt;/a&gt;&lt;/li&gt;
-&lt;li id=&#34;fn:I-m-sure-you-are&#34;&gt;I&amp;rsquo;m sure you are bored by the text here. &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:I-m-sure-you-are&#34;&gt;↩&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;
-</description>
+      <description>This sample post is mainly for blogdown users. If you do not use blogdown, you can skip the first section.
+1. Markdown or R Markdown This is a post written in plain Markdown (*.md) instead of R Markdown (*.Rmd). The major differences are:
+ You cannot run any R code in a plain Markdown document, whereas in an R Markdown document, you can embed R code chunks (```{r}); A plain Markdown post is rendered through Blackfriday, and an R Markdown document is compiled by rmarkdown and Pandoc.</description>
     </item>
     
   </channel>

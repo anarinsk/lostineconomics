@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>/note/2017/11/15/magrittr---ceci-nest-pas-un-pipe./</loc>
+    <lastmod>2017-11-15T00:00:00+00:00</lastmod>
+  </url>
   
   <url>
     <loc>/post/2017/11/03/sf-package-with-ggplot2/</loc>
@@ -81,33 +87,6 @@
   </url>
   
   <url>
-    <loc>/categories/</loc>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/</loc>
-    <lastmod>2017-11-03T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/note/</loc>
-    <lastmod>2017-11-01T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/post/</loc>
-    <lastmod>2017-11-03T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/</loc>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>/categories/ams/</loc>
     <lastmod>2017-10-18T00:00:00+00:00</lastmod>
     <priority>0</priority>
@@ -122,6 +101,12 @@
   <url>
     <loc>/tags/blogdown/</loc>
     <lastmod>2017-09-19T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/categories/</loc>
+    <lastmod>2017-10-18T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -198,6 +183,11 @@
   </url>
   
   <url>
+    <loc>/</loc>
+    <lastmod>2017-11-15T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/tags/hugo/</loc>
     <lastmod>2017-11-01T00:00:00+00:00</lastmod>
     <priority>0</priority>
@@ -222,7 +212,19 @@
   </url>
   
   <url>
+    <loc>/tags/magritt/</loc>
+    <lastmod>2017-11-15T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>/tags/markdown/</loc>
+    <lastmod>2016-02-14T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/mathjax/</loc>
     <lastmod>2016-02-14T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
@@ -240,20 +242,32 @@
   </url>
   
   <url>
-    <loc>/tags/mathjax/</loc>
-    <lastmod>2016-02-14T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>/tags/modelling/</loc>
     <lastmod>2017-10-30T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
+    <loc>/note/</loc>
+    <lastmod>2017-11-15T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>/tags/pandoc/</loc>
     <lastmod>2016-02-14T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/pipe/</loc>
+    <lastmod>2017-11-15T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/post/</loc>
+    <lastmod>2017-11-03T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -283,7 +297,7 @@
   
   <url>
     <loc>/categories/r/</loc>
-    <lastmod>2017-11-03T00:00:00+00:00</lastmod>
+    <lastmod>2017-11-15T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -306,6 +320,12 @@
   </url>
   
   <url>
+    <loc>/tags/rstudio/</loc>
+    <lastmod>2016-02-14T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>/tags/regression/</loc>
     <lastmod>2017-10-30T00:00:00+00:00</lastmod>
     <priority>0</priority>
@@ -324,14 +344,14 @@
   </url>
   
   <url>
-    <loc>/tags/rstudio/</loc>
-    <lastmod>2016-02-14T00:00:00+00:00</lastmod>
+    <loc>/tags/self-taught/</loc>
+    <lastmod>2017-09-18T21:13:14-05:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/tags/self-taught/</loc>
-    <lastmod>2017-09-18T21:13:14-05:00</lastmod>
+    <loc>/tags/</loc>
+    <lastmod>2017-11-01T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
