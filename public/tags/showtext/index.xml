@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Showtext on lost in economics</title>
+    <link>/tags/showtext/</link>
+    <description>Recent content in Showtext on lost in economics</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 16 Nov 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/showtext/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Use your font</title>
+      <link>/note/2017/11/16/use-your-font/</link>
+      <pubDate>Thu, 16 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/note/2017/11/16/use-your-font/</guid>
+      <description>pre.bluebox {background-color: #aabbff !important;}pre.redbox {background-color: #ffbbbb !important;}Non-alphabetical폰트 문제는 쉬운 듯 어려운 문제다. 그냥 OS에서 폰트 깔아서 쓰듯 쓸 수 있으면 좋으련만 그렇게 쉽게 쓸 수는 없다. R에서 그래프를 그려본 사람이라면, 어 “왜 (그래프에서) 폰트가 네모박스로 나와”하는 상황을 한번은 마주쳐 봤을 것이다. 이는 R과 RStudio가 OS에서 끌어다 쓰는 부분이 제한적이기 때문에 생기는 일이다. 그렇다고, 못생긴 굴림체와 계속 살 수는 없는 노릇이니 방법을 찾긴 해야 한다.</description>
+    </item>
+    
+  </channel>
+</rss>
