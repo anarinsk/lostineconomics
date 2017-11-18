@@ -2,7 +2,7 @@
 title: "Magrittr - Ceci n'est pas un pipe."
 author: "Junsok Huhh"
 date: 2017-11-15
-tags: ['pipe', 'magrittr', 'R', 'R-pacakge']
+tags: ['pipe', 'magrittr', 'R', 'R-package']
 categories: ['coding'] 
 ---
 

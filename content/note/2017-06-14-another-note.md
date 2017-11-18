@@ -3,7 +3,7 @@ title: Another Note on A blogdown Tutorial
 author: Yihui Xie
 date: '2017-06-14'
 categories:
-  - Example
+  - documentation
 tags:
   - Tutorial
 slug: another-note

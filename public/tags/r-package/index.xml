@@ -104,6 +104,132 @@ ggsave(&amp;quot;YOUR_FILENAME.png&amp;quot;, p, width = 7, height = 4, dpi = 96
     </item>
     
     <item>
+      <title>Magrittr - Ceci n&#39;est pas un pipe.</title>
+      <link>/note/2017/11/15/magrittr---ceci-nest-pas-un-pipe./</link>
+      <pubDate>Wed, 15 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/note/2017/11/15/magrittr---ceci-nest-pas-un-pipe./</guid>
+      <description>&lt;style&gt;
+pre.bluebox {
+    background-color: #aabbff !important;
+}
+pre.redbox {
+    background-color: #ffbbbb !important;
+}
+&lt;/style&gt;
+&lt;div id=&#34;magritt&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Magritt?&lt;/h1&gt;
+&lt;center&gt;
+&lt;img src=&#34;https://upload.wikimedia.org/wikipedia/en/b/b9/MagrittePipe.jpg&#34; /&gt; &lt;span class=&#34;math inline&#34;&gt;\(~~\)&lt;/span&gt; &lt;img src=&#34;https://www.rstudio.com/wp-content/uploads/2014/04/magrittr-200x232.png&#34; /&gt;
+&lt;/center&gt;
+&lt;p&gt;magrittr, R 패키지 중에서 아마도 가장 재미있는 이름이 아닐까? 왜 마그리뜨일까? magrittr 패키지는 명령어 처리를 쭉 이어줄 수 있게 해준다. 즉, 파이프라인(pipeline)을 만들어주는 것이다. 이걸 파이프 담배와 연결시켜 “이것은 파이프가 아니다”라는 마그리뜨의 그림까지 연결된다. 우리가 만드는 것은 파이프라인이니 magrittr은 정말로 파이프는 아니다!&lt;/p&gt;
+&lt;p&gt;이렇게 쭉 연결하는 것이 왜 좋을까? 글은 만연체가 좋지 않지만, 코딩에서 이렇게 파이프라인을 만드는 습관은 (황당할 정도로 길지 않은 이상) 일관된 형태의 작업을 가능하게 해준다. 물 흐르듯 흐르며 코딩한다, 라는 느낌을 떠올리면 좋겠다. 아울러 블필요한 data.frame이나 기타 오브젝트를 만들지 않아도 된다. 거두 절미하고 일단 패키지부터 태우자.&lt;a href=&#34;#fn1&#34; class=&#34;footnoteRef&#34; id=&#34;fnref1&#34;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;#devtools::install_github(&amp;quot;smbache/magrittr&amp;quot;) # if lastest release is needed
+library(&amp;#39;tidyverse&amp;#39;)
+library(&amp;#39;magrittr&amp;#39;)&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;basic&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Basic&lt;/h1&gt;
+&lt;p&gt;magrittr 파이프라이닝 기본 원칙은 앞에서 주어진 혹은 계산된 결과가 뒤에 오는 명령어의 첫번째 인자argument로 들어가는 것이다. 즉, 좌변(lhs)의 내용을 우변(rhs)의 최초 인자로 던져주는 것이라고 보면 된다. 예를 보는 편이 빠르겠다.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;iris %&amp;gt;% head(10)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##    Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+## 1           5.1         3.5          1.4         0.2  setosa
+## 2           4.9         3.0          1.4         0.2  setosa
+## 3           4.7         3.2          1.3         0.2  setosa
+## 4           4.6         3.1          1.5         0.2  setosa
+## 5           5.0         3.6          1.4         0.2  setosa
+## 6           5.4         3.9          1.7         0.4  setosa
+## 7           4.6         3.4          1.4         0.3  setosa
+## 8           5.0         3.4          1.5         0.2  setosa
+## 9           4.4         2.9          1.4         0.2  setosa
+## 10          4.9         3.1          1.5         0.1  setosa&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;앞서의 내용은 보통 &lt;code&gt;head(iris, 10)&lt;/code&gt;라고 쓴다. 파이프라이닝은 두가지로 도움이 된다. 말의 어순을 떠올리면 좋겠다. “&lt;code&gt;iris&lt;/code&gt;라는 데이터의 앞쪽 10개를 출력해.” 앞서의 명령을 말로 할 수 있다면 이렇게 말할 것이다. 하지만, 코딩은 “앞쪽의 &lt;code&gt;iris&lt;/code&gt;의 10개” 이런 식으로 하고 있다. 뭔가 버벅대는 느낌 아닌가? &lt;code&gt;()&lt;/code&gt;를 쓰게 되면 적용할 명령(함수)을 먼저 생각하고 이후에 적용 대상(데이터, 변수, 객체 등등)을 생각하게 된다. 말로 하는 명령처럼 코딩하는게 보다 편리하지 않을까? 데이터를 먼저 생각하고 여기 적용할 방법을 따지는 게 생각 혹은 작업의 흐름상 자연스럽다. 두번째, 디버깅을 해본 분들을 알겠지만, &lt;code&gt;()&lt;/code&gt;가 계속 이어질 경우 열림 괄호와 닫힘 괄호를 잘못 쓸 가능성이 생각보다 높다. magrittr을 이용하면 이런 귀찮은 문제가 최소화된다.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;where-to-put-argument&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Where to put argument&lt;/h1&gt;
+&lt;p&gt;파이프라인에서 lhs에 있는 것은 뒤 명령어의 첫번째 인자로만 적용되어야 할까? 만일 &lt;code&gt;x %&amp;gt;% f(y,x)&lt;/code&gt;라는 스타일로 적용하고 싶다면? 물론 가능하다. 이떄는 닷(&lt;code&gt;.&lt;/code&gt;)을 사용할 수 있다.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;10 %&amp;gt;% head(iris, .)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##    Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+## 1           5.1         3.5          1.4         0.2  setosa
+## 2           4.9         3.0          1.4         0.2  setosa
+## 3           4.7         3.2          1.3         0.2  setosa
+## 4           4.6         3.1          1.5         0.2  setosa
+## 5           5.0         3.6          1.4         0.2  setosa
+## 6           5.4         3.9          1.7         0.4  setosa
+## 7           4.6         3.4          1.4         0.3  setosa
+## 8           5.0         3.4          1.5         0.2  setosa
+## 9           4.4         2.9          1.4         0.2  setosa
+## 10          4.9         3.1          1.5         0.1  setosa&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;여기서 주의할 사항 하나 짚고 가겠다. 닷(&lt;code&gt;.&lt;/code&gt;)을 지정할 때 앞의 예처럼 단순한 형태면 상관없다. 다만, 닷(&lt;code&gt;.&lt;/code&gt;)이 다른 또다른 명령에 앞뒤로 다시 걸치게 되면 (영어로 하면 nested), 원래 형태 즉 lhs가 첫번째 인자로 강제 인식된다. 이점을 이해하지 못하면 이해할 수 없는 에러와 마주치거나 잘못된 결과를 얻게 된다. 내가 이걸 몰라서 낭비한 시간을 떠올리면 눈물이 앞을 가린다. 두가지 사례를 보자. 숫자가 주어졌을 때, 이에 해당하는 순서의 알파벳을 찾는 것이 목적이다.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;sample(1:10) %&amp;gt;% paste0(LETTERS[.])&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##  [1] &amp;quot;7G&amp;quot;  &amp;quot;10J&amp;quot; &amp;quot;9I&amp;quot;  &amp;quot;2B&amp;quot;  &amp;quot;3C&amp;quot;  &amp;quot;4D&amp;quot;  &amp;quot;6F&amp;quot;  &amp;quot;8H&amp;quot;  &amp;quot;1A&amp;quot;  &amp;quot;5E&amp;quot;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;보는 바대로 숫자에 알파벳이 따라 붙었어 있다. 이는 &lt;code&gt;.&lt;/code&gt;이 &lt;code&gt;LETTERS&lt;/code&gt;의 인자로 활용되었기 때문이다. 그래서, lhs의 인자를 최초의 투입으로 보고 위와 같은 결과를 만든 것이다. 내가 원하는 결과물이 아니다.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;sample(1:10) %&amp;gt;% { paste0(LETTERS[.]) } &lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##  [1] &amp;quot;H&amp;quot; &amp;quot;C&amp;quot; &amp;quot;D&amp;quot; &amp;quot;J&amp;quot; &amp;quot;F&amp;quot; &amp;quot;B&amp;quot; &amp;quot;E&amp;quot; &amp;quot;I&amp;quot; &amp;quot;A&amp;quot; &amp;quot;G&amp;quot;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;다른 예를 하나 더 보자.&lt;a href=&#34;#fn2&#34; class=&#34;footnoteRef&#34; id=&#34;fnref2&#34;&gt;&lt;sup&gt;2&lt;/sup&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;tibble(
+  type = c(&amp;quot;Fast&amp;quot;, &amp;quot;Slow&amp;quot;, &amp;quot;Fast&amp;quot;, &amp;quot;Fast&amp;quot;, &amp;quot;Slow&amp;quot;),
+  colour = c(&amp;quot;Blue&amp;quot;, &amp;quot;Blue&amp;quot;, &amp;quot;Red&amp;quot;, &amp;quot;Red&amp;quot;, &amp;quot;Red&amp;quot;)
+) %&amp;gt;% table(.$type, .$colour)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;redbox&#34;&gt;&lt;code&gt;Error in sort.list(y) : &amp;#39;x&amp;#39; must be atomic for &amp;#39;sort.list&amp;#39; Have you called &amp;#39;sort&amp;#39; on a list?&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;뭐가 잘못되었을까? rhs에 들어간 &lt;code&gt;.&lt;/code&gt;은 &lt;code&gt;.$type&lt;/code&gt;, &lt;code&gt;.$colour&lt;/code&gt; 식으로 다른 명령어로 자신을 넘긴다. 이 경우는 lhs가 table의 첫번째 인자로 인식된다. &lt;code&gt;table(x, x$type, x$colour)&lt;/code&gt;가 되어 에러를 유발한다. 이를 해결하기 위해서는 파이프를 끊거나 아니면 &lt;code&gt;{}&lt;/code&gt;를 해주면 된다.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;tibble(
+  type = c(&amp;quot;Fast&amp;quot;, &amp;quot;Slow&amp;quot;, &amp;quot;Fast&amp;quot;, &amp;quot;Fast&amp;quot;, &amp;quot;Slow&amp;quot;),
+  colour = c(&amp;quot;Blue&amp;quot;, &amp;quot;Blue&amp;quot;, &amp;quot;Red&amp;quot;, &amp;quot;Red&amp;quot;, &amp;quot;Red&amp;quot;)
+) %&amp;gt;% { table(.$type, .$colour) }&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##       
+##        Blue Red
+##   Fast    1   2
+##   Slow    1   1&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;code&gt;{}&lt;/code&gt;로 감싸는 진짜 의미는 사실 lhs의 인자를 받아서 새롭게 함수를 구성하라는 것이다. 때문에 더 복잡한 형태로 구성할 수도 있다. magrittr에서는 이를 “lambda expression”이라 부른다.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;iris %&amp;gt;% 
+{
+  size &amp;lt;- sample(1:10, size = 1)
+  rbind(head(., size), tail(., size))
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##     Sepal.Length Sepal.Width Petal.Length Petal.Width   Species
+## 1            5.1         3.5          1.4         0.2    setosa
+## 150          5.9         3.0          5.1         1.8 virginica&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;tee-and-exposition&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Tee and exposition&lt;/h1&gt;
+&lt;p&gt;magrittr이 지원하는 기억할 만한 두 개의 파이프라인 명령은 Tee와 Exposition이다.&lt;/p&gt;
+&lt;div id=&#34;tee&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Tee&lt;/h2&gt;
+&lt;p&gt;Tee는 파이프라인을 끊어야 하는 상황을 수습해준다. &lt;code&gt;%T&amp;gt;%&lt;/code&gt;의 lhs는 일단 &lt;code&gt;plot&lt;/code&gt;으로 던져진다. 하지만, plot 객체는 다시 계산에 동원될 수 없다. 이 녀석은 그림 객체이므로 계산에 동원되는 것 자체가 말이 안된다. 이럴 경우 파이프가 끊어질 수 밖에 없다. &lt;code&gt;%T&amp;gt;%&lt;/code&gt;의 경우는 이러한 side effect(그림 등등)가 발생하는 발생한 후에 다시 원래 lhs로 복귀할 수 있게 해준다. &lt;code&gt;plot&lt;/code&gt; 뒤에 붙은 파이프라인의 경우 &lt;code&gt;%T&amp;gt;%&lt;/code&gt;앞의 lhs를 인자로 받는다.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;rnorm(200) %&amp;gt;%
+matrix(ncol = 2) %T&amp;gt;%
+plot %&amp;gt;% # plot usually does not return anything.
+colSums&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/note/2017-11-15-magrittr_files/figure-html/unnamed-chunk-9-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;## [1]  5.095882 -5.053791&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;exposition&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Exposition&lt;/h2&gt;
+&lt;p&gt;Exposition &lt;code&gt;%$%&lt;/code&gt;은 쉽게 말해 native R의 &lt;code&gt;with&lt;/code&gt; 명령어가 파이프 속에 들어 있다고 생각하면 된다.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;iris %&amp;gt;%
+  subset(Sepal.Length &amp;gt; mean(Sepal.Length)) %$%
+  cor(Sepal.Length, Sepal.Width)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 0.3361992&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;첫번째 파이프까지 끝나고 나면 &lt;code&gt;subset&lt;/code&gt;을 통해 data.frame이 생성된다. 이 데이터 프레임 내의 두 변수의 상관계수를 찾고자 한다. 위의 예를 그냥 통상적인 &lt;code&gt;%&amp;gt;%&lt;/code&gt;으로만 쓰고 싶다면 cor에 아래와 같이 써주면 된다.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;iris %&amp;gt;%
+  subset(Sepal.Length &amp;gt; mean(Sepal.Length)) %&amp;gt;%
+  { cor(.$Sepal.Length, .$Sepal.Width) }&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 0.3361992&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;code&gt;%$%&lt;/code&gt;는 위의 작업을 보다 직관적인 형태로 수행한다.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;footnotes&#34;&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id=&#34;fn1&#34;&gt;&lt;p&gt;tidyverse가 magrittr을 포괄하고 있는데 왜 두 번 로딩을 할까? 만일 앞서의 &lt;code&gt;install_github&lt;/code&gt;를 통해서 최신 패키지를 설치했다면 이 녀석은 tidyverse에 통합된 녀석과 다를 수도 있다. 최신 기능을 활용하기 위해서는 이렇게 순서를 다르게 패키지를 로딩하면 된다.&lt;a href=&#34;#fnref1&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&#34;fn2&#34;&gt;&lt;p&gt;출처는 &lt;a href=&#34;https://stackoverflow.com/questions/44528173/using-table-in-dplyr-chain&#34;&gt;여기&lt;/a&gt;다.&lt;a href=&#34;#fnref2&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
       <title>sf package with ggplot2</title>
       <link>/post/2017/11/03/sf-package-with-ggplot2/</link>
       <pubDate>Fri, 03 Nov 2017 00:00:00 +0000</pubDate>
