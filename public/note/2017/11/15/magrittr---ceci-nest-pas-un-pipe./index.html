@@ -83,10 +83,10 @@ library(&#39;magrittr&#39;)</code></pre>
 ## 10          4.9         3.1          1.5         0.1  setosa</code></pre>
 <p>여기서 주의할 사항 하나 짚고 가겠다. 닷(<code>.</code>)을 지정할 때 앞의 예처럼 단순한 형태면 상관없다. 다만, 닷(<code>.</code>)이 다른 또다른 명령에 앞뒤로 다시 걸치게 되면 (영어로 하면 nested), 원래 형태 즉 lhs가 첫번째 인자로 강제 인식된다. 이점을 이해하지 못하면 이해할 수 없는 에러와 마주치거나 잘못된 결과를 얻게 된다. 내가 이걸 몰라서 낭비한 시간을 떠올리면 눈물이 앞을 가린다. 두가지 사례를 보자. 숫자가 주어졌을 때, 이에 해당하는 순서의 알파벳을 찾는 것이 목적이다.</p>
 <pre class="r"><code>sample(1:10) %&gt;% paste0(LETTERS[.])</code></pre>
-<pre><code>##  [1] &quot;4D&quot;  &quot;6F&quot;  &quot;10J&quot; &quot;1A&quot;  &quot;9I&quot;  &quot;7G&quot;  &quot;2B&quot;  &quot;3C&quot;  &quot;5E&quot;  &quot;8H&quot;</code></pre>
+<pre><code>##  [1] &quot;7G&quot;  &quot;8H&quot;  &quot;9I&quot;  &quot;4D&quot;  &quot;1A&quot;  &quot;3C&quot;  &quot;2B&quot;  &quot;5E&quot;  &quot;6F&quot;  &quot;10J&quot;</code></pre>
 <p>보는 바대로 숫자에 알파벳이 따라 붙었어 있다. 이는 <code>.</code>이 <code>LETTERS</code>의 인자로 활용되었기 때문이다. 그래서, lhs의 인자를 최초의 투입으로 보고 위와 같은 결과를 만든 것이다. 내가 원하는 결과물이 아니다.</p>
 <pre class="r"><code>sample(1:10) %&gt;% { paste0(LETTERS[.]) } </code></pre>
-<pre><code>##  [1] &quot;I&quot; &quot;H&quot; &quot;F&quot; &quot;A&quot; &quot;E&quot; &quot;J&quot; &quot;C&quot; &quot;G&quot; &quot;D&quot; &quot;B&quot;</code></pre>
+<pre><code>##  [1] &quot;I&quot; &quot;G&quot; &quot;F&quot; &quot;D&quot; &quot;C&quot; &quot;B&quot; &quot;J&quot; &quot;A&quot; &quot;H&quot; &quot;E&quot;</code></pre>
 <p>다른 예를 하나 더 보자.<a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a></p>
 <pre><code>tibble(
   type = c(&quot;Fast&quot;, &quot;Slow&quot;, &quot;Fast&quot;, &quot;Fast&quot;, &quot;Slow&quot;),
@@ -117,8 +117,6 @@ library(&#39;magrittr&#39;)</code></pre>
 ## 6            5.4         3.9          1.7         0.4    setosa
 ## 7            4.6         3.4          1.4         0.3    setosa
 ## 8            5.0         3.4          1.5         0.2    setosa
-## 9            4.4         2.9          1.4         0.2    setosa
-## 142          6.9         3.1          5.1         2.3 virginica
 ## 143          5.8         2.7          5.1         1.9 virginica
 ## 144          6.8         3.2          5.9         2.3 virginica
 ## 145          6.7         3.3          5.7         2.5 virginica
@@ -139,7 +137,7 @@ matrix(ncol = 2) %T&gt;%
 plot %&gt;% # plot usually does not return anything.
 colSums</code></pre>
 <p><img src="/note/2017-11-15-magrittr_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
-<pre><code>## [1] -2.795563  8.529839</code></pre>
+<pre><code>## [1] 9.806001 6.628300</code></pre>
 </div>
 <div id="exposition" class="section level2">
 <h2>Exposition</h2>

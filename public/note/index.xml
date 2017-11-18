@@ -163,10 +163,10 @@ library(&amp;#39;magrittr&amp;#39;)&lt;/code&gt;&lt;/pre&gt;
 ## 10          4.9         3.1          1.5         0.1  setosa&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;여기서 주의할 사항 하나 짚고 가겠다. 닷(&lt;code&gt;.&lt;/code&gt;)을 지정할 때 앞의 예처럼 단순한 형태면 상관없다. 다만, 닷(&lt;code&gt;.&lt;/code&gt;)이 다른 또다른 명령에 앞뒤로 다시 걸치게 되면 (영어로 하면 nested), 원래 형태 즉 lhs가 첫번째 인자로 강제 인식된다. 이점을 이해하지 못하면 이해할 수 없는 에러와 마주치거나 잘못된 결과를 얻게 된다. 내가 이걸 몰라서 낭비한 시간을 떠올리면 눈물이 앞을 가린다. 두가지 사례를 보자. 숫자가 주어졌을 때, 이에 해당하는 순서의 알파벳을 찾는 것이 목적이다.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;sample(1:10) %&amp;gt;% paste0(LETTERS[.])&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;##  [1] &amp;quot;4D&amp;quot;  &amp;quot;6F&amp;quot;  &amp;quot;10J&amp;quot; &amp;quot;1A&amp;quot;  &amp;quot;9I&amp;quot;  &amp;quot;7G&amp;quot;  &amp;quot;2B&amp;quot;  &amp;quot;3C&amp;quot;  &amp;quot;5E&amp;quot;  &amp;quot;8H&amp;quot;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##  [1] &amp;quot;7G&amp;quot;  &amp;quot;8H&amp;quot;  &amp;quot;9I&amp;quot;  &amp;quot;4D&amp;quot;  &amp;quot;1A&amp;quot;  &amp;quot;3C&amp;quot;  &amp;quot;2B&amp;quot;  &amp;quot;5E&amp;quot;  &amp;quot;6F&amp;quot;  &amp;quot;10J&amp;quot;&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;보는 바대로 숫자에 알파벳이 따라 붙었어 있다. 이는 &lt;code&gt;.&lt;/code&gt;이 &lt;code&gt;LETTERS&lt;/code&gt;의 인자로 활용되었기 때문이다. 그래서, lhs의 인자를 최초의 투입으로 보고 위와 같은 결과를 만든 것이다. 내가 원하는 결과물이 아니다.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;sample(1:10) %&amp;gt;% { paste0(LETTERS[.]) } &lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;##  [1] &amp;quot;I&amp;quot; &amp;quot;H&amp;quot; &amp;quot;F&amp;quot; &amp;quot;A&amp;quot; &amp;quot;E&amp;quot; &amp;quot;J&amp;quot; &amp;quot;C&amp;quot; &amp;quot;G&amp;quot; &amp;quot;D&amp;quot; &amp;quot;B&amp;quot;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##  [1] &amp;quot;I&amp;quot; &amp;quot;G&amp;quot; &amp;quot;F&amp;quot; &amp;quot;D&amp;quot; &amp;quot;C&amp;quot; &amp;quot;B&amp;quot; &amp;quot;J&amp;quot; &amp;quot;A&amp;quot; &amp;quot;H&amp;quot; &amp;quot;E&amp;quot;&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;다른 예를 하나 더 보자.&lt;a href=&#34;#fn2&#34; class=&#34;footnoteRef&#34; id=&#34;fnref2&#34;&gt;&lt;sup&gt;2&lt;/sup&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;tibble(
   type = c(&amp;quot;Fast&amp;quot;, &amp;quot;Slow&amp;quot;, &amp;quot;Fast&amp;quot;, &amp;quot;Fast&amp;quot;, &amp;quot;Slow&amp;quot;),
@@ -197,8 +197,6 @@ library(&amp;#39;magrittr&amp;#39;)&lt;/code&gt;&lt;/pre&gt;
 ## 6            5.4         3.9          1.7         0.4    setosa
 ## 7            4.6         3.4          1.4         0.3    setosa
 ## 8            5.0         3.4          1.5         0.2    setosa
-## 9            4.4         2.9          1.4         0.2    setosa
-## 142          6.9         3.1          5.1         2.3 virginica
 ## 143          5.8         2.7          5.1         1.9 virginica
 ## 144          6.8         3.2          5.9         2.3 virginica
 ## 145          6.7         3.3          5.7         2.5 virginica
@@ -219,7 +217,7 @@ matrix(ncol = 2) %T&amp;gt;%
 plot %&amp;gt;% # plot usually does not return anything.
 colSums&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;img src=&#34;/note/2017-11-15-magrittr_files/figure-html/unnamed-chunk-9-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;## [1] -2.795563  8.529839&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 9.806001 6.628300&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;div id=&#34;exposition&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Exposition&lt;/h2&gt;

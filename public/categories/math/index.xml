@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>math on lost in economics</title>
+    <link>/categories/math/index.xml</link>
+    <description>Recent content in math on lost in economics</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <atom:link href="/categories/math/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>All dots are not created same...</title>
+      <link>/note/2017/10/18/all-dots-are-not-created-same.../</link>
+      <pubDate>Wed, 18 Oct 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/note/2017/10/18/all-dots-are-not-created-same.../</guid>
+      <description>&lt;div id=&#34;cdots-ldots-and-so-on&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;&lt;code&gt;\cdots&lt;/code&gt;, &lt;code&gt;\ldots&lt;/code&gt;, and so on&lt;/h1&gt;
+&lt;p&gt;&lt;span class=&#34;math inline&#34;&gt;\(\mathrm \LaTeX\)&lt;/span&gt;으로 조판하는 분들에게는 때때로 아리송한 사항들이 몇 개 있다. 작정하고 알아보기에는 사소하고 그렇다고 넘어가기엔 찜찜한, 뭐 그런 것들이다. 요즘은 무늬나마 공부하는 사람일 때 만큼 &lt;span class=&#34;math inline&#34;&gt;\(\mathrm \LaTeX\)&lt;/span&gt;을 쓰지 않는다. 그래도 가끔 쓰기는 해서일까? 이런 사소한 내용에 더 큰 궁금증을 느낄 때가 많다.&lt;/p&gt;
+&lt;p&gt;문득, &lt;code&gt;\cdots&lt;/code&gt;(&lt;span class=&#34;math inline&#34;&gt;\(\cdots\)&lt;/span&gt;)과 &lt;code&gt;\ldots&lt;/code&gt;(&lt;span class=&#34;math inline&#34;&gt;\(\ldots\)&lt;/span&gt;)은 어떻게 다르지, 라는 질문이 떠올랐다. 분명, 수학 기호의 일부이기 때문에 다르기는 다를텐데 말이다. 천조국수학회(AMS)에서 관리하는 수학 조판 패키지인 &lt;code&gt;amsmath&lt;/code&gt; 패키지의 &lt;a href=&#34;http://www.tug.org/teTeX/tetex-texmfdist/doc/latex/amsmath/amsldoc.pdf&#34;&gt;이용자 매뉴얼&lt;/a&gt;에 따르면 ’점 세개’로 표기되는 기호들은 명령어 차원에서 구분된다. 즉, 외견상 같은 모양을 하고 있더라도 구분해서 쓰라는 취지인 셈이다. AMS 패키지 매뉴얼은 현재 2.0이 최신 버전이고 만들어진 날짜는 2002년 2월 25일이다… (그간 이 매뉴얼을 꼼꼼하게 볼 생각을 하지 않았다니 ㅠㅠ)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;according-to-ams-package-guide&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;According to AMS package guide&lt;/h1&gt;
+&lt;p&gt;가이드 12쪽에 보면 ’점 세개’는 아래와 같이 다섯가지로 구분되어 있다.&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;&lt;code&gt;\dotsc&lt;/code&gt; for “dots with commas”&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;\dotsb&lt;/code&gt; for “dots with binary operators / relations”&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;\dotsm&lt;/code&gt; for “multiplication dots”&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;\dotsi&lt;/code&gt; for “dots with integrals”&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;\dotso&lt;/code&gt; for “other dots” (none of the above)&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;AMS 구분을 보고 무릎을 ‘탁’ 쳤다. 바로 이거야!&lt;/p&gt;
+&lt;p&gt;직접 조판해보자.&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;&lt;code&gt;\dotsc&lt;/code&gt;: &lt;span class=&#34;math inline&#34;&gt;\(A_1, A_2, \dotsc\)&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;\dotsb&lt;/code&gt;: &lt;span class=&#34;math inline&#34;&gt;\(A_1 + A_2 + \dotsb\)&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;\dotsm&lt;/code&gt;: &lt;span class=&#34;math inline&#34;&gt;\(A_1 A_2 \dotsm\)&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;\dotsi&lt;/code&gt;: &lt;span class=&#34;math inline&#34;&gt;\(\begin{aligned}  \int_{A_1} \int_{A_2} \dotsi  \end{aligned}\)&lt;/span&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;뭐 다 비슷비슷해 보일 수 있으나, 참으로 감동이 아닌가!&lt;/p&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Proof for &#39;Blotto-Gradiator&#39; game</title>
+      <link>/post/2017/10/18/proof-for-blotto-gradiator-game/</link>
+      <pubDate>Wed, 18 Oct 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2017/10/18/proof-for-blotto-gradiator-game/</guid>
+      <description>&lt;div id=&#34;blotto-gradiator-game&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Blotto ‘Gradiator’ Game&lt;/h1&gt;
+&lt;p&gt;하임 샤피라가 쓴 재미 중심의 게임이론 책 &lt;a href=&#34;http://www.aladin.co.kr/shop/wproduct.aspx?ItemId=110477619&#34;&gt;“n분의 1의 함정”&lt;/a&gt;을 읽고 있다. 책에서 흥미롭게 변경된 Blotto game을 접했다. 일단, &lt;a href=&#34;https://en.wikipedia.org/wiki/Blotto_game&#34;&gt;Blotto game&lt;/a&gt;에 대해서는 wiki링크를 참고하시고. 샤피라가 제시한 Blotto game을 살짝 변경한 “글레디에이터” 게임은 아래와 같다.&lt;/p&gt;
+&lt;p&gt;플레이어는 두 검투사 팀이다. 양 팀에 속한 선수가 하나씩 일대일로 싸우고 각자의 전투력에 비례해서 승패가 결정된다. 이긴 쪽은 진 쪽의 전투력을 흡수해 다시 소속 팀으로 복귀하고, 진 쪽은 그대로 사라진다. 일대일 승부가 이어지고, 먼저 검투사를 소진하는 쪽이 패배한다.&lt;/p&gt;
+&lt;p&gt;승률을 높이기 위해서 검투사를 어떤 순서로 배치하는 것이 최적의 전략일까? 답부터 미리 말하자면, 이 게임에서 최적의 전략은 없다. 팀 전투력의 합이 중요할 뿐, 출전 순서는 전혀 결과에 영향을 주지 않는다. 이와 비슷한 종류의 카드배틀 게임이 지닌 ’당연한 문법’을 부정하는 것처럼 보이기도 한다. 책에서 샤피라는 말로 증명했다. 자투리 시간에 차근차근 한번 생각해봤다.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;proof&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Proof&lt;/h1&gt;
+&lt;p&gt;검투사의 팀 &lt;span class=&#34;math inline&#34;&gt;\(G_X\)&lt;/span&gt;와 &lt;span class=&#34;math inline&#34;&gt;\(G_Y\)&lt;/span&gt;가 있다. 각 팀에 소속된 검투사의 집합을 다음과 같이 표시해보자.&lt;/p&gt;
+&lt;span class=&#34;math display&#34;&gt;\[\begin{align*}
+G_X &amp;amp; = \{ x_1, x_2, \dotsc, x_i \} \\
+G_Y &amp;amp; = \{ y_1, y_2, \dotsc, y_j \}
+\end{align*}\]&lt;/span&gt;
+&lt;p&gt;&lt;span class=&#34;math inline&#34;&gt;\(i\)&lt;/span&gt;와 &lt;span class=&#34;math inline&#34;&gt;\(j\)&lt;/span&gt;가 각기 줄어들지 않는 순서로 배치되어 있다고 보자. 이때, 최적 전략을 찾는 문제는 두 팀 각각 &lt;span class=&#34;math inline&#34;&gt;\(i\)&lt;/span&gt; 그리고 &lt;span class=&#34;math inline&#34;&gt;\(j\)&lt;/span&gt;까지 반복되지 않는 자연수를 나열하는 것이다. 이제 ‘최적 전략이 없다,’ 즉 오직 전투력의 합이 중요하다는 사실을 증명해보자. ’최적전략의 비존재’는 다음과 같이 나타낼 수 있다. &lt;span class=&#34;math inline&#34;&gt;\(X = \sum_{k=1}^{i} x_k\)&lt;/span&gt;, &lt;span class=&#34;math inline&#34;&gt;\(Y = \sum_{k=1}^{j} y_k\)&lt;/span&gt; 일 때, &lt;span class=&#34;math inline&#34;&gt;\(G_X\)&lt;/span&gt; 팀의 승률이&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
+\frac{X}{X+Y}
+\]&lt;/span&gt; 에 따라서 결정된다.&lt;/p&gt;
+&lt;p&gt;사실 ’비존재’는 Induction으로 쉽게 증명할 수 있다. 나 같은 둔재는 좀 오래 끄적거려야 했으나, 똘똘한 분들에게는 한주먹거리도 아닐 터다.&lt;/p&gt;
+&lt;div id=&#34;i-j-1&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;&lt;span class=&#34;math inline&#34;&gt;\(i = j = 1\)&lt;/span&gt;&lt;/h2&gt;
+&lt;p&gt;이 경우는 순서를 따질 수 없다. 따라서 ’비존재’가 성립한다.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;i-j-k&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;&lt;span class=&#34;math inline&#34;&gt;\(i + j = k\)&lt;/span&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;span class=&#34;math inline&#34;&gt;\(i\)&lt;/span&gt;와 &lt;span class=&#34;math inline&#34;&gt;\(j\)&lt;/span&gt;는 &lt;span class=&#34;math inline&#34;&gt;\(1\)&lt;/span&gt;보다 크거나 같고, &lt;span class=&#34;math inline&#34;&gt;\(k = 3, 4, \dotsc\)&lt;/span&gt; 라고 하자. Induction 원칙에 따라서 &lt;span class=&#34;math inline&#34;&gt;\(k\)&lt;/span&gt;일 때 ’비존재’가 성립한다고 가정하자. 이때, &lt;span class=&#34;math inline&#34;&gt;\(x\)&lt;/span&gt;, &lt;span class=&#34;math inline&#34;&gt;\(y+1\)&lt;/span&gt;로 &lt;span class=&#34;math inline&#34;&gt;\(G_Y\)&lt;/span&gt; 팀의 검투사가 한 명 늘었다고 하자. 적당한 표시자 &lt;span class=&#34;math inline&#34;&gt;\(p\)&lt;/span&gt;, &lt;span class=&#34;math inline&#34;&gt;\(q\)&lt;/span&gt;에 대해서 추가된 &lt;span class=&#34;math inline&#34;&gt;\(G_Y\)&lt;/span&gt;의 검투사 &lt;span class=&#34;math inline&#34;&gt;\(q\)&lt;/span&gt;가 &lt;span class=&#34;math inline&#34;&gt;\(G_X\)&lt;/span&gt;의 검투사 &lt;span class=&#34;math inline&#34;&gt;\(p\)&lt;/span&gt;와 대결한다고 하자. 추가된 검투사가 이길 경우는 양 팀의 검투사 조합은 다음과 같이 표기할 수 있다.&lt;/p&gt;
+&lt;span class=&#34;math display&#34;&gt;\[\begin{align*}
+G_X &amp;amp; = \{ x_1, x_2, \dotsc, (x_p), \dotsc, x_i \} \\
+G_Y &amp;amp; = \{ y_1, y_2, \dotsc, y_q + x_p, \dotsc, y_j \}
+\end{align*}\]&lt;/span&gt;
+&lt;p&gt;반대로 추가된 검투사가 질 경우는 다음과 같다.&lt;/p&gt;
+&lt;span class=&#34;math display&#34;&gt;\[\begin{align*}
+G_X &amp;amp; = \{ x_1, x_2, \dotsc, x_p + y_q, \dotsc, x_i \} \\
+G_Y &amp;amp; = \{ y_1, y_2, \dotsc, (y_q), \dotsc, y_j \}
+\end{align*}\]&lt;/span&gt;
+&lt;p&gt;여기서 &lt;span class=&#34;math inline&#34;&gt;\(( )\)&lt;/span&gt;는 해당 검투사가 자신의 팀에서 제외됨을 의미한다. 이렇게 한 플레이어가 제외될 경우는 다시 &lt;span class=&#34;math inline&#34;&gt;\(i + j = k\)&lt;/span&gt;가 된다. 따라서 induction 원칙에 따라서 승부는 각 팀의 전투력의 합에 의해서만 결정된다. 이를 종합하면, &lt;span class=&#34;math inline&#34;&gt;\(G_X\)&lt;/span&gt;가 승리할 확률은 아래와 같이 계산될 수 있다.&lt;/p&gt;
+&lt;span class=&#34;math display&#34;&gt;\[\begin{align*}
+\frac{x_p}{x_p + y_q} \frac{X + y_q}{X + Y} + \frac{y_q}{x_p + y_q} \frac{X - y_q}{X + Y} = \frac{X}{X+Y} ~~~~~ \square
+\end{align*}\]&lt;/span&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;bagatelle&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;bagatelle&lt;/h1&gt;
+&lt;p&gt;사실 이 글은 Rmarkdown에서 수식이 보기 좋게 들어가는지 시험할 요량으로 썼다. Whatever…&lt;/p&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
