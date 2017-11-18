@@ -2,8 +2,8 @@
 title: "sf package with ggplot2"
 author: "Junsok Huhh"
 date: 2017-11-03
-tags: ['choropleth', 'ggplot2', 'visualization']
-categories: ['R', 'R-package'] 
+tags: ['choropleth', 'R', 'R-package', 'ggplot2']
+categories: ['coding', 'visualization'] 
 ---
 
 # Motivation 

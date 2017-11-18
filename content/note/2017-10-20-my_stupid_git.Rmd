@@ -2,7 +2,7 @@
 title: "My Stupid Git Experience, part 1" 
 author: "Junsok Huhh"
 date: 2017-10-20
-tags: ['git', 'version_control']
+tags: ['git', 'version-control']
 categories: ['computing']
 ---
 

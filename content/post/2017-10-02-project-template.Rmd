@@ -2,7 +2,7 @@
 title: "How to manage your personal project"
 author: Junsok Huhh
 date: 2017-10-02
-categories: ["R", "reseach_method"]
+categories: ["coding-management"]
 tags: ["R", "R-package", "Project management", "research", "ProjectTemplate"]
 ---
   

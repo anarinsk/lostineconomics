@@ -3,7 +3,7 @@ title: "Adding bigfoot.js to Hugo"
 author: "Junsok Huhh"
 date: 2017-11-01
 tags: ['bigfoot', 'js', 'Hugo']
-categories: ['R', 'Hugo'] 
+categories: ['computing'] 
 ---
 
 # BIGFOOT! 

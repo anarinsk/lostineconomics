@@ -2,8 +2,8 @@
 title: "안녕 R Markdown"
 author: Junsok Huhh
 date: 2017-09-18T21:13:14-05:00
-categories: ["R"]
-tags: ["R Markdown", "self-taught"]
+categories: ["coding"]
+tags: ["RMarkdown", "example"]
 ---
   
 ```{r setup, include=FALSE}
