@@ -3,8 +3,7 @@ title: A Plain Markdown Post
 author: Yihui Xie
 date: '2016-02-14'
 categories:
-  - Example
-  - Hugo
+  - documentation
 tags:
   - blogdown
   - Markdown
