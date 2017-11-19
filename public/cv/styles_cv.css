@@ -1,11 +1,6 @@
 /* Whole document: */
 @import url(http://fonts.googleapis.com/earlyaccess/notosanskr.css);
 
-.reveal .fa {
-  font-family: 'FontAwesome';
-  font-style: normal;
-}
-
 body{
   font-family: 'Noto Sans KR', sans-serif;
   line-height: 110%;
@@ -26,6 +21,9 @@ h3,h4,h5,h6{
 hr { background-color: black; height: 1.3px; border: 0; }
 
 #vtight{
-line-height: 130%;
-text-indent: 2px;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 13pt;
+  line-height: 130%;
+  text-indent: 2px;
+  
 }
