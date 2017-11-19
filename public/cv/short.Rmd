@@ -31,16 +31,20 @@ title: "Jun Sok Huhh"
 htmltools::tagList(rmarkdown::html_dependency_font_awesome())
 ```
 
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="http://fortawesome.github.io/Font-Awesome/assets/font-awesome/css/font-awesome.css"> 
+
+<a class="btn-cta-freequote" href="#">Compute <i class="fa fa-calculator"></i></a>
+
 *****
 <div id = "vtight"> 
 Team Leader, R&I Team </br>
 12 Daewangpangyo-ro 644beon-gil $\cdot$ NCSOFT $\cdot$ Seongnam Gyeonggi, South Korea 13494 </br>
-<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <i class="fa fa-envelope-o" aria-hidden="true"></i> [work](mailto: junsokhuhh@ncsoft.com) 
 <i class="fa fa-envelope-o" aria-hidden="true"></i> [personal](mailto: anarinsk@gmail.com) 
 <i class="fa fa-github" aria-hidden="true"></i> [personal](https://github.com/anarinsk) 
 <i class="fa fa-home" aria-hidden="true"></i> [personal](http://lostineconomics.com) 
-| updated: November 18, 2017 </br>
+&vert; updated: November 18, 2017 </br>
 </div>
 
 ******

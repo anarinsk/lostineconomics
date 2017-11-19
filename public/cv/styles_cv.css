@@ -1,20 +1,25 @@
 /* Whole document: */
 @import url(http://fonts.googleapis.com/earlyaccess/notosanskr.css);
-@import url("https://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css");
+
+.reveal .fa {
+  font-family: 'FontAwesome';
+  font-style: normal;
+}
 
 body{
   font-family: 'Noto Sans KR', sans-serif;
   line-height: 110%;
   font-size: 13pt;
+  text-rendering: optimizeLegibility;
 }
 /* Headers */
-h1,h2,h3,h4,h5,h6{
-  font-family: 'Noto Sans KR',serif;
+h1,h2{
+  font-family: 'Noto Sans KR',sans-serif;
   font-size: 150%;
 }
 
 h3,h4,h5,h6{
-  font-family: 'Noto Sans KR',serif;
+  font-family: 'Noto Sans KR',sans-serif;
   font-size: 130%;
 }
 
