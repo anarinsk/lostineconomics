@@ -1,0 +1,27 @@
+/* Whole document: */
+@import url(http://fonts.googleapis.com/earlyaccess/notosanskr.css);
+
+text-rendering: optimizeLegibility;
+
+body{
+  font-family: 'Noto Sans KR', sans-serif;
+  line-height: 110%;
+  font-size: 13pt;
+}
+/* Headers */
+h1,h2,h3,h4,h5,h6{
+  font-family: 'Noto Sans KR',serif;
+  font-size: 150%;
+}
+
+h3,h4,h5,h6{
+  font-family: 'Noto Sans KR',serif;
+  font-size: 130%;
+}
+
+hr { background-color: black; height: 1.3px; border: 0; }
+
+#vtight{
+line-height: 130%;
+text-indent: 2px;
+}

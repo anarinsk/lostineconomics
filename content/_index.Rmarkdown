@@ -8,4 +8,5 @@ title: Home
 
 ## _faithless in theory, but still stuck in methods_
 
-This is personal blog by Junsok Huhh. This site is built with [Hugo](https://gohugo.io) and XMIN theme by [Yihui Xie](https://themes.gohugo.io/hugo-xmin/)
+This is personal blog by Junsok Huhh.</br>
+This site is built with [Hugo](https://gohugo.io) and XMIN theme by [Yihui Xie](https://themes.gohugo.io/hugo-xmin/)
