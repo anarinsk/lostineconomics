@@ -6,132 +6,95 @@
     <description>Recent content in Categories on lost in economics</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 18 Oct 2017 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/categories/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Ams</title>
-      <link>/categories/ams/</link>
-      <pubDate>Wed, 18 Oct 2017 00:00:00 +0000</pubDate>
+      <title>Coding</title>
+      <link>/categories/coding/</link>
+      <pubDate>Thu, 16 Nov 2017 00:00:00 +0000</pubDate>
       
-      <guid>/categories/ams/</guid>
+      <guid>/categories/coding/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Coding-management</title>
+      <link>/categories/coding-management/</link>
+      <pubDate>Mon, 02 Oct 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/categories/coding-management/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Computation</title>
+      <link>/categories/computation/</link>
+      <pubDate>Tue, 19 Sep 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/categories/computation/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Computing</title>
       <link>/categories/computing/</link>
-      <pubDate>Fri, 20 Oct 2017 00:00:00 +0000</pubDate>
+      <pubDate>Wed, 01 Nov 2017 00:00:00 +0000</pubDate>
       
       <guid>/categories/computing/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Data</title>
-      <link>/categories/data/</link>
+      <title>Data-analysis</title>
+      <link>/categories/data-analysis/</link>
       <pubDate>Tue, 19 Sep 2017 00:00:00 +0000</pubDate>
       
-      <guid>/categories/data/</guid>
+      <guid>/categories/data-analysis/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Example</title>
-      <link>/categories/example/</link>
-      <pubDate>Wed, 14 Jun 2017 00:00:00 +0000</pubDate>
-      
-      <guid>/categories/example/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Game_theory</title>
-      <link>/categories/game_theory/</link>
+      <title>Documentation</title>
+      <link>/categories/documentation/</link>
       <pubDate>Wed, 18 Oct 2017 00:00:00 +0000</pubDate>
       
-      <guid>/categories/game_theory/</guid>
+      <guid>/categories/documentation/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Holy_mix</title>
-      <link>/categories/holy_mix/</link>
+      <title>Game-theory</title>
+      <link>/categories/game-theory/</link>
+      <pubDate>Wed, 18 Oct 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/categories/game-theory/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Guilty-pleasure</title>
+      <link>/categories/guilty-pleasure/</link>
       <pubDate>Fri, 06 Oct 2017 00:00:00 +0000</pubDate>
       
-      <guid>/categories/holy_mix/</guid>
+      <guid>/categories/guilty-pleasure/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Hugo</title>
-      <link>/categories/hugo/</link>
-      <pubDate>Wed, 01 Nov 2017 00:00:00 +0000</pubDate>
-      
-      <guid>/categories/hugo/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Math_symbol</title>
-      <link>/categories/math_symbol/</link>
+      <title>Math</title>
+      <link>/categories/math/</link>
       <pubDate>Wed, 18 Oct 2017 00:00:00 +0000</pubDate>
       
-      <guid>/categories/math_symbol/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Mathematics</title>
-      <link>/categories/mathematics/</link>
-      <pubDate>Wed, 18 Oct 2017 00:00:00 +0000</pubDate>
-      
-      <guid>/categories/mathematics/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>R</title>
-      <link>/categories/r/</link>
-      <pubDate>Thu, 16 Nov 2017 00:00:00 +0000</pubDate>
-      
-      <guid>/categories/r/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>R-package</title>
-      <link>/categories/r-package/</link>
-      <pubDate>Fri, 03 Nov 2017 00:00:00 +0000</pubDate>
-      
-      <guid>/categories/r-package/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Reseach_method</title>
-      <link>/categories/reseach_method/</link>
-      <pubDate>Mon, 02 Oct 2017 00:00:00 +0000</pubDate>
-      
-      <guid>/categories/reseach_method/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Typesetting</title>
-      <link>/categories/typesetting/</link>
-      <pubDate>Wed, 18 Oct 2017 00:00:00 +0000</pubDate>
-      
-      <guid>/categories/typesetting/</guid>
+      <guid>/categories/math/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Visualization</title>
       <link>/categories/visualization/</link>
-      <pubDate>Tue, 19 Sep 2017 00:00:00 +0000</pubDate>
+      <pubDate>Fri, 03 Nov 2017 00:00:00 +0000</pubDate>
       
       <guid>/categories/visualization/</guid>
       <description></description>
