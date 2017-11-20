@@ -1,9 +1,0 @@
----
-title: my_testing_first
-author: ~
-date: '2017-11-20'
-slug: my-testing-first
-categories: []
-tags: []
----
-
