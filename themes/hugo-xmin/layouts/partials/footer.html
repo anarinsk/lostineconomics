@@ -1,12 +1,14 @@
-  <footer>
+ 
+<footer>
 
-<link rel="stylesheet" href="/css/barefoot.min.css">
-<script src="/js/barefoot.min.js"></script>
+  <!-- barefoot -->
+  <link rel="stylesheet" href="/css/barefoot.min.css">
+  <script src="/js/barefoot.min.js"></script>
+  <script>
+    lf = new BareFoot();
+    lf.init();
+  </script>
 
-<script>
-  lf = new BareFoot();
-  lf.init();
-</script>
   {{ partial "foot_custom.html" . }}
   {{ with .Site.Params.footer }}
   <hr/>
