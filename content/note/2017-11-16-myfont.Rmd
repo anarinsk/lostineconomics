@@ -4,6 +4,10 @@ author: "Junsok Huhh"
 date: 2017-11-16
 tags: ['font', 'showtext', 'R', 'R-package']
 categories: ['coding'] 
+output: 
+  html_document: 
+    theme: "flatly"
+    highlight: "zenburn"
 ---
 
 <style>
@@ -84,7 +88,6 @@ font_add("constan", regular = "fonts/constan.ttf", italic = "fonts/constani.ttf"
 ```
 
 ```{R message=FALSE, warning=FALSE, fig.showtext=TRUE}
-
 showtext_auto()
 
 p = ggplot(NULL, aes(x = 1, y = 1)) + ylim(0.8, 1.2) +
@@ -108,7 +111,7 @@ print(p)
 
 바로 위에 예를  RStudio에 그대로 복붙했다면, 출력물 `p`에서 폰트를 제대로 볼 수 없었을 것이다. 앞서도 말했지만, RStudio의 기본 화면 장치는 showtext를 아직 지원하지 않는다. 아래 처럼 해야 제대로 출력된다. 
 
-```{}
+```{r eval=FALSE, message=FALSE, include=TRUE}
 windows()  # if your local os is Windows 
 # x11() # if your local os is Macos 
 print(p)
@@ -116,7 +119,7 @@ print(p)
 
 여기까지 실행하면 화면에 팝업으로 출력물이 뜨게 된다. PDF로 저장하기 위해서는 PDF 장치를 부르면 된다. 이때 `dev.off()`를 지정해줘야 pdf 저장이 완료된다는 점 명심하자. 화면 팝업은 수동으로 창을 끄면 `dev.off()`가 되지만 파일은 그렇지 않다. 반드시 `dev.off()`를 넣어줘야 파일을 쓰게 된다. 
 
-```{}
+```{r eval=FALSE, message=FALSE, include=TRUE}
 pdf("YOUR_FILENAME.pdf", width = 7, height = 4) 
 print(p) 
 dev.off()
@@ -124,7 +127,7 @@ dev.off()
 
 이게 귀찮다면 ggplot2 패키지를 쓰자. ggplot2는 장치를 포맷 별로 편리하게 기록할 수 있는 통일적인 방법을 제공한다. `ggsave` 명령어를 쓰면 `dev.off()`없이 대부분의 포맷으로 아래와 같이 편리하게 저장할 수 있다. 
 
-```{}
+```{r eval=FALSE, message=FALSE, include=TRUE}
 ggsave("YOUR_FILENAME.pdf", p, width = 7, height = 4)
 ggsave("YOUR_FILENAME.png", p, width = 7, height = 4, dpi = 96)
 ```
