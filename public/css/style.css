@@ -27,7 +27,7 @@ hr {
 pre {
   border: none;
   box-shadow: 5px 5px 5px #eee;
-  padding: 1em;
+  padding: none;
   overflow-x: auto;
 }
 code { background: #f9f9f9; }
