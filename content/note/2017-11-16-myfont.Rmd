@@ -128,6 +128,8 @@ ggsave("YOUR_FILENAME.pdf", p, width = 7, height = 4)
 ggsave("YOUR_FILENAME.png", p, width = 7, height = 4, dpi = 96)
 ```
 
+<a class="btn-cta-freequote" href="#">Compute <i class="fa fa-calculator"></i></a>
+
 ---
 REFERENCE 
 https://cran.rstudio.com/web/packages/showtext/vignettes/introduction.html
