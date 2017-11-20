@@ -26,6 +26,7 @@ author: "Jun Sok Huhh"
 ### `footer.html` 
 
   * barefoot.min
+    * barefoot의 경우 footer에 넣어야 제대로 작동했다. 
   
 ### `footer_custom.html`
 
@@ -35,10 +36,10 @@ author: "Jun Sok Huhh"
 
 ## cv 페이지 
 
-기본 개념은 외부에서 만든 후 `public\cv` 폴더 안에 넣어주는 형태다. 
+기본 개념은 외부에서 만든 후 `theme/xmin-hugo/static/cv` 폴더 안에 넣어주는 형태다. 
 
-  1. 일단, `index.html`은 앞서 페이지들의 index 페이지를 복사해서 넣은 후, cv는 short.hmtl의 형태로 완성된 제품을 넣어준다. 
-  2. 완성하기 전 rmd 파일의 경우는 `admin\cv` 안에 있다. 
+  1. 일단, `index.html`은 앞서 페이지들의 index 페이지를 복사해서 넣은 후, cv는 짧은 양식의 경우  short.hmtl의 형태로 완성된 제품을 넣어준다. 
+ 
   
   
   
