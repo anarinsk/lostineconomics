@@ -33,8 +33,8 @@ Thesis: An Critical Inquiry on New Institutional Economics
 
 *NCSOFT*, Team Leader (Seongnam Gyeonggi $\cdot$ South Korea) 2014--present 
 
-*KISDI*\*, Senior Researcher (Jinchun Chungchungbuk $\cdot$ South Korea) 2013--2014 </br> 
-* Korea Information Society Development Institute
+*KISDI* \*, Senior Researcher (Jinchun Chungchungbuk $\cdot$ South Korea) 2013--2014 </br> 
+*Korea Information Society Development Institute
 
 *FourThirtyThree*, Data Anlysist (Seoul $\cdot$ South Korea) 2012--2013
 
@@ -43,16 +43,16 @@ Thesis: An Critical Inquiry on New Institutional Economics
 *Seoul National University*, Postdoc., School of Economics (Seoul $\cdot$ South Korea) 2011--2012
 
 *Seoul National University*, Lecturer, Information and Multimedia Culture, 2007 -- 2013 </br>
-Lecture: "Economics and Management of Cotent", "Serious Gamming"
+Lecture: Economics and Management of Cotent, Serious Gamming
 
 *Kyunghee University*, Lecturer, Humanitas College, 2013 -- 2013 </br>
-Lecture: "Game Theory, Evolution and Cooperation"
+Lecture: Game Theory, Evolution, and Cooperation
 
 *Seoul National University*, Lecturer, Graduate School of Convergence Science and Technology, 2011 </br>
-Lecture: "Understanding Digital Games"
+Lecture: Understanding Digital Games
 
 *Seoul National University*, Lecturer, School of Economics, 2004--2010 
-Lecture: "Principle of Economics"", "Microeconomic Theory"
+Lecture: Principle of Economics, Microeconomic Theory
 
 
 # Publications
@@ -92,6 +92,7 @@ Jun Sok Huhh and Jung-Kyu Choi. 1998. "Review of Radical Institutionalist econom
 ## Graduate Work 
 
 In my doctoral thesis, methods of evolutionary game theory and its dynamics are applied to some economic theories. This consists of three independently-themed papers. Each title is 
+
   a. role of opportunistic punishment in the evolution of cooperation cooperation
   a. Evolutionary dynamics on social ties
   a. Replicator dynamics of population with players’ differing abilities.
@@ -110,11 +111,11 @@ service and individual gamers. Currently progressing researches are:
 
 # Honors 
 
-Best Dissertation of The College of Social Sciences of Seoul National University of the Year, 2010
+Best Dissertation of The College of Social Sciences of Seoul National University of the Year 2010
 
-Best Paper for Young Economists Competition hosted by Korean Economic Association(KEA) at 14th International Conference, 2010
+Best Paper for Young Economists Competition hosted by Korean Economic Association (KEA) at 14th International Conference 2010
 
-*Il-ju* Foundation Graduate Scholarship, 1997--1999
+*Il-ju* Foundation Graduate Scholarship 1997--1999
 
 
 # Technical Skills 

@@ -124,20 +124,22 @@ $(document).ready(function () {
 
 <div id="section" class="section level1">
 <h1>2017-11-20</h1>
-<p>오늘에서야 Hugo의 작동 원리에 대해서 대체로 파악했다. 원리를 자세히 적진 않고 요약으로 적어두겠다.</p>
+<p>오늘에서야 Hugo의 작동 원리에 대해서 대체로 파악했다. 원리를 자세히 적진 않을것이고 요약한다.</p>
 <div id="how-to-make-static-web" class="section level2">
 <h2>How to make static web</h2>
+<p><code>theme/xmin-hugo</code> 테마의 기본이 되는 내용을 갖고 있다. 아울러 이곳을 고치면 테마 전체가 영구적으로 변경된다. 이곳의 일부는 바로 반영되고 일부는 parent direc의 content 등에 적용된다. 이렇게 적용된 결과물은 <code>public</code>, <code>static</code>에 html로 산출된다. 이 html이 netlify를 통해서 웹으로 뿌려진다. 따라서, <code>static</code>의 내용은 고쳐도 되지만 <code>public</code>의 내용은 손보지 않는 것이 좋다. <code>public</code>에 최종 노출되는 direc이 있다고 해서 여기를 고치면 안되는 것이다.</p>
+<pre><code>실수담: `public` direc에 fontawesome을 적용하기 위해서 cv를 직접 넣었으나, fontwaesome 결과를 출력할 수 없었다. </code></pre>
 <ol style="list-style-type: decimal">
-<li><code>theme/xmin-hugo</code> 테마의 기본이 되는 내용을 갖고 있다. 아울러, 이곳을 고치면 테마 전체가 영구적으로 변경된다. 일단 오늘 손본 내용은 아래의 두 항목이다.
+<li>오늘은 아래 두 항목을 고쳤다.
 <ul>
 <li><code>layout</code> - <code>footer.html</code>, <code>header.html</code>, <code>footer_custom.html</code>, <code>header_custom.html</code></li>
 <li><code>layout</code>의 내용은 footer가 foot_custom을 header가 head_custom을 읽어들이도록 되어 있다.</li>
 <li><code>static</code> - css 관련 두 개의 항목</li>
 </ul></li>
 </ol>
-<p>이 곳을 고친 후, blogdown 패키지의 <code>blogdown::serve_site()</code>를 하게 되면 변경된 내용이 <code>public</code>으로 반영된다.</p>
+<p>이 곳을 고친 후, blogdown 패키지의 <code>blogdown::serve_site()</code>를 실행하면 변경된 내용이 <code>public</code>으로 반영된다.</p>
 <ol start="2" style="list-style-type: decimal">
-<li><code>content</code> 디렉의 내용은 이용자가 글을 고친 후 반영하도록 만드는 것이다. 여기는 되도록 글을 고친 후 반영되도록만 하자.</li>
+<li><code>content</code> 디렉의 내용은 이용자가 글을 추가하거나 고친 후에 사이트에 반영된다.</li>
 </ol>
 </div>
 <div id="theme-elements-customized" class="section level2">
@@ -145,8 +147,8 @@ $(document).ready(function () {
 <div id="head_custom.html" class="section level3">
 <h3><code>head_custom.html</code></h3>
 <ul>
-<li>코드 하일라이터 darcula.min.css 포팅</li>
-<li>font-awesome.min.css</li>
+<li>코드 하일라이터 darcula.min.css import</li>
+<li>폰트어섬 아이콘 font-awesome.min.css import</li>
 </ul>
 <pre><code>&lt;-- for highlight.js 다큘라 테마 --&gt; 
 &lt;link href=&quot;//cdn.bootcss.com/highlight.js/9.12.0/styles/darcula.min.css&quot; rel=&quot;stylesheet&quot;&gt;
@@ -180,7 +182,7 @@ $(document).ready(function () {
 </div>
 <div id="staticcssstyle.css" class="section level3">
 <h3><code>static\css\style.css</code></h3>
-<p>border, box-shadow, padding 부분을 다 0으로 날려버림</p>
+<p>border, box-shadow, padding 부분을 다 0으로 날려버린다. 현재 사이트 모양새다.</p>
 <pre><code>/* code */
 pre {
   border: 0;
@@ -191,11 +193,11 @@ pre {
 </div>
 </div>
 <div id="cv-" class="section level2">
-<h2>cv 페이지</h2>
+<h2>CV 페이지</h2>
 <p>기본 개념은 외부에서 만든 후 <code>theme/xmin-hugo/static/cv</code> 폴더 안에 넣어주는 형태다.</p>
 <ol style="list-style-type: decimal">
-<li>일단, <code>index.html</code>은 앞서 페이지들의 index 페이지를 복사해서 넣은 후, cv는 짧은 양식의 경우 short.hmtl의 형태로 완성된 제품을 넣어준다.</li>
-<li>각 cv에 해당하는 rmd 파일을 만든 후에 이 페이지에서 html로 바꿔준다.</li>
+<li>일단, <code>index.html</code>은 앞서 페이지들의 index 페이지를 복사해서 넣은 후, cv는 짧은 양식의 경우 short.hmtl의 형태, 긴 양식의 경우 long.html을 넣어준다.</li>
+<li>각 cv에 해당하는 rmd 파일을 만든 후에 이 페이지에서 html로 바꿔준다. <code>SFT + CRL + K</code></li>
 <li>github 업데이트 하면 완료</li>
 </ol>
 </div>

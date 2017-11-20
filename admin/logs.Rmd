@@ -5,25 +5,31 @@ author: "Jun Sok Huhh"
 
 # 2017-11-20 
 
-오늘에서야 Hugo의 작동 원리에 대해서 대체로 파악했다. 원리를 자세히 적진 않고 요약으로 적어두겠다. 
+오늘에서야 Hugo의 작동 원리에 대해서 대체로 파악했다. 원리를 자세히 적진 않을것이고 요약한다. 
 
 ## How to make static web 
 
-  1. `theme/xmin-hugo` 테마의 기본이 되는 내용을 갖고 있다. 아울러, 이곳을 고치면 테마 전체가 영구적으로 변경된다. 일단 오늘 손본 내용은 아래의 두 항목이다. 
+`theme/xmin-hugo` 테마의 기본이 되는 내용을 갖고 있다. 아울러 이곳을 고치면 테마 전체가 영구적으로 변경된다. 이곳의 일부는 바로 반영되고 일부는 parent direc의 content 등에 적용된다. 이렇게 적용된 결과물은 `public`, `static`에 html로 산출된다. 이 html이 netlify를 통해서 웹으로 뿌려진다. 따라서, `static`의 내용은 고쳐도 되지만 `public`의 내용은 손보지 않는 것이 좋다. `public`에 최종 노출되는 direc이 있다고 해서 여기를 고치면 안되는 것이다. 
+    
+```{}
+실수담: `public` direc에 fontawesome을 적용하기 위해서 cv를 직접 넣었으나, fontwaesome 결과를 출력할 수 없었다. 
+```  
+  
+  1. 오늘은 아래 두 항목을 고쳤다. 
     * `layout` - `footer.html`, `header.html`, `footer_custom.html`, `header_custom.html`
       * `layout`의 내용은 footer가 foot_custom을 header가 head_custom을 읽어들이도록 되어 있다. 
     * `static` - css 관련 두 개의 항목 
 
-이 곳을 고친 후, blogdown 패키지의 `blogdown::serve_site()`를 하게 되면 변경된 내용이 `public`으로 반영된다. 
+이 곳을 고친 후, blogdown 패키지의 `blogdown::serve_site()`를 실행하면 변경된 내용이 `public`으로 반영된다. 
   
-  2. `content` 디렉의 내용은 이용자가 글을 고친 후 반영하도록 만드는 것이다. 여기는 되도록 글을 고친 후 반영되도록만 하자. 
+  2. `content` 디렉의 내용은 이용자가 글을 추가하거나 고친 후에 사이트에 반영된다.
   
 ## Theme elements customized 
 
 ### `head_custom.html`
 
-  * 코드 하일라이터 darcula.min.css 포팅 
-  * font-awesome.min.css 
+  * 코드 하일라이터 darcula.min.css import 
+  * 폰트어섬 아이콘 font-awesome.min.css import
 
 ```{}
 <-- for highlight.js 다큘라 테마 --> 
@@ -56,7 +62,7 @@ author: "Jun Sok Huhh"
 
 ### `static\css\style.css`
 
-border, box-shadow, padding 부분을 다 0으로 날려버림 
+border, box-shadow, padding 부분을 다 0으로 날려버린다. 현재 사이트 모양새다. 
 
 ```{}
 /* code */
@@ -68,12 +74,12 @@ pre {
 }
 ```
 
-## cv 페이지 
+## CV 페이지 
 
 기본 개념은 외부에서 만든 후 `theme/xmin-hugo/static/cv` 폴더 안에 넣어주는 형태다. 
 
-  1. 일단, `index.html`은 앞서 페이지들의 index 페이지를 복사해서 넣은 후, cv는 짧은 양식의 경우  short.hmtl의 형태로 완성된 제품을 넣어준다. 
-  2. 각 cv에 해당하는 rmd 파일을 만든 후에 이 페이지에서 html로 바꿔준다. 
+  1. 일단, `index.html`은 앞서 페이지들의 index 페이지를 복사해서 넣은 후, cv는 짧은 양식의 경우 short.hmtl의 형태, 긴 양식의 경우 long.html을 넣어준다. 
+  2. 각 cv에 해당하는 rmd 파일을 만든 후에 이 페이지에서 html로 바꿔준다. `SFT + CRL + K`
   3. github 업데이트 하면 완료
  
   

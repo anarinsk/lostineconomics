@@ -28,7 +28,7 @@ footnotereturnlinkcontents = "↩"
     weight = 3
 #    
 [[menu.main]]
-    name = "cv"
+    name = "CV"
     url = "/cv/"
     weight = 4
 #    
@@ -37,5 +37,5 @@ footnotereturnlinkcontents = "↩"
 #    url = "/index.xml"
 
 [params]
-    description = "A website by anarinsk who lost faith in economics"
-    footer = "&copy; [Junsok Huhh](http://lostineconomics.com) 2017 | [Github](https://github.com/anarinsk)"
+    description = "A website by Jun Sok Huhh who lost faith in economics"
+    footer = "&copy; [Jun Sok Huhh](http://lostineconomics.com) 2017 | [Github](https://github.com/anarinsk)"
