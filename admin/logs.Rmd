@@ -7,9 +7,11 @@ author: "Jun Sok Huhh"
 
 오늘에서야 Hugo의 작동 원리에 대해서 대체로 파악했다. 원리를 자세히 적진 않고 요약으로 적어두겠다. 
 
+## How to make static web 
+
   1. `theme/xmin-hugo` 테마의 기본이 되는 내용을 갖고 있다. 아울러, 이곳을 고치면 테마 전체가 영구적으로 변경된다. 일단 오늘 손본 내용은 아래의 두 항목이다. 
     * `layout` - `footer.html`, `header.html`, `footer_custom.html`, `header_custom.html`
-      * `layout`의 내용은 footer가 footer_custom을 header가 header_custom을 읽어들이도록 되어 있다. 
+      * `layout`의 내용은 footer가 foot_custom을 header가 head_custom을 읽어들이도록 되어 있다. 
     * `static` - css 관련 두 개의 항목 
 
 이 곳을 고친 후, blogdown 패키지의 `blogdown::serve_site()`를 하게 되면 변경된 내용이 `public`으로 반영된다. 
@@ -18,21 +20,53 @@ author: "Jun Sok Huhh"
   
 ## Theme elements customized 
 
-### `header_custom.html`
+### `head_custom.html`
 
   * 코드 하일라이터 darcula.min.css 포팅 
   * font-awesome.min.css 
-  
+
+```{}
+<-- for highlight.js 다큘라 테마 --> 
+<link href="//cdn.bootcss.com/highlight.js/9.12.0/styles/darcula.min.css" rel="stylesheet">
+
+<-- font-awesome 로딩 --> 
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+```
+
 ### `footer.html` 
 
   * barefoot.min
     * barefoot의 경우 footer에 넣어야 제대로 작동했다. 
   
-### `footer_custom.html`
+### `foot_custom.html`
 
   * math-code, mathjax 
   * center-img.js 
   * highlight.js 관련 
+
+```{}
+<!-- highlight.js -->
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/languages/r.min.js"></script>
+<script>
+ hljs.configure({languages: []});
+ hljs.initHighlightingOnLoad();
+</script>
+```
+
+### `static\css\style.css`
+
+border, box-shadow, padding 부분을 다 0으로 날려버림 
+
+```{}
+/* code */
+pre {
+  border: 0;
+  box-shadow: 0;
+  padding: 0;
+  overflow-x: auto;
+}
+```
 
 ## cv 페이지 
 

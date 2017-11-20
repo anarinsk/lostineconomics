@@ -70,10 +70,10 @@ Jun Sok Huhh. 1998. "On Theoretical Foundation of New Institutionalist Economics
 
 Jun Sok Huhh and Jung-Kyu Choi. 1998. "Review of Radical Institutionalist economics." *Trend and Perspective* 37. [Korean language]
 
-## Technical Skills 
+# Technical Skills 
 
-### Proficient
+## Proficient
 R, Mathematica, $\rm \LaTeX$
 
-### Familiar
+## Familiar
 Python, NetLogo, Docker

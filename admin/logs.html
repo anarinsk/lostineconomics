@@ -125,11 +125,13 @@ $(document).ready(function () {
 <div id="section" class="section level1">
 <h1>2017-11-20</h1>
 <p>오늘에서야 Hugo의 작동 원리에 대해서 대체로 파악했다. 원리를 자세히 적진 않고 요약으로 적어두겠다.</p>
+<div id="how-to-make-static-web" class="section level2">
+<h2>How to make static web</h2>
 <ol style="list-style-type: decimal">
 <li><code>theme/xmin-hugo</code> 테마의 기본이 되는 내용을 갖고 있다. 아울러, 이곳을 고치면 테마 전체가 영구적으로 변경된다. 일단 오늘 손본 내용은 아래의 두 항목이다.
 <ul>
 <li><code>layout</code> - <code>footer.html</code>, <code>header.html</code>, <code>footer_custom.html</code>, <code>header_custom.html</code></li>
-<li><code>layout</code>의 내용은 footer가 footer_custom을 header가 header_custom을 읽어들이도록 되어 있다.</li>
+<li><code>layout</code>의 내용은 footer가 foot_custom을 header가 head_custom을 읽어들이도록 되어 있다.</li>
 <li><code>static</code> - css 관련 두 개의 항목</li>
 </ul></li>
 </ol>
@@ -137,14 +139,20 @@ $(document).ready(function () {
 <ol start="2" style="list-style-type: decimal">
 <li><code>content</code> 디렉의 내용은 이용자가 글을 고친 후 반영하도록 만드는 것이다. 여기는 되도록 글을 고친 후 반영되도록만 하자.</li>
 </ol>
+</div>
 <div id="theme-elements-customized" class="section level2">
 <h2>Theme elements customized</h2>
-<div id="header_custom.html" class="section level3">
-<h3><code>header_custom.html</code></h3>
+<div id="head_custom.html" class="section level3">
+<h3><code>head_custom.html</code></h3>
 <ul>
 <li>코드 하일라이터 darcula.min.css 포팅</li>
 <li>font-awesome.min.css</li>
 </ul>
+<pre><code>&lt;-- for highlight.js 다큘라 테마 --&gt; 
+&lt;link href=&quot;//cdn.bootcss.com/highlight.js/9.12.0/styles/darcula.min.css&quot; rel=&quot;stylesheet&quot;&gt;
+
+&lt;-- font-awesome 로딩 --&gt; 
+&lt;link rel=&quot;stylesheet&quot; href=&quot;//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css&quot;&gt;</code></pre>
 </div>
 <div id="footer.html" class="section level3">
 <h3><code>footer.html</code></h3>
@@ -155,13 +163,31 @@ $(document).ready(function () {
 </ul></li>
 </ul>
 </div>
-<div id="footer_custom.html" class="section level3">
-<h3><code>footer_custom.html</code></h3>
+<div id="foot_custom.html" class="section level3">
+<h3><code>foot_custom.html</code></h3>
 <ul>
 <li>math-code, mathjax</li>
 <li>center-img.js</li>
 <li>highlight.js 관련</li>
 </ul>
+<pre><code>&lt;!-- highlight.js --&gt;
+&lt;script src=&quot;//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;//cdn.bootcss.com/highlight.js/9.12.0/languages/r.min.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+ hljs.configure({languages: []});
+ hljs.initHighlightingOnLoad();
+&lt;/script&gt;</code></pre>
+</div>
+<div id="staticcssstyle.css" class="section level3">
+<h3><code>static\css\style.css</code></h3>
+<p>border, box-shadow, padding 부분을 다 0으로 날려버림</p>
+<pre><code>/* code */
+pre {
+  border: 0;
+  box-shadow: 0;
+  padding: 0;
+  overflow-x: auto;
+}</code></pre>
 </div>
 </div>
 <div id="cv-" class="section level2">
