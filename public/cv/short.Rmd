@@ -6,11 +6,10 @@ tags: ['Personal']
 categories: ['cv'] 
 ---
 
-```{r setup, include=FALSE}
-htmltools::tagList(rmarkdown::html_dependency_font_awesome())
-```
+<head> 
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<\head>
 
-<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 
 <a class="btn-cta-freequote" href="#">Compute <i class="fa fa-calculator"></i></a>
 
