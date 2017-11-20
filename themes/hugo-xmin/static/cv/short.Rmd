@@ -5,9 +5,10 @@ date: 2017-11-20
 tags: ['Personal']
 categories: ['cv'] 
 ---
-<head>
-<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-</head>
+
+```{r, echo=FALSE}
+htmltools::includeHTML("head_custom.html")
+```
 
 <a class="btn-cta-freequote" href="#">Compute <i class="fa fa-calculator"></i></a>
 
