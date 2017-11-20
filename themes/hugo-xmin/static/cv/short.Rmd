@@ -1,16 +1,10 @@
 ---
-title: "Short CV"
-author: "Junsok Huhh"
-date: 2017-11-20
-tags: ['Personal']
-categories: ['cv'] 
+title: "Jun Sok Huhh"
 ---
 
 ```{r, echo=FALSE}
 htmltools::includeHTML("head_custom.html")
 ```
-
-<a class="btn-cta-freequote" href="#">Compute <i class="fa fa-calculator"></i></a>
 
 *****
 <div id = "vtight"> 
