@@ -30,6 +30,15 @@
     </item>
     
     <item>
+      <title>Bizarro_magrittr</title>
+      <link>/tags/bizarro_magrittr/</link>
+      <pubDate>Tue, 21 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/bizarro_magrittr/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Blogdown</title>
       <link>/tags/blogdown/</link>
       <pubDate>Tue, 19 Sep 2017 00:00:00 +0000</pubDate>
@@ -149,7 +158,7 @@
     <item>
       <title>Magrittr</title>
       <link>/tags/magrittr/</link>
-      <pubDate>Wed, 15 Nov 2017 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 21 Nov 2017 00:00:00 +0000</pubDate>
       
       <guid>/tags/magrittr/</guid>
       <description></description>
@@ -194,7 +203,7 @@
     <item>
       <title>Pipe</title>
       <link>/tags/pipe/</link>
-      <pubDate>Wed, 15 Nov 2017 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 21 Nov 2017 00:00:00 +0000</pubDate>
       
       <guid>/tags/pipe/</guid>
       <description></description>
@@ -230,7 +239,7 @@
     <item>
       <title>R</title>
       <link>/tags/r/</link>
-      <pubDate>Thu, 16 Nov 2017 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 21 Nov 2017 00:00:00 +0000</pubDate>
       
       <guid>/tags/r/</guid>
       <description></description>
@@ -239,7 +248,7 @@
     <item>
       <title>R-package</title>
       <link>/tags/r-package/</link>
-      <pubDate>Thu, 16 Nov 2017 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 21 Nov 2017 00:00:00 +0000</pubDate>
       
       <guid>/tags/r-package/</guid>
       <description></description>
@@ -323,6 +332,15 @@
       <pubDate>Tue, 19 Sep 2017 00:00:00 +0000</pubDate>
       
       <guid>/tags/workflow/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Wrapr</title>
+      <link>/tags/wrapr/</link>
+      <pubDate>Tue, 21 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/wrapr/</guid>
       <description></description>
     </item>
     

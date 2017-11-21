@@ -6,10 +6,19 @@
     <description>Recent content in R-package on lost in economics</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 16 Nov 2017 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 21 Nov 2017 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/r-package/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Bizarro Magrittr</title>
+      <link>/note/2017/11/21/bizarro-magrittr/</link>
+      <pubDate>Tue, 21 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/note/2017/11/21/bizarro-magrittr/</guid>
+      <description>pre.bluebox {background-color: #aabbff !important;}pre.redbox {background-color: #ffbbbb !important;}Bizarro!이전 포스팅에서 Magrittr 패키지 이름이 재미있다고 말했지만, 이번 패키지 이름도 못지 않게 재미있다. 수학과 코딩의 경계에서 R의 한계를 시험하는 집단인 Win-Vector에서 만든 패키지인 “Bizarro Magrittr” 혹은 “Bizarro pipe”가 오늘의 주인공이다. DC 만화를 즐겨 보시는 분들은 이미 눈치를 챘으리라. Bizarro는 수퍼맨의 모든 능력을 살짝 다르게 갖고 있는 빌런이다. 흑화한 수퍼맨으로 이해하면 빠르겠다. Bizarro Magrittr(이하 Bizarro) 역시 Magrittr의 거의 모든 능력을 지니고 있지만 ‘흑화’ 변종이다.</description>
+    </item>
     
     <item>
       <title>Use your font</title>
