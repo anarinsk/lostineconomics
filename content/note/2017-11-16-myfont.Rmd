@@ -128,6 +128,30 @@ ggsave("YOUR_FILENAME.pdf", p, width = 7, height = 4)
 ggsave("YOUR_FILENAME.png", p, width = 7, height = 4, dpi = 96)
 ```
 
+# Font embedding 
+
+이건 문제가 될 수도 있고 아닐 수도 있다. 하지만 문제가 될 것 같으면 확실히 해두면 되겠다. 
+
+```{r message=FALSE, warning=FALSE}
+# install.packages('Cairo')
+library(Cairo) 
+
+font_add(family = "notosanskr", regular = "fonts/NotoSansCJKkr-Regular.otf")
+
+q <- ggplot(mtcars, aes(x=wt, y=mpg)) + geom_point() +
+  ggtitle("Fuel Efficiency of 32 Cars 32개 자동차의 연료 효율") +
+  xlab("Weight (x1000 lb) 무게") + ylab("Miles per Gallon 갤론 당 마일") +
+  theme(title=element_text(family="notosanskr", size = 12),
+        axis.title=element_text(family="notosanskr", size = 8),
+        strip.text=element_text(family="notosanskr", size = 8))
+
+print(q); 
+```
+
+```{r eval=FALSE}
+ggsave(p, filename="./blah.pdf", 
+       width=5, height=3.5, units="in", device=cairo_pdf)
+```
 ---
 REFERENCE 
 https://cran.rstudio.com/web/packages/showtext/vignettes/introduction.html
