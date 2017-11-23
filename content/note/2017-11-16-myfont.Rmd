@@ -101,14 +101,16 @@ print(p)
 
 언제나 그렇지만 너무 많은 서체를 쓰는 것은 (단연코!) 보기 좋지 않다. 단정하게 그냥 나눔고딕 혹은 Noto Sans CJK KR 정도로 만족하면 어떨까? 
 
-# Digression: How to generate and save graphs 
+# Digression
+
+## How to generate and save graphs 
 
 혹시나 하는 마음에서 부록 하나 덧붙여 본다. R도 그렇지만 대개의 오픈소스 소프트웨어들은 그림을 만들 때 "장치"를 사용해서 만든다. 그래픽을 생성해 출력하는 장치라고 보면 되고, 스크린, pdf, png 등등 여러가지 형태를 지닌다. 일반적으로 OS 상에서 화면에 있는 그림을 캡쳐해서 포맷에 맞게 저장하는 식으로 생각하지 말고, 필요한 그림은 장치를 통해 생성한다고 이해하면 쉽다. 
 
 바로 위에 예를  RStudio에 그대로 복붙했다면, 출력물 `p`에서 폰트를 제대로 볼 수 없었을 것이다. 앞서도 말했지만, RStudio의 기본 화면 장치는 showtext를 아직 지원하지 않는다. 아래 처럼 해야 제대로 출력된다. 
 
 ```{r eval = FALSE}
-windows()  # if your local os is Windows 
+#windows()  # if your local os is Windows 
 # x11() # if your local os is Macos 
 print(p)
 ```
@@ -128,28 +130,30 @@ ggsave("YOUR_FILENAME.pdf", p, width = 7, height = 4)
 ggsave("YOUR_FILENAME.png", p, width = 7, height = 4, dpi = 96)
 ```
 
-# Another digression: Font embedding 
+## Font embedding 
 
 이건 문제가 될 수도 있고 아닐 수도 있다. 하지만 문제가 될 것 같으면 확실히 해두면 되겠다. 
 
 ```{r message=FALSE, warning=FALSE, fig.showtext=TRUE}
-# install.packages('Cairo')
+#install.packages('Cairo')
 library(Cairo) 
+showtext_auto()
 
 font_add(family = "notosanskr", regular = "fonts/NotoSansCJKkr-Regular.otf")
 
 q <- ggplot(mtcars, aes(x=wt, y=mpg)) + geom_point() +
   ggtitle("Fuel Efficiency of 32 Cars 32개 자동차의 연료 효율") +
   xlab("Weight (x1000 lb) 무게") + ylab("Miles per Gallon 갤론 당 마일") +
-  theme(title=element_text(family="notosanskr", size = 12),
-        axis.title=element_text(family="notosanskr", size = 8),
-        strip.text=element_text(family="notosanskr", size = 8))
+  theme(title=element_text(family="notosanskr", size = rel(1.2)),
+        axis.title=element_text(family="notosanskr", size = rel(0.8)),
+        strip.text=element_text(family="notosanskr", size = rel(0.8)))
 
 print(q);
+
 ```
 
 ```{r eval=FALSE}
-ggsave(p, filename="./foo.pdf", device=cairo_pdf)
+ggsave(filename="./foo2.pdf", q)
 ```
 
 위 처럼 명시적으로 device를 지정해주면 `foo.pdf` 문서에 font가 확실하게 문서에 임베딩된다. 
