@@ -113,8 +113,8 @@ dev.off()</code></pre>
 <pre class="r"><code>ggsave(&quot;YOUR_FILENAME.pdf&quot;, p, width = 7, height = 4)
 ggsave(&quot;YOUR_FILENAME.png&quot;, p, width = 7, height = 4, dpi = 96)</code></pre>
 </div>
-<div id="font-embedding" class="section level1">
-<h1>Font embedding</h1>
+<div id="another-digression-font-embedding" class="section level1">
+<h1>Another digression: Font embedding</h1>
 <p>이건 문제가 될 수도 있고 아닐 수도 있다. 하지만 문제가 될 것 같으면 확실히 해두면 되겠다.</p>
 <pre class="r"><code># install.packages(&#39;Cairo&#39;)
 library(Cairo) 
@@ -128,10 +128,10 @@ q &lt;- ggplot(mtcars, aes(x=wt, y=mpg)) + geom_point() +
         axis.title=element_text(family=&quot;notosanskr&quot;, size = 8),
         strip.text=element_text(family=&quot;notosanskr&quot;, size = 8))
 
-print(q); </code></pre>
+print(q);</code></pre>
 <p><img src="/note/2017-11-16-myfont_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
-<pre class="r"><code>ggsave(p, filename=&quot;./blah.pdf&quot;, 
-       width=5, height=3.5, units=&quot;in&quot;, device=cairo_pdf)</code></pre>
+<pre class="r"><code>ggsave(p, filename=&quot;./foo.pdf&quot;, device=cairo_pdf)</code></pre>
+<p>위 처럼 명시적으로 device를 지정해주면 <code>foo.pdf</code> 문서에 font가 확실하게 문서에 임베딩된다.</p>
 </div>
 <div class="footnotes">
 <hr />
