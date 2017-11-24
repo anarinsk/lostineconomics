@@ -6,10 +6,19 @@
     <description>Recent content in Home on lost in economics</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 21 Nov 2017 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 24 Nov 2017 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Relativity matters</title>
+      <link>/note/2017/11/24/relativity-matters/</link>
+      <pubDate>Fri, 24 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/note/2017/11/24/relativity-matters/</guid>
+      <description>Font sizing그림에 폰트를 심을 때 당황했던 경우가 몇 번 있어서 틈난 김에 몇 자 적겠다. 어차피 이 공간에서는 좀스럽고 잡스런 내용을 주로 다룰 예정이니 관심 없는 분들을 패스하시라. 어차피 JPG, PNG와 같은 비트맵 이미지를 쓰지 않으면서 일정한 호환성을 얻고 싶다면 이미지도 PDF를 쓰면 좋다. 벡터 처리 덕분에 확대와 축소가 자유롭게 때문이다. 아울러 \(\rm \LaTeX\)을 쓰시는 분들이라면 pdflatex로 컴파일 할 때 그림을 쉽게 넣을 수 있다. 이 이야기는 여기서 끊도록 하자.</description>
+    </item>
     
     <item>
       <title>Bizarro Magrittr</title>

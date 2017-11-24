@@ -105,7 +105,7 @@ print(p)</code></pre>
 <h2>How to generate and save graphs</h2>
 <p>혹시나 하는 마음에서 부록 하나 덧붙여 본다. R도 그렇지만 대개의 오픈소스 소프트웨어들은 그림을 만들 때 “장치”를 사용해서 만든다. 그래픽을 생성해 출력하는 장치라고 보면 되고, 스크린, pdf, png 등등 여러가지 형태를 지닌다. 일반적으로 OS 상에서 화면에 있는 그림을 캡쳐해서 포맷에 맞게 저장하는 식으로 생각하지 말고, 필요한 그림은 장치를 통해 생성한다고 이해하면 쉽다.</p>
 <p>바로 위에 예를 RStudio에 그대로 복붙했다면, 출력물 <code>p</code>에서 폰트를 제대로 볼 수 없었을 것이다. 앞서도 말했지만, RStudio의 기본 화면 장치는 showtext를 아직 지원하지 않는다. 아래 처럼 해야 제대로 출력된다.</p>
-<pre class="r"><code>#windows()  # if your local os is Windows 
+<pre class="r"><code># windows()  # if your local os is Windows 
 # x11() # if your local os is Macos 
 print(p)</code></pre>
 <p>여기까지 실행하면 화면에 팝업으로 출력물이 뜨게 된다. PDF로 저장하기 위해서는 PDF 장치를 부르면 된다. 이때 <code>dev.off()</code>를 지정해줘야 pdf 저장이 완료된다는 점 명심하자. 화면 팝업은 수동으로 창을 끄면 <code>dev.off()</code>가 되지만 파일은 그렇지 않다. 반드시 <code>dev.off()</code>를 넣어줘야 파일을 쓰게 된다.</p>
@@ -128,7 +128,9 @@ font_add(family = &quot;notosanskr&quot;, regular = &quot;./fonts/NotoSansCJKkr-
 q &lt;- ggplot(mtcars, aes(x=wt, y=mpg)) + geom_point() +
   ggtitle(&quot;Fuel Efficiency of 32 Cars 32개 자동차의 연료 효율&quot;) +
   xlab(&quot;Weight (x1000 lb) 무게&quot;) + ylab(&quot;Miles per Gallon 갤론 당 마일&quot;) +
-  theme(title=element_text(family=&quot;notosanskr&quot;, size = rel(2)),
+  theme(
+        text=element_text(size=10), 
+        title=element_text(family=&quot;notosanskr&quot;, size = rel(2)),
         axis.title=element_text(family=&quot;notosanskr&quot;, size = rel(1)),
         strip.text=element_text(family=&quot;notosanskr&quot;, size = rel(1)))
 

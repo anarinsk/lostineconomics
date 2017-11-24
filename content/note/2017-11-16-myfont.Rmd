@@ -111,7 +111,7 @@ print(p)
 바로 위에 예를  RStudio에 그대로 복붙했다면, 출력물 `p`에서 폰트를 제대로 볼 수 없었을 것이다. 앞서도 말했지만, RStudio의 기본 화면 장치는 showtext를 아직 지원하지 않는다. 아래 처럼 해야 제대로 출력된다. 
 
 ```{r eval = FALSE}
-#windows()  # if your local os is Windows 
+# windows()  # if your local os is Windows 
 # x11() # if your local os is Macos 
 print(p)
 ```
@@ -146,7 +146,9 @@ font_add(family = "notosanskr", regular = "./fonts/NotoSansCJKkr-Regular.otf")
 q <- ggplot(mtcars, aes(x=wt, y=mpg)) + geom_point() +
   ggtitle("Fuel Efficiency of 32 Cars 32개 자동차의 연료 효율") +
   xlab("Weight (x1000 lb) 무게") + ylab("Miles per Gallon 갤론 당 마일") +
-  theme(title=element_text(family="notosanskr", size = rel(2)),
+  theme(
+        text=element_text(size=10), 
+        title=element_text(family="notosanskr", size = rel(2)),
         axis.title=element_text(family="notosanskr", size = rel(1)),
         strip.text=element_text(family="notosanskr", size = rel(1)))
 
