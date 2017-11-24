@@ -132,34 +132,36 @@ ggsave("YOUR_FILENAME.png", p, width = 7, height = 4, dpi = 96)
 
 ## Font embedding 
 
-이건 문제가 될 수도 있고 아닐 수도 있다. 하지만 문제가 될 것 같으면 확실히 해두면 되겠다. 
+폰트를 PDF에 심는 문제는 문제가 될 수도 있고 아닐 수도 있다. 문제가 될 것 같으면 그냥 확실히 해두면 되겠다. 
 
 ```{r message=FALSE, warning=FALSE, fig.showtext=TRUE}
+
 #install.packages('Cairo')
 library(Cairo) 
 showtext_auto()
 
-font_add(family = "notosanskr", regular = "fonts/NotoSansCJKkr-Regular.otf")
+font_add(family = "notosanskr", regular = "./fonts/NotoSansCJKkr-Regular.otf")
 
 q <- ggplot(mtcars, aes(x=wt, y=mpg)) + geom_point() +
   ggtitle("Fuel Efficiency of 32 Cars 32개 자동차의 연료 효율") +
   xlab("Weight (x1000 lb) 무게") + ylab("Miles per Gallon 갤론 당 마일") +
-  theme(title=element_text(family="notosanskr", size = rel(1.2)),
-        axis.title=element_text(family="notosanskr", size = rel(0.8)),
-        strip.text=element_text(family="notosanskr", size = rel(0.8)))
+  theme(title=element_text(family="notosanskr", size = rel(2)),
+        axis.title=element_text(family="notosanskr", size = rel(1)),
+        strip.text=element_text(family="notosanskr", size = rel(1)))
 
 print(q);
 
 ```
 
 ```{r eval=FALSE}
-ggsave(filename="./foo2.pdf", q)
+#
+ggsave(filename="./foo.pdf", q, device=cairo_pdf)
+#
 ```
 
-위 처럼 명시적으로 device를 지정해주면 `foo.pdf` 문서에 font가 확실하게 문서에 임베딩된다. 
+위 처럼 명시적으로 device를 `cairo_pdf`로 지정해주면 `foo.pdf` 문서에 로딩한 폰트가 확실하게 포함된다. [여기서](download/foo.pdf) 확인해보시라. 
 
----
+<!--- 
 REFERENCE 
 https://cran.rstudio.com/web/packages/showtext/vignettes/introduction.html
-
----
+--->
