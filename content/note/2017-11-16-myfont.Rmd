@@ -159,7 +159,7 @@ ggsave(filename="./foo.pdf", q, device=cairo_pdf)
 #
 ```
 
-위 처럼 명시적으로 device를 `cairo_pdf`로 지정해주면 `foo.pdf` 문서에 로딩한 폰트가 확실하게 포함된다. [여기서](download/foo.pdf) 확인해보시라. 
+위 처럼 명시적으로 device를 `cairo_pdf`로 지정해주면 `foo.pdf` 문서에 로딩한 폰트가 확실하게 포함된다. [여기서](http://lostineconomics.netlify.com/note/download/foo.pdf/download/foo.pdf) 확인해보시라. 
 
 <!--- 
 REFERENCE 
