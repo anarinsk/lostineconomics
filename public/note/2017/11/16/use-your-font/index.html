@@ -79,9 +79,10 @@ text(2, 70, &quot;N = 1000&quot;, family = &quot;bell&quot;, cex = 2.5)</code></
 <div id="what-about-korean-font" class="section level1">
 <h1>What about Korean font?</h1>
 <p>앞서도 이야기 했지만 Google fonts에는 안타깝게도 한글이 없다. early access에는 10종 정도가 포함되어 있지만 정식 리포지터리에는 없으므로 <code>font_add_google()</code>로는 한글을 구현할 수 없다. 이 경우 적절한 위치에 폰트 원본 파일을 놓고 이를 불러오면 된다.</p>
-<pre class="r"><code>font_add(family = &quot;hwhitecat&quot;, regular = &quot;fonts/HoonWhitecatR.ttf&quot;)</code></pre>
-<p>위의 코드는 현재 디렉토리의 하위에 위치한 <code>fonts/HoonWhitecatR.ttf</code> 폰트를 “hwitecat”이라는 패밀리의 레귤러로 심어준다. 레귤러, 이탤릭, 볼드 등을 따로 따로 지정할 수도 있다.</p>
-<pre class="r"><code>font_add(&quot;constan&quot;, regular = &quot;fonts/constan.ttf&quot;, italic = &quot;fonts/constani.ttf&quot;)</code></pre>
+<pre class="r"><code>font_add(family = &quot;hwhitecat&quot;, regular = &quot;./fonts/HoonWhitecatR.ttf&quot;)</code></pre>
+<p>위의 코드는 현재 디렉토리의 하위에 위치한 <code>./fonts/HoonWhitecatR.ttf</code> 폰트를 “hwitecat”이라는 패밀리의 레귤러로 심어준다. 레귤러, 이탤릭, 볼드 등을 아래 명령과 같이 별도로 지정할 수도 있다.</p>
+<pre class="r"><code>font_add(&quot;constan&quot;, regular = &quot;./fonts/constan.ttf&quot;, italic = &quot;./fonts/constani.ttf&quot;)
+font_add(&quot;heiti&quot;, regular = &quot;./fonts/simhei.ttf&quot;)</code></pre>
 <pre class="r"><code>showtext_auto()
 
 p = ggplot(NULL, aes(x = 1, y = 1)) + ylim(0.8, 1.2) +
@@ -136,7 +137,7 @@ print(q);</code></pre>
 <pre class="r"><code>#
 ggsave(filename=&quot;./foo.pdf&quot;, q, device=cairo_pdf)
 #</code></pre>
-<p>위 처럼 명시적으로 device를 <code>cairo_pdf</code>로 지정해주면 <code>foo.pdf</code> 문서에 로딩한 폰트가 확실하게 포함된다. <a href="http://lostineconomics.netlify.com/note/download/foo.pdf/download/foo.pdf">여기서</a> 확인해보시라.</p>
+<p>위 처럼 명시적으로 device를 <code>cairo_pdf</code>로 지정해주면 <code>foo.pdf</code> 문서에 로딩한 폰트가 확실하게 포함된다. <a href="http://lostineconomics.netlify.com/note/download/foo.pdf/">여기서</a> 확인해보시라.</p>
 <!--- 
 REFERENCE 
 https://cran.rstudio.com/web/packages/showtext/vignettes/introduction.html
