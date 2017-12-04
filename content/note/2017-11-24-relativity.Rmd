@@ -22,11 +22,10 @@ library(showtext)
 
 showtext_auto()
 
-font_add(family = "notosanskr", regular = "./fonts/NotoSansCJKkr-Regular.otf")
+font_add(family="notosanskr", regular="./fonts/NotoSansCJKkr-Regular.otf")
 ```
 
 ```{r eval=FALSE}
-#
 ggplot(mtcars, aes(x=wt, y=mpg)) + geom_point() +
   ggtitle("Fuel Efficiency of 32 Cars 32개 자동차의 연료 효율") +
   xlab("Weight (x1000 lb) 무게") + ylab("Miles per Gallon 갤론 당 마일") +
@@ -36,13 +35,12 @@ ggplot(mtcars, aes(x=wt, y=mpg)) + geom_point() +
     
 ggsave(filename="./foo_wrong1.pdf", p, width=10, height=5, unit="cm")
 ggsave(filename="./foo_wrong2.pdf", p, width=30, height=15, unit="cm")
-#
 ```
 
   * [foo_wrong1.pdf](http://lostineconomics.netlify.com/note/download/foo_wrong1.pdf/)
   * [foo_wrong2.pdf](http://lostineconomics.netlify.com/note/download/foo_wrong2.pdf/)
- 
-pdf를 열어서 확인해보면 금새 무슨 말인지 알게 될 거다. 이는 이미지를 저장할 때 `width`를 명시적으로 지정했기 때문이다. 해당 폭과 글자 크기의 절대치 사이에서 오는 문제라고 보면 되겠다.  
+
+pdf를 열어서 확인해보라. `foo_wrong1.pdf`가 이상해보이는 까닭은 이미지를 저장할 때 `width`를 명시적으로 지정했기 때문이다. 해당 폭과 글자 크기의 절대치 사이에서 오는 문제라고 보면 되겠다.
 
 # Solutions 
 
@@ -80,6 +78,7 @@ ggsave(filename="./foo_rel3.pdf", q, scale=2)
   * [foo_rel2.pdf](http://lostineconomics.netlify.com/note/download/foo_rel2.pdf/)
   * [foo_rel3.pdf](http://lostineconomics.netlify.com/note/download/foo_rel3.pdf/)
 
+<<<<<<< HEAD
 위의 결과에서 보듯이 `scale=2`는 그림을 두 배로 키운 것이므로 글자들은 전부 50%씩 줄어들게 된다. 물론 각 카테고리의 텍스트들 사이의 상대적인 비율은 위의 지정한 대로 움직인다. 이렇게 쓰면 무엇이 좋을까? 대체로 그림을 생성한 후 원하는 크기를 얻게 위해 개별적으로 크기를 이렇게 저렇게 뜯어 맞추는 경우가 많다. 이렇게 상대치로 해 놓으면, 대체로 그럴 필요가 없다. 스케일을 조정하는 것만으로 훨씬 편하게 원하는 최종 이미지를 얻을 수 있다. 
 
 앞서 말했듯이 어차피 PDF 이미지를 쓴다면 원하는 그림 하나만 얻으면 되지만, 그 과정도 조금 더 폼나게 하자, 뭐 이 정도다. 
