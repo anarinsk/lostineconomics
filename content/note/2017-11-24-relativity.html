@@ -26,8 +26,8 @@ ggplot(mtcars, aes(x=wt, y=mpg)) + geom_point() +
     title=element_text(family=&quot;notosanskr&quot;, size=10),
     axis.title=element_text(family=&quot;notosanskr&quot;, size=9) -&gt; p
     
-ggsave(filename=&quot;./foo_wrong1.pdf&quot;, p, width=10, unit=&quot;cm&quot;)
-ggsave(filename=&quot;./foo_wrong2.pdf&quot;, p, width=30, unit=&quot;cm&quot;)
+ggsave(filename=&quot;./foo_wrong1.pdf&quot;, p, width=10, height=5, unit=&quot;cm&quot;)
+ggsave(filename=&quot;./foo_wrong2.pdf&quot;, p, width=30, height=15, unit=&quot;cm&quot;)
 #</code></pre>
 <ul>
 <li><a href="http://lostineconomics.netlify.com/note/download/foo_wrong1.pdf/">foo_wrong1.pdf</a></li>

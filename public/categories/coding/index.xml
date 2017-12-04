@@ -6,10 +6,20 @@
     <description>Recent content in Coding on lost in economics</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 24 Nov 2017 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 28 Nov 2017 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/categories/coding/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>let in wrapr</title>
+      <link>/note/2017/11/28/let-in-wrapr/</link>
+      <pubDate>Tue, 28 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/note/2017/11/28/let-in-wrapr/</guid>
+      <description>Non Standard EvaluationR에는 Non Standard Evaluation(NSE)라고 불리는 녀석이 있다. 어떤 선배님은 변수를 선언하지 않는 R이 처음부터 무척 마음에 들지 않았다, 라고 툴툴대셨지만, 대충 알아서 해주는 건 사실 단점보다는 장점이 많다. 좌간, NSE 역시 이와 비슷한 차원에서 이해하면 될 것 같다. 예를 보자.
+library(tidyverse)library(&amp;#39;tidyverse&amp;#39;)위의 코드에서 둘 중 어떤 문법이 맞을까? 정답은 둘 다 써도 된다. library라는 함수는 string과 expression 모두를 input으로 받는다. 전자가 원래 R이 정한 규칙이라면 후자는 이런 표준에서 벗어났지만 실행되는 규칙, Non Standard Evaluation(NSE)이다.</description>
+    </item>
     
     <item>
       <title>Relativity matters</title>

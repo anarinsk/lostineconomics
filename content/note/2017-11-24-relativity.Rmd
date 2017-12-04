@@ -34,8 +34,8 @@ ggplot(mtcars, aes(x=wt, y=mpg)) + geom_point() +
     title=element_text(family="notosanskr", size=10),
     axis.title=element_text(family="notosanskr", size=9) -> p
     
-ggsave(filename="./foo_wrong1.pdf", p, width=10, unit="cm")
-ggsave(filename="./foo_wrong2.pdf", p, width=30, unit="cm")
+ggsave(filename="./foo_wrong1.pdf", p, width=10, height=5, unit="cm")
+ggsave(filename="./foo_wrong2.pdf", p, width=30, height=15, unit="cm")
 #
 ```
 
