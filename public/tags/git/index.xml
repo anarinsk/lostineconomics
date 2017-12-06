@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>git on lost in economics</title>
-    <link>/tags/git/index.xml</link>
-    <description>Recent content in git on lost in economics</description>
+    <title>Git on lost in economics</title>
+    <link>/tags/git/</link>
+    <description>Recent content in Git on lost in economics</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <atom:link href="/tags/git/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 20 Oct 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/git/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>My Stupid Git Experience, part 1</title>
@@ -14,301 +17,8 @@
       <pubDate>Fri, 20 Oct 2017 00:00:00 +0000</pubDate>
       
       <guid>/note/2017/10/20/my-stupid-git-experience-part-1/</guid>
-      <description>&lt;div id=&#34;disclaimer&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;Disclaimer&lt;/h1&gt;
-&lt;p&gt;이 문서는 &lt;code&gt;git&lt;/code&gt;을 다루면서 저질렀던 개인적을 실수를 모아 놓은 것이다. 아마도 문서 자체가 조금씩 진화할 것이므로 어떤 시점에서 보신다면 몹시 허접할 수 있도 있겠다. git에 대해서 잘 아는 분들은 패스하시라. 일단, &lt;code&gt;branch&lt;/code&gt;를 심각하게 쓰지 않는다면 여기 나온 정도로 충분할 것 같다.&lt;/p&gt;
-&lt;hr /&gt;
-&lt;/div&gt;
-&lt;div id=&#34;basic-structure&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;Basic structure&lt;/h1&gt;
-&lt;div class=&#34;figure&#34;&gt;
-&lt;img src=&#34;img/dr_structure.png&#34; /&gt;
-
-&lt;/div&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;working dir&lt;/code&gt;: local의 작업디렉토리&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;index&lt;/code&gt;: staging area. 커밋될 파일들을 올려 두는 공간&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;HEAD&lt;/code&gt;: 마지막으로 커밋이 이루어진 branch&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class=&#34;figure&#34;&gt;
-&lt;img src=&#34;img/git-operations.png&#34; /&gt;
-
-&lt;/div&gt;
-&lt;hr /&gt;
-&lt;/div&gt;
-&lt;div id=&#34;basic-command&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;Basic command&lt;/h1&gt;
-&lt;div id=&#34;initiation-in-local&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Initiation in local&lt;/h2&gt;
-&lt;p&gt;로컬머신에서 git을 개시하는 방법부터 알아보자. git으로 관리하고 싶은 directory에서 아래와 같은 명령어를 쳐 준다.&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;&amp;gt; echo &amp;quot;# YOUR_README_NAME&amp;quot; &amp;gt;&amp;gt; README.md 
-&amp;gt; git init
-&amp;gt; git add README.md 
-&amp;gt; git commit -m &amp;quot;YOUR_COMMIT_MESSAGE(e.g. first commit)&amp;quot;
-&amp;gt; git remote add origin &amp;lt;&amp;lt;https://YOUR_REMOTE_GIT_URL&amp;gt;&amp;gt;
-&amp;gt; git push -u origin master &lt;/code&gt;&lt;/pre&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;&amp;lt;&amp;lt;https://YOUR_REMOTE_GIT_URL&amp;gt;&amp;gt;&lt;/code&gt;: 외부 리포가 적절하게 세팅이 되어 있어야 한다. github를 쓴다면, readme 없이 새 repository를 터주는 작업 만으로 끝이다.&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;echo...&lt;/code&gt;: “# YOUR_README_NAME” 내용을 &lt;code&gt;README.md&lt;/code&gt;로 생성한 후&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;git init&lt;/code&gt;: 해당 디렉토리에 git을 개시한다.&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;git remote add&lt;/code&gt;: git의 remote 저장소를 &lt;code&gt;origin&lt;/code&gt;이라는 이름으로 지정&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;git push -u origin master&lt;/code&gt;: &lt;code&gt;-u&lt;/code&gt;는 업스트림 브랜치를 master로 기본설정해준다. 이후 &lt;code&gt;git push&lt;/code&gt;, &lt;code&gt;git pull&lt;/code&gt;은 자동으로 &lt;code&gt;origin &amp;lt;-&amp;gt; master&lt;/code&gt;가 된다.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div id=&#34;add-commit-push&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;&lt;code&gt;add&lt;/code&gt;, &lt;code&gt;commit&lt;/code&gt;, &lt;code&gt;push&lt;/code&gt;&lt;/h2&gt;
-&lt;pre&gt;&lt;code&gt;&amp;gt; git status  
-&amp;gt; git add .
-
-#or
-
-&amp;gt; git add -u
-&amp;gt; git commit -m &amp;quot;YOUR_COMMENT&amp;quot;
-&amp;gt; git push &lt;/code&gt;&lt;/pre&gt;
-&lt;ul&gt;
-&lt;li&gt;git 운용의 기본적인 흐름 혹은 기본 명령어 셋&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;push&lt;/code&gt;만 명령하면 되는 것은 앞서 &lt;code&gt;git push -u origin master&lt;/code&gt; origin master로 local과 remote repository의 upstream을 정해두었기 때문이다.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;hr /&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div id=&#34;in-depth-command&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;In-depth command&lt;/h1&gt;
-&lt;div id=&#34;remote&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;&lt;code&gt;remote&lt;/code&gt;&lt;/h2&gt;
-&lt;pre&gt;&lt;code&gt;&amp;gt; git remote origin 
-&amp;gt; git remote -v &lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;&amp;gt; git status  
-&amp;gt; git add .
-&amp;gt; git commit -m &amp;quot;YOUR_COMMENT&amp;quot;
-&amp;gt; git push &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;code&gt;git remote&lt;/code&gt; : remote로 어떤 대상이 설정되어 있는지 볼 수 있다. &lt;code&gt;git remote -v&lt;/code&gt;: remote의 구체적인 내용을 조회해볼 수 있다.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;pull&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;&lt;code&gt;pull&lt;/code&gt;&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;pull&lt;/code&gt;: &lt;code&gt;fetch&lt;/code&gt;(가져오기)와 &lt;code&gt;merge&lt;/code&gt;(병합하기)를 동시에 구현
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;fetch&lt;/code&gt;: repository의 내용을 가져와 &lt;code&gt;FETCH_HEAD&lt;/code&gt;라는 local branch에 임시로 저장&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;merge&lt;/code&gt;: &lt;code&gt;fetch&lt;/code&gt; 불러온 데이터를 원래 흐름과 병합&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;origin과 master에서 모두 변경 사항이 있을 경우는 둘에 충돌이 일어날 수 밖에 없다. 이런 경우 이 충돌을 해결해줘야 &lt;code&gt;push&lt;/code&gt;가 가능하다.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;pre&gt;&lt;code&gt;&amp;gt; git pull --rebase&lt;/code&gt;&lt;/pre&gt;
-&lt;ul&gt;
-&lt;li&gt;깔끔한 이력 관리를 위해서는 rebase를 활용해서 pull을 해주면 좋다. rebase를 해주면 별도의 브랜치를 만들지 않겠다는 의도를 분명히 하는 것이고, 이에 따라서 log가 깔끔하고 단순해진다.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div id=&#34;commit&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;&lt;code&gt;commit&lt;/code&gt;&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;git commit -m &amp;quot;&amp;lt;&amp;lt;YOUR_MESSAGE&amp;gt;&amp;gt;&amp;quot;&lt;/code&gt;: 기본적인 문법&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div id=&#34;-commit-push---&#34; class=&#34;section level3&#34;&gt;
-&lt;h3&gt;이전 &lt;code&gt;commit-push&lt;/code&gt;된 버전을 수정하고 싶다면&lt;/h3&gt;
-&lt;p&gt;뭔가를 수정했다. 하지만 새로운 commit을 만들고 싶지 않다.&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;&amp;gt; git commit --amend --no-edit&lt;/code&gt;&lt;/pre&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;--amend --no-edit&lt;/code&gt;: 전에 commit message를 그대로 쓰고 commit한다.
-&lt;ul&gt;
-&lt;li&gt;이대로 push를 할 수 없다. 앞서 push된 버전과 현 수정된 버전이 같은 commit인데 내용은 다르다. 즉, SHA-1이 다르다. 이때 강제로 &lt;code&gt;push&lt;/code&gt;를 하고 싶다면 아래와 같이 한다.&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;pre&gt;&lt;code&gt;&amp;gt; git push -f [origin] [master]&lt;/code&gt;&lt;/pre&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;-f&lt;/code&gt;: commit을 새로 만든 것이 아니기 때문에, 그대로 push를 하게 되면 origin과 맞지 않게 된다. 강제로 push를 해서 맞춰주는 명령어다.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;hr /&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div id=&#34;concept-of-branch&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;Concept of &lt;code&gt;branch&lt;/code&gt;&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;이 꼭지는 &lt;a href=&#34;https://backlog.com/git-tutorial/kr/&#34;&gt;backlog.com&lt;/a&gt;을 많이 참고했습니다.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;브랜치란 현재 &lt;code&gt;HEAD&lt;/code&gt; 스냅샷에 대해서 다른 이름을 부여해주는 작업이다. 일단, 아무런 변경이 없는 이상 브랜치는 분기되지 않고 노드에 함께 머물러 있다. 일단 기본적인 명령어는 아래와 같다.&lt;/p&gt;
-&lt;div id=&#34;basic&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Basic&lt;/h2&gt;
-&lt;pre&gt;&lt;code&gt;&amp;gt; git branch &amp;lt;BRANCH_NAME&amp;gt;
-&amp;gt; git checkout
-&amp;gt; git checkout -b &amp;lt;BRANCH_NAME&amp;gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;git branch&lt;/code&gt;: 브랜치를 조회하거나, &lt;code&gt;&amp;lt;BRANCH_NAME&amp;gt;&lt;/code&gt;을 붙여 브랜치를 생성한다.&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;checkout&lt;/code&gt;이란 다른 브랜치로 빠져나가는 것을 의미한다.&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;-b&lt;/code&gt;: 브랜치를 만들면서 체크아웃을 하기 위해서는 이 옵션을 사용한다.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;pre&gt;&lt;code&gt;&amp;gt; git merge &amp;lt;COMMIT_NAME&amp;gt; 
-&amp;gt; git branch -d &amp;lt;BRANCH_NAME&amp;gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;merge&lt;/code&gt;: 커밋된 다른 지점과 현재 HEAD의 브랜치를 병합한다.&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;-d&lt;/code&gt;: 브랜치를 삭제하기 위해서 사용하는 명령어&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div id=&#34;in-practice&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;In practice&lt;/h2&gt;
-&lt;pre&gt;&lt;code&gt;&amp;gt; git branch issue2
-&amp;gt; git branch issue3
-&amp;gt; git checkout issue2
-  Switched to branch &amp;#39;issue2&amp;#39;
-&amp;gt; git branch
-* issue2
-  issue3
-  master&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;위 명령어를 수행한 상태의 그림이다.&lt;/p&gt;
-&lt;div class=&#34;figure&#34;&gt;
-&lt;img src=&#34;img/branch1.png&#34; /&gt;
-
-&lt;/div&gt;
-&lt;p&gt;issue2의 어떤 내용을 수정했다고 하자.&lt;/p&gt;
-&lt;div class=&#34;figure&#34;&gt;
-&lt;img src=&#34;img/branch2.png&#34; /&gt;
-
-&lt;/div&gt;
-&lt;pre&gt;&lt;code&gt;&amp;gt; git checkout issue3&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;issue3 branch에서 어떤 내용을 또 수정했다고 하자.&lt;/p&gt;
-&lt;div class=&#34;figure&#34;&gt;
-&lt;img src=&#34;img/branch3.png&#34; /&gt;
-
-&lt;/div&gt;
-&lt;p&gt;그리고 master를 issue2와 병합하면 다음의 그림과 같은 상태로 이해하면 된다.&lt;/p&gt;
-&lt;div class=&#34;figure&#34;&gt;
-&lt;img src=&#34;img/conflict.png&#34; /&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div id=&#34;conflict&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Conflict&lt;/h2&gt;
-&lt;p&gt;위의 그림에서 아래의 명령어를 수행한다고 하자.&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;&amp;gt; git checkout master
-&amp;gt; git merge issue3&lt;/code&gt;&lt;/pre&gt;
-&lt;ul&gt;
-&lt;li&gt;이때 어떤 파일에 대해서 &lt;code&gt;HEAD&lt;/code&gt;의 master의 내용과 issue3의 내용이 서로 다른 부분이 있다고 하자.&lt;/li&gt;
-&lt;li&gt;병합이 무리 없이 가능하다면 그대로 병합된다. 즉, A와 B가 있을 떄 B가 A의 내용을 포함하고 있다면, 병합이 가능하다.&lt;/li&gt;
-&lt;li&gt;파일 자체가 다른 경우는 인간의 판단이 필요하다. 해당 파일을 열면 아래와 같이 표현되어 있다.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;pre&gt;&lt;code&gt;원숭이도 이해할 수 있는 Git 명령어
-add: 변경 사항을 만들어서 인덱스에 등록해보기
-&amp;lt;&amp;lt;&amp;lt;&amp;lt;&amp;lt;&amp;lt;&amp;lt; HEAD
-commit: 인덱스의 상태를 기록하기
-=======
-pull: 원격 저장소의 내용을 가져오기
-&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt; issue3&lt;/code&gt;&lt;/pre&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;&amp;lt;&amp;lt;&amp;lt;&amp;lt;&amp;lt;&amp;lt; HEAD&lt;/code&gt;는 &lt;code&gt;====&lt;/code&gt;까지 HEAD의 부분이고, &lt;code&gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt; issue3&lt;/code&gt;의 부분이다.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;hr /&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div id=&#34;what-is-rebase&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;What is &lt;code&gt;rebase&lt;/code&gt;&lt;/h1&gt;
-&lt;div class=&#34;section level2&#34;&gt;
-&lt;h2&gt;개념&lt;/h2&gt;
-&lt;p&gt;특정한 브랜치를 다른 브랜치로 합친 후에 이전 브랜치는 없애고 싶을 때, 한번에 처리하는 명령어가 rebase다.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;리베이스는 병합될 브랜치에서 시작!&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class=&#34;figure&#34;&gt;
-&lt;img src=&#34;img/rebase_1.png&#34; /&gt;
-
-&lt;/div&gt;
-&lt;p&gt;원래 상태는 HEAD를 master로 하고 브랜치는 다음과 같이 3가지다.&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;&amp;gt; git checkout issue3
-&amp;gt; git rebase master &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;issue3로 체크아웃을 한 뒤에 해당 브랜치를 master로 rebase한다. 만일 두 노드 사이에 충돌이 없다면 rebase가 되곘지만, 충돌이 있을 경우에는 해당 파일을 수정해줘야 한다. 수정 후 아래와 같이 rebase한다.&lt;/p&gt;
-&lt;div class=&#34;figure&#34;&gt;
-&lt;img src=&#34;img/rebase_2.png&#34; /&gt;
-
-&lt;/div&gt;
-&lt;pre&gt;&lt;code&gt;&amp;gt; git add myfile.txt 
-&amp;gt; git rebase --continue &lt;/code&gt;&lt;/pre&gt;
-&lt;div class=&#34;figure&#34;&gt;
-&lt;img src=&#34;img/rebase_3.png&#34; /&gt;
-
-&lt;/div&gt;
-&lt;pre&gt;&lt;code&gt;&amp;gt; git checkout master 
-&amp;gt; git merge issue3&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;code&gt;master&lt;/code&gt;로 체크아웃한 이후에 issue3 merge하면 아래와 같이 가지가 정리된다.&lt;/p&gt;
-&lt;div class=&#34;figure&#34;&gt;
-&lt;img src=&#34;img/rebase_4.png&#34; /&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div id=&#34;also&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Also&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;merge&lt;/code&gt;와 &lt;code&gt;rebase&lt;/code&gt;의 개념적인 차이에 대해서는 &lt;a href=&#34;https://backlog.com/git-tutorial/kr/stepup/stepup1_4.html&#34;&gt;Link&lt;/a&gt;를 참고&lt;/li&gt;
-&lt;/ul&gt;
-&lt;hr /&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div id=&#34;case-by-case&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;Case by case&lt;/h1&gt;
-&lt;div id=&#34;github---local---&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Github의 내용을 강제로 local로 덮어쓰고 싶을 때&lt;/h2&gt;
-&lt;p&gt;그냥 지우고 다시 clone을 할 수도 있다. 하지만 아래 같이 해주면 불필요한 동기화를 막을 수 있다.&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;&amp;gt; git fetch --all
-&amp;gt; git reset --hard origin/master
-&amp;gt; git pull origin master&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;div id=&#34;local----github---&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;local에 있는 내용을 강제로 github으로 보내고 싶을 때&lt;/h2&gt;
-&lt;pre&gt;&lt;code&gt;&amp;gt; git pull --rebase
-&amp;gt; git push
-&amp;gt; git stash pop&lt;/code&gt;&lt;/pre&gt;
-&lt;hr /&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div id=&#34;miscellaneous&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;Miscellaneous&lt;/h1&gt;
-&lt;div id=&#34;gitignore&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;&lt;code&gt;.gitignore&lt;/code&gt;&lt;/h2&gt;
-&lt;p&gt;vim으로 만들 수도 있다. 물론, 흔한 txt editor로 만들어도 무방하다.&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;vim .gitignore &lt;/code&gt;&lt;/pre&gt;
-&lt;ul&gt;
-&lt;li&gt;vim 화면 위쪽에 입력하려면 i(insert)를 치고, 제외할 타잎을 넣는다.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;pre&gt;&lt;code&gt;*.Rhistory 
-*.RData &lt;/code&gt;&lt;/pre&gt;
-&lt;ul&gt;
-&lt;li&gt;ESC를 치면 화면 아래 command 창으로 이동한다. :qw(quit &amp;amp; write)를 입력한다.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;hr /&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div id=&#34;homework-rule-of-thumb&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;Homework &amp;amp; Rule of Thumb&lt;/h1&gt;
-&lt;p&gt;앞으로 더 알아야 하지만 지금은 그냥 넘어갈 내용들이다.&lt;/p&gt;
-&lt;div id=&#34;log&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;&lt;code&gt;log&lt;/code&gt;&lt;/h2&gt;
-&lt;p&gt;여러가지 옵션이 있고 활용하면 좋을 듯 하지만, 당분간 나에게는 히스토리를 그냥 순서대로 보여주는 아래 명령어 정도면 충분할 듯 싶다.&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;&amp;gt; git log --pretty=oneline
-&amp;gt; git log --pretty=format:&amp;quot;%h - %an, %ar : %s&amp;quot;&lt;/code&gt;&lt;/pre&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;git log --pretty=oneline&lt;/code&gt;: oneline으로 보여준다.&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;git log --pretty=format:&amp;quot;%h - %an, %ar : %s&amp;quot;&lt;/code&gt;: 포매팅한다.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;code&gt;log&lt;/code&gt;에 대해서는 다음을 참고: &lt;a href=&#34;https://git-scm.com/book/ko/v1/Git%EC%9D%98-%EA%B8%B0%EC%B4%88-%EC%BB%A4%EB%B0%8B-%ED%9E%88%EC%8A%A4%ED%86%A0%EB%A6%AC-%EC%A1%B0%ED%9A%8C%ED%95%98%EA%B8%B0&#34;&gt;링크&lt;/a&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;git-github--&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Git과 github 계정의 연동&lt;/h2&gt;
-&lt;p&gt;원래 local setting이 없는 머신에서 최초로 git 작업을 하면 아래의 사항을 처리해야 한다.&lt;/p&gt;
-&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
-&lt;li&gt;이름과 이메일 어카운트 세팅&lt;/li&gt;
-&lt;li&gt;repo 접근 권한&lt;/li&gt;
-&lt;/ol&gt;
-&lt;pre&gt;&lt;code&gt;&amp;gt; git config --global user.email &amp;quot;##USER EMAIL##&amp;quot;
-&amp;gt; git config --global user.name &amp;quot;##USER NAME##&amp;quot;&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;repo로 날리게 되면 username과 password를 묻게 된다. 매번 하기 귀찮다면 다음과 같이 처리해준다.&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;&amp;gt; git config --global credential.helper cache
-&amp;gt; git config --global push.default simple&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;div id=&#34;other-link&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Other link&lt;/h2&gt;
-&lt;p&gt;&lt;a href=&#34;http://meetup.toast.com/posts/116&#34; class=&#34;uri&#34;&gt;http://meetup.toast.com/posts/116&lt;/a&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-</description>
+      <description>Disclaimer이 문서는 git을 다루면서 저질렀던 개인적을 실수를 모아 놓은 것이다. 아마도 문서 자체가 조금씩 진화할 것이므로 어떤 시점에서 보신다면 몹시 허접할 수 있도 있겠다. git에 대해서 잘 아는 분들은 패스하시라. 일단, branch를 심각하게 쓰지 않는다면 여기 나온 정도로 충분할 것 같다.
+Basic structureworking dir: local의 작업디렉토리index: staging area. 커밋될 파일들을 올려 두는 공간HEAD: 마지막으로 커밋이 이루어진 branchBasic commandInitiation in local로컬머신에서 git을 개시하는 방법부터 알아보자.</description>
     </item>
     
   </channel>

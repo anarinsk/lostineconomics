@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>bizarro_magrittr on lost in economics</title>
-    <link>/tags/bizarro_magrittr/index.xml</link>
-    <description>Recent content in bizarro_magrittr on lost in economics</description>
+    <title>Bizarro_magrittr on lost in economics</title>
+    <link>/tags/bizarro_magrittr/</link>
+    <description>Recent content in Bizarro_magrittr on lost in economics</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <atom:link href="/tags/bizarro_magrittr/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 21 Nov 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/bizarro_magrittr/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>Bizarro Magrittr</title>
@@ -14,122 +17,7 @@
       <pubDate>Tue, 21 Nov 2017 00:00:00 +0000</pubDate>
       
       <guid>/note/2017/11/21/bizarro-magrittr/</guid>
-      <description>&lt;style&gt;
-pre.bluebox {
-    background-color: #aabbff !important;
-}
-pre.redbox {
-    background-color: #ffbbbb !important;
-}
-&lt;/style&gt;
-&lt;div id=&#34;bizarro&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;Bizarro!&lt;/h1&gt;
-&lt;p&gt;&lt;a href=&#34;http://lostineconomics.netlify.com/note/2017/11/15/magrittr---ceci-nest-pas-un-pipe./&#34;&gt;이전 포스팅&lt;/a&gt;에서 Magrittr 패키지 이름이 재미있다고 말했지만, 이번 패키지 이름도 못지 않게 재미있다. 수학과 코딩의 경계에서 R의 한계를 시험하는 집단인 &lt;a href=&#34;http://www.win-vector.com/site/&#34;&gt;Win-Vector&lt;/a&gt;에서 만든 패키지인 “Bizarro Magrittr” 혹은 “Bizarro pipe”가 오늘의 주인공이다. DC 만화를 즐겨 보시는 분들은 이미 눈치를 챘으리라. Bizarro는 수퍼맨의 모든 능력을 살짝 다르게 갖고 있는 빌런이다. 흑화한 수퍼맨으로 이해하면 빠르겠다. &lt;a href=&#34;http://www.win-vector.com/blog/tag/bizarro-magrittr/&#34;&gt;Bizarro Magrittr&lt;/a&gt;(이하 Bizarro) 역시 Magrittr의 거의 모든 능력을 지니고 있지만 ‘흑화’ 변종이다. 어떻게 다를까?&lt;/p&gt;
-&lt;center&gt;
-&lt;img src=&#34;http://www.dccomics.com/sites/default/files/GalleryChar_1900x900_Bizarro_52ab94a953d5b4.45219154.jpg&#34; alt=&#34;이 분이 바로 Bizarro!&#34; /&gt;
-&lt;/center&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;#devtools::install_github(&amp;quot;smbache/magrittr&amp;quot;) # if lastest release is needed
-library(&amp;#39;tidyverse&amp;#39;)
-library(&amp;#39;wrapr&amp;#39;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;wrapr 패키지는 Win-Vector에서 제공하는 몇가지 편의성 패키지 모음이다. 피가 되고 살이 되는 패키지인 만큼 Bizarro만 깔지 말고 이 녀석으로 깔아보자. 혹시 기회가 되면 wrapr에 담긴 다른 라이브러리도 소개하도록 하겠다.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;dot-definitely&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;DOT definitely&lt;/h1&gt;
-&lt;p&gt;앞서 Magrittr에서 별도의 처리가 없을 때 좌변(lhs)이 우변(rhs)의 첫번째 인자로 들어간다고 설명했다. 이런 규칙이 편한 듯 보이지만, 코드의 명확함을 해친다. 코딩에서 명확하지 않은 건 혼란을 초래하기 마련. 일단, Bizarro의 문법은 이 점을 분명하게 포함하고 있다. 닷(&lt;code&gt;.&lt;/code&gt;)을 찍어서 lhs가 rhs에 어디에 위치할지를 분명하게 정한다. 앞서 다루었던 예를 보자.&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;tibble(
-  type = c(&amp;quot;Fast&amp;quot;, &amp;quot;Slow&amp;quot;, &amp;quot;Fast&amp;quot;, &amp;quot;Fast&amp;quot;, &amp;quot;Slow&amp;quot;),
-  colour = c(&amp;quot;Blue&amp;quot;, &amp;quot;Blue&amp;quot;, &amp;quot;Red&amp;quot;, &amp;quot;Red&amp;quot;, &amp;quot;Red&amp;quot;)
-) %&amp;gt;% table(.$type, .$colour)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;에러가 발생한다. 이제 Bizarro로 연결해보자. Bizarro의 “then”, 즉 파이프라이닝 명령어는 &lt;code&gt;%.&amp;gt;%&lt;/code&gt;이다. 닷(&lt;code&gt;.&lt;/code&gt;)이 하나 더 붙어 있다.&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;tibble(
-  type = c(&amp;quot;Fast&amp;quot;, &amp;quot;Slow&amp;quot;, &amp;quot;Fast&amp;quot;, &amp;quot;Fast&amp;quot;, &amp;quot;Slow&amp;quot;),
-  colour = c(&amp;quot;Blue&amp;quot;, &amp;quot;Blue&amp;quot;, &amp;quot;Red&amp;quot;, &amp;quot;Red&amp;quot;, &amp;quot;Red&amp;quot;)
-) %.&amp;gt;% table(.$type, .$colour)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;##       
-##        Blue Red
-##   Fast    1   2
-##   Slow    1   1&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;아무런 문제를 일으키지 않는다! 점 하나 더 찍는 습관을 들이고 명확함을 얻으니 꽤 이득이다.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;more-than-clarity&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;More than clarity&lt;/h1&gt;
-&lt;p&gt;코드가 명확해진다는 것 이외에 사실 숨은 ’개이득’은 따로 있다. 파이프라인의 큰 문제점 중 하나가 “then”(&lt;code&gt;%&amp;gt;%&lt;/code&gt;)으로 길게 파이프를 이을 경우 디버깅하기 어렵다는 데 있다. 중간에 뭔가 문제가 생겼는데 이걸 찾아내려면 파이프를 하나씩 끊어서 볼 수 밖에 없다. 불가능하진 않지만 귀찮다. Bizarro의 능력은 이 대목에서 발휘된다.&lt;/p&gt;
-&lt;p&gt;사실 이 녀석이 Bizarro라고 불리는 이유는 &lt;code&gt;%&amp;gt;%&lt;/code&gt;을 대체할 수 있는 명령으로 &lt;code&gt;-&amp;gt;.;&lt;/code&gt;을 쓸 수 있기 때문이다. &lt;code&gt;-&amp;gt;.;&lt;/code&gt; 명령을 대충 읽어보자. lhs를 &lt;code&gt;.&lt;/code&gt;으로 던지고(&lt;code&gt;-&amp;gt;&lt;/code&gt;) 스테이트먼트를 나누라(&lt;code&gt;;&lt;/code&gt;)는 것이다. 예를 보자.&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;mtcars %&amp;gt;% 
-  split(.$cyl) %&amp;gt;% 
-  map(~lm(mpg ~ wt, data = .)) %&amp;gt;% 
-  map(summary) %&amp;gt;% 
-  map_dbl(&amp;quot;r.squared&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;##         4         6         8 
-## 0.5086326 0.4645102 0.4229655&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;앞의 코드는 mtcars data.frame을 cyl 변수에 따라서 쪼개고, mpg를 wt에 대해서 회귀한 후 &lt;span class=&#34;math inline&#34;&gt;\({\mathrm R^2}\)&lt;/span&gt; 값만을 뽑아내는 것이다. 아래의 코드를 보자.&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;mtcars -&amp;gt;.;
-  split(., .$cyl) -&amp;gt;.;
-  map(., ~lm(mpg ~ wt, data = .)) -&amp;gt;.;
-  map(., summary) -&amp;gt;.; 
-  map_dbl(., &amp;quot;r.squared&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;##         4         6         8 
-## 0.5086326 0.4645102 0.4229655&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;lhs를 rhs에서 정확히 &lt;code&gt;.&lt;/code&gt;으로 표현한 것만 뺀다면 &lt;code&gt;%&amp;gt;%&lt;/code&gt;과 거의 동일하다. 만일 Bizarro를 쓴다면 &lt;code&gt;-&amp;gt;.;&lt;/code&gt;을 &lt;code&gt;%.&amp;gt;%&lt;/code&gt;로 바꿔쓰면 될 얼이다.&lt;/p&gt;
-&lt;p&gt;magrittr의 &lt;code&gt;%&amp;gt;%&lt;/code&gt; 연쇄는 나누어 실행할 수 없다. 물론 디버깅 명령어가 따로 있긴 하지만 그리 편하지는 않다. 하지만 &lt;code&gt;-&amp;gt;.;&lt;/code&gt;은 한줄씩 실행이 가능하고 결과는 &lt;code&gt;.Last.value&lt;/code&gt; 항목에 저장된다. 왼쪽 Environemt 창의 value에서 쉽게 확인할 수 있다.&lt;a href=&#34;#fn1&#34; class=&#34;footnoteRef&#34; id=&#34;fnref1&#34;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt; 즉 파이프 단계별로 뭐가 어떻게 되는지 추적할 수 있게 된다.&lt;/p&gt;
-&lt;p&gt;이제 &lt;code&gt;%&amp;gt;%&lt;/code&gt; 대신 &lt;code&gt;%.&amp;gt;%&lt;/code&gt;을 써야 하는지 이유를 알겠는가? 디버깅할 때 영역지정 후 찾기–바꾸기로 &lt;code&gt;%.&amp;gt;%&lt;/code&gt;를 &lt;code&gt;-&amp;gt;.;&lt;/code&gt;으로 바꾼 후에 편안하게 디버깅을 하면 된다.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;what-really-bizarre-is&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;What really bizarre is…&lt;/h1&gt;
-&lt;p&gt;이 패키지가 진정 “Bizarro”라는 이름을 얻을 수 있는 이유는 그런데 따로 있으니…&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;#install.packages(&amp;#39;microbenchmark&amp;#39;) 
-library(&amp;quot;microbenchmark&amp;quot;)
-library(&amp;quot;magrittr&amp;quot;)
-library(&amp;quot;ggplot2&amp;quot;)
-set.seed(234634)
-
-
-fmagrittr &amp;lt;- function(d) {
-  d %&amp;gt;% sin() %&amp;gt;% cos() %&amp;gt;% tan() %&amp;gt;% sqrt()
-}
-fmagrittrdot &amp;lt;- function(d) {
-  d %&amp;gt;% sin(.) %&amp;gt;% cos(.) %&amp;gt;% tan(.) %&amp;gt;% sqrt(.)
-}
-fbizarro &amp;lt;- function(d) {
-  d %.&amp;gt;% sin(.)  %.&amp;gt;% cos(.) %.&amp;gt;% tan(.) %.&amp;gt;% sqrt(.)
-}
-fsemicolon &amp;lt;- function(d) {
-  d -&amp;gt;.; sin(.) -&amp;gt;.; cos(.) -&amp;gt;.; tan(.) -&amp;gt;.; sqrt(.)
-}
-
-bm &amp;lt;- microbenchmark(
-  fmagrittr(7),
-  fmagrittrdot(7),
-  fbizarro(7),
-  fsemicolon(7),
-  control=list(warmup=100L,
-               order=&amp;#39;random&amp;#39;),
-  times=10000L
-)
-
-summary(bm) %.&amp;gt;% as_tibble(.)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## # A tibble: 4 x 8
-##              expr    min     lq      mean median     uq      max neval
-##            &amp;lt;fctr&amp;gt;  &amp;lt;dbl&amp;gt;  &amp;lt;dbl&amp;gt;     &amp;lt;dbl&amp;gt;  &amp;lt;dbl&amp;gt;  &amp;lt;dbl&amp;gt;    &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt;
-## 1    fmagrittr(7) 137953 154451 180835.86 160994 177775  3665575 10000
-## 2 fmagrittrdot(7) 127998 143643 173475.13 149900 164122 58184427 10000
-## 3     fbizarro(7)  15360  19911  25367.23  21333  22756  3687193 10000
-## 4   fsemicolon(7)      0    569   1232.80    854    854  3105798 10000&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;헐! &lt;code&gt;-&amp;gt;.;&lt;/code&gt;이 가장 빠르고 Bizarro도 원래 Magrittr보다는 훨씬 빠르다!&lt;a href=&#34;#fn2&#34; class=&#34;footnoteRef&#34; id=&#34;fnref2&#34;&gt;&lt;sup&gt;2&lt;/sup&gt;&lt;/a&gt; ㅎㄷㄷ&lt;/p&gt;
-&lt;!---
-REFERENCE 
-# http://www.win-vector.com/blog/2017/01/using-the-bizarro-pipe-to-debug-magrittr-pipelines-in-r/
-
----&gt;
-&lt;/div&gt;
-&lt;div class=&#34;footnotes&#34;&gt;
-&lt;hr /&gt;
-&lt;ol&gt;
-&lt;li id=&#34;fn1&#34;&gt;&lt;p&gt;혹시 &lt;code&gt;.Last.value&lt;/code&gt; 같은 게 안보인다는 분은 옵션에서 조정해주면 된다. 상단 메뉴바에서 “Tools → Global optons → General” 탭 항목 중에서 “Show .Last.value in environmental listing”을 체크해주자.&lt;a href=&#34;#fnref1&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li id=&#34;fn2&#34;&gt;&lt;p&gt;출처는 &lt;a href=&#34;http://www.win-vector.com/blog/2016/12/magrittrs-doppelganger/&#34;&gt;여기&lt;/a&gt;다.&lt;a href=&#34;#fnref2&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;
-</description>
+      <description>pre.bluebox {background-color: #aabbff !important;}pre.redbox {background-color: #ffbbbb !important;}Bizarro!이전 포스팅에서 Magrittr 패키지 이름이 재미있다고 말했지만, 이번 패키지 이름도 못지 않게 재미있다. 수학과 코딩의 경계에서 R의 한계를 시험하는 집단인 Win-Vector에서 만든 패키지인 “Bizarro Magrittr” 혹은 “Bizarro pipe”가 오늘의 주인공이다. DC 만화를 즐겨 보시는 분들은 이미 눈치를 챘으리라. Bizarro는 수퍼맨의 모든 능력을 살짝 다르게 갖고 있는 빌런이다. 흑화한 수퍼맨으로 이해하면 빠르겠다. Bizarro Magrittr(이하 Bizarro) 역시 Magrittr의 거의 모든 능력을 지니고 있지만 ‘흑화’ 변종이다.</description>
     </item>
     
   </channel>

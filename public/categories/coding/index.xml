@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>coding on lost in economics</title>
-    <link>/categories/coding/index.xml</link>
-    <description>Recent content in coding on lost in economics</description>
+    <title>Coding on lost in economics</title>
+    <link>/categories/coding/</link>
+    <description>Recent content in Coding on lost in economics</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <atom:link href="/categories/coding/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 28 Nov 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/categories/coding/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>let in wrapr</title>
@@ -14,90 +17,8 @@
       <pubDate>Tue, 28 Nov 2017 00:00:00 +0000</pubDate>
       
       <guid>/note/2017/11/28/let-in-wrapr/</guid>
-      <description>&lt;div id=&#34;non-standard-evaluation&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;Non Standard Evaluation&lt;/h1&gt;
-&lt;p&gt;R에는 Non Standard Evaluation(NSE)라고 불리는 녀석이 있다. 어떤 선배님은 변수를 선언하지 않는 R이 처음부터 무척 마음에 들지 않았다, 라고 툴툴대셨다. 하지만 역시 대충 사는 나에게는 ‘까이꺼 대충’ 알아서 해주는 건 편한 장점이다. 좌간, NSE 역시 이와 비슷한 차원에서 이해하면 될 것 같다.&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyverse)
-library(&amp;#39;tidyverse&amp;#39;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;위의 코드에서 둘 중 어떤 문법이 맞을까? 사실 둘 다 써도 된다. &lt;code&gt;library&lt;/code&gt;라는 함수는 string과 expression 모두를 input으로 받는다. 전자가 원래 R이 정한 규칙이라면 후자는 이런 표준에서 벗어났지만 실행되는 규칙, Non Standard Evaluation(NSE)이다. 사실 NSE가 딱히 정해진 무엇은 아니다. R이 원래 정해놓은 문법을 따르지 않지만 의도를 실현하는 활용을 통칭한다.&lt;/p&gt;
-&lt;p&gt;우리가 애용하는 dplyr 패키지가 NSE을 광범위하게 활용한다. dplyr를 쓸 때 &lt;code&gt;filter(df, x==1, y==2, z==3)&lt;/code&gt; 같이 흔하게 쓴다. 말로 풀어보면, df라는 data.frame의 &lt;code&gt;x==1&lt;/code&gt;, &lt;code&gt;y==2&lt;/code&gt;, &lt;code&gt;z==3&lt;/code&gt;을 동시 충족하는 조건을 필터링하라는 것이다. R을 (처음부터 차근차근) 익힌 사람이라면 갸우뚱 할 것이다. 이걸 원래 문법대로 풀면 &lt;code&gt;df[df$x==1 &amp;amp; df$y==2 &amp;amp; df$z ==3, ]&lt;/code&gt;이라고 써야 한다. dplyr는 패키지라는 매직서클 안에서 더 간단하고 쉬운 문법을 허용해준다. 일단 NSE가 왜 채택되었는지 수긍이 간다. 편하기 때문이다. 하지만 그래서 치뤄야 하는 비용도 있다.&lt;/p&gt;
-&lt;p&gt;우선 NSE로 쓴 내용은 다른 변수로 대체할 수 없다. 단순하게 활용할 때는 크게 문제가 되지 않는다. 하지만, dplyr로 함수를 만들고자 할 때 심각해진다. 위캠에 제시한 사례를 보자.&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;tibble(x=1:3, y=3:1) -&amp;gt; df 
-df %&amp;gt;% filter(x==1)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## # A tibble: 1 x 2
-##       x     y
-##   &amp;lt;int&amp;gt; &amp;lt;int&amp;gt;
-## 1     1     3&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;내가 x라는 변수를 임의의 어떤 것으로 바꿀 수 있을까?&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;my_var &amp;lt;- x
-#&amp;gt; Error in eval(expr, envir, enclos): object &amp;#39;x&amp;#39; not found
-filter(df, my_var==1)
-#&amp;gt; Error in filter_impl(.data, quo): Evaluation error: object &amp;#39;my_var&amp;#39; not found.&lt;/code&gt;&lt;/pre&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;my_var &amp;lt;- &amp;quot;x&amp;quot;
-filter(df, my_var==1)
-#&amp;gt; # A tibble: 0 x 2
-#&amp;gt; # ... with 2 variables: x &amp;lt;int&amp;gt;, y &amp;lt;int&amp;gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;둘 다 먹히지 않는다. 나는 df에서 x라는 컬럼을 택하고 싶다. 다만 NSE를 이용해서 하는 게 아니라 다른 방법으로 하고 싶다. 내가 원하는 변수를 ’임의화’하여 이를 함수를 만드는 데 활용하고 싶다. NSE에 익숙해지면 위에서 보다시피 이런 단순하고 필수적인 작업이 생각만큼 쉽지 않다. 물론 이런 NSE의 문제점을 뛰어넘기 위해서는 quosures와 tidyval의 개념을 꼼꼼히 두루두루 익혀두는 편이 좋다.&lt;a href=&#34;#fn1&#34; class=&#34;footnoteRef&#34; id=&#34;fnref1&#34;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt; 하지만 역시 야매정신에 충만한 나로서는 쉽게 떠올리기 좋은 간편한 해결책에 눈길이 좀 더 간다.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;let-in-wrapr&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;&lt;code&gt;let&lt;/code&gt; in wrapr&lt;/h1&gt;
-&lt;p&gt;이전에 Win-Vector에서 만든 wrapr 패키지를 소개한 적이 있다. 이 패키지 안에 &lt;code&gt;let&lt;/code&gt;이라는 괜찮은 명령어가 있는데 이 명령어는 함수를 만들 때 만큼은 별다른 불편함 없이 NSE의 문제점을 극복하도록 돕는다.&lt;a href=&#34;#fn2&#34; class=&#34;footnoteRef&#34; id=&#34;fnref2&#34;&gt;&lt;sup&gt;2&lt;/sup&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(wrapr)
-
-tibble(x=1:3, y=3:1) -&amp;gt; df 
-getOne2Filter &amp;lt;- function(df, col_filter){
-  let(
-    c(COL_1=col_filter), 
-    
-    df %&amp;gt;% filter(COL_1==1)
-  )
-}
-
-df %&amp;gt;% getOne2Filter(&amp;#39;x&amp;#39;)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## # A tibble: 1 x 2
-##       x     y
-##   &amp;lt;int&amp;gt; &amp;lt;int&amp;gt;
-## 1     1     3&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;위에서 보듯이 let 내부에 고립된 환경을 만들어 NSE의 문제를 손쉽게 극복할 수 있다. 즉, let 안에 내가 만들고 싶은 함수를 다 때려박으면 된다. 함수가 한번 더 걸치게 되지만 속도 상의 손실은 미미하다. 아쉬우니 예를 하나 더 살펴보자.&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(wrapr)
-
-d &amp;lt;- data.frame(x=c(15, 30, 40))
-
-addOneToColumn &amp;lt;- function(df, 
-                           result_column_name, 
-                           input_column_name) {
-  let(
-    c(RESULT_COL=result_column_name,
-      INPUT_COL=input_column_name),
-    
-    df %&amp;gt;% mutate( RESULT_COL=INPUT_COL+1 )
-    
-  )
-}
-
-d %&amp;gt;% addOneToColumn(&amp;#39;v2&amp;#39;, &amp;#39;x&amp;#39;)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;##    x v2
-## 1 15 16
-## 2 30 31
-## 3 40 41&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;컬럼의 이름을 스트링(‘v2’, ‘x’)으로 선택할 수 있다. 지적 결벽보다는 필요한 것 만큼만 익히는 야매도 때로는 나쁘지 않다. Calm down!&lt;/p&gt;
-&lt;!----
-### Resources 
-http://dplyr.tidyverse.org/articles/programming.html 
-http://www.win-vector.com/blog/2017/05/why-to-use-wraprlet/
-http://www.win-vector.com/blog/2017/06/in-defense-of-wraprlet/
-http://www.win-vector.com/blog/2017/06/wrapr-implementation-update/
-####
-----&gt;
-&lt;/div&gt;
-&lt;div class=&#34;footnotes&#34;&gt;
-&lt;hr /&gt;
-&lt;ol&gt;
-&lt;li id=&#34;fn1&#34;&gt;&lt;p&gt;상세한 내용은 &lt;a href=&#34;http://dplyr.tidyverse.org/articles/programming.html&#34;&gt;LINK&lt;/a&gt;를 참고하라.&lt;a href=&#34;#fnref1&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li id=&#34;fn2&#34;&gt;&lt;p&gt;뭐 위대하신 Wickham 님께서 이것은 야매다, 라고 에둘러까시기도 했지만 쓰기 편하고 속도 잘나오면 그만 아닌가! 위캠의 비판에 대한 Win-Vector 반론은 &lt;a href=&#34;http://www.win-vector.com/blog/2017/06/in-defense-of-wraprlet/&#34;&gt;LINK&lt;/a&gt;를 참고하라.&lt;a href=&#34;#fnref2&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;
-</description>
+      <description>Non Standard EvaluationR에는 Non Standard Evaluation(NSE)라고 불리는 녀석이 있다. 어떤 선배님은 변수를 선언하지 않는 R이 처음부터 무척 마음에 들지 않았다, 라고 툴툴대셨다. 하지만 역시 대충 사는 나에게는 ‘까이꺼 대충’ 알아서 해주는 건 편한 장점이다. 좌간, NSE 역시 이와 비슷한 차원에서 이해하면 될 것 같다.
+library(tidyverse)library(&amp;#39;tidyverse&amp;#39;)위의 코드에서 둘 중 어떤 문법이 맞을까? 사실 둘 다 써도 된다. library라는 함수는 string과 expression 모두를 input으로 받는다. 전자가 원래 R이 정한 규칙이라면 후자는 이런 표준에서 벗어났지만 실행되는 규칙, Non Standard Evaluation(NSE)이다.</description>
     </item>
     
     <item>
@@ -106,65 +27,7 @@ http://www.win-vector.com/blog/2017/06/wrapr-implementation-update/
       <pubDate>Fri, 24 Nov 2017 00:00:00 +0000</pubDate>
       
       <guid>/note/2017/11/24/relativity-matters/</guid>
-      <description>&lt;div id=&#34;font-sizing&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;Font sizing&lt;/h1&gt;
-&lt;p&gt;그림에 폰트를 심을 때 당황했던 경우가 몇 번 있어서 틈난 김에 몇 자 적겠다. 어차피 이 공간에서는 좀스럽고 잡스런 내용을 주로 다룰 예정이니 관심 없는 분들을 패스하시라. 어차피 JPG, PNG와 같은 비트맵 이미지를 쓰지 않으면서 일정한 호환성을 얻고 싶다면 이미지도 PDF를 쓰면 좋다. 벡터 처리 덕분에 확대와 축소가 자유롭게 때문이다. 아울러 &lt;span class=&#34;math inline&#34;&gt;\(\rm \LaTeX\)&lt;/span&gt;을 쓰시는 분들이라면 pdflatex로 컴파일 할 때 그림을 쉽게 넣을 수 있다. 이 이야기는 여기서 끊도록 하자.&lt;/p&gt;
-&lt;p&gt;이미지에 폰트를 심을 때 크기가 문제가 될 수 있다. 타이틀, X-Y축에 들어가는 축라벨, 그리고 범례(legend) 정도를 떠올려보자. 흔히 ggplot2 등의 그래픽 패키지를 쓸 때 폰트 사이즈를 지정할 수 있다. 매뉴얼이나 사용 예를 봐도 그렇다. 그런데 이때 지정하는 폰트 사이즈가 대개는 절대치다. 즉, 10이라고 지정하면 (어떤 기준점에 의거한) 절대 크기로 생성된다. 이 상태에서 생성되는 이미지의 사이즈를 R에서 줄이면 문제가 발생한다.&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyverse)
-library(showtext)
-
-showtext_auto()
-
-font_add(family=&amp;quot;notosanskr&amp;quot;, regular=&amp;quot;./fonts/NotoSansCJKkr-Regular.otf&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;ggplot(mtcars, aes(x=wt, y=mpg)) + geom_point() +
-  ggtitle(&amp;quot;Fuel Efficiency of 32 Cars 32개 자동차의 연료 효율&amp;quot;) +
-  xlab(&amp;quot;Weight (x1000 lb) 무게&amp;quot;) + ylab(&amp;quot;Miles per Gallon 갤론 당 마일&amp;quot;) +
-  theme(
-    title=element_text(family=&amp;quot;notosanskr&amp;quot;, size=10),
-    axis.title=element_text(family=&amp;quot;notosanskr&amp;quot;, size=9) -&amp;gt; p
-    
-ggsave(filename=&amp;quot;./foo_wrong1.pdf&amp;quot;, p, width=10, height=5, unit=&amp;quot;cm&amp;quot;)
-ggsave(filename=&amp;quot;./foo_wrong2.pdf&amp;quot;, p, width=30, height=15, unit=&amp;quot;cm&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://lostineconomics.netlify.com/note/download/foo_wrong1.pdf/&#34;&gt;foo_wrong1.pdf&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://lostineconomics.netlify.com/note/download/foo_wrong2.pdf/&#34;&gt;foo_wrong2.pdf&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;pdf를 열어서 확인해보라. &lt;code&gt;foo_wrong1.pdf&lt;/code&gt;가 이상해보이는 까닭은 이미지를 저장할 때 &lt;code&gt;width&lt;/code&gt;를 명시적으로 지정했기 때문이다. 해당 폭과 글자 크기의 절대치 사이에서 오는 문제라고 보면 되겠다.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;solutions&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;Solutions&lt;/h1&gt;
-&lt;div id=&#34;as-simple-as-it-gets&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;As simple as it gets&lt;/h2&gt;
-&lt;p&gt;앞서 PDF는 어차피 벡터이미지 이기 떄문에 어떤 크기로 뽑든 확대나 축소가 자유롭다고 했다. 그렇다면 취향에 맞게 폰트 사이즈를 지정한 후 &lt;code&gt;ggsave&lt;/code&gt;를 때려서 적당하다 싶으면 그 이미지를 쓰면 되겠다. 이때 &lt;code&gt;width&lt;/code&gt;나 &lt;code&gt;height&lt;/code&gt;를 지정하는 것은 삼가해라. 정 지정해야 겠다면 해당 사이즈에서 원하는 크기로 폰트가 나오는지 반드시 확인하라.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;be-relative&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Be relative&lt;/h2&gt;
-&lt;p&gt;폰트 크기를 상대적으로 지정할 수 있다. 즉, 기준점을 두고 이를 기준으로 배율 지정이 가능하다.&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;#
-ggplot(mtcars, aes(x=wt, y=mpg)) + geom_point() +
-  ggtitle(&amp;quot;Fuel Efficiency of 32 Cars 32개 자동차의 연료 효율&amp;quot;) +
-  xlab(&amp;quot;Weight (x1000 lb) 무게&amp;quot;) + ylab(&amp;quot;Miles per Gallon 갤론 당 마일&amp;quot;) +
-  theme(
-    text=element_text(size=10), 
-    title=element_text(family=&amp;quot;notosanskr&amp;quot;, size=rel(1.5)),
-    axis.title=element_text(family=&amp;quot;notosanskr&amp;quot;, size=rel(0.8))) -&amp;gt; q
-#&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;위 코드는 &lt;code&gt;element_text&lt;/code&gt;의 기본크기를 10으로 정해주고, 타이틀은 1.5배, 그리고 액시스 라벨은 0.8로 “상대적으로” 지정해주었다. ggplot2에서 &lt;code&gt;rel&lt;/code&gt;이라는 명령어를 쓰면 된다. 이렇게 상대적으로 지정해주면 그림을 확대하거나 축소해 생성할 때 &lt;code&gt;rel&lt;/code&gt;로 저징된 부분이 영향을 받게 된다.&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;#
-ggsave(filename=&amp;quot;./foo_rel1.pdf&amp;quot;, q, scale=1)
-ggsave(filename=&amp;quot;./foo_rel2.pdf&amp;quot;, q, scale=1.5)
-ggsave(filename=&amp;quot;./foo_rel3.pdf&amp;quot;, q, scale=2)
-#&lt;/code&gt;&lt;/pre&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://lostineconomics.netlify.com/note/download/foo_rel1.pdf/&#34;&gt;foo_rel1.pdf&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://lostineconomics.netlify.com/note/download/foo_rel2.pdf/&#34;&gt;foo_rel2.pdf&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://lostineconomics.netlify.com/note/download/foo_rel3.pdf/&#34;&gt;foo_rel3.pdf&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&amp;lt;&amp;lt;&amp;lt;&amp;lt;&amp;lt;&amp;lt;&amp;lt; HEAD 위의 결과에서 보듯이 &lt;code&gt;scale=2&lt;/code&gt;는 그림을 두 배로 키운 것이므로 글자들은 전부 50%씩 줄어들게 된다. 물론 각 카테고리의 텍스트들 사이의 상대적인 비율은 위의 지정한 대로 움직인다. 이렇게 쓰면 무엇이 좋을까? 대체로 그림을 생성한 후 원하는 크기를 얻게 위해 개별적으로 크기를 이렇게 저렇게 뜯어 맞추는 경우가 많다. 이렇게 상대치로 해 놓으면, 대체로 그럴 필요가 없다. 스케일을 조정하는 것만으로 훨씬 편하게 원하는 최종 이미지를 얻을 수 있다.&lt;/p&gt;
-&lt;p&gt;앞서 말했듯이 어차피 PDF 이미지를 쓴다면 원하는 그림 하나만 얻으면 되지만, 그 과정도 조금 더 폼나게 하자, 뭐 이 정도다.&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-</description>
+      <description>Font sizing그림에 폰트를 심을 때 당황했던 경우가 몇 번 있어서 틈난 김에 몇 자 적겠다. 어차피 이 공간에서는 좀스럽고 잡스런 내용을 주로 다룰 예정이니 관심 없는 분들을 패스하시라. 어차피 JPG, PNG와 같은 비트맵 이미지를 쓰지 않으면서 일정한 호환성을 얻고 싶다면 이미지도 PDF를 쓰면 좋다. 벡터 처리 덕분에 확대와 축소가 자유롭게 때문이다. 아울러 \(\rm \LaTeX\)을 쓰시는 분들이라면 pdflatex로 컴파일 할 때 그림을 쉽게 넣을 수 있다. 이 이야기는 여기서 끊도록 하자.</description>
     </item>
     
     <item>
@@ -173,122 +36,7 @@ ggsave(filename=&amp;quot;./foo_rel3.pdf&amp;quot;, q, scale=2)
       <pubDate>Tue, 21 Nov 2017 00:00:00 +0000</pubDate>
       
       <guid>/note/2017/11/21/bizarro-magrittr/</guid>
-      <description>&lt;style&gt;
-pre.bluebox {
-    background-color: #aabbff !important;
-}
-pre.redbox {
-    background-color: #ffbbbb !important;
-}
-&lt;/style&gt;
-&lt;div id=&#34;bizarro&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;Bizarro!&lt;/h1&gt;
-&lt;p&gt;&lt;a href=&#34;http://lostineconomics.netlify.com/note/2017/11/15/magrittr---ceci-nest-pas-un-pipe./&#34;&gt;이전 포스팅&lt;/a&gt;에서 Magrittr 패키지 이름이 재미있다고 말했지만, 이번 패키지 이름도 못지 않게 재미있다. 수학과 코딩의 경계에서 R의 한계를 시험하는 집단인 &lt;a href=&#34;http://www.win-vector.com/site/&#34;&gt;Win-Vector&lt;/a&gt;에서 만든 패키지인 “Bizarro Magrittr” 혹은 “Bizarro pipe”가 오늘의 주인공이다. DC 만화를 즐겨 보시는 분들은 이미 눈치를 챘으리라. Bizarro는 수퍼맨의 모든 능력을 살짝 다르게 갖고 있는 빌런이다. 흑화한 수퍼맨으로 이해하면 빠르겠다. &lt;a href=&#34;http://www.win-vector.com/blog/tag/bizarro-magrittr/&#34;&gt;Bizarro Magrittr&lt;/a&gt;(이하 Bizarro) 역시 Magrittr의 거의 모든 능력을 지니고 있지만 ‘흑화’ 변종이다. 어떻게 다를까?&lt;/p&gt;
-&lt;center&gt;
-&lt;img src=&#34;http://www.dccomics.com/sites/default/files/GalleryChar_1900x900_Bizarro_52ab94a953d5b4.45219154.jpg&#34; alt=&#34;이 분이 바로 Bizarro!&#34; /&gt;
-&lt;/center&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;#devtools::install_github(&amp;quot;smbache/magrittr&amp;quot;) # if lastest release is needed
-library(&amp;#39;tidyverse&amp;#39;)
-library(&amp;#39;wrapr&amp;#39;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;wrapr 패키지는 Win-Vector에서 제공하는 몇가지 편의성 패키지 모음이다. 피가 되고 살이 되는 패키지인 만큼 Bizarro만 깔지 말고 이 녀석으로 깔아보자. 혹시 기회가 되면 wrapr에 담긴 다른 라이브러리도 소개하도록 하겠다.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;dot-definitely&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;DOT definitely&lt;/h1&gt;
-&lt;p&gt;앞서 Magrittr에서 별도의 처리가 없을 때 좌변(lhs)이 우변(rhs)의 첫번째 인자로 들어간다고 설명했다. 이런 규칙이 편한 듯 보이지만, 코드의 명확함을 해친다. 코딩에서 명확하지 않은 건 혼란을 초래하기 마련. 일단, Bizarro의 문법은 이 점을 분명하게 포함하고 있다. 닷(&lt;code&gt;.&lt;/code&gt;)을 찍어서 lhs가 rhs에 어디에 위치할지를 분명하게 정한다. 앞서 다루었던 예를 보자.&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;tibble(
-  type = c(&amp;quot;Fast&amp;quot;, &amp;quot;Slow&amp;quot;, &amp;quot;Fast&amp;quot;, &amp;quot;Fast&amp;quot;, &amp;quot;Slow&amp;quot;),
-  colour = c(&amp;quot;Blue&amp;quot;, &amp;quot;Blue&amp;quot;, &amp;quot;Red&amp;quot;, &amp;quot;Red&amp;quot;, &amp;quot;Red&amp;quot;)
-) %&amp;gt;% table(.$type, .$colour)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;에러가 발생한다. 이제 Bizarro로 연결해보자. Bizarro의 “then”, 즉 파이프라이닝 명령어는 &lt;code&gt;%.&amp;gt;%&lt;/code&gt;이다. 닷(&lt;code&gt;.&lt;/code&gt;)이 하나 더 붙어 있다.&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;tibble(
-  type = c(&amp;quot;Fast&amp;quot;, &amp;quot;Slow&amp;quot;, &amp;quot;Fast&amp;quot;, &amp;quot;Fast&amp;quot;, &amp;quot;Slow&amp;quot;),
-  colour = c(&amp;quot;Blue&amp;quot;, &amp;quot;Blue&amp;quot;, &amp;quot;Red&amp;quot;, &amp;quot;Red&amp;quot;, &amp;quot;Red&amp;quot;)
-) %.&amp;gt;% table(.$type, .$colour)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;##       
-##        Blue Red
-##   Fast    1   2
-##   Slow    1   1&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;아무런 문제를 일으키지 않는다! 점 하나 더 찍는 습관을 들이고 명확함을 얻으니 꽤 이득이다.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;more-than-clarity&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;More than clarity&lt;/h1&gt;
-&lt;p&gt;코드가 명확해진다는 것 이외에 사실 숨은 ’개이득’은 따로 있다. 파이프라인의 큰 문제점 중 하나가 “then”(&lt;code&gt;%&amp;gt;%&lt;/code&gt;)으로 길게 파이프를 이을 경우 디버깅하기 어렵다는 데 있다. 중간에 뭔가 문제가 생겼는데 이걸 찾아내려면 파이프를 하나씩 끊어서 볼 수 밖에 없다. 불가능하진 않지만 귀찮다. Bizarro의 능력은 이 대목에서 발휘된다.&lt;/p&gt;
-&lt;p&gt;사실 이 녀석이 Bizarro라고 불리는 이유는 &lt;code&gt;%&amp;gt;%&lt;/code&gt;을 대체할 수 있는 명령으로 &lt;code&gt;-&amp;gt;.;&lt;/code&gt;을 쓸 수 있기 때문이다. &lt;code&gt;-&amp;gt;.;&lt;/code&gt; 명령을 대충 읽어보자. lhs를 &lt;code&gt;.&lt;/code&gt;으로 던지고(&lt;code&gt;-&amp;gt;&lt;/code&gt;) 스테이트먼트를 나누라(&lt;code&gt;;&lt;/code&gt;)는 것이다. 예를 보자.&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;mtcars %&amp;gt;% 
-  split(.$cyl) %&amp;gt;% 
-  map(~lm(mpg ~ wt, data = .)) %&amp;gt;% 
-  map(summary) %&amp;gt;% 
-  map_dbl(&amp;quot;r.squared&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;##         4         6         8 
-## 0.5086326 0.4645102 0.4229655&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;앞의 코드는 mtcars data.frame을 cyl 변수에 따라서 쪼개고, mpg를 wt에 대해서 회귀한 후 &lt;span class=&#34;math inline&#34;&gt;\({\mathrm R^2}\)&lt;/span&gt; 값만을 뽑아내는 것이다. 아래의 코드를 보자.&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;mtcars -&amp;gt;.;
-  split(., .$cyl) -&amp;gt;.;
-  map(., ~lm(mpg ~ wt, data = .)) -&amp;gt;.;
-  map(., summary) -&amp;gt;.; 
-  map_dbl(., &amp;quot;r.squared&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;##         4         6         8 
-## 0.5086326 0.4645102 0.4229655&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;lhs를 rhs에서 정확히 &lt;code&gt;.&lt;/code&gt;으로 표현한 것만 뺀다면 &lt;code&gt;%&amp;gt;%&lt;/code&gt;과 거의 동일하다. 만일 Bizarro를 쓴다면 &lt;code&gt;-&amp;gt;.;&lt;/code&gt;을 &lt;code&gt;%.&amp;gt;%&lt;/code&gt;로 바꿔쓰면 될 얼이다.&lt;/p&gt;
-&lt;p&gt;magrittr의 &lt;code&gt;%&amp;gt;%&lt;/code&gt; 연쇄는 나누어 실행할 수 없다. 물론 디버깅 명령어가 따로 있긴 하지만 그리 편하지는 않다. 하지만 &lt;code&gt;-&amp;gt;.;&lt;/code&gt;은 한줄씩 실행이 가능하고 결과는 &lt;code&gt;.Last.value&lt;/code&gt; 항목에 저장된다. 왼쪽 Environemt 창의 value에서 쉽게 확인할 수 있다.&lt;a href=&#34;#fn1&#34; class=&#34;footnoteRef&#34; id=&#34;fnref1&#34;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt; 즉 파이프 단계별로 뭐가 어떻게 되는지 추적할 수 있게 된다.&lt;/p&gt;
-&lt;p&gt;이제 &lt;code&gt;%&amp;gt;%&lt;/code&gt; 대신 &lt;code&gt;%.&amp;gt;%&lt;/code&gt;을 써야 하는지 이유를 알겠는가? 디버깅할 때 영역지정 후 찾기–바꾸기로 &lt;code&gt;%.&amp;gt;%&lt;/code&gt;를 &lt;code&gt;-&amp;gt;.;&lt;/code&gt;으로 바꾼 후에 편안하게 디버깅을 하면 된다.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;what-really-bizarre-is&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;What really bizarre is…&lt;/h1&gt;
-&lt;p&gt;이 패키지가 진정 “Bizarro”라는 이름을 얻을 수 있는 이유는 그런데 따로 있으니…&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;#install.packages(&amp;#39;microbenchmark&amp;#39;) 
-library(&amp;quot;microbenchmark&amp;quot;)
-library(&amp;quot;magrittr&amp;quot;)
-library(&amp;quot;ggplot2&amp;quot;)
-set.seed(234634)
-
-
-fmagrittr &amp;lt;- function(d) {
-  d %&amp;gt;% sin() %&amp;gt;% cos() %&amp;gt;% tan() %&amp;gt;% sqrt()
-}
-fmagrittrdot &amp;lt;- function(d) {
-  d %&amp;gt;% sin(.) %&amp;gt;% cos(.) %&amp;gt;% tan(.) %&amp;gt;% sqrt(.)
-}
-fbizarro &amp;lt;- function(d) {
-  d %.&amp;gt;% sin(.)  %.&amp;gt;% cos(.) %.&amp;gt;% tan(.) %.&amp;gt;% sqrt(.)
-}
-fsemicolon &amp;lt;- function(d) {
-  d -&amp;gt;.; sin(.) -&amp;gt;.; cos(.) -&amp;gt;.; tan(.) -&amp;gt;.; sqrt(.)
-}
-
-bm &amp;lt;- microbenchmark(
-  fmagrittr(7),
-  fmagrittrdot(7),
-  fbizarro(7),
-  fsemicolon(7),
-  control=list(warmup=100L,
-               order=&amp;#39;random&amp;#39;),
-  times=10000L
-)
-
-summary(bm) %.&amp;gt;% as_tibble(.)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## # A tibble: 4 x 8
-##              expr    min     lq      mean median     uq      max neval
-##            &amp;lt;fctr&amp;gt;  &amp;lt;dbl&amp;gt;  &amp;lt;dbl&amp;gt;     &amp;lt;dbl&amp;gt;  &amp;lt;dbl&amp;gt;  &amp;lt;dbl&amp;gt;    &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt;
-## 1    fmagrittr(7) 137953 154451 180835.86 160994 177775  3665575 10000
-## 2 fmagrittrdot(7) 127998 143643 173475.13 149900 164122 58184427 10000
-## 3     fbizarro(7)  15360  19911  25367.23  21333  22756  3687193 10000
-## 4   fsemicolon(7)      0    569   1232.80    854    854  3105798 10000&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;헐! &lt;code&gt;-&amp;gt;.;&lt;/code&gt;이 가장 빠르고 Bizarro도 원래 Magrittr보다는 훨씬 빠르다!&lt;a href=&#34;#fn2&#34; class=&#34;footnoteRef&#34; id=&#34;fnref2&#34;&gt;&lt;sup&gt;2&lt;/sup&gt;&lt;/a&gt; ㅎㄷㄷ&lt;/p&gt;
-&lt;!---
-REFERENCE 
-# http://www.win-vector.com/blog/2017/01/using-the-bizarro-pipe-to-debug-magrittr-pipelines-in-r/
-
----&gt;
-&lt;/div&gt;
-&lt;div class=&#34;footnotes&#34;&gt;
-&lt;hr /&gt;
-&lt;ol&gt;
-&lt;li id=&#34;fn1&#34;&gt;&lt;p&gt;혹시 &lt;code&gt;.Last.value&lt;/code&gt; 같은 게 안보인다는 분은 옵션에서 조정해주면 된다. 상단 메뉴바에서 “Tools → Global optons → General” 탭 항목 중에서 “Show .Last.value in environmental listing”을 체크해주자.&lt;a href=&#34;#fnref1&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li id=&#34;fn2&#34;&gt;&lt;p&gt;출처는 &lt;a href=&#34;http://www.win-vector.com/blog/2016/12/magrittrs-doppelganger/&#34;&gt;여기&lt;/a&gt;다.&lt;a href=&#34;#fnref2&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;
-</description>
+      <description>pre.bluebox {background-color: #aabbff !important;}pre.redbox {background-color: #ffbbbb !important;}Bizarro!이전 포스팅에서 Magrittr 패키지 이름이 재미있다고 말했지만, 이번 패키지 이름도 못지 않게 재미있다. 수학과 코딩의 경계에서 R의 한계를 시험하는 집단인 Win-Vector에서 만든 패키지인 “Bizarro Magrittr” 혹은 “Bizarro pipe”가 오늘의 주인공이다. DC 만화를 즐겨 보시는 분들은 이미 눈치를 챘으리라. Bizarro는 수퍼맨의 모든 능력을 살짝 다르게 갖고 있는 빌런이다. 흑화한 수퍼맨으로 이해하면 빠르겠다. Bizarro Magrittr(이하 Bizarro) 역시 Magrittr의 거의 모든 능력을 지니고 있지만 ‘흑화’ 변종이다.</description>
     </item>
     
     <item>
@@ -297,126 +45,7 @@ REFERENCE
       <pubDate>Thu, 16 Nov 2017 00:00:00 +0000</pubDate>
       
       <guid>/note/2017/11/16/use-your-font/</guid>
-      <description>&lt;style&gt;
-pre.bluebox {
-    background-color: #aabbff !important;
-}
-pre.redbox {
-    background-color: #ffbbbb !important;
-}
-&lt;/style&gt;
-&lt;div id=&#34;non-alphabetical&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;Non-alphabetical&lt;/h1&gt;
-&lt;p&gt;폰트 문제는 쉬운 듯 어려운 문제다. 그냥 OS에서 폰트 깔아서 쓰듯 쓸 수 있으면 좋으련만 ‘그렇게’ 쉽게 쓸 수는 없다. R에서 그래프를 그려본 사람이라면, 어 “왜 (그래프에서) 폰트가 네모박스로 나와”하는 상황을 한번은 마주쳐 봤을 것이다. 이는 R과 RStudio가 OS에서 끌어다 쓰는 부분이 제한적이기 때문에 생기는 일이다. 그렇다고 못생긴 굴림체와 계속 살 수는 없는 노릇이니 방법을 찾긴 해야 한다.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;extrafont-showtext&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;extrafont? showtext!&lt;/h1&gt;
-&lt;p&gt;언제나 그렇듯이 구글 검색을 해보면 extrafont 패키지가 주로 검색된다.&lt;a href=&#34;#fn1&#34; class=&#34;footnoteRef&#34; id=&#34;fnref1&#34;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt; 이 패키지는 로컬 머신에 설치된 폰트를 끌어다가 그림에 심는 것을 구현한다. 다만 이 경우 로컬 머신을 오가며 작업할 경우 폰트 사용을 일관되게 하기 곤란해질 수 있다. 아울러 패키지가 트루타입(ttf)만 지원하기 때문에 폰트 이용 자체에도 다소 한계가 있다.&lt;/p&gt;
-&lt;p&gt;Yixuan Qiu가 개발한 showtext는 보다 일관된 폰트 사용을 목표로 한다. 우선 이 패키지를 쓰면 폰트를 꼭 시스템에 미리 설치해 둘 필요가 없다. 설치되지 않은 폰트도 파일의 경로만 지정해주면 그래프 등의 시각 결과물에서 해당 폰트를 잘 구현해준다. 아울러 TrueType, OpenType, Type 1, web font 등 다양한 포맷을 지원한다. 구글에서 제공하는 폰트의 경우에는 파일 경로로 필요 없다. 이름만 지정해주면 온라인에서 다운로드 받아서 알아서 구현한다. 물론 구글 폰트 데이터베이스에 등재된 한글 폰트가 없다는 것이 살짝 아쉬운 대목이다.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;basic&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;Basic&lt;/h1&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;#### Start of testing code 
-library(tidyverse)
-library(showtext)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;a href=&#34;https://fonts.google.com/&#34;&gt;구글&lt;/a&gt;에 등록된 폰트는 쉽게 불러올 수 있다.&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;font_add_google(&amp;quot;Gochi Hand&amp;quot;, &amp;quot;gochi&amp;quot;)
-font_add_google(&amp;quot;Schoolbell&amp;quot;, &amp;quot;bell&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;이렇게 호출하면 구글 리포지터리에서 폰트를 불러와 설정한다. 1번 인자가 구글의 fullname이고 2번 인자가 내가 코드에서 호출할 이름이다.&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;showtext_auto()
-
-#windows() # if your local os is Windows 
-# x11() # if your local os is Macos 
-
-set.seed(123)
-hist(rnorm(1000), breaks = 30, col = &amp;quot;steelblue&amp;quot;, border = &amp;quot;white&amp;quot;,
-     main = &amp;quot;&amp;quot;, xlab = &amp;quot;&amp;quot;, ylab = &amp;quot;&amp;quot;)
-title(&amp;quot;Histogram of Normal Random Numbers&amp;quot;, family = &amp;quot;bell&amp;quot;, cex.main = 2)
-title(ylab = &amp;quot;Frequency&amp;quot;, family = &amp;quot;gochi&amp;quot;, cex.lab = 2)
-text(2, 70, &amp;quot;N = 1000&amp;quot;, family = &amp;quot;bell&amp;quot;, cex = 2.5)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;../../note/2017-11-16-myfont_files/figure-html/unnamed-chunk-3-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;안타깝지만 RStudio의 기본 그래픽 장치는 showtext와 호환되지 않는다. 즉, RStudio 화면 우측 하단에는 폰트가 위의 그림처럼 표현되지 않는다. 당황하지 말자. 그냥 명령어로 별도의 그래픽 장치를 호출하면 된다. Windows라면 &lt;code&gt;windows()&lt;/code&gt;를, Macos라면 &lt;code&gt;x11()&lt;/code&gt;을 적절한 위치에 넣어주자. 이 문서가 작성된 rmarkdown에서도 폰트가 제대로 표현되지 않는다. 이때 코드 옵션에 &lt;code&gt;fig.showtext=TRUE&lt;/code&gt;를 추가하면 위의 그림처럼 잘 나온다. 즉, 마크다운 코드 옵션의 윗단을 아래와 같이 적절하게 처리해주면 되겠다.&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;{R message=FALSE, warning=FALSE, fig.showtext=TRUE}&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;그림 출력 상태를 온오프 하기 위해서는 &lt;code&gt;showtext_auto()&lt;/code&gt;로 자동화할 수도 있고, &lt;code&gt;showtext_begin()&lt;/code&gt;, &lt;code&gt;showtext_end()&lt;/code&gt;로 미세조정을 추구할 수도 있다.&lt;a href=&#34;#fn2&#34; class=&#34;footnoteRef&#34; id=&#34;fnref2&#34;&gt;&lt;sup&gt;2&lt;/sup&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;what-about-korean-font&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;What about Korean font?&lt;/h1&gt;
-&lt;p&gt;앞서도 이야기 했지만 Google fonts에는 안타깝게도 한글이 없다. early access에는 10종 정도가 포함되어 있지만 정식 리포지터리에는 없으므로 &lt;code&gt;font_add_google()&lt;/code&gt;로는 한글을 구현할 수 없다. 이 경우 적절한 위치에 폰트 원본 파일을 놓고 이를 불러오면 된다.&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;font_add(family = &amp;quot;hwhitecat&amp;quot;, regular = &amp;quot;./fonts/HoonWhitecatR.ttf&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;위의 코드는 현재 디렉토리의 하위에 위치한 &lt;code&gt;./fonts/HoonWhitecatR.ttf&lt;/code&gt; 폰트를 “hwitecat”이라는 패밀리의 레귤러로 심어준다. 레귤러, 이탤릭, 볼드 등을 아래 명령과 같이 별도로 지정할 수도 있다.&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;font_add(&amp;quot;constan&amp;quot;, regular = &amp;quot;./fonts/constan.ttf&amp;quot;, italic = &amp;quot;./fonts/constani.ttf&amp;quot;)
-font_add(&amp;quot;heiti&amp;quot;, regular = &amp;quot;./fonts/simhei.ttf&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;showtext_auto()
-
-p = ggplot(NULL, aes(x = 1, y = 1)) + ylim(0.8, 1.2) +
-  theme(axis.title = element_blank(), axis.ticks = element_blank(),
-        axis.text = element_blank()) +
-  annotate(&amp;quot;text&amp;quot;, 1, 1.1, family = &amp;quot;hwhitecat&amp;quot;, size = 17,
-           label = &amp;quot;안녕, 세상아! 나는 흰고양체야.&amp;quot;) + 
-  annotate(&amp;quot;text&amp;quot;, 1, 1, family = &amp;quot;heiti&amp;quot;, size = 15,
-           label = &amp;quot;\u4F60\u597D\uFF0C\u4E16\u754C&amp;quot;) +
-  annotate(&amp;quot;text&amp;quot;, 1, 0.9, label = &amp;#39;Chinese for &amp;quot;Hello, world!&amp;quot;&amp;#39;,
-           family = &amp;quot;constan&amp;quot;, fontface = &amp;quot;italic&amp;quot;, size = 12)
-
-print(p)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;../../note/2017-11-16-myfont_files/figure-html/unnamed-chunk-6-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;언제나 그렇지만 너무 많은 서체를 쓰는 것은 (단연코!) 보기 좋지 않다. 단정하게 그냥 나눔고딕 혹은 Noto Sans CJK KR 정도로 만족하면 어떨까?&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;digression&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;Digression&lt;/h1&gt;
-&lt;div id=&#34;how-to-generate-and-save-graphs&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;How to generate and save graphs&lt;/h2&gt;
-&lt;p&gt;혹시나 하는 마음에서 부록 하나 덧붙여 본다. R도 그렇지만 대개의 오픈소스 소프트웨어들은 그림을 만들 때 “장치”를 사용해서 만든다. 그래픽을 생성해 출력하는 장치라고 보면 되고, 스크린, pdf, png 등등 여러가지 형태를 지닌다. 일반적으로 OS 상에서 화면에 있는 그림을 캡쳐해서 포맷에 맞게 저장하는 식으로 생각하지 말고, 필요한 그림은 장치를 통해 생성한다고 이해하면 쉽다.&lt;/p&gt;
-&lt;p&gt;바로 위에 예를 RStudio에 그대로 복붙했다면, 출력물 &lt;code&gt;p&lt;/code&gt;에서 폰트를 제대로 볼 수 없었을 것이다. 앞서도 말했지만, RStudio의 기본 화면 장치는 showtext를 아직 지원하지 않는다. 아래 처럼 해야 제대로 출력된다.&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# windows()  # if your local os is Windows 
-# x11() # if your local os is Macos 
-print(p)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;여기까지 실행하면 화면에 팝업으로 출력물이 뜨게 된다. PDF로 저장하기 위해서는 PDF 장치를 부르면 된다. 이때 &lt;code&gt;dev.off()&lt;/code&gt;를 지정해줘야 pdf 저장이 완료된다는 점 명심하자. 화면 팝업은 수동으로 창을 끄면 &lt;code&gt;dev.off()&lt;/code&gt;가 되지만 파일은 그렇지 않다. 반드시 &lt;code&gt;dev.off()&lt;/code&gt;를 넣어줘야 파일을 쓰게 된다.&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;pdf(&amp;quot;YOUR_FILENAME.pdf&amp;quot;, width = 7, height = 4) 
-print(p) 
-dev.off()&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;이게 귀찮다면 ggplot2 패키지를 쓰자. ggplot2는 장치를 포맷 별로 편리하게 기록할 수 있는 통일적인 방법을 제공한다. &lt;code&gt;ggsave&lt;/code&gt; 명령어를 쓰면 &lt;code&gt;dev.off()&lt;/code&gt;없이 대부분의 포맷으로 아래와 같이 편리하게 저장할 수 있다.&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;ggsave(&amp;quot;YOUR_FILENAME.pdf&amp;quot;, p, width = 7, height = 4)
-ggsave(&amp;quot;YOUR_FILENAME.png&amp;quot;, p, width = 7, height = 4, dpi = 96)&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;div id=&#34;font-embedding&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Font embedding&lt;/h2&gt;
-&lt;p&gt;폰트를 PDF에 심는 문제는 문제가 될 수도 있고 아닐 수도 있다. 문제가 될 것 같으면 그냥 확실히 해두면 되겠다.&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;#install.packages(&amp;#39;Cairo&amp;#39;)
-library(Cairo) 
-showtext_auto()
-
-font_add(family = &amp;quot;notosanskr&amp;quot;, regular = &amp;quot;./fonts/NotoSansCJKkr-Regular.otf&amp;quot;)
-
-q &amp;lt;- ggplot(mtcars, aes(x=wt, y=mpg)) + geom_point() +
-  ggtitle(&amp;quot;Fuel Efficiency of 32 Cars 32개 자동차의 연료 효율&amp;quot;) +
-  xlab(&amp;quot;Weight (x1000 lb) 무게&amp;quot;) + ylab(&amp;quot;Miles per Gallon 갤론 당 마일&amp;quot;) +
-  theme(
-        text=element_text(size=10), 
-        title=element_text(family=&amp;quot;notosanskr&amp;quot;, size = rel(2)),
-        axis.title=element_text(family=&amp;quot;notosanskr&amp;quot;, size = rel(1)),
-        strip.text=element_text(family=&amp;quot;notosanskr&amp;quot;, size = rel(1)))
-
-print(q);&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;../../note/2017-11-16-myfont_files/figure-html/unnamed-chunk-10-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;#
-ggsave(filename=&amp;quot;./foo.pdf&amp;quot;, q, device=cairo_pdf)
-#&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;위 처럼 명시적으로 device를 &lt;code&gt;cairo_pdf&lt;/code&gt;로 지정해주면 &lt;code&gt;foo.pdf&lt;/code&gt; 문서에 로딩한 폰트가 확실하게 포함된다. &lt;a href=&#34;http://lostineconomics.netlify.com/note/download/foo.pdf/&#34;&gt;여기서&lt;/a&gt; 확인해보시라.&lt;/p&gt;
-&lt;!--- 
-REFERENCE 
-https://cran.rstudio.com/web/packages/showtext/vignettes/introduction.html
----&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;footnotes&#34;&gt;
-&lt;hr /&gt;
-&lt;ol&gt;
-&lt;li id=&#34;fn1&#34;&gt;&lt;p&gt;&lt;a href=&#34;http://freesearch.pe.kr/archives/3138&#34;&gt;여기&lt;/a&gt;를 참고하라.&lt;a href=&#34;#fnref1&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li id=&#34;fn2&#34;&gt;&lt;p&gt;자세한 것은 &lt;a href=&#34;https://cran.rstudio.com/web/packages/showtext/vignettes/introduction.html&#34;&gt;여기&lt;/a&gt;를 참고하라.&lt;a href=&#34;#fnref2&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;
-</description>
+      <description>pre.bluebox {background-color: #aabbff !important;}pre.redbox {background-color: #ffbbbb !important;}Non-alphabetical폰트 문제는 쉬운 듯 어려운 문제다. 그냥 OS에서 폰트 깔아서 쓰듯 쓸 수 있으면 좋으련만 ‘그렇게’ 쉽게 쓸 수는 없다. R에서 그래프를 그려본 사람이라면, 어 “왜 (그래프에서) 폰트가 네모박스로 나와”하는 상황을 한번은 마주쳐 봤을 것이다. 이는 R과 RStudio가 OS에서 끌어다 쓰는 부분이 제한적이기 때문에 생기는 일이다. 그렇다고 못생긴 굴림체와 계속 살 수는 없는 노릇이니 방법을 찾긴 해야 한다.</description>
     </item>
     
     <item>
@@ -425,130 +54,8 @@ https://cran.rstudio.com/web/packages/showtext/vignettes/introduction.html
       <pubDate>Wed, 15 Nov 2017 00:00:00 +0000</pubDate>
       
       <guid>/note/2017/11/15/magrittr---ceci-nest-pas-un-pipe./</guid>
-      <description>&lt;style&gt;
-pre.bluebox {
-    background-color: #aabbff !important;
-}
-pre.redbox {
-    background-color: #ffbbbb !important;
-}
-&lt;/style&gt;
-&lt;div id=&#34;magritt&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;Magritt?&lt;/h1&gt;
-&lt;center&gt;
-&lt;img src=&#34;https://upload.wikimedia.org/wikipedia/en/b/b9/MagrittePipe.jpg&#34; /&gt; &lt;span class=&#34;math inline&#34;&gt;\(~~\)&lt;/span&gt; &lt;img src=&#34;https://www.rstudio.com/wp-content/uploads/2014/04/magrittr-200x232.png&#34; /&gt;
-&lt;/center&gt;
-&lt;p&gt;magrittr, R 패키지 중에서 아마도 가장 재미있는 이름이 아닐까? 왜 마그리뜨일까? magrittr 패키지는 명령어 처리를 쭉 이어줄 수 있게 해준다. 즉, 파이프라인(pipeline)을 만들어주는 것이다. 이걸 파이프 담배와 연결시켜 “이것은 파이프가 아니다”라는 마그리뜨의 그림까지 연결된다. 우리가 만드는 것은 파이프라인이니 magrittr은 정말로 파이프는 아니다!&lt;/p&gt;
-&lt;p&gt;이렇게 쭉 연결하는 것이 왜 좋을까? 글은 만연체가 좋지 않지만, 코딩에서 이렇게 파이프라인을 만드는 습관은 (황당할 정도로 길지 않은 이상) 일관된 형태의 작업을 가능하게 해준다. 물 흐르듯 흐르며 코딩한다, 라는 느낌을 떠올리면 좋겠다. 아울러 블필요한 data.frame이나 기타 오브젝트를 만들지 않아도 된다. 거두 절미하고 일단 패키지부터 태우자.&lt;a href=&#34;#fn1&#34; class=&#34;footnoteRef&#34; id=&#34;fnref1&#34;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;#devtools::install_github(&amp;quot;smbache/magrittr&amp;quot;) # if lastest release is needed
-library(&amp;#39;tidyverse&amp;#39;)
-library(&amp;#39;magrittr&amp;#39;)&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;div id=&#34;basic&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;Basic&lt;/h1&gt;
-&lt;p&gt;magrittr 파이프라이닝 기본 원칙은 앞에서 주어진 혹은 계산된 결과가 뒤에 오는 명령어의 첫번째 인자argument로 들어가는 것이다. 즉, 좌변(lhs)의 내용을 우변(rhs)의 최초 인자로 던져주는 것이라고 보면 된다. 예를 보는 편이 빠르겠다.&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;iris %&amp;gt;% head(10)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;##    Sepal.Length Sepal.Width Petal.Length Petal.Width Species
-## 1           5.1         3.5          1.4         0.2  setosa
-## 2           4.9         3.0          1.4         0.2  setosa
-## 3           4.7         3.2          1.3         0.2  setosa
-## 4           4.6         3.1          1.5         0.2  setosa
-## 5           5.0         3.6          1.4         0.2  setosa
-## 6           5.4         3.9          1.7         0.4  setosa
-## 7           4.6         3.4          1.4         0.3  setosa
-## 8           5.0         3.4          1.5         0.2  setosa
-## 9           4.4         2.9          1.4         0.2  setosa
-## 10          4.9         3.1          1.5         0.1  setosa&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;앞서의 내용은 보통 &lt;code&gt;head(iris, 10)&lt;/code&gt;라고 쓴다. 파이프라이닝은 두가지로 도움이 된다. 말의 어순을 떠올리면 좋겠다. “&lt;code&gt;iris&lt;/code&gt;라는 데이터의 앞쪽 10개를 출력해.” 앞서의 명령을 말로 할 수 있다면 이렇게 말할 것이다. 하지만, 코딩은 “앞쪽의 &lt;code&gt;iris&lt;/code&gt;의 10개” 이런 식으로 하고 있다. 뭔가 버벅대는 느낌 아닌가? &lt;code&gt;()&lt;/code&gt;를 쓰게 되면 적용할 명령(함수)을 먼저 생각하고 이후에 적용 대상(데이터, 변수, 객체 등등)을 생각하게 된다. 말로 하는 명령처럼 코딩하는게 보다 편리하지 않을까? 데이터를 먼저 생각하고 여기 적용할 방법을 따지는 게 생각 혹은 작업의 흐름상 자연스럽다. 두번째, 디버깅을 해본 분들을 알겠지만, &lt;code&gt;()&lt;/code&gt;가 계속 이어질 경우 열림 괄호와 닫힘 괄호를 잘못 쓸 가능성이 생각보다 높다. magrittr을 이용하면 이런 귀찮은 문제가 최소화된다.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;where-to-put-argument&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;Where to put argument&lt;/h1&gt;
-&lt;p&gt;파이프라인에서 lhs에 있는 것은 뒤 명령어의 첫번째 인자로만 적용되어야 할까? 만일 &lt;code&gt;x %&amp;gt;% f(y,x)&lt;/code&gt;라는 스타일로 적용하고 싶다면? 물론 가능하다. 이떄는 닷(&lt;code&gt;.&lt;/code&gt;)을 사용할 수 있다.&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;10 %&amp;gt;% head(iris, .)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;##    Sepal.Length Sepal.Width Petal.Length Petal.Width Species
-## 1           5.1         3.5          1.4         0.2  setosa
-## 2           4.9         3.0          1.4         0.2  setosa
-## 3           4.7         3.2          1.3         0.2  setosa
-## 4           4.6         3.1          1.5         0.2  setosa
-## 5           5.0         3.6          1.4         0.2  setosa
-## 6           5.4         3.9          1.7         0.4  setosa
-## 7           4.6         3.4          1.4         0.3  setosa
-## 8           5.0         3.4          1.5         0.2  setosa
-## 9           4.4         2.9          1.4         0.2  setosa
-## 10          4.9         3.1          1.5         0.1  setosa&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;여기서 주의할 사항 하나 짚고 가겠다. 닷(&lt;code&gt;.&lt;/code&gt;)을 지정할 때 앞의 예처럼 단순한 형태면 상관없다. 다만, 닷(&lt;code&gt;.&lt;/code&gt;)이 다른 또다른 명령에 앞뒤로 다시 걸치게 되면 (영어로 하면 nested), 원래 형태 즉 lhs가 첫번째 인자로 강제 인식된다. 이점을 이해하지 못하면 이해할 수 없는 에러와 마주치거나 잘못된 결과를 얻게 된다. 내가 이걸 몰라서 낭비한 시간을 떠올리면 눈물이 앞을 가린다. 두가지 사례를 보자. 숫자가 주어졌을 때, 이에 해당하는 순서의 알파벳을 찾는 것이 목적이다.&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;sample(1:10) %&amp;gt;% paste0(LETTERS[.])&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;##  [1] &amp;quot;4D&amp;quot;  &amp;quot;9I&amp;quot;  &amp;quot;1A&amp;quot;  &amp;quot;5E&amp;quot;  &amp;quot;10J&amp;quot; &amp;quot;7G&amp;quot;  &amp;quot;2B&amp;quot;  &amp;quot;8H&amp;quot;  &amp;quot;3C&amp;quot;  &amp;quot;6F&amp;quot;&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;보는 바대로 숫자에 알파벳이 따라 붙었어 있다. 이는 &lt;code&gt;.&lt;/code&gt;이 &lt;code&gt;LETTERS&lt;/code&gt;의 인자로 활용되었기 때문이다. 그래서, lhs의 인자를 최초의 투입으로 보고 위와 같은 결과를 만든 것이다. 내가 원하는 결과물이 아니다.&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;sample(1:10) %&amp;gt;% { paste0(LETTERS[.]) } &lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;##  [1] &amp;quot;C&amp;quot; &amp;quot;B&amp;quot; &amp;quot;J&amp;quot; &amp;quot;I&amp;quot; &amp;quot;H&amp;quot; &amp;quot;E&amp;quot; &amp;quot;F&amp;quot; &amp;quot;D&amp;quot; &amp;quot;A&amp;quot; &amp;quot;G&amp;quot;&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;다른 예를 하나 더 보자.&lt;a href=&#34;#fn2&#34; class=&#34;footnoteRef&#34; id=&#34;fnref2&#34;&gt;&lt;sup&gt;2&lt;/sup&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;tibble(
-  type = c(&amp;quot;Fast&amp;quot;, &amp;quot;Slow&amp;quot;, &amp;quot;Fast&amp;quot;, &amp;quot;Fast&amp;quot;, &amp;quot;Slow&amp;quot;),
-  colour = c(&amp;quot;Blue&amp;quot;, &amp;quot;Blue&amp;quot;, &amp;quot;Red&amp;quot;, &amp;quot;Red&amp;quot;, &amp;quot;Red&amp;quot;)
-) %&amp;gt;% table(.$type, .$colour)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre class=&#34;redbox&#34;&gt;&lt;code&gt;Error in sort.list(y) : &amp;#39;x&amp;#39; must be atomic for &amp;#39;sort.list&amp;#39; Have you called &amp;#39;sort&amp;#39; on a list?&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;뭐가 잘못되었을까? rhs에 들어간 &lt;code&gt;.&lt;/code&gt;은 &lt;code&gt;.$type&lt;/code&gt;, &lt;code&gt;.$colour&lt;/code&gt; 식으로 다른 명령어로 자신을 넘긴다. 이 경우는 lhs가 table의 첫번째 인자로 인식된다. &lt;code&gt;table(x, x$type, x$colour)&lt;/code&gt;가 되어 에러를 유발한다. 이를 해결하기 위해서는 파이프를 끊거나 아니면 &lt;code&gt;{}&lt;/code&gt;를 해주면 된다.&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;tibble(
-  type = c(&amp;quot;Fast&amp;quot;, &amp;quot;Slow&amp;quot;, &amp;quot;Fast&amp;quot;, &amp;quot;Fast&amp;quot;, &amp;quot;Slow&amp;quot;),
-  colour = c(&amp;quot;Blue&amp;quot;, &amp;quot;Blue&amp;quot;, &amp;quot;Red&amp;quot;, &amp;quot;Red&amp;quot;, &amp;quot;Red&amp;quot;)
-) %&amp;gt;% { table(.$type, .$colour) }&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;##       
-##        Blue Red
-##   Fast    1   2
-##   Slow    1   1&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;code&gt;{}&lt;/code&gt;로 감싸는 진짜 의미는 사실 lhs의 인자를 받아서 새롭게 함수를 구성하라는 것이다. 때문에 더 복잡한 형태로 구성할 수도 있다. magrittr에서는 이를 “lambda expression”이라 부른다.&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;iris %&amp;gt;% 
-{
-  size &amp;lt;- sample(1:10, size = 1)
-  rbind(head(., size), tail(., size))
-}&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;##     Sepal.Length Sepal.Width Petal.Length Petal.Width   Species
-## 1            5.1         3.5          1.4         0.2    setosa
-## 2            4.9         3.0          1.4         0.2    setosa
-## 3            4.7         3.2          1.3         0.2    setosa
-## 4            4.6         3.1          1.5         0.2    setosa
-## 147          6.3         2.5          5.0         1.9 virginica
-## 148          6.5         3.0          5.2         2.0 virginica
-## 149          6.2         3.4          5.4         2.3 virginica
-## 150          5.9         3.0          5.1         1.8 virginica&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;div id=&#34;tee-and-exposition&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;Tee and exposition&lt;/h1&gt;
-&lt;p&gt;magrittr이 지원하는 기억할 만한 두 개의 파이프라인 명령은 Tee와 Exposition이다.&lt;/p&gt;
-&lt;div id=&#34;tee&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Tee&lt;/h2&gt;
-&lt;p&gt;Tee는 파이프라인을 끊어야 하는 상황을 수습해준다. &lt;code&gt;%T&amp;gt;%&lt;/code&gt;의 lhs는 일단 &lt;code&gt;plot&lt;/code&gt;으로 던져진다. 하지만, plot 객체는 다시 계산에 동원될 수 없다. 이 녀석은 그림 객체이므로 계산에 동원되는 것 자체가 말이 안된다. 이럴 경우 파이프가 끊어질 수 밖에 없다. &lt;code&gt;%T&amp;gt;%&lt;/code&gt;의 경우는 이러한 side effect(그림 등등)가 발생하는 발생한 후에 다시 원래 lhs로 복귀할 수 있게 해준다. &lt;code&gt;plot&lt;/code&gt; 뒤에 붙은 파이프라인의 경우 &lt;code&gt;%T&amp;gt;%&lt;/code&gt;앞의 lhs를 인자로 받는다.&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;rnorm(200) %&amp;gt;%
-matrix(ncol = 2) %T&amp;gt;%
-plot %&amp;gt;% # plot usually does not return anything.
-colSums&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;../../note/2017-11-15-magrittr_files/figure-html/unnamed-chunk-9-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;## [1]  1.765235 -2.244304&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;div id=&#34;exposition&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Exposition&lt;/h2&gt;
-&lt;p&gt;Exposition &lt;code&gt;%$%&lt;/code&gt;은 쉽게 말해 native R의 &lt;code&gt;with&lt;/code&gt; 명령어가 파이프 속에 들어 있다고 생각하면 된다.&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;iris %&amp;gt;%
-  subset(Sepal.Length &amp;gt; mean(Sepal.Length)) %$%
-  cor(Sepal.Length, Sepal.Width)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## [1] 0.3361992&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;첫번째 파이프까지 끝나고 나면 &lt;code&gt;subset&lt;/code&gt;을 통해 data.frame이 생성된다. 이 데이터 프레임 내의 두 변수의 상관계수를 찾고자 한다. 위의 예를 그냥 통상적인 &lt;code&gt;%&amp;gt;%&lt;/code&gt;으로만 쓰고 싶다면 cor에 아래와 같이 써주면 된다.&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;iris %&amp;gt;%
-  subset(Sepal.Length &amp;gt; mean(Sepal.Length)) %&amp;gt;%
-  { cor(.$Sepal.Length, .$Sepal.Width) }&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## [1] 0.3361992&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;code&gt;%$%&lt;/code&gt;는 위의 작업을 보다 직관적인 형태로 수행한다.&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;footnotes&#34;&gt;
-&lt;hr /&gt;
-&lt;ol&gt;
-&lt;li id=&#34;fn1&#34;&gt;&lt;p&gt;tidyverse가 magrittr을 포괄하고 있는데 왜 두 번 로딩을 할까? 만일 앞서의 &lt;code&gt;install_github&lt;/code&gt;를 통해서 최신 패키지를 설치했다면 이 녀석은 tidyverse에 통합된 녀석과 다를 수도 있다. 최신 기능을 활용하기 위해서는 이렇게 순서를 다르게 패키지를 로딩하면 된다.&lt;a href=&#34;#fnref1&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li id=&#34;fn2&#34;&gt;&lt;p&gt;출처는 &lt;a href=&#34;https://stackoverflow.com/questions/44528173/using-table-in-dplyr-chain&#34;&gt;여기&lt;/a&gt;다.&lt;a href=&#34;#fnref2&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;
-</description>
+      <description>pre.bluebox {background-color: #aabbff !important;}pre.redbox {background-color: #ffbbbb !important;}Magritt?\(~~\) magrittr, R 패키지 중에서 아마도 가장 재미있는 이름이 아닐까? 왜 마그리뜨일까? magrittr 패키지는 명령어 처리를 쭉 이어줄 수 있게 해준다. 즉, 파이프라인(pipeline)을 만들어주는 것이다. 이걸 파이프 담배와 연결시켜 “이것은 파이프가 아니다”라는 마그리뜨의 그림까지 연결된다. 우리가 만드는 것은 파이프라인이니 magrittr은 정말로 파이프는 아니다!
+이렇게 쭉 연결하는 것이 왜 좋을까? 글은 만연체가 좋지 않지만, 코딩에서 이렇게 파이프라인을 만드는 습관은 (황당할 정도로 길지 않은 이상) 일관된 형태의 작업을 가능하게 해준다.</description>
     </item>
     
     <item>
@@ -557,103 +64,8 @@ colSums&lt;/code&gt;&lt;/pre&gt;
       <pubDate>Fri, 03 Nov 2017 00:00:00 +0000</pubDate>
       
       <guid>/post/2017/11/03/sf-package-with-ggplot2/</guid>
-      <description>&lt;div id=&#34;motivation&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;Motivation&lt;/h1&gt;
-&lt;p&gt;일반인이 지도로 할 수 있는 가장 쉬운 시각화는? 누구나 한번은 봤음직 한 단계구분도(cholopleth map)다. 이 작업을 직접 하기 위해 필요한 요소들부터 따져보자.&lt;/p&gt;
-&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
-&lt;li&gt;지도를 그리기 위한 공간 데이터&lt;/li&gt;
-&lt;li&gt;단계로 표현될 변수 (투표율, 소득 등등)&lt;/li&gt;
-&lt;li&gt;1,2를 연결할 방법&lt;/li&gt;
-&lt;li&gt;1,2를 지도로 구현할 방법&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;상당히 직관적인 까닭에 단계구분도는 많이 활용된다. 하지막 막상 단계구분도를 생성하고자 할 때 작업이 그리 간단하지 않다. R로 이 작업을 어떻게 수행할 수 있을까? 단계구분도를 생성하는 것 자체가 그리 난이도가 높은 작업은 아니다. 오픈소스툴 답게 몇 가지 서로 다른 방법들이 R에 존재한다. 다만 이 작업을 일관되게, 즉 tidyverse의 틀 내에서 할 수 없을까?&lt;/p&gt;
-&lt;p&gt;한 가지 다른 문제도 있다. 사실 ggplot2에서 지도 데이터의 시각화가 생각 만큼 쉽게 구현되지는 않는다. 이는 대체로 지도 데이터를 구현하는 R 패키지의 데이터 표현 양식에서 비롯된다. 하지만 뜻이 있는 곳에 길이 있다고 하지 않는가!&lt;/p&gt;
-&lt;p&gt;이제 소개할 &lt;code&gt;sf&lt;/code&gt;패키지가 이러한 문제점을 해소하기 위해서 제작되었다.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;sf-package&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;&lt;code&gt;sf&lt;/code&gt; package&lt;/h1&gt;
-&lt;p&gt;sf는 ’simple feature’를 뜻한다. ’simple feature’는 실세계(real world)의 대상을 컴퓨터를 통해 어떻게 표현할지에 관한 표준이라고 한다.&lt;a href=&#34;#fn1&#34; class=&#34;footnoteRef&#34; id=&#34;fnref1&#34;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt; 자세한 내용을 적어봐야 밑지는 장사이니 이쯤에서 접어 두자. 문서의 설명에 따르면, R에서도 활용하는 공간 데이터베이스 및 라이브러리 그리고 표준이 대부분 sf와 호환되어 잘 작동한다. 단계구분도를 R을 통해 그려본 사람들은 알겠지만, 단계구분도 그리기 위해서는 방법에 따라 &lt;code&gt;sp&lt;/code&gt;, &lt;code&gt;rgdal&lt;/code&gt;, &lt;code&gt;rgeos&lt;/code&gt; 등의 패키지를 제각각 불러와야 하는 경우가 많다. &lt;code&gt;sf&lt;/code&gt;패키지를 쓰면 그럴 필요가 없다는 이야기다.&lt;a href=&#34;#fn2&#34; class=&#34;footnoteRef&#34; id=&#34;fnref2&#34;&gt;&lt;sup&gt;2&lt;/sup&gt;&lt;/a&gt; &lt;code&gt;sf&lt;/code&gt; 패키지로 할 수 있는 일이야 훨씬 많겠으나 단계구분도를 위해서 알아야 하는 건 몇 개 안된다. 글 앞에서 지적했던 네 가지 요소를 다시 챙겨보자.&lt;/p&gt;
-&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
-&lt;li&gt;지도 공간 데이터 (예를 들어, shp 파일)&lt;/li&gt;
-&lt;li&gt;단계로 표현할 변수&lt;/li&gt;
-&lt;li&gt;How?&lt;/li&gt;
-&lt;li&gt;How?&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;보통 R에서 shp 파일을 &lt;code&gt;sp&lt;/code&gt; 패키지를 통해 읽으면 꽤 복잡한 포맷으로 R에 기록된다. 데이터를 이해하고 필요한 것을 추출하기 위해서 한참 들여다 봐야 한다. 1, 2를 연결하기 위해서는 지도 공간 데이터를 R의 데이터프레임으로 풀어야 한다. &lt;code&gt;fortify&lt;/code&gt;라는 ggplot2의 함수를 써서 shp 파일의 데이터들을 data.frame으로 풀어낼 수 있다.&lt;a href=&#34;#fn3&#34; class=&#34;footnoteRef&#34; id=&#34;fnref3&#34;&gt;&lt;sup&gt;3&lt;/sup&gt;&lt;/a&gt; 하지만, 몇 가지 문제가 있다. 우선, &lt;code&gt;fortify&lt;/code&gt; 함수가 그리 직관적이지 않다. 쓰고도 뭔가 찜찜함이 남는 달까. &lt;code&gt;sf&lt;/code&gt; 패키지는 shp 파일의 지도 관련 데이터를 바로 data.frame으로 풀어준다. 이것만으로도 큰 도약이다.&lt;/p&gt;
-&lt;p&gt;이제 이렇게 지도 데이터가 data.frame으로 풀리면 3번이 자연스럽게 해소된다. 필요한 변수를 수집해서 &lt;code&gt;left_join&lt;/code&gt; 같은 명령어로 여기에 붙여주면 그만이다.&lt;/p&gt;
-&lt;p&gt;남은 것은 시각화인데, 편리하게도, &lt;code&gt;ggplot2&lt;/code&gt;의 베타버전에서 &lt;code&gt;geom_sf&lt;/code&gt;라는 문법을 통해서 sf 정보를 담고 있는 data.frame을 지도로 바로 쏴준다. 어이 없을 만큼 편리하다! 게다가 &lt;code&gt;ggplot2&lt;/code&gt;을 쓰는 만큼 손쉬운 커스터마이제이션이 가능하다.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;a-super-simple-example&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;A super simple example&lt;/h1&gt;
-&lt;p&gt;개념이야 아무리 떠들어봐야 소용없다. 보통 천조국 지도는 (서럽게도?) 패키지 안에 들어 있으니, 우리는 패키지에 포함되어 있지 않은 헬조선 지도로 몹시 간단한 사례를 하나 만들어 보자.&lt;/p&gt;
-&lt;div id=&#34;shp--&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;shp 파일 구하기&lt;/h2&gt;
-&lt;p&gt;고맙게도 shp 파일로 가지런히 만들어진 행정구역 파일을 &lt;a href=&#34;http://www.gisdeveloper.co.kr/?p=2332&#34;&gt;여기&lt;/a&gt;에서 구할 수 있다. 시도, 읍면동, 리까지 구할 수 있으니, 헬조선의 단계구분도를 그리는 데 크게 부족함은 없을 것이다. 일단 다운받아서 압축을 푼다.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;sf-&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;&lt;code&gt;sf&lt;/code&gt; 패키지&lt;/h2&gt;
-&lt;p&gt;필요한 패키지부터 설치/로딩하자.&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;#install.packages(&amp;#39;sf&amp;#39;)
-#install.packages(&amp;#39;tidyverse&amp;#39;, dependencies = T)
-#devtools::install_github(&amp;quot;tidyverse/ggplot2&amp;quot;)
-library(&amp;#39;sf&amp;#39;)
-library(&amp;#39;tidyverse&amp;#39;)
-library(&amp;#39;ggplot2&amp;#39;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;최초 인스톨할 때 위의 주석(&lt;code&gt;#&lt;/code&gt;)은 빼고 돌려야 한다. 이미 인스톨되어 있다면 주석을 그대로 살려두면 된다.&lt;/p&gt;
-&lt;p&gt;다른 명령어들은 평범하지만, ggplot2의 경우 &lt;code&gt;geom_sf&lt;/code&gt;를 이용하기 위해서는 베타 버전을 인스톨해야 한다. 이미 인스톨되어 있더라도 그냥 &lt;code&gt;devtools&lt;/code&gt;를 써서 한번 더 인스톨 해주자. 어쨌든, 중요한 것은 잘 인스톨하고 잘 불러들이는 것이다.&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;st_read(&amp;quot;YOUR_LOCATION/YOUR_SHPFILE.shp&amp;quot;) -&amp;gt; tdf &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;code&gt;st_read&lt;/code&gt;는 적절한 위치(YOUR_LOCATION)에 있는 공간 파일(YOUR_SHPFILE.shp)을 로딩하기 위한 명령어다. 앞서 다운로드한 파일에서 읍면동에 해당하는 &lt;code&gt;TL_SCCO_EMD.shp&lt;/code&gt;파일을 로딩해 tdf라는 embedded data.frame를 생성했다. 이 data.frame의 컬럼은 4개다.&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;Observations: 5,039
-Variables: 4
-$ EMD_CD     &amp;lt;fctr&amp;gt; 11110101, 11110102, 11110103, 11110104, 11110105, 11110106, 1...
-$ EMD_ENG_NM &amp;lt;fctr&amp;gt; Cheongun-dong, Singyo-dong, Gungjeong-dong, Hyoja-dong, Chang...
-$ EMD_KOR_NM &amp;lt;fctr&amp;gt; u&amp;lt;U+00BF&amp;gt;&amp;lt;U+ED7F&amp;gt;, &amp;lt;U+00BD&amp;gt;&amp;lt;U+0171&amp;gt;&amp;lt;U+00B3&amp;gt;&amp;lt;U+00B5&amp;gt;&amp;lt;U+00BF&amp;gt;, ...
-$ geometry   &amp;lt;simple_feature&amp;gt; MULTIPOLYGON (((953700.0221..., MULTIPOLYGON (((953...&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;code&gt;EMD_CD&lt;/code&gt;는 읍면동의 코드, &lt;code&gt;EMD_ENG_NM&lt;/code&gt;은 영문 이름, 그리고 &lt;code&gt;EMD_KOR_NM&lt;/code&gt;은 한글 이름이다. 마지막으로 &lt;code&gt;geometry&lt;/code&gt;는 simple feature로 해당 행정구역의 지도 모양을 (복잡한) 멀티폴리곤 데이터로 담고 있다. 이 녀석이 지도를 그릴 때 활용된다. data.frame의 용량이 커지는 것도 이 녀석 때문이다.&lt;/p&gt;
-&lt;p&gt;tdf 객체는 data.frame다. 데이터를 조작할 필요가 있으면 이 녀석 위에서 하면 된다. 위의 파일은 윈도에서 불러온 것인데, (언제나 그렇듯이 빌어먹을 마소의 고집 때문에 고통받는 헬조선 사람들의 고질적인 문제!) 인코딩 때문에 위에 보는 것처럼 한글 이름이 &lt;code&gt;&amp;lt;U+00BF&amp;gt;&lt;/code&gt;와 같이 바이트 코드로 노출되어 있다. 이걸 고쳐보자.&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;tdf %&amp;gt;% 
-  as.tibble %&amp;gt;%
-  mutate( 
-    EMD_CD = as.character(EMD_CD), 
-    EMD_ENG_NM = as.character(EMD_ENG_NM),
-    EMD_KOR_NM = iconv(EMD_KOR_NM, localeToCharset(), &amp;quot;UTF-8&amp;quot;)
-  ) -&amp;gt; tdf_EMD&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;code&gt;tdf_EMD&lt;/code&gt;를 살펴보자.&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;Classes ‘tbl_df’, ‘tbl’ and &amp;#39;data.frame&amp;#39;:   5039 obs. of  4 variables:
- $ EMD_CD    : chr  &amp;quot;11110101&amp;quot; &amp;quot;11110102&amp;quot; &amp;quot;11110103&amp;quot; &amp;quot;11110104&amp;quot; ...
- $ EMD_ENG_NM: chr  &amp;quot;Cheongun-dong&amp;quot; &amp;quot;Singyo-dong&amp;quot; &amp;quot;Gungjeong-dong&amp;quot; &amp;quot;Hyoja-dong&amp;quot; ...
- $ EMD_KOR_NM: chr  &amp;quot;청운동&amp;quot; &amp;quot;신교동&amp;quot; &amp;quot;궁정동&amp;quot; &amp;quot;효자동&amp;quot; ...
- $ geometry  :sfc_MULTIPOLYGON of length 5039; first list element: List of 1
-  ..$ :List of 1
-  .. ..$ : num [1:377, 1:2] 953700 953694 953691 953690 953688 ...
-  ..- attr(*, &amp;quot;class&amp;quot;)= chr  &amp;quot;XY&amp;quot; &amp;quot;MULTIPOLYGON&amp;quot; &amp;quot;sfg&amp;quot;&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;마지막으로 단계구분도가 구현될 가상의 변수 하나를 만들어 관찰에 하나씩 붙여 보자. 헬조선 전체를 구현하기에는 용량이 좀 크다. 편의상 서울만 필터링하도록 하겠다. 지도 코드에서 앞 두자리가 &lt;span class=&#34;math inline&#34;&gt;\(11\)&lt;/span&gt;로 시작하는 것이 서울이다. 물론, 실제 구현에서는 그리고 싶은 지역에 구현하고 싶은 데이터를 구해서 이런 저런 추가 작업 후에 붙이면 되겠다. 여기서는 uniform 랜덤을 생성해서 몹시 성의 없이 갖다 붙였다.&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;tdf_EMD %&amp;gt;% 
-  filter(substr(EMD_CD, start = 1, stop = 2) == &amp;quot;11&amp;quot;) %&amp;gt;% 
-  mutate(index_rnd = runif(n())) -&amp;gt; tdf_seoul &lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;div id=&#34;visualization-with-ggplot2&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;visualization with ggplot2&lt;/h2&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;ggplot(tdf_seoul) + 
-  geom_sf(aes(fill = index_rnd))&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;../../post/2017-11-03-sf_ggplot2_files/figure-html/unnamed-chunk-3-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;너무나 간단하지 않은가! 이후에는 취향에 맞게 ggplot2의 문법을 따라서 컬러, 라벨링, 경계선 두께 등을 조정하면 된다. Voila!&lt;/p&gt;
-&lt;hr /&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div id=&#34;reference&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;Reference&lt;/h1&gt;
-&lt;p&gt;&lt;a href=&#34;http://strimas.com/r/tidy-sf/&#34; class=&#34;uri&#34;&gt;http://strimas.com/r/tidy-sf/&lt;/a&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;footnotes&#34;&gt;
-&lt;hr /&gt;
-&lt;ol&gt;
-&lt;li id=&#34;fn1&#34;&gt;&lt;p&gt;자세한 내용은 &lt;a href=&#34;https://en.wikipedia.org/wiki/Simple_Features&#34;&gt;여기&lt;/a&gt;를 참고하라.&lt;a href=&#34;#fnref1&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li id=&#34;fn2&#34;&gt;&lt;p&gt;자세한 내용은 &lt;a href=&#34;https://cran.r-project.org/web/packages/sf/vignettes/sf1.html&#34;&gt;여기&lt;/a&gt;를 참고하라.&lt;a href=&#34;#fnref2&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li id=&#34;fn3&#34;&gt;&lt;p&gt;&lt;a href=&#34;https://www.rdocumentation.org/packages/ggplot2/versions/2.2.1/topics/fortify&#34;&gt;여기&lt;/a&gt;를 보면 &lt;code&gt;fortify&lt;/code&gt;는 곧 사라질 명령어이며 &lt;code&gt;broom&lt;/code&gt; 패키지를 대신 쓸 것을 권하고 있다.&lt;a href=&#34;#fnref3&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;
-</description>
+      <description>Motivation일반인이 지도로 할 수 있는 가장 쉬운 시각화는? 누구나 한번은 봤음직 한 단계구분도(cholopleth map)다. 이 작업을 직접 하기 위해 필요한 요소들부터 따져보자.
+지도를 그리기 위한 공간 데이터단계로 표현될 변수 (투표율, 소득 등등)1,2를 연결할 방법1,2를 지도로 구현할 방법상당히 직관적인 까닭에 단계구분도는 많이 활용된다. 하지막 막상 단계구분도를 생성하고자 할 때 작업이 그리 간단하지 않다. R로 이 작업을 어떻게 수행할 수 있을까? 단계구분도를 생성하는 것 자체가 그리 난이도가 높은 작업은 아니다.</description>
     </item>
     
     <item>
@@ -662,127 +74,9 @@ $ geometry   &amp;lt;simple_feature&amp;gt; MULTIPOLYGON (((953700.0221..., MULT
       <pubDate>Mon, 30 Oct 2017 00:00:00 +0000</pubDate>
       
       <guid>/post/2017/10/30/regression-modelling-with-tidyverse/</guid>
-      <description>&lt;p&gt;&lt;code&gt;tidyverse&lt;/code&gt;로 묶인 패키지 군에 대한 찬미는 뭐 이제… 이번 포스팅에서는 &lt;code&gt;modelr&lt;/code&gt;, &lt;code&gt;broom&lt;/code&gt;, &lt;code&gt;purrr&lt;/code&gt;을 통해서 ‘유연하게’(MB말투로는 “스마아~트하게”) 회귀분석하는 방법을 간략하게 끄적이겠다.&lt;/p&gt;
-&lt;div id=&#34;unconventional-data.frame&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;Unconventional &lt;code&gt;data.frame&lt;/code&gt;&lt;/h1&gt;
-&lt;p&gt;data.frame에는 데이터만 들어갈 수 있을까? 아니다! data.frame을 엑셀 시트처럼만 생각하면 data.frame에게 송구할 일이다. data.frame 안에는 마트로쉬카 인형처럼 또다른 data.frame을 넣을 수 있다. H. Wickham은 이를 “nested data.frame”이라고 부른다.&lt;/p&gt;
-&lt;p&gt;data.frame 뿐일까! 사실 R의 다른 객체들도 셀 안에 넣을 수 있다. 이 장점을 살리면, 필요한 데이터에 대한 필요한 모델을 유연하게 생성할 수 있다.&lt;/p&gt;
-&lt;p&gt;일단, 필요한 라이브러리를 불러오자.&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyverse)
-library(modelr)
-library(broom)
-library(gapminder)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;편의상 네이티브 data.frame 대신 tidyverse의 data.frame 대체물인 &lt;code&gt;tibble&lt;/code&gt;을 쓰도록 하겠다. 여기서 활용할 &lt;code&gt;gapminder&lt;/code&gt; 데이터 셋은 각국의 기대 수명과 각종 변수들을 담고 있다. 데이터 셋의 대략적인 생김새는 아래와 같다. 각각의 컬럼은 국가, 대륙, 년도, 기대 수명, 인구, 그리고 1인당 GDP를 나타낸다.&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;data(gapminder) 
-gapminder&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## # A tibble: 1,704 x 6
-##        country continent  year lifeExp      pop gdpPercap
-##         &amp;lt;fctr&amp;gt;    &amp;lt;fctr&amp;gt; &amp;lt;int&amp;gt;   &amp;lt;dbl&amp;gt;    &amp;lt;int&amp;gt;     &amp;lt;dbl&amp;gt;
-##  1 Afghanistan      Asia  1952  28.801  8425333  779.4453
-##  2 Afghanistan      Asia  1957  30.332  9240934  820.8530
-##  3 Afghanistan      Asia  1962  31.997 10267083  853.1007
-##  4 Afghanistan      Asia  1967  34.020 11537966  836.1971
-##  5 Afghanistan      Asia  1972  36.088 13079460  739.9811
-##  6 Afghanistan      Asia  1977  38.438 14880372  786.1134
-##  7 Afghanistan      Asia  1982  39.854 12881816  978.0114
-##  8 Afghanistan      Asia  1987  40.822 13867957  852.3959
-##  9 Afghanistan      Asia  1992  41.674 16317921  649.3414
-## 10 Afghanistan      Asia  1997  41.763 22227415  635.3414
-## # ... with 1,694 more rows&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;이제 모델링 작업 들어간다.&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;tribble(~funcs,  ~models,       ~dat,
-        glm,    &amp;quot;lifeExp ~ gdpPercap&amp;quot;,   gapminder,
-        glm,    &amp;quot;log(lifeExp) ~ log(gdpPercap)&amp;quot;,   gapminder,
-        lm,     &amp;quot;log(lifeExp) ~ log(gdpPercap)&amp;quot;,   filter(gapminder, continent == &amp;quot;Asia&amp;quot;), 
-        lm,     &amp;quot;log(lifeExp) ~ log(gdpPercap)&amp;quot;,   filter(gapminder, continent == &amp;quot;Africa&amp;quot;),
-        lm,     &amp;quot;log(lifeExp) ~ continent + log(gdpPercap)&amp;quot;,   gapminder
-) -&amp;gt; my_model_gapminder
-
-my_model_gapminder&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## # A tibble: 5 x 3
-##    funcs                                    models                  dat
-##   &amp;lt;list&amp;gt;                                     &amp;lt;chr&amp;gt;               &amp;lt;list&amp;gt;
-## 1  &amp;lt;fun&amp;gt;                       lifeExp ~ gdpPercap &amp;lt;tibble [1,704 x 6]&amp;gt;
-## 2  &amp;lt;fun&amp;gt;             log(lifeExp) ~ log(gdpPercap) &amp;lt;tibble [1,704 x 6]&amp;gt;
-## 3  &amp;lt;fun&amp;gt;             log(lifeExp) ~ log(gdpPercap)   &amp;lt;tibble [396 x 6]&amp;gt;
-## 4  &amp;lt;fun&amp;gt;             log(lifeExp) ~ log(gdpPercap)   &amp;lt;tibble [624 x 6]&amp;gt;
-## 5  &amp;lt;fun&amp;gt; log(lifeExp) ~ continent + log(gdpPercap) &amp;lt;tibble [1,704 x 6]&amp;gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;code&gt;my_model_gapminder&lt;/code&gt;는 어떤 형태의 tibble일까? 먼저 &lt;code&gt;funcs&lt;/code&gt; 컬럼은 돌릴 (회귀)분석 방법이 담겨 있다. 쿼테이션 마크가 없음에 유의하자. 스트링이 아니라는 이야기다. &lt;code&gt;glm&lt;/code&gt;, &lt;code&gt;lm&lt;/code&gt; 등의 함수가 바로 들어가 있다. &lt;code&gt;models&lt;/code&gt; 칼럼은 분석 모형을 담고 있다. 마지막으로 dat는 해당 모델의 추정에 사용될 데이터셋을 의미한다. 보시면, 3, 4 모델에서는 각기 “Asia”와 “Africa” 대륙만 필터링한 데이터를 추정에 활용했음을 알 수 있다.&lt;/p&gt;
-&lt;p&gt;이런 형태가 왜 좋을까? &lt;code&gt;my_model_gapminder&lt;/code&gt;을 들여다보고 있으면 대충 감이 온다. 행 단위로 보면, funcs의 (회귀)분석 방법을 사용하되, arguments로 각각 models와 dat를 넣겠다는 의도다. 이 일만 구현해주면 된다. 즉, &lt;code&gt;my_model_gapminder&lt;/code&gt;은 일종의 modelling set인 셈이다.&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;modelr&lt;/code&gt;패키지의 함수 &lt;code&gt;fit_with&lt;/code&gt;를 쓰면 이 작업을 간단하게 구현할 수 있다. &lt;code&gt;fit_with&lt;/code&gt;는 input arguments로 (분석) 함수, 모델, 그리고 데이터를 받는다. 위에서 만든 &lt;code&gt;my_model_gapminder&lt;/code&gt;의 매 열이 &lt;code&gt;fit_with&lt;/code&gt;의 arguments로 들어간다. 이렇게 3개 이상의 input이 있을 경우 &lt;code&gt;purrr&lt;/code&gt; 패키지의 &lt;code&gt;pmap&lt;/code&gt; 함수를 쓰면 된다.&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;my_model_gapminder %&amp;gt;% 
-  mutate(fit = flatten(pmap(.l = list(.f = funcs, .formulas = models, data = dat), 
-                            .f = modelr::fit_with)))&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## # A tibble: 5 x 4
-##    funcs                                    models                  dat
-##   &amp;lt;list&amp;gt;                                     &amp;lt;chr&amp;gt;               &amp;lt;list&amp;gt;
-## 1  &amp;lt;fun&amp;gt;                       lifeExp ~ gdpPercap &amp;lt;tibble [1,704 x 6]&amp;gt;
-## 2  &amp;lt;fun&amp;gt;             log(lifeExp) ~ log(gdpPercap) &amp;lt;tibble [1,704 x 6]&amp;gt;
-## 3  &amp;lt;fun&amp;gt;             log(lifeExp) ~ log(gdpPercap)   &amp;lt;tibble [396 x 6]&amp;gt;
-## 4  &amp;lt;fun&amp;gt;             log(lifeExp) ~ log(gdpPercap)   &amp;lt;tibble [624 x 6]&amp;gt;
-## 5  &amp;lt;fun&amp;gt; log(lifeExp) ~ continent + log(gdpPercap) &amp;lt;tibble [1,704 x 6]&amp;gt;
-## # ... with 1 more variables: fit &amp;lt;list&amp;gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;앞서 만든 &lt;code&gt;my_model_gapminder&lt;/code&gt;에 fit이라는 컬럼을 새로 붙였다. fit 안에는 회귀분석의 결과물이 통채로 담기게 된다. 이렇게 해두면 해당 결과물을 꺼내 예측을 하는 데 쓰거나 그림을 그리거나 하는 등 필요에 따라 손쉽게 활용할 수 있다. fit의 파라미터들의 추정치과 p-값을 정리해서 보고 싶다면 다음과 같이 작업하면 된다.&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;my_format &amp;lt;- function(x){sprintf(&amp;quot;%0.3f&amp;quot;, x)}
-my_model_gapminder %&amp;gt;% 
-  mutate(fit = flatten(pmap(.l = list(.f = funcs, .formulas = models, data = dat), 
-                            .f = modelr::fit_with))) %&amp;gt;% 
-  .$fit %&amp;gt;% 
-  map_dfr(tidy, .id = &amp;quot;models&amp;quot;) %&amp;gt;% 
-  mutate_if(is.numeric, my_format) -&amp;gt; res1
-
-res1&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;##    models              term estimate std.error statistic p.value
-## 1       1       (Intercept)   53.956     0.315   171.290   0.000
-## 2       1         gdpPercap    0.001     0.000    29.658   0.000
-## 3       2       (Intercept)    2.864     0.023   123.017   0.000
-## 4       2    log(gdpPercap)    0.147     0.003    51.945   0.000
-## 5       3       (Intercept)    3.196     0.051    63.247   0.000
-## 6       3    log(gdpPercap)    0.109     0.006    17.608   0.000
-## 7       4       (Intercept)    3.070     0.054    56.813   0.000
-## 8       4    log(gdpPercap)    0.111     0.007    14.943   0.000
-## 9       5       (Intercept)    3.062     0.026   117.692   0.000
-## 10      5 continentAmericas    0.133     0.011    12.519   0.000
-## 11      5     continentAsia    0.110     0.009    12.037   0.000
-## 12      5   continentEurope    0.166     0.012    14.357   0.000
-## 13      5  continentOceania    0.152     0.029     5.187   0.000
-## 14      5    log(gdpPercap)    0.112     0.004    31.843   0.000&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;code&gt;broom&lt;/code&gt; 패키지의 &lt;code&gt;tidy&lt;/code&gt; 함수는 복잡한 개체들로 구성된 대상을 tibble로 손쉽게 정리해주는 역할을 한다.&lt;a href=&#34;#fn1&#34; class=&#34;footnoteRef&#34; id=&#34;fnref1&#34;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;lazy-application&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;Lazy application&lt;/h1&gt;
-&lt;p&gt;간단한 응용으로 각 terms들의 신뢰구간을 뽑아보도록 하자. 일단, 95%의 신뢰구간은 아래와 같이 간단하게 생성할 수 있다. &lt;code&gt;confint&lt;/code&gt; 함수를 쓰면 되지만, 신뢰구간을 tibble로 만들어 주기 위해서 &lt;code&gt;broom&lt;/code&gt;패키지에 포함된 &lt;code&gt;confint_tidy&lt;/code&gt;를 쓰면 된다. 게으른 응용이므로 추가는 생략한다.&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;my_model_gapminder %&amp;gt;% 
-  mutate(fit = flatten(pmap(.l = list(.f = funcs, .formulas = models, data = dat), 
-                            .f = modelr::fit_with))) %&amp;gt;% 
-  .$fit %&amp;gt;% 
-  map_dfr(confint_tidy, .id = &amp;quot;models&amp;quot;) %&amp;gt;% 
-  mutate_if(is.numeric, my_format) %&amp;gt;% 
-  mutate(term = res1$term) %&amp;gt;% 
-  select(models, term, everything())&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;##    models              term conf.low conf.high
-## 1       1       (Intercept)   53.338    54.573
-## 2       1         gdpPercap    0.001     0.001
-## 3       2       (Intercept)    2.819     2.910
-## 4       2    log(gdpPercap)    0.141     0.152
-## 5       3       (Intercept)    3.096     3.295
-## 6       3    log(gdpPercap)    0.097     0.121
-## 7       4       (Intercept)    2.964     3.176
-## 8       4    log(gdpPercap)    0.096     0.125
-## 9       5       (Intercept)    3.011     3.113
-## 10      5 continentAmericas    0.112     0.154
-## 11      5     continentAsia    0.092     0.128
-## 12      5   continentEurope    0.143     0.189
-## 13      5  continentOceania    0.095     0.210
-## 14      5    log(gdpPercap)    0.105     0.119&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;div class=&#34;footnotes&#34;&gt;
-&lt;hr /&gt;
-&lt;ol&gt;
-&lt;li id=&#34;fn1&#34;&gt;&lt;p&gt;&lt;code&gt;tidy&lt;/code&gt; 명령어는 회귀분석 객체를 위에 보는 것처럼 tibble로 깔끔하게 정리한다. &lt;code&gt;broom&lt;/code&gt; 패키지는 모델의 분석 결과를 data.frame으로 가공해 활용도를 높이자는 취지를 갖고 있다. 보통 R의 경우 분석의 결과물들이 list의 복잡한 형태로 산출된다. R의 데이터 구조를 아주 잘 안다면 모를까, 그렇지 않은 사람들에게는 꽤 골치아픈 대목의 하나인데, &lt;code&gt;broom&lt;/code&gt;은 이러한 불편함을 해소한다. 말 그대로 빗자루의 역할을 하는 패키지다. &lt;a href=&#34;https://cran.r-project.org/web/packages/broom/vignettes/broom.html&#34;&gt;여기&lt;/a&gt;서 한번 둘러보기를 권한다.&lt;a href=&#34;#fnref1&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;
-</description>
+      <description>tidyverse로 묶인 패키지 군에 대한 찬미는 뭐 이제… 이번 포스팅에서는 modelr, broom, purrr을 통해서 ‘유연하게’(MB말투로는 “스마아~트하게”) 회귀분석하는 방법을 간략하게 끄적이겠다.
+Unconventional data.framedata.frame에는 데이터만 들어갈 수 있을까? 아니다! data.frame을 엑셀 시트처럼만 생각하면 data.frame에게 송구할 일이다. data.frame 안에는 마트로쉬카 인형처럼 또다른 data.frame을 넣을 수 있다. H. Wickham은 이를 “nested data.frame”이라고 부른다.
+data.frame 뿐일까! 사실 R의 다른 객체들도 셀 안에 넣을 수 있다. 이 장점을 살리면, 필요한 데이터에 대한 필요한 모델을 유연하게 생성할 수 있다.</description>
     </item>
     
     <item>
@@ -791,58 +85,10 @@ res1&lt;/code&gt;&lt;/pre&gt;
       <pubDate>Mon, 18 Sep 2017 21:13:14 -0500</pubDate>
       
       <guid>/post/2017/09/18/%EC%95%88%EB%85%95-r-markdown/</guid>
-      <description>&lt;p&gt;원래 문서는 Frida Gomam이 작성한, &lt;a href=&#34;https://knausb.github.io/2015/07/hello-r-markdown/&#34;&gt;Hello R Markdown&lt;/a&gt;이다. 여기서는 내 입맛에 맞게 문서를 고쳤으므로 저자를 바꾸었다.&lt;/p&gt;
-&lt;div id=&#34;r-markdown&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;R Markdown&lt;/h1&gt;
-&lt;p&gt;This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see &lt;a href=&#34;http://rmarkdown.rstudio.com&#34; class=&#34;uri&#34;&gt;http://rmarkdown.rstudio.com&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;You can embed an R code chunk like this:&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;summary(cars)
-##      speed           dist       
-##  Min.   : 4.0   Min.   :  2.00  
-##  1st Qu.:12.0   1st Qu.: 26.00  
-##  Median :15.0   Median : 36.00  
-##  Mean   :15.4   Mean   : 42.98  
-##  3rd Qu.:19.0   3rd Qu.: 56.00  
-##  Max.   :25.0   Max.   :120.00
-fit &amp;lt;- lm(dist ~ speed, data = cars)
-fit
-## 
-## Call:
-## lm(formula = dist ~ speed, data = cars)
-## 
-## Coefficients:
-## (Intercept)        speed  
-##     -17.579        3.932&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;div id=&#34;--&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;한글 장 제목&lt;/h1&gt;
-&lt;p&gt;한글 장 제목도 잘 처리된다는 것을 위와 같이 알 수 있다.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;including-plots&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;Including Plots&lt;/h1&gt;
-&lt;p&gt;You can also embed plots. See Figure &lt;a href=&#34;#fig:pie&#34;&gt;1&lt;/a&gt; for example:&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;par(mar = c(0, 1, 0, 1))
-pie(
-  c(280, 60, 20),
-  c(&amp;#39;Sky&amp;#39;, &amp;#39;Sunny side of pyramid&amp;#39;, &amp;#39;Shady side of pyramid&amp;#39;),
-  col = c(&amp;#39;#0292D8&amp;#39;, &amp;#39;#F7EA39&amp;#39;, &amp;#39;#C4B632&amp;#39;),
-  init.angle = -50, border = NA
-)&lt;/code&gt;&lt;/pre&gt;
-&lt;div class=&#34;figure&#34;&gt;&lt;span id=&#34;fig:pie&#34;&gt;&lt;/span&gt;
-&lt;img src=&#34;../../post/2015-07-23-r-rmarkdown_files/figure-html/pie-1.png&#34; alt=&#34;A fancy pie chart.&#34; width=&#34;672&#34; /&gt;
-&lt;p class=&#34;caption&#34;&gt;
-Figure 1: A fancy pie chart.
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div id=&#34;-&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;수식 처리&lt;/h1&gt;
-&lt;p&gt;rmd 문서에서는 &lt;span class=&#34;math inline&#34;&gt;\(\mathrm\LaTeX\)&lt;/span&gt;을 쓸 수 있다. 이것이 아주 좋은 점이다. 게다가 rmarkdown은 header를 약간 손 보면, tex, beamer 기반의 pdf로 뽑아낼 수 있다. 여기에 약간 tricky하고 재미있는 대목이 있는데, 이건 다음에 기회가 되면 적어보도록 하겠다.&lt;/p&gt;
-&lt;span class=&#34;math display&#34;&gt;\[\begin{align}
-Z^i_j = \sum_{k=1}^n (x_k + y_k) 
-\end{align}\]&lt;/span&gt;
-&lt;/div&gt;
-</description>
+      <description>원래 문서는 Frida Gomam이 작성한, Hello R Markdown이다. 여기서는 내 입맛에 맞게 문서를 고쳤으므로 저자를 바꾸었다.
+R MarkdownThis is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see http://rmarkdown.rstudio.com.
+You can embed an R code chunk like this:
+summary(cars)## speed dist ## Min. : 4.0 Min. : 2.00 ## 1st Qu.:12.0 1st Qu.</description>
     </item>
     
   </channel>
