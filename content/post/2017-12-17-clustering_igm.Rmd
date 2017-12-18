@@ -57,6 +57,7 @@ font_add("square", regular = "fonts/NanumSquareR.otf")
 [^RStudio]: RStudio에서 준비중인 RStudio Cloud에서는 조만간 "Automate Tasks"도 지원할 예정이다. 이렇게 되면, 자신의 local machine을 켜두지 않고서도 거의 실시간 급으로 웹사이트를 긁어 처리하는 것도 손쉽게 할 수 있을 것이다. 
 
 [Beginner’s Guide on Web Scraping in R (using rvest) with hands-on example](https://www.analyticsvidhya.com/blog/2017/03/beginners-guide-on-web-scraping-in-r-using-rvest-with-hands-on-knowledge/)
+
 [Scrape website data with the new R package rvest](http://zevross.com/blog/2015/05/19/scrape-website-data-with-the-new-r-package-rvest/)
 
 이런 방식으로 IGM 사이트를 두 개를 각각 따로따로 긁어냈다. 하나는 미국 경제학자들에게 질문을 던진 토픽을 긁어냈고 그 토픽에 대한 경제학자들의 답 내용을 긁어냈다. 토픽은 2017년 12월 17일 현재 전부 158개였으나, 패널은 51명의 저명한 경제학자들로 구성되어 있다. 데이터 구조는 복잡하지 않아서 스크래핑은 금방 끝났다. 이 중 금융위기에 관한 질문은 나머지와 다른 구조를 갖고 있으므로 제외했다. 따라서 분석에 활용된 토픽은 157개다. 

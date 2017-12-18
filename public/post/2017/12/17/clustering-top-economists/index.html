@@ -60,7 +60,8 @@
 <h1>How to scrap results of IGM panel</h1>
 <p>웹을 스크래핑 하는 데에는 몇 가지 방법이 있지만 기술적인 내용을 제외하고 실용적으로 보자면 ‘코드’로 하느냐 아니면 ’수작업’으로 하느냐 둘 중 하나다. 후자는 다시 ’정말’ 손으로 하는지 아니면 ’손’을 흉내내는지로 다시 나눌 수 있겠다. 코드로 하는게 가장 좋겠지만 이건 진입장벽이 있고, js로 된 사이트들은 더 많은 고민과 꼼수가 필요하다. 경우에 따라서는 후자가 빠를 수도 있으니 굳이 노가다하는 걸 망설일 필요는 없겠다. (당신에게 충분한 성의만 있다면) 노가다는 언제나 진리다.<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a></p>
 <p>어쨌든 웹 스크래핑은 그간 파이썬에 장점이 있었지만, RStudio에서 내놓은 rvest 패키지 떄문에 이런 격차를 순식간에 사라지게 된 것 같다. 웹사이트를 html로 저장한 뒤 node를 따는 방식으로 원하는 자료들을 쉽게 긁을 수 있다.<a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a> 다만, 이 경우 웹사이트를 뭔가 숨겨놓지 않아야 하는데 IGM의 경우에는 구조를 그대로 볼 수 있게 되어 있다. 좌간, 아래 두 개의 튜토리얼을 참고하면 누구나 쉽게 웹 사이트를 발라낼 수 있다. 참으로 예리한 칼이 아닌가!</p>
-<p><a href="https://www.analyticsvidhya.com/blog/2017/03/beginners-guide-on-web-scraping-in-r-using-rvest-with-hands-on-knowledge/">Beginner’s Guide on Web Scraping in R (using rvest) with hands-on example</a> <a href="http://zevross.com/blog/2015/05/19/scrape-website-data-with-the-new-r-package-rvest/">Scrape website data with the new R package rvest</a></p>
+<p><a href="https://www.analyticsvidhya.com/blog/2017/03/beginners-guide-on-web-scraping-in-r-using-rvest-with-hands-on-knowledge/">Beginner’s Guide on Web Scraping in R (using rvest) with hands-on example</a></p>
+<p><a href="http://zevross.com/blog/2015/05/19/scrape-website-data-with-the-new-r-package-rvest/">Scrape website data with the new R package rvest</a></p>
 <p>이런 방식으로 IGM 사이트를 두 개를 각각 따로따로 긁어냈다. 하나는 미국 경제학자들에게 질문을 던진 토픽을 긁어냈고 그 토픽에 대한 경제학자들의 답 내용을 긁어냈다. 토픽은 2017년 12월 17일 현재 전부 158개였으나, 패널은 51명의 저명한 경제학자들로 구성되어 있다. 데이터 구조는 복잡하지 않아서 스크래핑은 금방 끝났다. 이 중 금융위기에 관한 질문은 나머지와 다른 구조를 갖고 있으므로 제외했다. 따라서 분석에 활용된 토픽은 157개다.</p>
 </div>
 <div id="how-to-group-economists" class="section level1">
