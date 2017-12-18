@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>/post/2017/12/17/clustering-top-economists/</loc>
+    <lastmod>2017-12-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/post/2017/12/13/google-play-store-vs-apple-appstore-part-1/</loc>
     <lastmod>2017-12-13T00:00:00+00:00</lastmod>
   </url>
@@ -159,6 +164,18 @@
   </url>
   
   <url>
+    <loc>/tags/clustering/</loc>
+    <lastmod>2017-12-17T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/categories/clustering/</loc>
+    <lastmod>2017-12-17T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>/categories/coding/</loc>
     <lastmod>2017-11-28T00:00:00+00:00</lastmod>
     <priority>0</priority>
@@ -184,7 +201,7 @@
   
   <url>
     <loc>/categories/data/</loc>
-    <lastmod>2017-12-13T00:00:00+00:00</lastmod>
+    <lastmod>2017-12-17T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -203,6 +220,18 @@
   <url>
     <loc>/categories/eda/</loc>
     <lastmod>2017-12-13T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/economics/</loc>
+    <lastmod>2017-12-17T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/economist/</loc>
+    <lastmod>2017-12-17T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -250,7 +279,7 @@
   
   <url>
     <loc>/</loc>
-    <lastmod>2017-12-13T00:00:00+00:00</lastmod>
+    <lastmod>2017-12-17T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -333,7 +362,7 @@
   
   <url>
     <loc>/post/</loc>
-    <lastmod>2017-12-13T00:00:00+00:00</lastmod>
+    <lastmod>2017-12-17T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -357,7 +386,7 @@
   
   <url>
     <loc>/tags/r/</loc>
-    <lastmod>2017-12-13T00:00:00+00:00</lastmod>
+    <lastmod>2017-12-17T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   

@@ -1,0 +1,629 @@
+---
+title: "Clustering Top Economists"
+author: "Junsok Huhh"
+date: '2017-12-17'
+tags: ['R', 'economics', 'economist', 'clustering']
+categories: ['data', 'clustering']
+output: 
+  html_document: 
+    df_print: kable
+---
+
+
+
+<div id="disclaimer" class="section level1">
+<h1>Disclaimer</h1>
+</div>
+<div id="tl-dr" class="section level1">
+<h1>tl; dr</h1>
+<ol style="list-style-type: decimal">
+<li>IGM 패널의 미국 경제학자들의 견해를 긁어보니 경제학자들은 거의 모든 사안에 대해서 꽤 일치된 견해를 갖고 있더라.(물론, 해석은 각자의 마음 속에…)</li>
+<li>분석에 활용된 과정과 분석 결과는 다음의 각각 링크에서 Download!
+<ol style="list-style-type: lower-alpha">
+<li><a href="https://github.com/anarinsk/analysis_IGM/blob/master/code_sraping.r">Web scraping</a></li>
+<li><a href="https://github.com/anarinsk/analysis_IGM/blob/master/code_munging.r">Munging data</a></li>
+<li><a href="https://github.com/anarinsk/analysis_IGM/blob/master/code_modelling.r">Analysis</a></li>
+<li><a href="https://github.com/anarinsk/analysis_IGM/tree/master/csv">source data by csv</a></li>
+</ol></li>
+</ol>
+</div>
+<div id="motivation" class="section level1">
+<h1>Motivation</h1>
+<p>집에 심심하게 있다가 ‘갑자기’(out of nowhere!) 이런 생각이 떠올랐다. ‘믿을만한’(이라고 쓰고 ’저명한’이라고 읽자) 경제학자들은 얼마나 의견에 합의를 볼 수 있을까? 공상이 흘러 흘러 , ’데이터는 어디서 구하지’라고 생각이 흘렀고, 당장 시카고 Booth의 <a href="http://www.igmchicago.org/">IGM 패널</a>이 떠올랐다. 급히 스마트폰으로 IGM이 그간 몇 개의 토픽을 다뤘는지 찾아보니 사례는 충분했다. 이제 기술적인 문제다. 웹 자료니까 긁어야하는데 웹스크래핑을 해본지 꽤 되었다. Python에서만 해봤는데, 이 기회에 R로도 해보면 재미있겠지? 마지막으로 자료의 성격이 문제다. 답변은 전형적인 리커드 척도(Likert scale), 즉 5점 척도다. 흠, 얘네들을 클러스터링 하려면 어떻게 해야 하나? 일단, 양적 자료는 아니니 k-means 같은 표준적이고 손쉬운 방법은 못 쓴다. 설상가상 리커트 척도를 다루는 데는 문외한이고, 이제부터 공부해서 뭔가 만들어낼 성의도 없다. 딱 주말에 심심풀이로 꺼내든 프로젝트라서 주말에 끝내고 싶다! (역시 나에게는 대충과 야매가 어울린다.) 어쨌든 이후의 글에서는 아래의 세 가지 내용을 간단히 다뤄보고자 한다.</p>
+<ol style="list-style-type: decimal">
+<li>IGM 패널 웹 사이트를 긁기</li>
+<li>자료 정리(munging) 및 클러스터링 앍고리듬 적용하기</li>
+<li>결과에 대한 내 맘대로 해석, 해결 혹은 헛소리</li>
+</ol>
+</div>
+<div id="how-to-scrap-results-of-igm-panel" class="section level1">
+<h1>How to scrap results of IGM panel</h1>
+<p>웹을 스크래핑 하는 데에는 몇 가지 방법이 있지만 기술적인 내용을 제외하고 실용적으로 보자면 ‘코드’로 하느냐 아니면 ’수작업’으로 하느냐 둘 중 하나다. 후자는 다시 ’정말’ 손으로 하는지 아니면 ’손’을 흉내내는지로 다시 나눌 수 있겠다. 코드로 하는게 가장 좋겠지만 이건 진입장벽이 있고, js로 된 사이트들은 더 많은 고민과 꼼수가 필요하다. 경우에 따라서는 후자가 빠를 수도 있으니 굳이 노가다하는 걸 망설일 필요는 없겠다. (당신에게 충분한 성의만 있다면) 노가다는 언제나 진리다.<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a></p>
+<p>어쨌든 웹 스크래핑은 그간 파이썬에 장점이 있었지만, RStudio에서 내놓은 rvest 패키지 떄문에 이런 격차를 순식간에 사라지게 된 것 같다. 웹사이트를 html로 저장한 뒤 node를 따는 방식으로 원하는 자료들을 쉽게 긁을 수 있다.<a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a> 다만, 이 경우 웹사이트를 뭔가 숨겨놓지 않아야 하는데 IGM의 경우에는 구조를 그대로 볼 수 있게 되어 있다. 좌간, 아래 두 개의 튜토리얼을 참고하면 누구나 쉽게 웹 사이트를 발라낼 수 있다. 참으로 예리한 칼이 아닌가!</p>
+<p><a href="https://www.analyticsvidhya.com/blog/2017/03/beginners-guide-on-web-scraping-in-r-using-rvest-with-hands-on-knowledge/">Beginner’s Guide on Web Scraping in R (using rvest) with hands-on example</a> <a href="http://zevross.com/blog/2015/05/19/scrape-website-data-with-the-new-r-package-rvest/">Scrape website data with the new R package rvest</a></p>
+<p>이런 방식으로 IGM 사이트를 두 개를 각각 따로따로 긁어냈다. 하나는 미국 경제학자들에게 질문을 던진 토픽을 긁어냈고 그 토픽에 대한 경제학자들의 답 내용을 긁어냈다. 토픽은 2017년 12월 17일 현재 전부 158개였으나, 패널은 51명의 저명한 경제학자들로 구성되어 있다. 데이터 구조는 복잡하지 않아서 스크래핑은 금방 끝났다. 이 중 금융위기에 관한 질문은 나머지와 다른 구조를 갖고 있으므로 제외했다. 따라서 분석에 활용된 토픽은 157개다.</p>
+</div>
+<div id="how-to-group-economists" class="section level1">
+<h1>How to group economists</h1>
+<p>클러스터링(clustering)은 관찰이 지닌 속성(변수)을 비교해 비슷한 무리를 묶는 통계적 기법이다.[^clustering1] 이때 비슷한 무리를 묶기 위해 필요한 것은 ’거리 개념’이다. 거리가 나오려면 양적 변수여야 한다는 건 당연한 이치다. 이에 기반한 표준적인 클러스터링 방법은 뭔가 중심을 찾고 이를 중심으로 비슷한 녀석들을 묶는 <a href="https://en.wikipedia.org/wiki/K-means_clustering">k-means</a> 알고리즘이다.</p>
+<p>그런데 IGM 패널 자료는 양적 자료가 아니다. 클러스터링을 위해 거리 개념이 자의적으로 들어가는 건 어쩔 수 없다 치자. kmeans의 중심 개념은 자의성을 확대한다. 그렇다면 다음으로 생각해 볼 수 있는 방법이 계층 클러스터링(hierarchical clustering, 이하 HC)이다. 위계적이라는 단어가 그대로 시사하듯이 이는 어떤 기초적인 상태에서 출발해서 거슬러 올라가는 혹은 내려가는 클러스터링이다. 전체 하나가 전부 다르다고 가정한 후 비슷한 관찰을 묶는 방법(agglomerative, bottom-up) 혹은 전체가 전부 하나의 군집이라고 가정한 후 가지를 쳐 나가는 방법(divisive, top-down), 두 가지가 있다.<a href="#fn3" class="footnoteRef" id="fnref3"><sup>3</sup></a> 역시 거리 개념에 기반하고 있지만, 계층적 방법을 쓰기 때문에, 종종 범주형 자료를 클러스터링하는 데 활용되곤 한다.<a href="#fn4" class="footnoteRef" id="fnref4"><sup>4</sup></a></p>
+<p>그래서 IGM 패널의 클러스터링에는 HC쓰도록 하겠다. 찝찝한 부분이 없지는 않지만, 언제나 그렇듯이 안해보는 것보다는 낫지 않겠는가? 야매는 오용을 두려워하지 않고 일단 해보는 삽질을 마다하지 않는다.</p>
+<p>한가지 남은 문제는 “Do Not Answer”, “No Opinion” 그리고 패널 설문에 참여하지 못한 경우를 어떻게 처리할 것인지이다. 이를 별도 카테고리로 둘 것인가? 리커트 척도의 특성상 별도의 범주를 구성하기가 애매하다. 보통 이런 경우 해당 변수의 평균값, 중간값을 넣어주는 경우도 있으나, 이 경우는 “Uncertain”으로 보는 게 비교적 왜곡이 적을 것 같다. 고민하다가 답을 못한 경우라면 머리 속에서 이런 저런 생각이 다 떠올랐기 때문 아닐까? 물론, 잘 몰라서 답을 못한 경우와 구분이 안되긴 한다. IGM 패널에 들어간 분들의 면면을 본다면, “Uncertain” 처리가 그래도 괜찮아 보인다.</p>
+<p>먼저 agglomerative부터 보자. agglomerative의 경우 linkage criteria에 따라서 군집 구조의 강도를 찾아주는 agglomerative coefficient를 구할 수 있다. 다음의 결과처럼 “ward” 방법이 가장 괜찮은 결과를 만들어준다.</p>
+<pre class="r"><code># Agglomerative coefficient
+m &lt;- c( &quot;average&quot;, &quot;single&quot;, &quot;complete&quot;, &quot;ward&quot;)
+names(m) &lt;- c( &quot;average&quot;, &quot;single&quot;, &quot;complete&quot;, &quot;ward&quot;)
+m %.&gt;% map_dbl(., function(x){agnes(tdf, method = x) %.&gt;% .$ac })</code></pre>
+<pre><code>##   average    single  complete      ward 
+## 0.3517265 0.2972011 0.4342944 0.6512351</code></pre>
+<p>최적의 클러스터 수를 찾기 위해 약간의 추가적인 분석을 수행했다. agglomerative의 경우 3개가 최적임을 알 수 있다.</p>
+<pre class="r"><code># Diagnostic for AGNES 
+fviz_nbclust(tdf, FUN = hcut, method = &quot;wss&quot;)</code></pre>
+<p><img src="/post/2017-12-17-clustering_igm_files/figure-html/unnamed-chunk-3-1.png" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>fviz_nbclust(tdf, FUN = hcut, method = &quot;silhouette&quot;)</code></pre>
+<p><img src="/post/2017-12-17-clustering_igm_files/figure-html/unnamed-chunk-3-2.png" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>gap_stat &lt;- clusGap(tdf, FUN = hcut, nstart = 25, K.max = 10, B = 50)
+fviz_gap_stat(gap_stat) </code></pre>
+<p><img src="/post/2017-12-17-clustering_igm_files/figure-html/unnamed-chunk-3-3.png" style="display: block; margin: auto;" /></p>
+<pre class="r"><code># Cut tree into 3 groups
+sub_agnes &lt;- cutree(as.hclust(agnes_opt), k = 3)
+# Number of members in each cluster
+fviz_cluster(list(data = tdf, cluster = sub_agnes), 
+             ggtheme = theme_minimal(), 
+             repel = T, labelsize = 9) + 
+  theme(text = element_text(family=&quot;square&quot;, size=11))</code></pre>
+<p><img src="/post/2017-12-17-clustering_igm_files/figure-html/unnamed-chunk-3-4.png" style="display: block; margin: auto;" /></p>
+<p>이 분류에 기반해 dendrogram을 그려보자.</p>
+<pre class="r"><code># Dendrogram AGNES 
+agnes_opt &lt;- agnes(tdf, method = &quot;ward&quot;)
+agnes_opt %.&gt;% my_dendplot(., 3) </code></pre>
+<p><img src="/post/2017-12-17-clustering_igm_files/figure-html/unnamed-chunk-4-1.png" style="display: block; margin: auto;" /></p>
+<p>한편, divisive의 경우 aggromerative에 비해 낮은 군집 계수를 나타냈다.</p>
+<pre class="r"><code># Do DIANA 
+diana &lt;- diana(tdf)
+diana$dc</code></pre>
+<pre><code>## [1] 0.4261266</code></pre>
+<pre class="r"><code>sub_diana &lt;- cutree(as.hclust(diana), k = 3)
+fviz_cluster(list(data = tdf, cluster = sub_diana), 
+             ggtheme = theme_minimal(), 
+             repel = T, labelsize = 9)</code></pre>
+<p><img src="/post/2017-12-17-clustering_igm_files/figure-html/unnamed-chunk-5-1.png" style="display: block; margin: auto;" /></p>
+<pre class="r"><code># Dendrogram DIANA 
+diana %.&gt;% my_dendplot(., 3)</code></pre>
+<p><img src="/post/2017-12-17-clustering_igm_files/figure-html/unnamed-chunk-6-1.png" style="display: block; margin: auto;" /></p>
+<p>익숙한 이름들이 등장하니 보는 맛이 조금은 있다. 모든 클러스터링은 나뉘어진 후 그에 대해서 이야기를 붙여줘야 의미가 살아난다. 이렇게 세 가지로 분류된 경제학자들은 무엇이 어떻게 얼마나 다를까? 앞서 분석한 agglomerative와 divisive 중 다소 군집도가 높았던 agglomerative의 의한 분류로 간단히 더 살펴보도록 하자.</p>
+</div>
+<div id="how-different-are-economist" class="section level1">
+<h1>How different are economist?</h1>
+<p>클러스터링 결과를 이야기로 꾸미기 위해서 HC의 결과로 얻은 각 집단에 대해서 각 설문별로 중위값을 취해 그룹의 ’대표 견해’라고 부르겠다. 그룹 사이에 대표 견해에 큰 차이가 있을까? 다음에 제시될 결과에서 보듯이, 미국의 저명 경제학자들은 차이보다는 의견 일치를 보는 경향이 강했다. 이에 대한 해석은 알아서 각자 하시면 되겠다. 다소 의견 대립이 있지 않을까, 이왕이면 ’좌우’로 나눠서 싸워주면 좋지 않을까 했던 개인적인 바람은 저 멀리…</p>
+<p>앞서 agglomerative에서 세개의 집단으로 나눈 경제학들의 특성 정도는 볼 수 있겠다. 아래는 집단을 나눈 것이고 ( )안에 든 색은 앞서 본 dendrogram의 색깔을 나타낸다.</p>
+<ol style="list-style-type: decimal">
+<li>1번 집단은 적극적으로 활발한 의견을 개진힌 집단이다. 즉 집단으로는 보면 참여하지 않는 설문이 하나도 없다. (적색)</li>
+<li>2번 집단은 중간 정도의 의견을 개진한 집단이다. (녹색)</li>
+<li>3번 잡던운 가장 소극적인 의견 개진을 한 집단이다. (파란색)</li>
+</ol>
+<p>IGM 포럼의 방식대로 “Strongly Agree” 부터 “Strongly Disagree”까지 차례로 1부터 5까지의 숫자를 부여했다. 즉,</p>
+<ol style="list-style-type: decimal">
+<li>Strongly Agree</li>
+<li>Agree</li>
+<li>Unertain</li>
+<li>Disagree</li>
+<li>Stongly Disagree</li>
+</ol>
+<table>
+<caption><span id="tab:unnamed-chunk-7">Table 1: </span>NA를 그대로 둔 경우</caption>
+<thead>
+<tr class="header">
+<th align="center">집단 대표값</th>
+<th align="center">1그룹 응답수</th>
+<th align="center">2그룹 응답수</th>
+<th align="center">3그룹 응답수</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">1.0</td>
+<td align="center">21</td>
+<td align="center">11</td>
+<td align="center">20</td>
+</tr>
+<tr class="even">
+<td align="center">1.5</td>
+<td align="center">5</td>
+<td align="center">6</td>
+<td align="center">7</td>
+</tr>
+<tr class="odd">
+<td align="center">2.0</td>
+<td align="center">112</td>
+<td align="center">45</td>
+<td align="center">76</td>
+</tr>
+<tr class="even">
+<td align="center">2.5</td>
+<td align="center">5</td>
+<td align="center">5</td>
+<td align="center">13</td>
+</tr>
+<tr class="odd">
+<td align="center">3.0</td>
+<td align="center">50</td>
+<td align="center">33</td>
+<td align="center">36</td>
+</tr>
+<tr class="even">
+<td align="center">3.5</td>
+<td align="center">NA</td>
+<td align="center">3</td>
+<td align="center">7</td>
+</tr>
+<tr class="odd">
+<td align="center">4.0</td>
+<td align="center">34</td>
+<td align="center">14</td>
+<td align="center">19</td>
+</tr>
+<tr class="even">
+<td align="center">4.5</td>
+<td align="center">NA</td>
+<td align="center">NA</td>
+<td align="center">1</td>
+</tr>
+<tr class="odd">
+<td align="center">5.0</td>
+<td align="center">6</td>
+<td align="center">3</td>
+<td align="center">4</td>
+</tr>
+<tr class="even">
+<td align="center">NA</td>
+<td align="center">NA</td>
+<td align="center">113</td>
+<td align="center">50</td>
+</tr>
+</tbody>
+</table>
+<table>
+<caption><span id="tab:unnamed-chunk-8">Table 2: </span>NA를 Uncertain으로 처리한 경우</caption>
+<thead>
+<tr class="header">
+<th align="center">집단 대표값</th>
+<th align="center">1그룹 응답수</th>
+<th align="center">2그룹 응답수</th>
+<th align="center">3그룹 응답수</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">1.0</td>
+<td align="center">17</td>
+<td align="center">9</td>
+<td align="center">2</td>
+</tr>
+<tr class="even">
+<td align="center">1.5</td>
+<td align="center">NA</td>
+<td align="center">6</td>
+<td align="center">2</td>
+</tr>
+<tr class="odd">
+<td align="center">2.0</td>
+<td align="center">105</td>
+<td align="center">37</td>
+<td align="center">34</td>
+</tr>
+<tr class="even">
+<td align="center">2.5</td>
+<td align="center">NA</td>
+<td align="center">7</td>
+<td align="center">9</td>
+</tr>
+<tr class="odd">
+<td align="center">3.0</td>
+<td align="center">82</td>
+<td align="center">157</td>
+<td align="center">178</td>
+</tr>
+<tr class="even">
+<td align="center">3.5</td>
+<td align="center">NA</td>
+<td align="center">6</td>
+<td align="center">1</td>
+</tr>
+<tr class="odd">
+<td align="center">4.0</td>
+<td align="center">25</td>
+<td align="center">8</td>
+<td align="center">6</td>
+</tr>
+<tr class="even">
+<td align="center">4.5</td>
+<td align="center">NA</td>
+<td align="center">1</td>
+<td align="center">NA</td>
+</tr>
+<tr class="odd">
+<td align="center">5.0</td>
+<td align="center">4</td>
+<td align="center">2</td>
+<td align="center">1</td>
+</tr>
+</tbody>
+</table>
+<p>HC를 적용하는 과정에서 무응답은 “uncertain”으로 처리했다. 따라서 위의 표에서 첫번째 것은 참고만 하고 두 번째 것을 이용해보도록 하자. 두번째 것을 활용해 각 토픽과 질문에 대해서 각 집단 별로 견해차이가 얼마나 있었는지 살펴보자.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">집단간 차이</th>
+<th align="center">1그룹 – 2그룹</th>
+<th align="center">1그룹 – 3그룹</th>
+<th align="center">2그룹 – 3그룹</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">-2.0</td>
+<td align="center">7</td>
+<td align="center">10</td>
+<td align="center">10</td>
+</tr>
+<tr class="even">
+<td align="center">-1.0</td>
+<td align="center">66</td>
+<td align="center">76</td>
+<td align="center">43</td>
+</tr>
+<tr class="odd">
+<td align="center">-0.5</td>
+<td align="center">8</td>
+<td align="center">7</td>
+<td align="center">8</td>
+</tr>
+<tr class="even">
+<td align="center">0.0</td>
+<td align="center">118</td>
+<td align="center">110</td>
+<td align="center">102</td>
+</tr>
+<tr class="odd">
+<td align="center">0.5</td>
+<td align="center">12</td>
+<td align="center">5</td>
+<td align="center">15</td>
+</tr>
+<tr class="even">
+<td align="center">1.0</td>
+<td align="center">21</td>
+<td align="center">22</td>
+<td align="center">42</td>
+</tr>
+<tr class="odd">
+<td align="center">2.0</td>
+<td align="center">1</td>
+<td align="center">3</td>
+<td align="center">4</td>
+</tr>
+<tr class="even">
+<td align="center">-1.5</td>
+<td align="center">NA</td>
+<td align="center">NA</td>
+<td align="center">6</td>
+</tr>
+<tr class="odd">
+<td align="center">1.5</td>
+<td align="center">NA</td>
+<td align="center">NA</td>
+<td align="center">3</td>
+</tr>
+</tbody>
+</table>
+<p>표의 첫번째 행은 각 집단의 차이를 내타내고 나머지 항은 각 그룹의 값을 뺀 것을 나타낸다. 별로의 시각화가 불필요할 정도로 경향성은 뚜렷하다. 157개 중에서 100개 이상의 견해에 대해서 각 집단 별로 일치를 보고 있다. -2 혹은 1.5 이상 큰 견해차이를 드러내는 항목 수 역시 크지 않다. 이는 글 말미에 간단한 링크로 확인할 수 있도록 별도의 표를 제시하겠다. 관심 있는 분들은 링크를 찍어 확인해보시면 되겠다.</p>
+<p>또 다른 관심사는 경제학자들 사이에 분명하게 대립되는 견해가 존재하는지 여부다. 즉, 어떤 집단은 대표견해로 “Agree” 방향을 냈는데, 다른 집단이 “Diagree” 방향을 낸 경우가 있는지, 즉 집단 간의 견해가 “Uncertain”을 넘어간 경우가 있는지도 확인해보았다. 한 건도 없었다! 미국의 저명 경제학자들이 비슷하게 생각하는 경향에 관해서는 두 가지 정도로 언급해두겠다.</p>
+<ol style="list-style-type: decimal">
+<li>경제학은 “It depends on”의 학문이다. 경제학이 항상 덧붙이는 “Ceteribus Paribus”를 고려할 때 많은 항목에서 강한 의견보다는 “Uncertain”이 많은 건 당연한 결과일지 모르겠다.</li>
+<li>그럼에도 거의 모든 견해에서 방향성이 같다는 건 뭐 그 나물의 그 밥 혹은 제국주의 경제학의 한계일까? 나는 모르겠지만…</li>
+</ol>
+<p>앞서 언급한 비교적 견해차이가 컸던 토픽과 질문들은 아래와 같다.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="right">id</th>
+<th align="right">question</th>
+<th align="right">clu1</th>
+<th align="right">clu2</th>
+<th align="right">clu3</th>
+<th align="right">dff_12</th>
+<th align="right">dff_13</th>
+<th align="right">dff_23</th>
+<th align="left">url</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">3</td>
+<td align="right">1</td>
+<td align="right">5</td>
+<td align="right">5.0</td>
+<td align="right">3.0</td>
+<td align="right">0.0</td>
+<td align="right">2.0</td>
+<td align="right">2.0</td>
+<td align="left"><a href="http://www.igmchicago.org/surveys/balanced-budget-amendment" class="uri">http://www.igmchicago.org/surveys/balanced-budget-amendment</a></td>
+</tr>
+<tr class="even">
+<td align="right">4</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">1.0</td>
+<td align="right">3.0</td>
+<td align="right">0.0</td>
+<td align="right">-2.0</td>
+<td align="right">-2.0</td>
+<td align="left"><a href="http://www.igmchicago.org/surveys/behavioral-economics" class="uri">http://www.igmchicago.org/surveys/behavioral-economics</a></td>
+</tr>
+<tr class="odd">
+<td align="right">12</td>
+<td align="right">2</td>
+<td align="right">5</td>
+<td align="right">5.0</td>
+<td align="right">3.0</td>
+<td align="right">0.0</td>
+<td align="right">2.0</td>
+<td align="right">2.0</td>
+<td align="left"><a href="http://www.igmchicago.org/surveys/tax-reforms" class="uri">http://www.igmchicago.org/surveys/tax-reforms</a></td>
+</tr>
+<tr class="even">
+<td align="right">14</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">1.5</td>
+<td align="right">3.0</td>
+<td align="right">-0.5</td>
+<td align="right">-2.0</td>
+<td align="right">-1.5</td>
+<td align="left"><a href="http://www.igmchicago.org/surveys/the-cbo" class="uri">http://www.igmchicago.org/surveys/the-cbo</a></td>
+</tr>
+<tr class="odd">
+<td align="right">22</td>
+<td align="right">1</td>
+<td align="right">5</td>
+<td align="right">4.5</td>
+<td align="right">3.0</td>
+<td align="right">0.5</td>
+<td align="right">2.0</td>
+<td align="right">1.5</td>
+<td align="left"><a href="http://www.igmchicago.org/surveys/import-duties" class="uri">http://www.igmchicago.org/surveys/import-duties</a></td>
+</tr>
+<tr class="even">
+<td align="right">29</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">1.5</td>
+<td align="right">3.0</td>
+<td align="right">-0.5</td>
+<td align="right">-2.0</td>
+<td align="right">-1.5</td>
+<td align="left"><a href="http://www.igmchicago.org/surveys/bureau-of-labor-statistics" class="uri">http://www.igmchicago.org/surveys/bureau-of-labor-statistics</a></td>
+</tr>
+<tr class="odd">
+<td align="right">29</td>
+<td align="right">2</td>
+<td align="right">1</td>
+<td align="right">2.0</td>
+<td align="right">3.0</td>
+<td align="right">-1.0</td>
+<td align="right">-2.0</td>
+<td align="right">-1.0</td>
+<td align="left"><a href="http://www.igmchicago.org/surveys/bureau-of-labor-statistics" class="uri">http://www.igmchicago.org/surveys/bureau-of-labor-statistics</a></td>
+</tr>
+<tr class="even">
+<td align="right">31</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">1.0</td>
+<td align="right">3.0</td>
+<td align="right">0.0</td>
+<td align="right">-2.0</td>
+<td align="right">-2.0</td>
+<td align="left"><a href="http://www.igmchicago.org/surveys/primary-voting" class="uri">http://www.igmchicago.org/surveys/primary-voting</a></td>
+</tr>
+<tr class="odd">
+<td align="right">44</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">1.0</td>
+<td align="right">3.0</td>
+<td align="right">0.0</td>
+<td align="right">-2.0</td>
+<td align="right">-2.0</td>
+<td align="left"><a href="http://www.igmchicago.org/surveys/nash-equilibrium" class="uri">http://www.igmchicago.org/surveys/nash-equilibrium</a></td>
+</tr>
+<tr class="even">
+<td align="right">49</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">1.0</td>
+<td align="right">3.0</td>
+<td align="right">0.0</td>
+<td align="right">-2.0</td>
+<td align="right">-2.0</td>
+<td align="left"><a href="http://www.igmchicago.org/surveys/vaccines" class="uri">http://www.igmchicago.org/surveys/vaccines</a></td>
+</tr>
+<tr class="odd">
+<td align="right">51</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">1.0</td>
+<td align="right">3.0</td>
+<td align="right">0.0</td>
+<td align="right">-2.0</td>
+<td align="right">-2.0</td>
+<td align="left"><a href="http://www.igmchicago.org/surveys/dynamic-scoring" class="uri">http://www.igmchicago.org/surveys/dynamic-scoring</a></td>
+</tr>
+<tr class="even">
+<td align="right">60</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">1.0</td>
+<td align="right">3.0</td>
+<td align="right">0.0</td>
+<td align="right">-2.0</td>
+<td align="right">-2.0</td>
+<td align="left"><a href="http://www.igmchicago.org/surveys/taxi-competition" class="uri">http://www.igmchicago.org/surveys/taxi-competition</a></td>
+</tr>
+<tr class="odd">
+<td align="right">68</td>
+<td align="right">1</td>
+<td align="right">2</td>
+<td align="right">1.0</td>
+<td align="right">3.0</td>
+<td align="right">1.0</td>
+<td align="right">-1.0</td>
+<td align="right">-2.0</td>
+<td align="left"><a href="http://www.igmchicago.org/surveys/liquidity" class="uri">http://www.igmchicago.org/surveys/liquidity</a></td>
+</tr>
+<tr class="even">
+<td align="right">78</td>
+<td align="right">1</td>
+<td align="right">2</td>
+<td align="right">1.0</td>
+<td align="right">3.0</td>
+<td align="right">1.0</td>
+<td align="right">-1.0</td>
+<td align="right">-2.0</td>
+<td align="left"><a href="http://www.igmchicago.org/surveys/surge-pricing" class="uri">http://www.igmchicago.org/surveys/surge-pricing</a></td>
+</tr>
+<tr class="odd">
+<td align="right">81</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">1.0</td>
+<td align="right">3.0</td>
+<td align="right">0.0</td>
+<td align="right">-2.0</td>
+<td align="right">-2.0</td>
+<td align="left"><a href="http://www.igmchicago.org/surveys/diversification" class="uri">http://www.igmchicago.org/surveys/diversification</a></td>
+</tr>
+<tr class="even">
+<td align="right">109</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">3.0</td>
+<td align="right">2.0</td>
+<td align="right">-2.0</td>
+<td align="right">-1.0</td>
+<td align="right">1.0</td>
+<td align="left"><a href="http://www.igmchicago.org/surveys/2532" class="uri">http://www.igmchicago.org/surveys/2532</a></td>
+</tr>
+<tr class="odd">
+<td align="right">111</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">3.0</td>
+<td align="right">2.0</td>
+<td align="right">-2.0</td>
+<td align="right">-1.0</td>
+<td align="right">1.0</td>
+<td align="left"><a href="http://www.igmchicago.org/surveys/u-s-state-budgets" class="uri">http://www.igmchicago.org/surveys/u-s-state-budgets</a></td>
+</tr>
+<tr class="even">
+<td align="right">113</td>
+<td align="right">2</td>
+<td align="right">1</td>
+<td align="right">3.0</td>
+<td align="right">2.0</td>
+<td align="right">-2.0</td>
+<td align="right">-1.0</td>
+<td align="right">1.0</td>
+<td align="left"><a href="http://www.igmchicago.org/surveys/ethanol" class="uri">http://www.igmchicago.org/surveys/ethanol</a></td>
+</tr>
+<tr class="odd">
+<td align="right">145</td>
+<td align="right">1</td>
+<td align="right">4</td>
+<td align="right">3.0</td>
+<td align="right">5.0</td>
+<td align="right">1.0</td>
+<td align="right">-1.0</td>
+<td align="right">-2.0</td>
+<td align="left"><a href="http://www.igmchicago.org/surveys/gold-standard" class="uri">http://www.igmchicago.org/surveys/gold-standard</a></td>
+</tr>
+<tr class="even">
+<td align="right">145</td>
+<td align="right">2</td>
+<td align="right">1</td>
+<td align="right">3.0</td>
+<td align="right">1.0</td>
+<td align="right">-2.0</td>
+<td align="right">0.0</td>
+<td align="right">2.0</td>
+<td align="left"><a href="http://www.igmchicago.org/surveys/gold-standard" class="uri">http://www.igmchicago.org/surveys/gold-standard</a></td>
+</tr>
+<tr class="odd">
+<td align="right">146</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">3.0</td>
+<td align="right">1.0</td>
+<td align="right">-2.0</td>
+<td align="right">0.0</td>
+<td align="right">2.0</td>
+<td align="left"><a href="http://www.igmchicago.org/surveys/congestion-pricing" class="uri">http://www.igmchicago.org/surveys/congestion-pricing</a></td>
+</tr>
+<tr class="even">
+<td align="right">147</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">3.0</td>
+<td align="right">2.0</td>
+<td align="right">-2.0</td>
+<td align="right">-1.0</td>
+<td align="right">1.0</td>
+<td align="left"><a href="http://www.igmchicago.org/surveys/carbon-tax" class="uri">http://www.igmchicago.org/surveys/carbon-tax</a></td>
+</tr>
+<tr class="odd">
+<td align="right">150</td>
+<td align="right">1</td>
+<td align="right">5</td>
+<td align="right">3.0</td>
+<td align="right">4.0</td>
+<td align="right">2.0</td>
+<td align="right">1.0</td>
+<td align="right">-1.0</td>
+<td align="left"><a href="http://www.igmchicago.org/surveys/healthcare" class="uri">http://www.igmchicago.org/surveys/healthcare</a></td>
+</tr>
+<tr class="even">
+<td align="right">153</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">3.0</td>
+<td align="right">1.5</td>
+<td align="right">-2.0</td>
+<td align="right">-0.5</td>
+<td align="right">1.5</td>
+<td align="left"><a href="http://www.igmchicago.org/surveys/stock-prices" class="uri">http://www.igmchicago.org/surveys/stock-prices</a></td>
+</tr>
+</tbody>
+</table>
+<p>물론 학자 개개인의 차이는 클러스터링의 결과보다 클 것이고 자세히 들여다볼 만큼 흥미로운 경우가 있을 것이다. 이 글의 목적인 개략적인 모습을 ’소일거리’삼아 만들어본 것일 뿐이다. 그 정도에서 이해주시면 감사하겠다. 어차피 야매 활동일 뿐인 것을…</p>
+</div>
+<div id="one-more-things" class="section level1">
+<h1>One more things</h1>
+<p>더 해볼 수 있는 걸 생각해볼까? (내가 하겠다는 건 아니다…)</p>
+<ol style="list-style-type: decimal">
+<li>이 경제학자들의 추가 변수를 구한다면 뭔가 더 해 볼 수 있겠다. 전공 분야, 대학, 논문 수 등등</li>
+<li>해당 자료에서 질문의 내용에 대한 성격 분류는 하지 않았다. 내가 경제학에 야매이기 때문에 섯부른 해석을 덧붙이지 못했다. 뛰어난 누군가가 해주면 감사하게 배우겠다.</li>
+<li>European Panel은 뜯어내지 않았다. 관심 있는 분은 해보시라.</li>
+<li>몇가지 시도해 볼만한 추가적인 클러스터링 기법이 더 있긴 하지만, 별로 기대는 안된다.</li>
+<li>이 제한적인 자료로도 더 훌륭한 분석이 가능할 것이니 퍼가서 마음껏 활용하시라, 마!</li>
+</ol>
+</div>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>시중에서 흔히 볼 수 있는 매크로 프로그램들을 잘 쓰면 생각보다 쉽게 데이터를 얻을 수 있다. 실제로 스크래핑을 막아둔 곳들도 이런 방법으로 자료를 수집할 수 있다.<a href="#fnref1">↩</a></p></li>
+<li id="fn2"><p>RStudio에서 준비중인 RStudio Cloud에서는 조만간 “Automate Tasks”도 지원할 예정이다. 이렇게 되면, 자신의 local machine을 켜두지 않고서도 거의 실시간 급으로 웹사이트를 긁어 처리하는 것도 손쉽게 할 수 있을 것이다.<a href="#fnref2">↩</a></p></li>
+<li id="fn3"><p>HC<a href="#fnref3">↩</a></p></li>
+<li id="fn4"><p>clustering2<a href="#fnref4">↩</a></p></li>
+</ol>
+</div>
