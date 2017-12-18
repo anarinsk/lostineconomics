@@ -62,13 +62,12 @@
 <p>어쨌든 웹 스크래핑은 그간 파이썬에 장점이 있었지만, RStudio에서 내놓은 rvest 패키지 떄문에 이런 격차를 순식간에 사라지게 된 것 같다. 웹사이트를 html로 저장한 뒤 node를 따는 방식으로 원하는 자료들을 쉽게 긁을 수 있다.<a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a> 다만, 이 경우 웹사이트를 뭔가 숨겨놓지 않아야 하는데 IGM의 경우에는 구조를 그대로 볼 수 있게 되어 있다. 좌간, 아래 두 개의 튜토리얼을 참고하면 누구나 쉽게 웹 사이트를 발라낼 수 있다. 참으로 예리한 칼이 아닌가!</p>
 <p><a href="https://www.analyticsvidhya.com/blog/2017/03/beginners-guide-on-web-scraping-in-r-using-rvest-with-hands-on-knowledge/">Beginner’s Guide on Web Scraping in R (using rvest) with hands-on example</a></p>
 <p><a href="http://zevross.com/blog/2015/05/19/scrape-website-data-with-the-new-r-package-rvest/">Scrape website data with the new R package rvest</a></p>
-<p>이런 방식으로 IGM 사이트를 크게 두 부류로 각각 긁어냈다. 하나는 미국 경제학자들에게 질문을 던진 토픽이고, 다른 하나는 그 토픽에 대한 경제학자들의 답변 내용이다. 토픽은 2017년 12월 17일 현재 전부 158개, 패널은 51명의 저명한 경제학자들로 구성되어 있다. 데이터 구조는 복잡하지 않아서 스크래핑은 금방 끝났다.[^scraping] 158개 중 2008년 금융위기에 관한 질문은 나머지와 다른 구조를 갖고 있어 일단 제외했다. 최종적으로 분석에 활용된 토픽은 157개다.</p>
-<p>[^scraping: 하지만 중간에 답변 내용이 바뀌거나 사이트 css가 바뀐 부분이 있어서 약간의 삽질은 불가피했다. 하지만 삽질로 해결할 수 있는 문제라면 언제나 환영이다!]</p>
+<p>이런 방식으로 IGM 사이트를 크게 두 부류로 각각 긁어냈다. 하나는 미국 경제학자들에게 질문을 던진 토픽이고, 다른 하나는 그 토픽에 대한 경제학자들의 답변 내용이다. 토픽은 2017년 12월 17일 현재 전부 158개, 패널은 51명의 저명한 경제학자들로 구성되어 있다. 데이터 구조는 복잡하지 않아서 스크래핑은 금방 끝났다.<a href="#fn3" class="footnoteRef" id="fnref3"><sup>3</sup></a> 158개 중 2008년 금융위기에 관한 질문은 나머지와 다른 구조를 갖고 있어 일단 제외했다. 최종적으로 분석에 활용된 토픽은 157개다.</p>
 </div>
 <div id="how-to-group-economists" class="section level1">
 <h1>How to group economists</h1>
-<p>클러스터링(clustering)은 관찰이 지닌 속성(변수)을 비교해 비슷한 무리를 묶는 통계적 기법이다.<a href="#fn3" class="footnoteRef" id="fnref3"><sup>3</sup></a> 이때 비슷한 무리를 묶기 위해 필요한 것은 ’거리 개념’이다. 거리가 나오려면 양적 변수여야 한다는 건 당연한 이치다. 이에 기반한 표준적인 클러스터링 방법은 뭔가 중심을 찾고 이를 중심으로 비슷한 녀석들을 묶는 <a href="https://en.wikipedia.org/wiki/K-means_clustering">k-means</a> 알고리즘이다.</p>
-<p>그런데 IGM 패널 자료는 양적 자료가 아니다. 클러스터링을 위해 거리 개념이 자의적으로 들어가는 건 어쩔 수 없다 치자. kmeans의 중심 개념은 자의성을 확대한다. 그렇다면 다음으로 생각해 볼 수 있는 방법이 계층 클러스터링(hierarchical clustering, 이하 HC)이다. 위계적이라는 단어가 그대로 시사하듯이 이는 어떤 기초적인 상태에서 출발해서 거슬러 올라가는 혹은 내려가는 클러스터링이다. 전체 하나가 전부 다르다고 가정한 후 비슷한 관찰을 묶는 방법(agglomerative, bottom-up) 혹은 전체가 전부 하나의 군집이라고 가정한 후 가지를 쳐 나가는 방법(divisive, top-down), 두 가지가 있다.<a href="#fn4" class="footnoteRef" id="fnref4"><sup>4</sup></a> 역시 거리 개념에 기반하고 있지만, 계층적 방법을 쓰기 때문에, 종종 범주형 자료를 클러스터링하는 데 활용되곤 한다.<a href="#fn5" class="footnoteRef" id="fnref5"><sup>5</sup></a></p>
+<p>클러스터링(clustering)은 관찰이 지닌 속성(변수)을 비교해 비슷한 무리를 묶는 통계적 기법이다.<a href="#fn4" class="footnoteRef" id="fnref4"><sup>4</sup></a> 이때 비슷한 무리를 묶기 위해 필요한 것은 ’거리 개념’이다. 거리가 나오려면 양적 변수여야 한다는 건 당연한 이치다. 이에 기반한 표준적인 클러스터링 방법은 뭔가 중심을 찾고 이를 중심으로 비슷한 녀석들을 묶는 <a href="https://en.wikipedia.org/wiki/K-means_clustering">k-means</a> 알고리즘이다.</p>
+<p>그런데 IGM 패널 자료는 양적 자료가 아니다. 클러스터링을 위해 거리 개념이 자의적으로 들어가는 건 어쩔 수 없다 치자. kmeans의 중심 개념은 자의성을 확대한다. 그렇다면 다음으로 생각해 볼 수 있는 방법이 계층 클러스터링(hierarchical clustering, 이하 HC)이다. 위계적이라는 단어가 그대로 시사하듯이 이는 어떤 기초적인 상태에서 출발해서 거슬러 올라가는 혹은 내려가는 클러스터링이다. 전체 하나가 전부 다르다고 가정한 후 비슷한 관찰을 묶는 방법(agglomerative, bottom-up) 혹은 전체가 전부 하나의 군집이라고 가정한 후 가지를 쳐 나가는 방법(divisive, top-down), 두 가지가 있다.<a href="#fn5" class="footnoteRef" id="fnref5"><sup>5</sup></a> 역시 거리 개념에 기반하고 있지만, 계층적 방법을 쓰기 때문에, 종종 범주형 자료를 클러스터링하는 데 활용되곤 한다.<a href="#fn6" class="footnoteRef" id="fnref6"><sup>6</sup></a></p>
 <p>그래서 IGM 패널의 클러스터링에는 HC쓰도록 하겠다. 찝찝한 부분이 없지는 않지만, 언제나 그렇듯이 안해보는 것보다는 낫지 않겠는가? 야매는 오용을 두려워하지 않고 일단 해보는 삽질을 마다하지 않는다.</p>
 <p>한가지 남은 문제는 “Do Not Answer”, “No Opinion” 그리고 패널 설문에 참여하지 못한 경우를 어떻게 처리할 것인지이다. 이를 별도 카테고리로 둘 것인가? 리커트 척도의 특성상 별도의 범주를 구성하기가 애매하다. 보통 이런 경우 해당 변수의 평균값, 중간값을 넣어주는 경우도 있으나, 이 경우는 “Uncertain”으로 보는 게 비교적 왜곡이 적을 것 같다. 고민하다가 답을 못한 경우라면 머리 속에서 이런 저런 생각이 다 떠올랐기 때문 아닐까? 물론, 잘 몰라서 답을 못한 경우와 구분이 안되긴 한다. IGM 패널에 들어간 분들의 면면을 본다면, “Uncertain” 처리가 그래도 괜찮아 보인다.</p>
 <p>먼저 agglomerative부터 보자. agglomerative의 경우 linkage criteria에 따라서 군집 구조의 강도를 찾아주는 agglomerative coefficient를 구할 수 있다. 다음의 결과처럼 “ward” 방법이 가장 괜찮은 결과를 만들어준다.</p>
@@ -645,9 +644,10 @@ diana %.&gt;% my_dendplot(., 3)</code></pre>
 <ol>
 <li id="fn1"><p>시중에서 흔히 볼 수 있는 매크로 프로그램들을 잘 쓰면 생각보다 쉽게 데이터를 얻을 수 있다. 실제로 스크래핑을 막아둔 곳들도 이런 방법으로 자료를 수집할 수 있다.<a href="#fnref1">↩</a></p></li>
 <li id="fn2"><p>RStudio에서 준비중인 RStudio Cloud에서는 조만간 “Automate Tasks”도 지원할 예정이다. 이렇게 되면, 자신의 local machine을 켜두지 않고서도 거의 실시간 급으로 웹사이트를 긁어 처리하는 것도 손쉽게 할 수 있을 것이다.<a href="#fnref2">↩</a></p></li>
-<li id="fn3"><p>보통 ’군집화’로 번역하지만 내 맘대로 클러스터링으로 쓰도록 하겠다.<a href="#fnref3">↩</a></p></li>
-<li id="fn4"><p>자세한 내용은 <a href="https://en.wikipedia.org/wiki/Hierarchical_clustering">이곳</a>을 참고하라.<a href="#fnref4">↩</a></p></li>
-<li id="fn5"><p>이외에도 스피어만 코릴레이션 처럼 다름 자체를 측정해서 k-means의 방법을 수정한 k-modes 알고리즘 혹은 latent vairable model을 얼른 고려해볼 수 있겠다. 뭐 귀찮아서 일단 용서하시고 넘어가시라! 사실 k-modes는 divisive와 거의 동일한 결과를 내주었고, latent variable model은 좀 껄쩍지근 부분이 있어서 더 고민이 필요하다.<a href="#fnref5">↩</a></p></li>
+<li id="fn3"><p>하지만 중간에 답변 내용이 바뀌거나 사이트 css가 바뀐 부분이 있어서 약간의 삽질은 불가피했다. 하지만 삽질로 해결할 수 있는 문제라면 언제나 환영이다!<a href="#fnref3">↩</a></p></li>
+<li id="fn4"><p>보통 ’군집화’로 번역하지만 내 맘대로 클러스터링으로 쓰도록 하겠다.<a href="#fnref4">↩</a></p></li>
+<li id="fn5"><p>자세한 내용은 <a href="https://en.wikipedia.org/wiki/Hierarchical_clustering">이곳</a>을 참고하라.<a href="#fnref5">↩</a></p></li>
+<li id="fn6"><p>이외에도 스피어만 코릴레이션 처럼 다름 자체를 측정해서 k-means의 방법을 수정한 k-modes 알고리즘 혹은 latent vairable model을 얼른 고려해볼 수 있겠다. 뭐 귀찮아서 일단 용서하시고 넘어가시라! 사실 k-modes는 divisive와 거의 동일한 결과를 내주었고, latent variable model은 좀 껄쩍지근 부분이 있어서 더 고민이 필요하다.<a href="#fnref6">↩</a></p></li>
 </ol>
 </div>
 
