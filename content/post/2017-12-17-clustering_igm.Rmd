@@ -32,7 +32,8 @@ font_add("square", regular = "fonts/NanumSquareR.otf")
 # tl; dr 
 
   1. IGM 패널의 미국 경제학자들의 견해를 긁어보니 경제학자들은 거의 모든 사안에 대해서 꽤 일치된 견해를 갖고 있더라.(물론, 해석은 각자의 마음 속에...)
-  2. 분석에 활용된 과정과 분석 결과는 다음의 각각 링크에서 Download!
+  2. 분석에 활용된 과정과 분석 결과는 다음의 각각 링크에서 Download! 아니면 여기서 [github](https://github.com/anarinsk/analysis_IGM)
+  
     a. [Web scraping](https://github.com/anarinsk/analysis_IGM/blob/master/code_sraping.r)
     b. [Munging data](https://github.com/anarinsk/analysis_IGM/blob/master/code_munging.r)
     c. [Analysis](https://github.com/anarinsk/analysis_IGM/blob/master/code_modelling.r)
@@ -163,7 +164,7 @@ HC를 적용하는 과정에서 무응답은 "uncertain"으로 처리했다. 따
 count_group_dff() %.>% kable(., col.names=c('집단간 차이', '1그룹 -- 2그룹', '1그룹 -- 3그룹', '2그룹 -- 3그룹')) %.>% kable_styling(., "basic")
 ```
 
-표의 첫번째 행은 각 집단의 차이를 내타내고 나머지 항은 각 그룹의 값을 뺀 것을 나타낸다. 별로의 시각화가 불필요할 정도로 경향성은 뚜렷하다. 157개 중에서 100개 이상의 견해에 대해서 각 집단 별로 일치를 보고 있다. -2 혹은 1.5 이상 큰 견해차이를 드러내는 항목 수 역시 크지 않다. 이는 글 말미에 간단한 링크로 확인할 수 있도록 별도의 표를 제시하겠다. 관심 있는 분들은 링크를 찍어 확인해보시면 되겠다. 
+표의 첫번째 컬럼은 각 집단의 차이를 내타내고 나머지 컬럼들은 각 그룹의 값을 뺀 것이다. 별도의 시각화가 불필요할 정도로 경향성이 뚜렷하다. 157개 중에서 100개 이상의 견해에 대해서 각 집단 별로 일치를 보고 있다. -2 혹은 1.5 이상 큰 견해차이를 드러내는 항목 수 역시 크지 않다. 이는 글 말미에 간단한 링크로 확인할 수 있도록 별도의 표를 제시하겠다. 관심 있는 분들은 링크를 찍어 확인해보시면 되겠다. 
 
 또 다른 관심사는 경제학자들 사이에 분명하게 대립되는 견해가 존재하는지 여부다. 즉, 어떤 집단은 대표견해로 "Agree" 방향을 냈는데, 다른 집단이 "Diagree" 방향을 낸 경우가 있는지, 즉 집단 간의 견해가 "Uncertain"을 넘어간 경우가 있는지도 확인해보았다. 한 건도 없었다! 미국의 저명 경제학자들이 비슷하게 생각하는 경향에 관해서는 두 가지 정도로 언급해두겠다. 
 
