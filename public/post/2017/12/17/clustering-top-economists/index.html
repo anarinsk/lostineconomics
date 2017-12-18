@@ -114,14 +114,14 @@ diana %.&gt;% my_dendplot(., 3)</code></pre>
 <p><img src="../../../../../post/2017-12-17-clustering_igm_files/figure-html/unnamed-chunk-6-1.png" style="display: block; margin: auto;" /></p>
 <p>익숙한 이름들이 등장하니 보는 맛이 조금은 있다. 모든 클러스터링은 나뉘어진 후 그에 대해서 이야기를 붙여줘야 의미가 살아난다. 이렇게 세 가지로 분류된 경제학자들은 무엇이 어떻게 얼마나 다를까? 앞에서 agglomerative와 divisive 중에서 군집도 계수가 높았던 agglomerative를 통한 결과로 몇가지 더 살펴보도록 하자.</p>
 </div>
-<div id="how-different-are-economist" class="section level1">
-<h1>How different are economist?</h1>
+<div id="how-different-are-economists" class="section level1">
+<h1>How different are economists?</h1>
 <p>클러스터링 결과를 이야기로 꾸며보자. 각 설문별로 HC에 따른 집단의 중간값을 취해 이를 설문의 그룹별 ’대표 견해’라고 부르겠다. 그룹 사이에 대표 견해에 큰 차이가 있을까? 다음에 제시될 결과에서 보듯이, 미국의 저명 경제학자들은 차이보다는 의견 일치를 보는 경향이 강했다. 이에 대한 해석은 알아서 각자 하시면 되겠다. 다소 의견 대립이 있지 않을까, 이왕이면 ’좌우’로 나눠서 싸워주면 좋지 않을까 했던 개인적인 바람은 저 멀리…</p>
 <p>앞서 agglomerative에서 세개의 집단으로 나눈 경제학들의 특성 정도는 볼 수 있겠다. 아래는 집단을 나눈 것이고 ( )안에 든 색은 앞서 본 dendrogram의 색깔을 나타낸다.</p>
 <ol style="list-style-type: decimal">
-<li>1번 집단은 적극적으로 활발한 의견을 개진힌 집단이다. 즉 집단으로는 보면 참여하지 않는 설문이 하나도 없다. (적색)</li>
-<li>2번 집단은 중간 정도의 의견을 개진한 집단이다. (녹색)</li>
-<li>3번 잡던운 가장 소극적인 의견 개진을 한 집단이다. (파란색)</li>
+<li>1번 그룹은 적극적으로 활발한 의견을 개진힌 집단이다. 즉 집단으로는 보면 참여하지 않는 설문이 하나도 없다. (적색)</li>
+<li>2번 그룹은 중간 정도의 의견을 개진한 집단이다. (녹색)</li>
+<li>3번 그룹은 소극적인 의견 개진을 한 집단이다. (파란색)</li>
 </ol>
 <p>IGM 포럼의 방식대로 “Strongly Agree” 부터 “Strongly Disagree”까지 차례로 1부터 5까지의 숫자를 부여했다. 즉,</p>
 <ol style="list-style-type: decimal">
@@ -628,8 +628,8 @@ diana %.&gt;% my_dendplot(., 3)</code></pre>
 </table>
 <p>물론 학자 개개인의 차이는 클러스터링의 결과보다 클 것이고 자세히 들여다볼 만큼 흥미로운 경우가 있을 것이다. 이 글의 목적인 개략적인 모습을 ’소일거리’삼아 만들어본 것일 뿐이다. 그 정도에서 이해주시면 감사하겠다. 어차피 야매 활동일 뿐인 것을…</p>
 </div>
-<div id="one-more-things" class="section level1">
-<h1>One more things</h1>
+<div id="some-more-things" class="section level1">
+<h1>Some more things</h1>
 <p>더 해볼 수 있는 걸 생각해볼까? (내가 하겠다는 건 아니다…)</p>
 <ol style="list-style-type: decimal">
 <li>이 경제학자들의 추가 변수를 구한다면 뭔가 더 해 볼 수 있겠다. 전공 분야, 대학, 논문 수 등등</li>
