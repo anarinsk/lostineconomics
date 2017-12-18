@@ -9,8 +9,6 @@ output:
     df_print: kable
 ---
 
-# Disclaimer 
-
 ```{r include=FALSE}
 # Packages for this doc. 
 #sapply(c('cluster', 'factoextra', 'dendextend'), install.packages)
