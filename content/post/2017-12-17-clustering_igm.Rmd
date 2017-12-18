@@ -187,7 +187,9 @@ make_group_med(TRUE) %.>%
   mutate(., id = as.integer(id), question = as.integer(question)) %.>% 
   arrange(., id, question) %.>% 
   left_join(., df_survey, by = c('id')) %.>% 
-  rename(., url = list) 
+  rename(., url = list) %.>% 
+  kable(., col.names=c('id', '질문', '그룹1 견해', '그룹2 견해', '그룹3 견해', 
+                       '그룹1--그룹2', '그룹1--그룹3', '그룹2--그룹3', 'URL'))
 ````
 
 물론 학자 개개인의 차이는 클러스터링의 결과보다 클 것이고 자세히 들여다볼 만큼 흥미로운 경우가 있을 것이다. 이 글의 목적인 개략적인 모습을 '소일거리'삼아 만들어본 것일 뿐이다. 그 정도에서 이해주시면 감사하겠다. 어차피 야매 활동일 뿐인 것을... 
