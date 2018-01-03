@@ -17,7 +17,7 @@
       <description>&lt;div id=&#34;tl-dr&#34; class=&#34;section level1&#34;&gt;
 &lt;h1&gt;tl; dr&lt;/h1&gt;
 &lt;ol style=&#34;list-style-type: decimal&#34;&gt;
-&lt;li&gt;IGM 패널에 속한 미국 경제학자들의 경제에 관한 의견들을 긁어보니 경제학자들은 거의 모든 사안에 대해서 꽤 일치된 견해를 갖고 있더라.(물론, 이에 관한 해석은 각자의 마음 속에…)&lt;/li&gt;
+&lt;li&gt;IGM 패널 소속의 미국 경제학자들이 지닌 경제관을 긁어보니, 이들은 거의 모든 사안에 대해서 꽤 일치된 견해를 갖고 있더라. (물론, 이에 관한 해석은 각자의 마음 속에…)&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;분석에 활용된 과정과 분석 결과는 다음의 각각 링크에서 Download! 아니면 여기서 &lt;a href=&#34;https://github.com/anarinsk/analysis_IGM&#34;&gt;github&lt;/a&gt;&lt;/p&gt;
 &lt;ol style=&#34;list-style-type: lower-alpha&#34;&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/anarinsk/analysis_IGM/blob/master/code_sraping.r&#34;&gt;Scraping web&lt;/a&gt;&lt;/li&gt;
@@ -29,20 +29,20 @@
 &lt;/div&gt;
 &lt;div id=&#34;motivation&#34; class=&#34;section level1&#34;&gt;
 &lt;h1&gt;Motivation&lt;/h1&gt;
-&lt;p&gt;집에 심심하게 있다가 ‘갑자기’(out of nowhere!) 이런 생각이 떠올랐다. ‘믿을만한’(이라고 쓰고 ’저명한’이라고 읽자) 경제학자들은 얼마나 의견에 합의를 볼 수 있을까? 공상이 흘러 흘러 , ’데이터는 어디서 구하지’라고 생각이 흘렀고, 당장 시카고 Booth의 &lt;a href=&#34;http://www.igmchicago.org/&#34;&gt;IGM 패널&lt;/a&gt;이 떠올랐다. 급히 스마트폰으로 IGM이 그간 몇 개의 토픽을 다뤘는지 찾아보니 사례는 충분했다. 이제 기술적인 문제다. 웹 자료니까 긁어야하는데 웹스크래핑을 해본지 꽤 되었다. Python에서만 해봤는데, 이 기회에 R로도 해보면 재미있겠지? 마지막으로 자료의 성격이 문제다. 답변은 전형적인 리커드 척도(Likert scale), 즉 5점 척도다. 흠, 얘네들을 클러스터링 하려면 어떻게 해야 하나? 일단, 양적 자료는 아니니 k-means 같은 표준적이고 손쉬운 방법은 못 쓴다. 설상가상 리커트 척도를 다루는 데는 문외한이고, 이제부터 공부해서 뭔가 만들어낼 성의도 없다. 딱 주말에 심심풀이로 꺼내든 프로젝트라서 주말에 끝내고 싶다! (역시 나에게는 대충과 야매가 어울린다.) 어쨌든 이후의 글에서는 아래의 세 가지 내용을 간단히 다뤄보고자 한다.&lt;/p&gt;
+&lt;p&gt;집에 심심하게 있다가 ‘갑자기’(out of nowhere!) 이런 생각이 떠올랐다. ‘믿을만한’(이라고 쓰고 ’저명한’이라고 읽자) 경제학자들은 얼마나 의견에 합의를 볼 수 있을까? 공상은 흘러 흘러 ’데이터는 어디서 구하지’에 이르렀다. 당장 시카고 Booth의 &lt;a href=&#34;http://www.igmchicago.org/&#34;&gt;IGM 패널&lt;/a&gt;이 떠오르더라. 얼른 스마트폰으로 IGM이 그간 몇 개의 토픽을 다뤘는지 찾아보니 사례는 충분했다. 이제 기술적인 문제다. 웹 자료니까 긁어야하는데 웹스크래핑을 해본지 꽤 되었다. Python에서만 해봤는데, 이 기회에 R로도 해보면 재미있겠지? 마지막으로 자료의 성격이 문제다. 답변은 전형적인 리커드 척도(Likert scale), 즉 5점 척도다. 흠, 얘네들을 클러스터링 하려면 어떻게 해야 하나? 일단, 양적 자료는 아니니 k-means 같은 표준적이고 손쉬운 방법은 못 쓴다. 설상가상 리커트 척도를 다루는 데는 문외한이고, 이제부터 공부해서 뭔가 만들어낼 성의도 없다. 딱 주말에 심심풀이로 꺼내든 프로젝트라서 주말에 끝내고 싶다! (역시 나에게는 대충과 야매가 어울리지.) 어쨌든 이후의 글에서는 아래의 세 가지 내용을 간단히 다뤄보고자 한다.&lt;/p&gt;
 &lt;ol style=&#34;list-style-type: decimal&#34;&gt;
 &lt;li&gt;IGM 패널 웹 사이트를 긁기&lt;/li&gt;
-&lt;li&gt;자료 정리(munging) 및 클러스터링 앍고리듬 적용하기&lt;/li&gt;
-&lt;li&gt;결과에 대한 내 맘대로 해석, 해결 혹은 헛소리&lt;/li&gt;
+&lt;li&gt;자료 정리(munging) 및 클러스터링 알고리듬 적용하기&lt;/li&gt;
+&lt;li&gt;결과에 대한 내 맘대로 해석 혹은 헛소리&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;
 &lt;div id=&#34;how-to-scrap-results-of-igm-panel&#34; class=&#34;section level1&#34;&gt;
 &lt;h1&gt;How to scrap results of IGM panel&lt;/h1&gt;
-&lt;p&gt;웹을 스크래핑 하는 데에는 몇 가지 방법이 있지만 기술적인 내용을 제외하고 실용적으로 보자면 ‘코드’로 하느냐 아니면 ’수작업’으로 하느냐 둘 중 하나다. 후자는 다시 ’정말’ 손으로 하는지 아니면 ’손’을 흉내내는지로 다시 나눌 수 있겠다. 코드로 하는게 가장 좋겠지만 이건 진입장벽이 있고, js로 된 사이트들은 더 많은 고민과 꼼수가 필요하다. 경우에 따라서는 후자가 빠를 수도 있으니 굳이 노가다하는 걸 망설일 필요는 없겠다. (당신에게 충분한 성의만 있다면) 노가다는 언제나 진리다.&lt;a href=&#34;#fn1&#34; class=&#34;footnoteRef&#34; id=&#34;fnref1&#34;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;어쨌든 웹 스크래핑은 그간 파이썬에 장점이 있었지만, RStudio에서 내놓은 rvest 패키지 떄문에 이런 격차를 순식간에 사라지게 된 것 같다. 웹사이트를 html로 저장한 뒤 node를 따는 방식으로 원하는 자료들을 쉽게 긁을 수 있다.&lt;a href=&#34;#fn2&#34; class=&#34;footnoteRef&#34; id=&#34;fnref2&#34;&gt;&lt;sup&gt;2&lt;/sup&gt;&lt;/a&gt; 다만, 이 경우 웹사이트를 뭔가 숨겨놓지 않아야 하는데 IGM의 경우에는 구조를 그대로 볼 수 있게 되어 있다. 좌간, 아래 두 개의 튜토리얼을 참고하면 누구나 쉽게 웹 사이트를 발라낼 수 있다. 참으로 예리한 칼이 아닌가!&lt;/p&gt;
+&lt;p&gt;웹을 스크래핑 하는 데에는 몇 가지 방법이 있지만 기술적인 내용을 제외하고 실용적으로 보자면 ‘코드’로 하느냐 아니면 ’수작업’으로 하느냐 둘 중 하나다. 후자는 다시 ’정말’ 손으로 하는지 아니면 손을 ’흉내’내는지로 다시 나눌 수 있겠다. 코드로 하는게 가장 좋겠지만 이건 진입장벽이 있고, js로 된 사이트들은 더 많은 고민과 꼼수가 필요하다. 경우에 따라서는 후자가 빠를 수도 있으니 굳이 노가다하는 걸 망설일 필요는 없겠다. (당신에게 충분한 성의만 있다면) 노가다는 언제나 진리다.&lt;a href=&#34;#fn1&#34; class=&#34;footnoteRef&#34; id=&#34;fnref1&#34;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;어쨌든 웹 스크래핑은 그간 대체로 파이썬이 편리했지만, RStudio에서 내놓은 rvest 패키지 떄문에 이런 격차가 순식간에 사라지게 된 듯 싶다. 기본적인 작동 원리는 웹사이트를 html로 저장한 뒤 node를 따는 방식이다.&lt;a href=&#34;#fn2&#34; class=&#34;footnoteRef&#34; id=&#34;fnref2&#34;&gt;&lt;sup&gt;2&lt;/sup&gt;&lt;/a&gt; 다만, 이 경우 웹사이트를 뭔가 숨겨놓지 않아야 하는데 IGM의 경우에는 구조를 그대로 볼 수 있게 되어 있다. 좌간, 아래 두 개의 튜토리얼을 참고하면 누구나 쉽게 웹 사이트를 발라낼 수 있다.&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://www.analyticsvidhya.com/blog/2017/03/beginners-guide-on-web-scraping-in-r-using-rvest-with-hands-on-knowledge/&#34;&gt;Beginner’s Guide on Web Scraping in R (using rvest) with hands-on example&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;http://zevross.com/blog/2015/05/19/scrape-website-data-with-the-new-r-package-rvest/&#34;&gt;Scrape website data with the new R package rvest&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;이런 방식으로 IGM 사이트를 크게 두 부류로 각각 긁어냈다. 하나는 미국 경제학자들에게 질문을 던진 토픽이고, 다른 하나는 그 토픽에 대한 경제학자들의 답변 내용이다. 토픽은 2017년 12월 17일 현재 전부 158개, 패널은 51명의 저명한 경제학자들로 구성되어 있다. 데이터 구조는 복잡하지 않아서 스크래핑은 금방 끝났다.&lt;a href=&#34;#fn3&#34; class=&#34;footnoteRef&#34; id=&#34;fnref3&#34;&gt;&lt;sup&gt;3&lt;/sup&gt;&lt;/a&gt; 158개 중 2008년 금융위기에 관한 질문은 나머지와 다른 구조를 갖고 있어 일단 제외했다. 최종적으로 분석에 활용된 토픽은 157개다.&lt;/p&gt;
+&lt;p&gt;좌우간 이 방법을 활용해 IGM 사이트를 크게 두 부류로 긁어냈다. 하나는 미국 경제학자들에게 질문을 던진 토픽이고, 다른 하나는 그 토픽에 대한 경제학자들의 답변 내용이다. 토픽은 2017년 12월 17일 현재 전부 158개, 패널은 51명의 저명한 경제학자들로 구성되어 있다. 데이터 구조가 그리 복잡하지 않아서 스크래핑은 금방 끝났다.&lt;a href=&#34;#fn3&#34; class=&#34;footnoteRef&#34; id=&#34;fnref3&#34;&gt;&lt;sup&gt;3&lt;/sup&gt;&lt;/a&gt; 158개 중 2008년 금융위기에 관한 질문은 나머지와 다른 구조를 갖고 있어 제외해서, 최종적으로 분석에 활용된 토픽은 157개다.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;how-to-group-economists&#34; class=&#34;section level1&#34;&gt;
 &lt;h1&gt;How to group economists&lt;/h1&gt;
@@ -50,7 +50,7 @@
 &lt;p&gt;그런데 IGM 패널 자료는 양적 자료가 아니다. 클러스터링을 위해 거리 개념이 자의적으로 들어가는 건 어쩔 수 없다 치자. kmeans의 중심 개념은 자의성을 확대한다. 그렇다면 다음으로 생각해 볼 수 있는 방법이 계층 클러스터링(hierarchical clustering, 이하 HC)이다. 위계적이라는 단어가 그대로 시사하듯이 이는 어떤 기초적인 상태에서 출발해서 거슬러 올라가는 혹은 내려가는 클러스터링이다. 전체 하나가 전부 다르다고 가정한 후 비슷한 관찰을 묶는 방법(agglomerative, bottom-up) 혹은 전체가 전부 하나의 군집이라고 가정한 후 가지를 쳐 나가는 방법(divisive, top-down), 두 가지가 있다.&lt;a href=&#34;#fn5&#34; class=&#34;footnoteRef&#34; id=&#34;fnref5&#34;&gt;&lt;sup&gt;5&lt;/sup&gt;&lt;/a&gt; 역시 거리 개념에 기반하고 있지만, 계층적 방법을 쓰기 때문에, 종종 범주형 자료를 클러스터링하는 데 활용되곤 한다.&lt;a href=&#34;#fn6&#34; class=&#34;footnoteRef&#34; id=&#34;fnref6&#34;&gt;&lt;sup&gt;6&lt;/sup&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;그래서 IGM 패널의 클러스터링에는 HC쓰도록 하겠다. 찝찝한 부분이 없지는 않지만, 언제나 그렇듯이 안해보는 것보다는 낫지 않겠는가? 야매는 오용을 두려워하지 않고 일단 해보는 삽질을 마다하지 않는다.&lt;/p&gt;
 &lt;p&gt;한가지 남은 문제는 “Do Not Answer”, “No Opinion” 그리고 패널 설문에 참여하지 못한 경우를 어떻게 처리할 것인지이다. 이를 별도 카테고리로 둘 것인가? 리커트 척도의 특성상 별도의 범주를 구성하기가 애매하다. 보통 이런 경우 해당 변수의 평균값, 중간값을 넣어주는 경우도 있으나, 이 경우는 “Uncertain”으로 보는 게 비교적 왜곡이 적을 것 같다. 고민하다가 답을 못한 경우라면 머리 속에서 이런 저런 생각이 다 떠올랐기 때문 아닐까? 물론, 잘 몰라서 답을 못한 경우와 구분이 안되긴 한다. IGM 패널에 들어간 분들의 면면을 본다면, “Uncertain” 처리가 그래도 괜찮아 보인다.&lt;/p&gt;
-&lt;p&gt;먼저 agglomerative부터 보자. agglomerative의 경우 linkage criteria에 따라서 군집 구조의 강도를 찾아주는 agglomerative coefficient를 구할 수 있다. 다음의 결과처럼 “ward” 방법이 가장 괜찮은 결과를 만들어준다.&lt;/p&gt;
+&lt;p&gt;먼저 agglomerative부터 보자. agglomerative의 경우 linkage criteria에 따라서 군집 구조의 강도를 찾아주는 agglomerative coefficient를 구할 수 있다. 다음으로 agglomerative의 경우 일단 군집이 이루어진 이후 이 군집 사이의 거리를 측정하는 방법이 문제다. 대체로 4개의 방법이 많이 활용되고, 다음의 결과처럼 “ward” 방법이 가장 괜찮은 결과를 내준다.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# Agglomerative coefficient
 m &amp;lt;- c( &amp;quot;average&amp;quot;, &amp;quot;single&amp;quot;, &amp;quot;complete&amp;quot;, &amp;quot;ward&amp;quot;)
 names(m) &amp;lt;- c( &amp;quot;average&amp;quot;, &amp;quot;single&amp;quot;, &amp;quot;complete&amp;quot;, &amp;quot;ward&amp;quot;)
