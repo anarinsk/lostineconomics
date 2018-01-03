@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>gini-coefficient on lost in economics</title>
+    <link>/tags/gini-coefficient/index.xml</link>
+    <description>Recent content in gini-coefficient on lost in economics</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <atom:link href="/tags/gini-coefficient/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Mobile Game Market, part I</title>
+      <link>/post/2018/01/03/mobile-game-market-part-i/</link>
+      <pubDate>Wed, 03 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2018/01/03/mobile-game-market-part-i/</guid>
+      <description>&lt;div id=&#34;tl-dr&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;tl; dr&lt;/h1&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;무서운 성장세로 보면 모바일 게임이 이제 대세다!&lt;/li&gt;
+&lt;li&gt;일본 모바일 게임 시장이 아마도 세계 최대의 시장&lt;/li&gt;
+&lt;li&gt;한국 모바일 게임 시장은 매출 분포나 집중도에서 활력을 잃어가고 있을지 모른다.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div id=&#34;motivation&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Motivation&lt;/h1&gt;
+&lt;p&gt;남들도 2017년 결산을 하길래 나도 한번 해보기로 한다. 그런데 변변하게 아는 내용도 별다른 재주도 없으니 그나마 할 수 있는 것 중에서 재미있어 보이는 것으로 해보는 걸로…&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;go-west&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Go West!&lt;/h1&gt;
+&lt;p&gt;오늘날 게임 업계의 서부는 단연 “모바일”이다. 올해 기점으로 한국이나 해외나 모바일 게임 시장이 기존의 온라인 게임 및 콘솔 게임 시장과 비슷한 규모로 성장했다. 그다지 좋아하지 않는 삼국지 비유를 들자면, 온라인-콘솔(게임기)-모바일이 천하삼분지계를 이루었다고나 할까?&lt;/p&gt;
+&lt;p&gt;모바일 앱 시장의 집계 데이터를 서비스하는 Aㅇㅇ를 통해 2017년 한해 동안 가장 많은 매출을 올린 게임 1,000개를 뽑아냈다. 일단 상위 15개의 게임부터 보자. 미리 말해두면, Aㅇㅇ 서비스의 자료는 실데이터가 아닌 추정치이다. 사실 구글이나 애플과 같은 플랫폼 홀더가 아닌 이상 정확한 데이터를 알 수 없으니, 그나마 신뢰 받는 데이터에 의지할 수 밖에 없다는 점, 널리 양해 바란다.&lt;a href=&#34;#fn1&#34; class=&#34;footnoteRef&#34; id=&#34;fnref1&#34;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt; 이하 제시되는 표나 그림에서 금액의 단위는 모두 미국 달러(USD)다.&lt;/p&gt;
+&lt;table&gt;
+&lt;caption&gt;&lt;span id=&#34;tab:unnamed-chunk-2&#34;&gt;Table 1: &lt;/span&gt;2017 모바일 게임 매출 순위&lt;/caption&gt;
+&lt;thead&gt;
+&lt;tr class=&#34;header&#34;&gt;
+&lt;th align=&#34;center&#34;&gt;매출순위&lt;/th&gt;
+&lt;th align=&#34;left&#34;&gt;게임&lt;/th&gt;
+&lt;th align=&#34;center&#34;&gt;매출&lt;/th&gt;
+&lt;th align=&#34;left&#34;&gt;앱 츨시일&lt;/th&gt;
+&lt;th align=&#34;left&#34;&gt;모기업&lt;/th&gt;
+&lt;th align=&#34;left&#34;&gt;모기업 국가&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;center&#34;&gt;1&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Honour of Kings&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;1152874256&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;2015-10-26&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Tencent&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;China&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;center&#34;&gt;2&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Monster Strike&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;1127386841&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;2013-09-27&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;mixi&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Japan&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;center&#34;&gt;3&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Fate/Grand Order&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;928933970&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;2015-07-31&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Sony&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Japan&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;center&#34;&gt;4&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Lineage 2 Revolution&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;720077835&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;2016-12-13&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Netmarble&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;South Korea&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;center&#34;&gt;5&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Fantasy Westward Journey&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;689207444&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;2015-04-21&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;NetEase&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;China&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;center&#34;&gt;6&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Clash Royale&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;597382532&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;2016-01-04&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Supercell&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Finland&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;center&#34;&gt;7&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Candy Crush Saga&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;592883874&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;2012-11-14&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Activision Blizzard&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;United Kingdom&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;center&#34;&gt;8&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Lineage M&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;580753359&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;2017-06-20&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;NCSOFT&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;South Korea&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;center&#34;&gt;9&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Clash of Clans&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;495798999&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;2012-06-14&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Supercell&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Finland&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;center&#34;&gt;10&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Pokemon GO&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;409378704&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;2016-07-05&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Niantic&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;United States&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;center&#34;&gt;11&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Puzzle &amp;amp; Dragons&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;392717679&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;2012-02-20&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;GungHo Online Entertainment&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Japan&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;center&#34;&gt;12&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Game of War - Fire Age&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;390653787&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;2013-07-25&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;MZ&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;United States&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;center&#34;&gt;13&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Dragon Ball Z Dokkan Battle&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;390584946&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;2015-01-29&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;BANDAI NAMCO&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Japan&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;center&#34;&gt;14&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Mobile Strike&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;367265350&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;2015-07-10&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;MZ&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;United States&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;center&#34;&gt;15&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Onmyoji&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;364162749&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;2016-09-01&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;NetEase&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;China&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;일단 첫눈에 알 수 있는 내용부터 보자. 이른바 ‘글로벌’ 히트 게임은 착시다. 수퍼셀에서 만든 “크래시로열”, “크래시오브클랜” 그리고 한국의 컴투스에서 내놓은 “서머너스워” 같은 히트작이 존재하지만 시장은 뚜렷하게 구분되어 있다. 올 한 해 동안 가장 많은 돈을 번 “왕자영요Honour of Kings”는 중국어권과 한국 등의 동남아 권역에서만 서비스된다.&lt;a href=&#34;#fn2&#34; class=&#34;footnoteRef&#34; id=&#34;fnref2&#34;&gt;&lt;sup&gt;2&lt;/sup&gt;&lt;/a&gt; 나머지 2017년의 흥행 게임들도 비슷하다. 한국에서 엄청난 흥행을 기록한 “리니지M” 역시 한국, 대만, 홍콩 이외의 지역에서는 아직 서비스되지 않고 있다. “리니지2레볼루션”이 그나마 글로벌 성과를 냈지만, 역시 한국 흥행과 비교할 수준은 아니다. 2위에 오른 “몬스터 스트라이크” 역시 일본에서만 잘되는 게임이다. 2017년에 흥행한 상위 15개 타이틀에서 보듯이, 모바일 게임 시장은 국가별로 혹은 지역별로 상당한 정도로 분절화되어 있다. 플랫폼이 글로벌하다고 해서, 문화적인 차이가 사라지는 것은 아니었다.&lt;/p&gt;
+&lt;p&gt;시장 전체는 어땠을까? 2017년만 봐서는 알 수 없으니 내친 김에 앱애니 데이터가 모인 2012년부터 살펴보자.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;../../post/2018-01-03-mobile_game_market_files/figure-html/unnamed-chunk-3-1.png&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;모바일 게임은 맹렬하고 지속적인 성장세를 유지하고 있다. 지금은 삼분지대계를 얼추 이루고 있지만, 앞으로 3–4년이 지나면 모바일 게임이 게임 업계에서 가장 큰 시장을 형성하지 않을까 싶다.&lt;a href=&#34;#fn3&#34; class=&#34;footnoteRef&#34; id=&#34;fnref3&#34;&gt;&lt;sup&gt;3&lt;/sup&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;../../post/2018-01-03-mobile_game_market_files/figure-html/unnamed-chunk-4-1.png&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;4년 동안 형성된 시장 총액을 지역별로 표시했다. 모바일은 “Asia First”다. 한중일을 합치면 시장 점유율이 50% 이상이다. “왕자영요”, “몽환서유” 같은 엄청난 히트작이 나와서 중국이 가장 큰 시장으로 회자되고는 한다. 하지만 적어도 Aㅇㅇ 자료에서 일본 시장이 중국 시장보다 크다. 다소 논란은 있지만 일본은 벌써 3~4년 째 어마어마한 돈을 쓸어 모으는 타이틀들이 꽤 많이 포진해 있다는 점에서 이러한 집계된 결과가 아주 틀린 것은 아니다. 국가별 매출 변화의 추이는 다음의 그림과 같다.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;../../post/2018-01-03-mobile_game_market_files/figure-html/unnamed-chunk-5-1.png&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;indepth-anlysis&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Indepth anlysis&lt;/h1&gt;
+&lt;p&gt;이제 국가별-연도별로 살짝 더 들춰보자. 내 질문은 다음과 같다.&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;게임업계의 매출 불평등의 정도는?&lt;/li&gt;
+&lt;li&gt;게임업계의 산업 집중도는?&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;배운게 도둑질이라고 돈버는 데 도움되는 날카로운 통찰보다는 이런게 더 관심이 가더라. 어쩔 수 없다! ㅠㅠ 하지만 어설프게 배운 도둑질인지라서 해당 질문은 철저하게 다 파보진 않겠다. 첫번째 질문은 지니 계수로, 두번째 질문은 히르쉬-허핀달 지수로 소략하게 살펴보자.&lt;/p&gt;
+&lt;p&gt;지니 계수는 두 가지 자료에 대해 계산해 볼 예정이다. 해당 연도의 총매출의 지니 계수는 기본이다. 그런데 모든 게임이 1월 1일부터 서비스되지는 않을 것이고, 연중 나오는 게임도 있을 것이다. 이런 게임들에게 불이익을 주지 않기 위해서 당해 연도 매출을 당해 연도의 서비스 일수로 나눈 일간평균매출(Average Revenue Per Day: ARPD)라는 조작 지표를 도입할 예정이다. 다만 게임의 경우 초반에 매출이 압도적으로 높게 나오기 때문에 해당 연도에 서비스된 일수가 충분하지 않은 게임들을 제외했다. 대략, 어림잡아서 서비스된 일수가 1년의 1/3 쯤에 해당하는 122일에 미치지 못하는 게임들이 제외 대상이다.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;../../post/2018-01-03-mobile_game_market_files/figure-html/unnamed-chunk-6-1.png&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;일단 연도별로 업계 전체의 지니 계수를 보자.&lt;a href=&#34;#fn4&#34; class=&#34;footnoteRef&#34; id=&#34;fnref4&#34;&gt;&lt;sup&gt;4&lt;/sup&gt;&lt;/a&gt; 꽤나 높은 수준이지만 여타 엔터테인먼트 업계에 비해 유달리 못은 수준이라고 보기는 힘들다. 영화 업계 혹은 음악 업계 역시 비슷한 양상을 보이는 것으로 알려져 있다. 유행에 민감한, 즉 네트워크 효과의 지배를 받을 수 밖에 없는 흥행 산업에서 “될놈될 잘놈잘”은 보편적인 현상이다.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;../../post/2018-01-03-mobile_game_market_files/figure-html/unnamed-chunk-7-1.png&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;국가별로 지니 계수의 변동을 보자. 일본과 이외 국가들은 하향하는 추세이며 미국은 비슷한 수준을 유지하는 것으로 추측된다. 중국은 상향추세이다. 한국은 다소 미묘하다. 2012년 자료의 부정확성을 감안하면 대략 0.68–0.7 사이를 유지하다가, 2017년에는 크게 높아졌다. 이는 2017년 하반기에 출시된 엔씨소프트의 “리니지M” 때문에 발생한 것이다. 물론 2012년에서 2013년으로 건너오면서 한국의 모바일 게임 시장이 넷마블을 중심으로 재편되었기 떄문에 지니계수의 상승이 그럴 듯한 이야기처럼 느껴지기는 한다. 아울러, ARPD 역시 상승하는 추세라는 점을 함께 고려하면, 잘되는 게임이 더 잘되는 추세가 작용하고 있다고 조심스럽게 말할 수 있다.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;../../post/2018-01-03-mobile_game_market_files/figure-html/unnamed-chunk-8-1.png&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;산업집중도를 표시하는 H-H지수를 살펴보자. 대략, 0.15 값을 기준으로 이것보다 낮으면 경쟁적이라고 판단하고 0.15보다 높을수록 집중도가 높다고 판단한다. 일본은 매우 높은 집중도를 보이다가 최근들어 경쟁적인 환경으로 변했다. 중국은 경쟁이 치열해졌다는 것을 쉽게 확인할 수 있다. 한국의 경우 비교적 경쟁적인 환경을 유지하다가 2017년에 갑자기 상승했음을 알 수 있다. 이 역시 “리니지M”의 효과이기 때문에 집중도가 높아지는 것이 경향인지 판단하려면 앞으로 1~2년 후의 추이를 더 지켜봐야 할 것이다.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;../../post/2018-01-03-mobile_game_market_files/figure-html/unnamed-chunk-9-1.png&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;img src=&#34;../../post/2018-01-03-mobile_game_market_files/figure-html/unnamed-chunk-9-2.png&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;마지막으로 각 국가별 그리고 연도별로 1,000위 안에 이름을 올린 회사 및 게임 앱의 갯수를 살펴보자. 이 숫자들 역시 한국 모바일 게임 시장이 여타 국가들에 비해서 다소 정체된 시장임을 보여주고 있다.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;part-ii&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Part II?&lt;/h1&gt;
+&lt;p&gt;사실 좀 더 분석해야 하는 내용들이 남아 있다. 몇 가지 적어보자.&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;회사별 분석&lt;/li&gt;
+&lt;li&gt;출시 후 1년이 지나서도 높은 인기를 누리는 타이틀들&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;하지만 귀찮아서 이 정도에서 그만! ㅎ&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;footnotes&#34;&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id=&#34;fn1&#34;&gt;&lt;p&gt;“나는 Aㅇㅇ 서비스는 못 믿어!,” 라고 하는 분들은 여기서 페이지를 닫으시라.&lt;a href=&#34;#fnref1&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&#34;fn2&#34;&gt;&lt;p&gt;한국에서는 “팬타스톰”이라는 이름으로 서비스되고 있으나 중국 같은 대박을 이루지는 못했다.&lt;a href=&#34;#fnref2&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&#34;fn3&#34;&gt;&lt;p&gt;Aㅇㅇ 서비스는 2012년에 서비스를 시작했다. 이떄는 여러가지로 데이터도 부족했기 때문에 성장률로는 2012년에서 2013년이 200%가 넘는 수준이지만 이 시기는 성장률 계산에서 제외했다. 2012년을 전부 뺄까도 생각했지만 보는 사람이 감안하고 보는 편이 낫겠거니 싶어 그냥 두었다.&lt;a href=&#34;#fnref3&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&#34;fn4&#34;&gt;&lt;p&gt;지니 계수에 대해서 간략하게 해설하겠다. 쉽게 말해 일정한 분포를 지닌 수치열의 불평등도를 계산하는 것이다. 0에 가까울수록 평등하고 1에 가까울수록 불평등하다. 즉, 0.7 정도 되면 꽤나 높은 정도로 불평등한 것이다.&lt;a href=&#34;#fnref4&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

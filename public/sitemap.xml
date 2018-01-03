@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  
+  <url>
+    <loc>/post/2018/01/03/mobile-game-market-part-i/</loc>
+    <lastmod>2018-01-03T00:00:00+00:00</lastmod>
+  </url>
   
   <url>
     <loc>/post/2017/12/17/clustering-top-economists/</loc>
@@ -117,6 +121,33 @@
   </url>
   
   <url>
+    <loc>/categories/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/</loc>
+    <lastmod>2018-01-03T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/note/</loc>
+    <lastmod>2017-11-28T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/post/</loc>
+    <lastmod>2018-01-03T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>/tags/alchol/</loc>
     <lastmod>2017-09-19T00:00:00+00:00</lastmod>
     <priority>0</priority>
@@ -137,11 +168,6 @@
   <url>
     <loc>/tags/blogdown/</loc>
     <lastmod>2017-09-19T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/categories/</loc>
     <priority>0</priority>
   </url>
   
@@ -201,7 +227,7 @@
   
   <url>
     <loc>/categories/data/</loc>
-    <lastmod>2017-12-17T00:00:00+00:00</lastmod>
+    <lastmod>2018-01-03T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -218,20 +244,20 @@
   </url>
   
   <url>
-    <loc>/categories/eda/</loc>
-    <lastmod>2017-12-13T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>/tags/economics/</loc>
-    <lastmod>2017-12-17T00:00:00+00:00</lastmod>
+    <lastmod>2018-01-03T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>/tags/economist/</loc>
     <lastmod>2017-12-17T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/categories/eda/</loc>
+    <lastmod>2017-12-13T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -260,6 +286,12 @@
   </url>
   
   <url>
+    <loc>/tags/gini-coefficient/</loc>
+    <lastmod>2018-01-03T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>/tags/git/</loc>
     <lastmod>2017-10-20T00:00:00+00:00</lastmod>
     <priority>0</priority>
@@ -275,11 +307,6 @@
     <loc>/categories/guilty-pleasure/</loc>
     <lastmod>2017-10-06T00:00:00+00:00</lastmod>
     <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/</loc>
-    <lastmod>2017-12-17T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -319,6 +346,12 @@
   </url>
   
   <url>
+    <loc>/categories/market-research/</loc>
+    <lastmod>2018-01-03T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>/categories/math/</loc>
     <lastmod>2017-10-18T00:00:00+00:00</lastmod>
     <priority>0</priority>
@@ -332,19 +365,13 @@
   
   <url>
     <loc>/tags/mobile-game/</loc>
-    <lastmod>2017-12-13T00:00:00+00:00</lastmod>
+    <lastmod>2018-01-03T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>/tags/modelling/</loc>
     <lastmod>2017-10-30T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/note/</loc>
-    <lastmod>2017-11-28T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -357,12 +384,6 @@
   <url>
     <loc>/tags/pipe/</loc>
     <lastmod>2017-11-21T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/post/</loc>
-    <lastmod>2017-12-17T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -386,25 +407,13 @@
   
   <url>
     <loc>/tags/r/</loc>
-    <lastmod>2017-12-17T00:00:00+00:00</lastmod>
+    <lastmod>2018-01-03T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>/tags/r-package/</loc>
     <lastmod>2017-11-28T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/rmarkdown/</loc>
-    <lastmod>2017-09-18T21:13:14-05:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/rstudio/</loc>
-    <lastmod>2016-02-14T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -421,6 +430,18 @@
   </url>
   
   <url>
+    <loc>/tags/rmarkdown/</loc>
+    <lastmod>2017-09-18T21:13:14-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/rstudio/</loc>
+    <lastmod>2016-02-14T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>/tags/showtext/</loc>
     <lastmod>2017-11-16T00:00:00+00:00</lastmod>
     <priority>0</priority>
@@ -428,12 +449,6 @@
   
   <url>
     <loc>/tags/streaming/</loc>
-    <lastmod>2017-09-19T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/</loc>
     <lastmod>2017-09-19T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>

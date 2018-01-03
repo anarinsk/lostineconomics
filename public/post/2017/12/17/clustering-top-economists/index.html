@@ -30,7 +30,7 @@
 <div class="article-meta">
 <h1><span class="title">Clustering Top Economists</span></h1>
 <h2 class="author">Junsok Huhh</h2>
-<h2 class="date">2017/12/17</h2>
+
 </div>
 
 <main>
@@ -204,6 +204,7 @@ diana %.&gt;% my_dendplot(., 3)</code></pre>
 </tr>
 </tbody>
 </table>
+<p> </p>
 <table>
 <caption><span id="tab:unnamed-chunk-8">Table 2: </span>NA를 Uncertain으로 처리한 경우</caption>
 <thead>
@@ -350,12 +351,12 @@ diana %.&gt;% my_dendplot(., 3)</code></pre>
 <tr class="header">
 <th align="right">id</th>
 <th align="center">질문</th>
-<th align="center">그룹1 견해</th>
-<th align="center">그룹2 견해</th>
-<th align="center">그룹3 견해</th>
-<th align="center">그룹1–그룹2</th>
-<th align="center">그룹1–그룹3</th>
-<th align="center">그룹2–그룹3</th>
+<th align="center">견해1</th>
+<th align="center">견해2</th>
+<th align="center">견해3</th>
+<th align="right">1–2</th>
+<th align="right">1–3</th>
+<th align="right">2–3</th>
 <th align="left">URL</th>
 </tr>
 </thead>
@@ -366,9 +367,9 @@ diana %.&gt;% my_dendplot(., 3)</code></pre>
 <td align="center">5</td>
 <td align="center">5.0</td>
 <td align="center">3.0</td>
-<td align="center">0.0</td>
-<td align="center">2.0</td>
-<td align="center">2.0</td>
+<td align="right">0.0</td>
+<td align="right">2.0</td>
+<td align="right">2.0</td>
 <td align="left"><a href="http://www.igmchicago.org/surveys/balanced-budget-amendment" class="uri">http://www.igmchicago.org/surveys/balanced-budget-amendment</a></td>
 </tr>
 <tr class="even">
@@ -377,9 +378,9 @@ diana %.&gt;% my_dendplot(., 3)</code></pre>
 <td align="center">1</td>
 <td align="center">1.0</td>
 <td align="center">3.0</td>
-<td align="center">0.0</td>
-<td align="center">-2.0</td>
-<td align="center">-2.0</td>
+<td align="right">0.0</td>
+<td align="right">-2.0</td>
+<td align="right">-2.0</td>
 <td align="left"><a href="http://www.igmchicago.org/surveys/behavioral-economics" class="uri">http://www.igmchicago.org/surveys/behavioral-economics</a></td>
 </tr>
 <tr class="odd">
@@ -388,9 +389,9 @@ diana %.&gt;% my_dendplot(., 3)</code></pre>
 <td align="center">5</td>
 <td align="center">5.0</td>
 <td align="center">3.0</td>
-<td align="center">0.0</td>
-<td align="center">2.0</td>
-<td align="center">2.0</td>
+<td align="right">0.0</td>
+<td align="right">2.0</td>
+<td align="right">2.0</td>
 <td align="left"><a href="http://www.igmchicago.org/surveys/tax-reforms" class="uri">http://www.igmchicago.org/surveys/tax-reforms</a></td>
 </tr>
 <tr class="even">
@@ -399,9 +400,9 @@ diana %.&gt;% my_dendplot(., 3)</code></pre>
 <td align="center">1</td>
 <td align="center">1.5</td>
 <td align="center">3.0</td>
-<td align="center">-0.5</td>
-<td align="center">-2.0</td>
-<td align="center">-1.5</td>
+<td align="right">-0.5</td>
+<td align="right">-2.0</td>
+<td align="right">-1.5</td>
 <td align="left"><a href="http://www.igmchicago.org/surveys/the-cbo" class="uri">http://www.igmchicago.org/surveys/the-cbo</a></td>
 </tr>
 <tr class="odd">
@@ -410,9 +411,9 @@ diana %.&gt;% my_dendplot(., 3)</code></pre>
 <td align="center">5</td>
 <td align="center">4.5</td>
 <td align="center">3.0</td>
-<td align="center">0.5</td>
-<td align="center">2.0</td>
-<td align="center">1.5</td>
+<td align="right">0.5</td>
+<td align="right">2.0</td>
+<td align="right">1.5</td>
 <td align="left"><a href="http://www.igmchicago.org/surveys/import-duties" class="uri">http://www.igmchicago.org/surveys/import-duties</a></td>
 </tr>
 <tr class="even">
@@ -421,9 +422,9 @@ diana %.&gt;% my_dendplot(., 3)</code></pre>
 <td align="center">1</td>
 <td align="center">1.5</td>
 <td align="center">3.0</td>
-<td align="center">-0.5</td>
-<td align="center">-2.0</td>
-<td align="center">-1.5</td>
+<td align="right">-0.5</td>
+<td align="right">-2.0</td>
+<td align="right">-1.5</td>
 <td align="left"><a href="http://www.igmchicago.org/surveys/bureau-of-labor-statistics" class="uri">http://www.igmchicago.org/surveys/bureau-of-labor-statistics</a></td>
 </tr>
 <tr class="odd">
@@ -432,9 +433,9 @@ diana %.&gt;% my_dendplot(., 3)</code></pre>
 <td align="center">1</td>
 <td align="center">2.0</td>
 <td align="center">3.0</td>
-<td align="center">-1.0</td>
-<td align="center">-2.0</td>
-<td align="center">-1.0</td>
+<td align="right">-1.0</td>
+<td align="right">-2.0</td>
+<td align="right">-1.0</td>
 <td align="left"><a href="http://www.igmchicago.org/surveys/bureau-of-labor-statistics" class="uri">http://www.igmchicago.org/surveys/bureau-of-labor-statistics</a></td>
 </tr>
 <tr class="even">
@@ -443,9 +444,9 @@ diana %.&gt;% my_dendplot(., 3)</code></pre>
 <td align="center">1</td>
 <td align="center">1.0</td>
 <td align="center">3.0</td>
-<td align="center">0.0</td>
-<td align="center">-2.0</td>
-<td align="center">-2.0</td>
+<td align="right">0.0</td>
+<td align="right">-2.0</td>
+<td align="right">-2.0</td>
 <td align="left"><a href="http://www.igmchicago.org/surveys/primary-voting" class="uri">http://www.igmchicago.org/surveys/primary-voting</a></td>
 </tr>
 <tr class="odd">
@@ -454,9 +455,9 @@ diana %.&gt;% my_dendplot(., 3)</code></pre>
 <td align="center">1</td>
 <td align="center">1.0</td>
 <td align="center">3.0</td>
-<td align="center">0.0</td>
-<td align="center">-2.0</td>
-<td align="center">-2.0</td>
+<td align="right">0.0</td>
+<td align="right">-2.0</td>
+<td align="right">-2.0</td>
 <td align="left"><a href="http://www.igmchicago.org/surveys/nash-equilibrium" class="uri">http://www.igmchicago.org/surveys/nash-equilibrium</a></td>
 </tr>
 <tr class="even">
@@ -465,9 +466,9 @@ diana %.&gt;% my_dendplot(., 3)</code></pre>
 <td align="center">1</td>
 <td align="center">1.0</td>
 <td align="center">3.0</td>
-<td align="center">0.0</td>
-<td align="center">-2.0</td>
-<td align="center">-2.0</td>
+<td align="right">0.0</td>
+<td align="right">-2.0</td>
+<td align="right">-2.0</td>
 <td align="left"><a href="http://www.igmchicago.org/surveys/vaccines" class="uri">http://www.igmchicago.org/surveys/vaccines</a></td>
 </tr>
 <tr class="odd">
@@ -476,9 +477,9 @@ diana %.&gt;% my_dendplot(., 3)</code></pre>
 <td align="center">1</td>
 <td align="center">1.0</td>
 <td align="center">3.0</td>
-<td align="center">0.0</td>
-<td align="center">-2.0</td>
-<td align="center">-2.0</td>
+<td align="right">0.0</td>
+<td align="right">-2.0</td>
+<td align="right">-2.0</td>
 <td align="left"><a href="http://www.igmchicago.org/surveys/dynamic-scoring" class="uri">http://www.igmchicago.org/surveys/dynamic-scoring</a></td>
 </tr>
 <tr class="even">
@@ -487,9 +488,9 @@ diana %.&gt;% my_dendplot(., 3)</code></pre>
 <td align="center">1</td>
 <td align="center">1.0</td>
 <td align="center">3.0</td>
-<td align="center">0.0</td>
-<td align="center">-2.0</td>
-<td align="center">-2.0</td>
+<td align="right">0.0</td>
+<td align="right">-2.0</td>
+<td align="right">-2.0</td>
 <td align="left"><a href="http://www.igmchicago.org/surveys/taxi-competition" class="uri">http://www.igmchicago.org/surveys/taxi-competition</a></td>
 </tr>
 <tr class="odd">
@@ -498,9 +499,9 @@ diana %.&gt;% my_dendplot(., 3)</code></pre>
 <td align="center">2</td>
 <td align="center">1.0</td>
 <td align="center">3.0</td>
-<td align="center">1.0</td>
-<td align="center">-1.0</td>
-<td align="center">-2.0</td>
+<td align="right">1.0</td>
+<td align="right">-1.0</td>
+<td align="right">-2.0</td>
 <td align="left"><a href="http://www.igmchicago.org/surveys/liquidity" class="uri">http://www.igmchicago.org/surveys/liquidity</a></td>
 </tr>
 <tr class="even">
@@ -509,9 +510,9 @@ diana %.&gt;% my_dendplot(., 3)</code></pre>
 <td align="center">2</td>
 <td align="center">1.0</td>
 <td align="center">3.0</td>
-<td align="center">1.0</td>
-<td align="center">-1.0</td>
-<td align="center">-2.0</td>
+<td align="right">1.0</td>
+<td align="right">-1.0</td>
+<td align="right">-2.0</td>
 <td align="left"><a href="http://www.igmchicago.org/surveys/surge-pricing" class="uri">http://www.igmchicago.org/surveys/surge-pricing</a></td>
 </tr>
 <tr class="odd">
@@ -520,9 +521,9 @@ diana %.&gt;% my_dendplot(., 3)</code></pre>
 <td align="center">1</td>
 <td align="center">1.0</td>
 <td align="center">3.0</td>
-<td align="center">0.0</td>
-<td align="center">-2.0</td>
-<td align="center">-2.0</td>
+<td align="right">0.0</td>
+<td align="right">-2.0</td>
+<td align="right">-2.0</td>
 <td align="left"><a href="http://www.igmchicago.org/surveys/diversification" class="uri">http://www.igmchicago.org/surveys/diversification</a></td>
 </tr>
 <tr class="even">
@@ -531,9 +532,9 @@ diana %.&gt;% my_dendplot(., 3)</code></pre>
 <td align="center">1</td>
 <td align="center">3.0</td>
 <td align="center">2.0</td>
-<td align="center">-2.0</td>
-<td align="center">-1.0</td>
-<td align="center">1.0</td>
+<td align="right">-2.0</td>
+<td align="right">-1.0</td>
+<td align="right">1.0</td>
 <td align="left"><a href="http://www.igmchicago.org/surveys/2532" class="uri">http://www.igmchicago.org/surveys/2532</a></td>
 </tr>
 <tr class="odd">
@@ -542,9 +543,9 @@ diana %.&gt;% my_dendplot(., 3)</code></pre>
 <td align="center">1</td>
 <td align="center">3.0</td>
 <td align="center">2.0</td>
-<td align="center">-2.0</td>
-<td align="center">-1.0</td>
-<td align="center">1.0</td>
+<td align="right">-2.0</td>
+<td align="right">-1.0</td>
+<td align="right">1.0</td>
 <td align="left"><a href="http://www.igmchicago.org/surveys/u-s-state-budgets" class="uri">http://www.igmchicago.org/surveys/u-s-state-budgets</a></td>
 </tr>
 <tr class="even">
@@ -553,9 +554,9 @@ diana %.&gt;% my_dendplot(., 3)</code></pre>
 <td align="center">1</td>
 <td align="center">3.0</td>
 <td align="center">2.0</td>
-<td align="center">-2.0</td>
-<td align="center">-1.0</td>
-<td align="center">1.0</td>
+<td align="right">-2.0</td>
+<td align="right">-1.0</td>
+<td align="right">1.0</td>
 <td align="left"><a href="http://www.igmchicago.org/surveys/ethanol" class="uri">http://www.igmchicago.org/surveys/ethanol</a></td>
 </tr>
 <tr class="odd">
@@ -564,9 +565,9 @@ diana %.&gt;% my_dendplot(., 3)</code></pre>
 <td align="center">4</td>
 <td align="center">3.0</td>
 <td align="center">5.0</td>
-<td align="center">1.0</td>
-<td align="center">-1.0</td>
-<td align="center">-2.0</td>
+<td align="right">1.0</td>
+<td align="right">-1.0</td>
+<td align="right">-2.0</td>
 <td align="left"><a href="http://www.igmchicago.org/surveys/gold-standard" class="uri">http://www.igmchicago.org/surveys/gold-standard</a></td>
 </tr>
 <tr class="even">
@@ -575,9 +576,9 @@ diana %.&gt;% my_dendplot(., 3)</code></pre>
 <td align="center">1</td>
 <td align="center">3.0</td>
 <td align="center">1.0</td>
-<td align="center">-2.0</td>
-<td align="center">0.0</td>
-<td align="center">2.0</td>
+<td align="right">-2.0</td>
+<td align="right">0.0</td>
+<td align="right">2.0</td>
 <td align="left"><a href="http://www.igmchicago.org/surveys/gold-standard" class="uri">http://www.igmchicago.org/surveys/gold-standard</a></td>
 </tr>
 <tr class="odd">
@@ -586,9 +587,9 @@ diana %.&gt;% my_dendplot(., 3)</code></pre>
 <td align="center">1</td>
 <td align="center">3.0</td>
 <td align="center">1.0</td>
-<td align="center">-2.0</td>
-<td align="center">0.0</td>
-<td align="center">2.0</td>
+<td align="right">-2.0</td>
+<td align="right">0.0</td>
+<td align="right">2.0</td>
 <td align="left"><a href="http://www.igmchicago.org/surveys/congestion-pricing" class="uri">http://www.igmchicago.org/surveys/congestion-pricing</a></td>
 </tr>
 <tr class="even">
@@ -597,9 +598,9 @@ diana %.&gt;% my_dendplot(., 3)</code></pre>
 <td align="center">1</td>
 <td align="center">3.0</td>
 <td align="center">2.0</td>
-<td align="center">-2.0</td>
-<td align="center">-1.0</td>
-<td align="center">1.0</td>
+<td align="right">-2.0</td>
+<td align="right">-1.0</td>
+<td align="right">1.0</td>
 <td align="left"><a href="http://www.igmchicago.org/surveys/carbon-tax" class="uri">http://www.igmchicago.org/surveys/carbon-tax</a></td>
 </tr>
 <tr class="odd">
@@ -608,9 +609,9 @@ diana %.&gt;% my_dendplot(., 3)</code></pre>
 <td align="center">5</td>
 <td align="center">3.0</td>
 <td align="center">4.0</td>
-<td align="center">2.0</td>
-<td align="center">1.0</td>
-<td align="center">-1.0</td>
+<td align="right">2.0</td>
+<td align="right">1.0</td>
+<td align="right">-1.0</td>
 <td align="left"><a href="http://www.igmchicago.org/surveys/healthcare" class="uri">http://www.igmchicago.org/surveys/healthcare</a></td>
 </tr>
 <tr class="even">
@@ -619,9 +620,9 @@ diana %.&gt;% my_dendplot(., 3)</code></pre>
 <td align="center">1</td>
 <td align="center">3.0</td>
 <td align="center">1.5</td>
-<td align="center">-2.0</td>
-<td align="center">-0.5</td>
-<td align="center">1.5</td>
+<td align="right">-2.0</td>
+<td align="right">-0.5</td>
+<td align="right">1.5</td>
 <td align="left"><a href="http://www.igmchicago.org/surveys/stock-prices" class="uri">http://www.igmchicago.org/surveys/stock-prices</a></td>
 </tr>
 </tbody>

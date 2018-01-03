@@ -1,15 +1,216 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>R on lost in economics</title>
-    <link>/tags/r/</link>
-    <description>Recent content in R on lost in economics</description>
+    <title>r on lost in economics</title>
+    <link>/tags/r/index.xml</link>
+    <description>Recent content in r on lost in economics</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 17 Dec 2017 00:00:00 +0000</lastBuildDate>
+    <atom:link href="/tags/r/index.xml" rel="self" type="application/rss+xml" />
     
-	<atom:link href="/tags/r/index.xml" rel="self" type="application/rss+xml" />
-    
+    <item>
+      <title>Mobile Game Market, part I</title>
+      <link>/post/2018/01/03/mobile-game-market-part-i/</link>
+      <pubDate>Wed, 03 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2018/01/03/mobile-game-market-part-i/</guid>
+      <description>&lt;div id=&#34;tl-dr&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;tl; dr&lt;/h1&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;무서운 성장세로 보면 모바일 게임이 이제 대세다!&lt;/li&gt;
+&lt;li&gt;일본 모바일 게임 시장이 아마도 세계 최대의 시장&lt;/li&gt;
+&lt;li&gt;한국 모바일 게임 시장은 매출 분포나 집중도에서 활력을 잃어가고 있을지 모른다.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div id=&#34;motivation&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Motivation&lt;/h1&gt;
+&lt;p&gt;남들도 2017년 결산을 하길래 나도 한번 해보기로 한다. 그런데 변변하게 아는 내용도 별다른 재주도 없으니 그나마 할 수 있는 것 중에서 재미있어 보이는 것으로 해보는 걸로…&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;go-west&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Go West!&lt;/h1&gt;
+&lt;p&gt;오늘날 게임 업계의 서부는 단연 “모바일”이다. 올해 기점으로 한국이나 해외나 모바일 게임 시장이 기존의 온라인 게임 및 콘솔 게임 시장과 비슷한 규모로 성장했다. 그다지 좋아하지 않는 삼국지 비유를 들자면, 온라인-콘솔(게임기)-모바일이 천하삼분지계를 이루었다고나 할까?&lt;/p&gt;
+&lt;p&gt;모바일 앱 시장의 집계 데이터를 서비스하는 Aㅇㅇ를 통해 2017년 한해 동안 가장 많은 매출을 올린 게임 1,000개를 뽑아냈다. 일단 상위 15개의 게임부터 보자. 미리 말해두면, Aㅇㅇ 서비스의 자료는 실데이터가 아닌 추정치이다. 사실 구글이나 애플과 같은 플랫폼 홀더가 아닌 이상 정확한 데이터를 알 수 없으니, 그나마 신뢰 받는 데이터에 의지할 수 밖에 없다는 점, 널리 양해 바란다.&lt;a href=&#34;#fn1&#34; class=&#34;footnoteRef&#34; id=&#34;fnref1&#34;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt; 이하 제시되는 표나 그림에서 금액의 단위는 모두 미국 달러(USD)다.&lt;/p&gt;
+&lt;table&gt;
+&lt;caption&gt;&lt;span id=&#34;tab:unnamed-chunk-2&#34;&gt;Table 1: &lt;/span&gt;2017 모바일 게임 매출 순위&lt;/caption&gt;
+&lt;thead&gt;
+&lt;tr class=&#34;header&#34;&gt;
+&lt;th align=&#34;center&#34;&gt;매출순위&lt;/th&gt;
+&lt;th align=&#34;left&#34;&gt;게임&lt;/th&gt;
+&lt;th align=&#34;center&#34;&gt;매출&lt;/th&gt;
+&lt;th align=&#34;left&#34;&gt;앱 츨시일&lt;/th&gt;
+&lt;th align=&#34;left&#34;&gt;모기업&lt;/th&gt;
+&lt;th align=&#34;left&#34;&gt;모기업 국가&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;center&#34;&gt;1&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Honour of Kings&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;1152874256&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;2015-10-26&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Tencent&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;China&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;center&#34;&gt;2&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Monster Strike&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;1127386841&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;2013-09-27&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;mixi&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Japan&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;center&#34;&gt;3&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Fate/Grand Order&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;928933970&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;2015-07-31&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Sony&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Japan&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;center&#34;&gt;4&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Lineage 2 Revolution&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;720077835&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;2016-12-13&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Netmarble&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;South Korea&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;center&#34;&gt;5&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Fantasy Westward Journey&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;689207444&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;2015-04-21&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;NetEase&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;China&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;center&#34;&gt;6&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Clash Royale&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;597382532&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;2016-01-04&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Supercell&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Finland&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;center&#34;&gt;7&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Candy Crush Saga&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;592883874&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;2012-11-14&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Activision Blizzard&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;United Kingdom&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;center&#34;&gt;8&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Lineage M&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;580753359&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;2017-06-20&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;NCSOFT&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;South Korea&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;center&#34;&gt;9&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Clash of Clans&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;495798999&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;2012-06-14&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Supercell&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Finland&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;center&#34;&gt;10&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Pokemon GO&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;409378704&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;2016-07-05&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Niantic&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;United States&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;center&#34;&gt;11&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Puzzle &amp;amp; Dragons&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;392717679&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;2012-02-20&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;GungHo Online Entertainment&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Japan&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;center&#34;&gt;12&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Game of War - Fire Age&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;390653787&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;2013-07-25&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;MZ&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;United States&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;center&#34;&gt;13&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Dragon Ball Z Dokkan Battle&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;390584946&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;2015-01-29&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;BANDAI NAMCO&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Japan&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;center&#34;&gt;14&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Mobile Strike&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;367265350&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;2015-07-10&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;MZ&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;United States&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;center&#34;&gt;15&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Onmyoji&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;364162749&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;2016-09-01&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;NetEase&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;China&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;일단 첫눈에 알 수 있는 내용부터 보자. 이른바 ‘글로벌’ 히트 게임은 착시다. 수퍼셀에서 만든 “크래시로열”, “크래시오브클랜” 그리고 한국의 컴투스에서 내놓은 “서머너스워” 같은 히트작이 존재하지만 시장은 뚜렷하게 구분되어 있다. 올 한 해 동안 가장 많은 돈을 번 “왕자영요Honour of Kings”는 중국어권과 한국 등의 동남아 권역에서만 서비스된다.&lt;a href=&#34;#fn2&#34; class=&#34;footnoteRef&#34; id=&#34;fnref2&#34;&gt;&lt;sup&gt;2&lt;/sup&gt;&lt;/a&gt; 나머지 2017년의 흥행 게임들도 비슷하다. 한국에서 엄청난 흥행을 기록한 “리니지M” 역시 한국, 대만, 홍콩 이외의 지역에서는 아직 서비스되지 않고 있다. “리니지2레볼루션”이 그나마 글로벌 성과를 냈지만, 역시 한국 흥행과 비교할 수준은 아니다. 2위에 오른 “몬스터 스트라이크” 역시 일본에서만 잘되는 게임이다. 2017년에 흥행한 상위 15개 타이틀에서 보듯이, 모바일 게임 시장은 국가별로 혹은 지역별로 상당한 정도로 분절화되어 있다. 플랫폼이 글로벌하다고 해서, 문화적인 차이가 사라지는 것은 아니었다.&lt;/p&gt;
+&lt;p&gt;시장 전체는 어땠을까? 2017년만 봐서는 알 수 없으니 내친 김에 앱애니 데이터가 모인 2012년부터 살펴보자.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;../../post/2018-01-03-mobile_game_market_files/figure-html/unnamed-chunk-3-1.png&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;모바일 게임은 맹렬하고 지속적인 성장세를 유지하고 있다. 지금은 삼분지대계를 얼추 이루고 있지만, 앞으로 3–4년이 지나면 모바일 게임이 게임 업계에서 가장 큰 시장을 형성하지 않을까 싶다.&lt;a href=&#34;#fn3&#34; class=&#34;footnoteRef&#34; id=&#34;fnref3&#34;&gt;&lt;sup&gt;3&lt;/sup&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;../../post/2018-01-03-mobile_game_market_files/figure-html/unnamed-chunk-4-1.png&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;4년 동안 형성된 시장 총액을 지역별로 표시했다. 모바일은 “Asia First”다. 한중일을 합치면 시장 점유율이 50% 이상이다. “왕자영요”, “몽환서유” 같은 엄청난 히트작이 나와서 중국이 가장 큰 시장으로 회자되고는 한다. 하지만 적어도 Aㅇㅇ 자료에서 일본 시장이 중국 시장보다 크다. 다소 논란은 있지만 일본은 벌써 3~4년 째 어마어마한 돈을 쓸어 모으는 타이틀들이 꽤 많이 포진해 있다는 점에서 이러한 집계된 결과가 아주 틀린 것은 아니다. 국가별 매출 변화의 추이는 다음의 그림과 같다.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;../../post/2018-01-03-mobile_game_market_files/figure-html/unnamed-chunk-5-1.png&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;indepth-anlysis&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Indepth anlysis&lt;/h1&gt;
+&lt;p&gt;이제 국가별-연도별로 살짝 더 들춰보자. 내 질문은 다음과 같다.&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;게임업계의 매출 불평등의 정도는?&lt;/li&gt;
+&lt;li&gt;게임업계의 산업 집중도는?&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;배운게 도둑질이라고 돈버는 데 도움되는 날카로운 통찰보다는 이런게 더 관심이 가더라. 어쩔 수 없다! ㅠㅠ 하지만 어설프게 배운 도둑질인지라서 해당 질문은 철저하게 다 파보진 않겠다. 첫번째 질문은 지니 계수로, 두번째 질문은 히르쉬-허핀달 지수로 소략하게 살펴보자.&lt;/p&gt;
+&lt;p&gt;지니 계수는 두 가지 자료에 대해 계산해 볼 예정이다. 해당 연도의 총매출의 지니 계수는 기본이다. 그런데 모든 게임이 1월 1일부터 서비스되지는 않을 것이고, 연중 나오는 게임도 있을 것이다. 이런 게임들에게 불이익을 주지 않기 위해서 당해 연도 매출을 당해 연도의 서비스 일수로 나눈 일간평균매출(Average Revenue Per Day: ARPD)라는 조작 지표를 도입할 예정이다. 다만 게임의 경우 초반에 매출이 압도적으로 높게 나오기 때문에 해당 연도에 서비스된 일수가 충분하지 않은 게임들을 제외했다. 대략, 어림잡아서 서비스된 일수가 1년의 1/3 쯤에 해당하는 122일에 미치지 못하는 게임들이 제외 대상이다.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;../../post/2018-01-03-mobile_game_market_files/figure-html/unnamed-chunk-6-1.png&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;일단 연도별로 업계 전체의 지니 계수를 보자.&lt;a href=&#34;#fn4&#34; class=&#34;footnoteRef&#34; id=&#34;fnref4&#34;&gt;&lt;sup&gt;4&lt;/sup&gt;&lt;/a&gt; 꽤나 높은 수준이지만 여타 엔터테인먼트 업계에 비해 유달리 못은 수준이라고 보기는 힘들다. 영화 업계 혹은 음악 업계 역시 비슷한 양상을 보이는 것으로 알려져 있다. 유행에 민감한, 즉 네트워크 효과의 지배를 받을 수 밖에 없는 흥행 산업에서 “될놈될 잘놈잘”은 보편적인 현상이다.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;../../post/2018-01-03-mobile_game_market_files/figure-html/unnamed-chunk-7-1.png&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;국가별로 지니 계수의 변동을 보자. 일본과 이외 국가들은 하향하는 추세이며 미국은 비슷한 수준을 유지하는 것으로 추측된다. 중국은 상향추세이다. 한국은 다소 미묘하다. 2012년 자료의 부정확성을 감안하면 대략 0.68–0.7 사이를 유지하다가, 2017년에는 크게 높아졌다. 이는 2017년 하반기에 출시된 엔씨소프트의 “리니지M” 때문에 발생한 것이다. 물론 2012년에서 2013년으로 건너오면서 한국의 모바일 게임 시장이 넷마블을 중심으로 재편되었기 떄문에 지니계수의 상승이 그럴 듯한 이야기처럼 느껴지기는 한다. 아울러, ARPD 역시 상승하는 추세라는 점을 함께 고려하면, 잘되는 게임이 더 잘되는 추세가 작용하고 있다고 조심스럽게 말할 수 있다.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;../../post/2018-01-03-mobile_game_market_files/figure-html/unnamed-chunk-8-1.png&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;산업집중도를 표시하는 H-H지수를 살펴보자. 대략, 0.15 값을 기준으로 이것보다 낮으면 경쟁적이라고 판단하고 0.15보다 높을수록 집중도가 높다고 판단한다. 일본은 매우 높은 집중도를 보이다가 최근들어 경쟁적인 환경으로 변했다. 중국은 경쟁이 치열해졌다는 것을 쉽게 확인할 수 있다. 한국의 경우 비교적 경쟁적인 환경을 유지하다가 2017년에 갑자기 상승했음을 알 수 있다. 이 역시 “리니지M”의 효과이기 때문에 집중도가 높아지는 것이 경향인지 판단하려면 앞으로 1~2년 후의 추이를 더 지켜봐야 할 것이다.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;../../post/2018-01-03-mobile_game_market_files/figure-html/unnamed-chunk-9-1.png&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;img src=&#34;../../post/2018-01-03-mobile_game_market_files/figure-html/unnamed-chunk-9-2.png&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;마지막으로 각 국가별 그리고 연도별로 1,000위 안에 이름을 올린 회사 및 게임 앱의 갯수를 살펴보자. 이 숫자들 역시 한국 모바일 게임 시장이 여타 국가들에 비해서 다소 정체된 시장임을 보여주고 있다.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;part-ii&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Part II?&lt;/h1&gt;
+&lt;p&gt;사실 좀 더 분석해야 하는 내용들이 남아 있다. 몇 가지 적어보자.&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;회사별 분석&lt;/li&gt;
+&lt;li&gt;출시 후 1년이 지나서도 높은 인기를 누리는 타이틀들&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;하지만 귀찮아서 이 정도에서 그만! ㅎ&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;footnotes&#34;&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id=&#34;fn1&#34;&gt;&lt;p&gt;“나는 Aㅇㅇ 서비스는 못 믿어!,” 라고 하는 분들은 여기서 페이지를 닫으시라.&lt;a href=&#34;#fnref1&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&#34;fn2&#34;&gt;&lt;p&gt;한국에서는 “팬타스톰”이라는 이름으로 서비스되고 있으나 중국 같은 대박을 이루지는 못했다.&lt;a href=&#34;#fnref2&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&#34;fn3&#34;&gt;&lt;p&gt;Aㅇㅇ 서비스는 2012년에 서비스를 시작했다. 이떄는 여러가지로 데이터도 부족했기 때문에 성장률로는 2012년에서 2013년이 200%가 넘는 수준이지만 이 시기는 성장률 계산에서 제외했다. 2012년을 전부 뺄까도 생각했지만 보는 사람이 감안하고 보는 편이 낫겠거니 싶어 그냥 두었다.&lt;a href=&#34;#fnref3&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&#34;fn4&#34;&gt;&lt;p&gt;지니 계수에 대해서 간략하게 해설하겠다. 쉽게 말해 일정한 분포를 지닌 수치열의 불평등도를 계산하는 것이다. 0에 가까울수록 평등하고 1에 가까울수록 불평등하다. 즉, 0.7 정도 되면 꽤나 높은 정도로 불평등한 것이다.&lt;a href=&#34;#fnref4&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+</description>
+    </item>
     
     <item>
       <title>Clustering Top Economists</title>
@@ -17,8 +218,624 @@
       <pubDate>Sun, 17 Dec 2017 00:00:00 +0000</pubDate>
       
       <guid>/post/2017/12/17/clustering-top-economists/</guid>
-      <description>tl; drIGM 패널에 속한 미국 경제학자들의 경제에 관한 의견들을 긁어보니 경제학자들은 거의 모든 사안에 대해서 꽤 일치된 견해를 갖고 있더라.(물론, 이에 관한 해석은 각자의 마음 속에…)분석에 활용된 과정과 분석 결과는 다음의 각각 링크에서 Download! 아니면 여기서 github
-Scraping webMunging dataAnalyzing datasource data by csvMotivation집에 심심하게 있다가 ‘갑자기’(out of nowhere!) 이런 생각이 떠올랐다. ‘믿을만한’(이라고 쓰고 ’저명한’이라고 읽자) 경제학자들은 얼마나 의견에 합의를 볼 수 있을까?</description>
+      <description>&lt;div id=&#34;tl-dr&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;tl; dr&lt;/h1&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;IGM 패널에 속한 미국 경제학자들의 경제에 관한 의견들을 긁어보니 경제학자들은 거의 모든 사안에 대해서 꽤 일치된 견해를 갖고 있더라.(물론, 이에 관한 해석은 각자의 마음 속에…)&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;분석에 활용된 과정과 분석 결과는 다음의 각각 링크에서 Download! 아니면 여기서 &lt;a href=&#34;https://github.com/anarinsk/analysis_IGM&#34;&gt;github&lt;/a&gt;&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: lower-alpha&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/anarinsk/analysis_IGM/blob/master/code_sraping.r&#34;&gt;Scraping web&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/anarinsk/analysis_IGM/blob/master/code_munging.r&#34;&gt;Munging data&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/anarinsk/analysis_IGM/blob/master/code_modelling.r&#34;&gt;Analyzing data&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/anarinsk/analysis_IGM/tree/master/csv&#34;&gt;source data by csv&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div id=&#34;motivation&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Motivation&lt;/h1&gt;
+&lt;p&gt;집에 심심하게 있다가 ‘갑자기’(out of nowhere!) 이런 생각이 떠올랐다. ‘믿을만한’(이라고 쓰고 ’저명한’이라고 읽자) 경제학자들은 얼마나 의견에 합의를 볼 수 있을까? 공상이 흘러 흘러 , ’데이터는 어디서 구하지’라고 생각이 흘렀고, 당장 시카고 Booth의 &lt;a href=&#34;http://www.igmchicago.org/&#34;&gt;IGM 패널&lt;/a&gt;이 떠올랐다. 급히 스마트폰으로 IGM이 그간 몇 개의 토픽을 다뤘는지 찾아보니 사례는 충분했다. 이제 기술적인 문제다. 웹 자료니까 긁어야하는데 웹스크래핑을 해본지 꽤 되었다. Python에서만 해봤는데, 이 기회에 R로도 해보면 재미있겠지? 마지막으로 자료의 성격이 문제다. 답변은 전형적인 리커드 척도(Likert scale), 즉 5점 척도다. 흠, 얘네들을 클러스터링 하려면 어떻게 해야 하나? 일단, 양적 자료는 아니니 k-means 같은 표준적이고 손쉬운 방법은 못 쓴다. 설상가상 리커트 척도를 다루는 데는 문외한이고, 이제부터 공부해서 뭔가 만들어낼 성의도 없다. 딱 주말에 심심풀이로 꺼내든 프로젝트라서 주말에 끝내고 싶다! (역시 나에게는 대충과 야매가 어울린다.) 어쨌든 이후의 글에서는 아래의 세 가지 내용을 간단히 다뤄보고자 한다.&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;IGM 패널 웹 사이트를 긁기&lt;/li&gt;
+&lt;li&gt;자료 정리(munging) 및 클러스터링 앍고리듬 적용하기&lt;/li&gt;
+&lt;li&gt;결과에 대한 내 맘대로 해석, 해결 혹은 헛소리&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div id=&#34;how-to-scrap-results-of-igm-panel&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;How to scrap results of IGM panel&lt;/h1&gt;
+&lt;p&gt;웹을 스크래핑 하는 데에는 몇 가지 방법이 있지만 기술적인 내용을 제외하고 실용적으로 보자면 ‘코드’로 하느냐 아니면 ’수작업’으로 하느냐 둘 중 하나다. 후자는 다시 ’정말’ 손으로 하는지 아니면 ’손’을 흉내내는지로 다시 나눌 수 있겠다. 코드로 하는게 가장 좋겠지만 이건 진입장벽이 있고, js로 된 사이트들은 더 많은 고민과 꼼수가 필요하다. 경우에 따라서는 후자가 빠를 수도 있으니 굳이 노가다하는 걸 망설일 필요는 없겠다. (당신에게 충분한 성의만 있다면) 노가다는 언제나 진리다.&lt;a href=&#34;#fn1&#34; class=&#34;footnoteRef&#34; id=&#34;fnref1&#34;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;어쨌든 웹 스크래핑은 그간 파이썬에 장점이 있었지만, RStudio에서 내놓은 rvest 패키지 떄문에 이런 격차를 순식간에 사라지게 된 것 같다. 웹사이트를 html로 저장한 뒤 node를 따는 방식으로 원하는 자료들을 쉽게 긁을 수 있다.&lt;a href=&#34;#fn2&#34; class=&#34;footnoteRef&#34; id=&#34;fnref2&#34;&gt;&lt;sup&gt;2&lt;/sup&gt;&lt;/a&gt; 다만, 이 경우 웹사이트를 뭔가 숨겨놓지 않아야 하는데 IGM의 경우에는 구조를 그대로 볼 수 있게 되어 있다. 좌간, 아래 두 개의 튜토리얼을 참고하면 누구나 쉽게 웹 사이트를 발라낼 수 있다. 참으로 예리한 칼이 아닌가!&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.analyticsvidhya.com/blog/2017/03/beginners-guide-on-web-scraping-in-r-using-rvest-with-hands-on-knowledge/&#34;&gt;Beginner’s Guide on Web Scraping in R (using rvest) with hands-on example&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://zevross.com/blog/2015/05/19/scrape-website-data-with-the-new-r-package-rvest/&#34;&gt;Scrape website data with the new R package rvest&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;이런 방식으로 IGM 사이트를 크게 두 부류로 각각 긁어냈다. 하나는 미국 경제학자들에게 질문을 던진 토픽이고, 다른 하나는 그 토픽에 대한 경제학자들의 답변 내용이다. 토픽은 2017년 12월 17일 현재 전부 158개, 패널은 51명의 저명한 경제학자들로 구성되어 있다. 데이터 구조는 복잡하지 않아서 스크래핑은 금방 끝났다.&lt;a href=&#34;#fn3&#34; class=&#34;footnoteRef&#34; id=&#34;fnref3&#34;&gt;&lt;sup&gt;3&lt;/sup&gt;&lt;/a&gt; 158개 중 2008년 금융위기에 관한 질문은 나머지와 다른 구조를 갖고 있어 일단 제외했다. 최종적으로 분석에 활용된 토픽은 157개다.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;how-to-group-economists&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;How to group economists&lt;/h1&gt;
+&lt;p&gt;클러스터링(clustering)은 관찰이 지닌 속성(변수)을 비교해 비슷한 무리를 묶는 통계적 기법이다.&lt;a href=&#34;#fn4&#34; class=&#34;footnoteRef&#34; id=&#34;fnref4&#34;&gt;&lt;sup&gt;4&lt;/sup&gt;&lt;/a&gt; 이때 비슷한 무리를 묶기 위해 필요한 것은 ’거리 개념’이다. 거리가 나오려면 양적 변수여야 한다는 건 당연한 이치다. 이에 기반한 표준적인 클러스터링 방법은 뭔가 중심을 찾고 이를 중심으로 비슷한 녀석들을 묶는 &lt;a href=&#34;https://en.wikipedia.org/wiki/K-means_clustering&#34;&gt;k-means&lt;/a&gt; 알고리즘이다.&lt;/p&gt;
+&lt;p&gt;그런데 IGM 패널 자료는 양적 자료가 아니다. 클러스터링을 위해 거리 개념이 자의적으로 들어가는 건 어쩔 수 없다 치자. kmeans의 중심 개념은 자의성을 확대한다. 그렇다면 다음으로 생각해 볼 수 있는 방법이 계층 클러스터링(hierarchical clustering, 이하 HC)이다. 위계적이라는 단어가 그대로 시사하듯이 이는 어떤 기초적인 상태에서 출발해서 거슬러 올라가는 혹은 내려가는 클러스터링이다. 전체 하나가 전부 다르다고 가정한 후 비슷한 관찰을 묶는 방법(agglomerative, bottom-up) 혹은 전체가 전부 하나의 군집이라고 가정한 후 가지를 쳐 나가는 방법(divisive, top-down), 두 가지가 있다.&lt;a href=&#34;#fn5&#34; class=&#34;footnoteRef&#34; id=&#34;fnref5&#34;&gt;&lt;sup&gt;5&lt;/sup&gt;&lt;/a&gt; 역시 거리 개념에 기반하고 있지만, 계층적 방법을 쓰기 때문에, 종종 범주형 자료를 클러스터링하는 데 활용되곤 한다.&lt;a href=&#34;#fn6&#34; class=&#34;footnoteRef&#34; id=&#34;fnref6&#34;&gt;&lt;sup&gt;6&lt;/sup&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;그래서 IGM 패널의 클러스터링에는 HC쓰도록 하겠다. 찝찝한 부분이 없지는 않지만, 언제나 그렇듯이 안해보는 것보다는 낫지 않겠는가? 야매는 오용을 두려워하지 않고 일단 해보는 삽질을 마다하지 않는다.&lt;/p&gt;
+&lt;p&gt;한가지 남은 문제는 “Do Not Answer”, “No Opinion” 그리고 패널 설문에 참여하지 못한 경우를 어떻게 처리할 것인지이다. 이를 별도 카테고리로 둘 것인가? 리커트 척도의 특성상 별도의 범주를 구성하기가 애매하다. 보통 이런 경우 해당 변수의 평균값, 중간값을 넣어주는 경우도 있으나, 이 경우는 “Uncertain”으로 보는 게 비교적 왜곡이 적을 것 같다. 고민하다가 답을 못한 경우라면 머리 속에서 이런 저런 생각이 다 떠올랐기 때문 아닐까? 물론, 잘 몰라서 답을 못한 경우와 구분이 안되긴 한다. IGM 패널에 들어간 분들의 면면을 본다면, “Uncertain” 처리가 그래도 괜찮아 보인다.&lt;/p&gt;
+&lt;p&gt;먼저 agglomerative부터 보자. agglomerative의 경우 linkage criteria에 따라서 군집 구조의 강도를 찾아주는 agglomerative coefficient를 구할 수 있다. 다음의 결과처럼 “ward” 방법이 가장 괜찮은 결과를 만들어준다.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# Agglomerative coefficient
+m &amp;lt;- c( &amp;quot;average&amp;quot;, &amp;quot;single&amp;quot;, &amp;quot;complete&amp;quot;, &amp;quot;ward&amp;quot;)
+names(m) &amp;lt;- c( &amp;quot;average&amp;quot;, &amp;quot;single&amp;quot;, &amp;quot;complete&amp;quot;, &amp;quot;ward&amp;quot;)
+m %.&amp;gt;% map_dbl(., function(x){agnes(tdf, method = x) %.&amp;gt;% .$ac })&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##   average    single  complete      ward 
+## 0.3517265 0.2972011 0.4342944 0.6512351&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;최적의 클러스터 수를 찾기 위해 약간의 추가적인 분석을 수행했다. agglomerative의 경우 3개가 최적임을 알 수 있다.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# Diagnostic for AGNES 
+fviz_nbclust(tdf, FUN = hcut, method = &amp;quot;wss&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;../../post/2017-12-17-clustering_igm_files/figure-html/unnamed-chunk-3-1.png&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;fviz_nbclust(tdf, FUN = hcut, method = &amp;quot;silhouette&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;../../post/2017-12-17-clustering_igm_files/figure-html/unnamed-chunk-3-2.png&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;gap_stat &amp;lt;- clusGap(tdf, FUN = hcut, nstart = 25, K.max = 10, B = 50)
+fviz_gap_stat(gap_stat) &lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;../../post/2017-12-17-clustering_igm_files/figure-html/unnamed-chunk-3-3.png&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# Cut tree into 3 groups
+sub_agnes &amp;lt;- cutree(as.hclust(agnes_opt), k = 3)
+# Number of members in each cluster
+fviz_cluster(list(data = tdf, cluster = sub_agnes), 
+             ggtheme = theme_minimal(), 
+             repel = T, labelsize = 9) + 
+  theme(text = element_text(family=&amp;quot;square&amp;quot;, size=11))&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;../../post/2017-12-17-clustering_igm_files/figure-html/unnamed-chunk-3-4.png&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;이 분류에 기반해 dendrogram을 그려보자.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# Dendrogram AGNES 
+agnes_opt &amp;lt;- agnes(tdf, method = &amp;quot;ward&amp;quot;)
+agnes_opt %.&amp;gt;% my_dendplot(., 3) &lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;../../post/2017-12-17-clustering_igm_files/figure-html/unnamed-chunk-4-1.png&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;한편, divisive의 경우 aggromerative에 비해 낮은 군집 계수를 나타냈다.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# Do DIANA 
+diana &amp;lt;- diana(tdf)
+diana$dc&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 0.4261266&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;sub_diana &amp;lt;- cutree(as.hclust(diana), k = 3)
+fviz_cluster(list(data = tdf, cluster = sub_diana), 
+             ggtheme = theme_minimal(), 
+             repel = T, labelsize = 9)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;../../post/2017-12-17-clustering_igm_files/figure-html/unnamed-chunk-5-1.png&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# Dendrogram DIANA 
+diana %.&amp;gt;% my_dendplot(., 3)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;../../post/2017-12-17-clustering_igm_files/figure-html/unnamed-chunk-6-1.png&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;익숙한 이름들이 등장하니 보는 맛이 조금은 있다. 모든 클러스터링은 나뉘어진 후 그에 대해서 이야기를 붙여줘야 의미가 살아난다. 이렇게 세 가지로 분류된 경제학자들은 무엇이 어떻게 얼마나 다를까? 앞에서 agglomerative와 divisive 중에서 군집도 계수가 높았던 agglomerative를 통한 결과로 몇가지 더 살펴보도록 하자.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;how-different-are-economists&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;How different are economists?&lt;/h1&gt;
+&lt;p&gt;클러스터링 결과를 이야기로 꾸며보자. 각 설문별로 HC에 따른 집단의 중간값을 취해 이를 설문의 그룹별 ’대표 견해’라고 부르겠다. 그룹 사이에 대표 견해에 큰 차이가 있을까? 다음에 제시될 결과에서 보듯이, 미국의 저명 경제학자들은 차이보다는 의견 일치를 보는 경향이 강했다. 이에 대한 해석은 알아서 각자 하시면 되겠다. 다소 의견 대립이 있지 않을까, 이왕이면 ’좌우’로 나눠서 싸워주면 좋지 않을까 했던 개인적인 바람은 저 멀리…&lt;/p&gt;
+&lt;p&gt;앞서 agglomerative에서 세개의 집단으로 나눈 경제학들의 특성 정도는 볼 수 있겠다. 아래는 집단을 나눈 것이고 ( )안에 든 색은 앞서 본 dendrogram의 색깔을 나타낸다.&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;1번 그룹은 적극적으로 활발한 의견을 개진힌 집단이다. 즉 집단으로는 보면 참여하지 않는 설문이 하나도 없다. (적색)&lt;/li&gt;
+&lt;li&gt;2번 그룹은 중간 정도의 의견을 개진한 집단이다. (녹색)&lt;/li&gt;
+&lt;li&gt;3번 그룹은 소극적인 의견 개진을 한 집단이다. (파란색)&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;IGM 포럼의 방식대로 “Strongly Agree” 부터 “Strongly Disagree”까지 차례로 1부터 5까지의 숫자를 부여했다. 즉,&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;Strongly Agree&lt;/li&gt;
+&lt;li&gt;Agree&lt;/li&gt;
+&lt;li&gt;Unertain&lt;/li&gt;
+&lt;li&gt;Disagree&lt;/li&gt;
+&lt;li&gt;Stongly Disagree&lt;/li&gt;
+&lt;/ol&gt;
+&lt;table&gt;
+&lt;caption&gt;&lt;span id=&#34;tab:unnamed-chunk-7&#34;&gt;Table 1: &lt;/span&gt;NA를 그대로 둔 경우&lt;/caption&gt;
+&lt;thead&gt;
+&lt;tr class=&#34;header&#34;&gt;
+&lt;th align=&#34;center&#34;&gt;집단 대표값&lt;/th&gt;
+&lt;th align=&#34;center&#34;&gt;1그룹 응답수&lt;/th&gt;
+&lt;th align=&#34;center&#34;&gt;2그룹 응답수&lt;/th&gt;
+&lt;th align=&#34;center&#34;&gt;3그룹 응답수&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;center&#34;&gt;1.0&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;21&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;11&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;20&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;center&#34;&gt;1.5&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;5&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;6&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;7&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;center&#34;&gt;2.0&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;112&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;45&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;76&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;center&#34;&gt;2.5&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;5&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;5&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;13&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;center&#34;&gt;3.0&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;50&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;33&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;36&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;center&#34;&gt;3.5&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;NA&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;3&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;7&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;center&#34;&gt;4.0&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;34&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;14&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;19&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;center&#34;&gt;4.5&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;NA&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;NA&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;center&#34;&gt;5.0&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;6&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;3&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;4&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;center&#34;&gt;NA&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;NA&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;113&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;50&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt; &lt;/p&gt;
+&lt;table&gt;
+&lt;caption&gt;&lt;span id=&#34;tab:unnamed-chunk-8&#34;&gt;Table 2: &lt;/span&gt;NA를 Uncertain으로 처리한 경우&lt;/caption&gt;
+&lt;thead&gt;
+&lt;tr class=&#34;header&#34;&gt;
+&lt;th align=&#34;center&#34;&gt;집단 대표값&lt;/th&gt;
+&lt;th align=&#34;center&#34;&gt;1그룹 응답수&lt;/th&gt;
+&lt;th align=&#34;center&#34;&gt;2그룹 응답수&lt;/th&gt;
+&lt;th align=&#34;center&#34;&gt;3그룹 응답수&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;center&#34;&gt;1.0&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;17&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;9&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;2&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;center&#34;&gt;1.5&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;NA&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;6&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;2&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;center&#34;&gt;2.0&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;105&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;37&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;34&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;center&#34;&gt;2.5&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;NA&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;7&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;9&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;center&#34;&gt;3.0&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;82&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;157&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;178&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;center&#34;&gt;3.5&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;NA&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;6&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;center&#34;&gt;4.0&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;25&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;8&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;6&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;center&#34;&gt;4.5&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;NA&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;1&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;NA&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;center&#34;&gt;5.0&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;4&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;2&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;HC를 적용하는 과정에서 무응답은 “uncertain”으로 처리했다. 따라서 위의 표에서 첫번째 것은 참고만 하고 두 번째 것을 이용해보도록 하자. 두번째 것을 활용해 각 토픽과 질문에 대해서 각 집단 별로 견해차이가 얼마나 있었는지 살펴보자.&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr class=&#34;header&#34;&gt;
+&lt;th align=&#34;center&#34;&gt;집단간 차이&lt;/th&gt;
+&lt;th align=&#34;center&#34;&gt;1그룹 – 2그룹&lt;/th&gt;
+&lt;th align=&#34;center&#34;&gt;1그룹 – 3그룹&lt;/th&gt;
+&lt;th align=&#34;center&#34;&gt;2그룹 – 3그룹&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;center&#34;&gt;-2.0&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;7&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;10&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;10&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;center&#34;&gt;-1.0&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;66&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;76&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;43&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;center&#34;&gt;-0.5&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;8&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;7&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;8&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;center&#34;&gt;0.0&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;118&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;110&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;102&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;center&#34;&gt;0.5&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;12&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;5&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;15&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;center&#34;&gt;1.0&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;21&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;22&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;42&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;center&#34;&gt;2.0&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;1&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;3&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;4&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;center&#34;&gt;-1.5&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;NA&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;NA&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;6&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;center&#34;&gt;1.5&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;NA&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;NA&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;3&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;표의 첫번째 컬럼은 각 집단의 차이를 내타내고 나머지 컬럼들은 각 그룹의 값을 뺀 것이다. 별도의 시각화가 불필요할 정도로 경향성이 뚜렷하다. 157개 중에서 100개 이상의 견해에 대해서 각 집단 별로 일치를 보고 있다. -2 혹은 1.5 이상 큰 견해차이를 드러내는 항목 수 역시 크지 않다. 이는 글 말미에 간단한 링크로 확인할 수 있도록 별도의 표를 제시하겠다. 관심 있는 분들은 링크를 찍어 확인해보시면 되겠다.&lt;/p&gt;
+&lt;p&gt;또 다른 관심사는 경제학자들 사이에 분명하게 대립되는 견해가 존재하는지 여부다. 즉, 어떤 집단은 대표견해로 “Agree” 방향을 냈는데, 다른 집단이 “Diagree” 방향을 낸 경우가 있는지, 즉 집단 간의 견해가 “Uncertain”을 넘어간 경우가 있는지도 확인해보았다. 한 건도 없었다! 미국의 저명 경제학자들이 비슷하게 생각하는 경향에 관해서는 두 가지 정도로 언급해두겠다.&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;경제학은 “It depends on”의 학문이다. 경제학이 항상 덧붙이는 “Ceteribus Paribus”를 고려할 때 많은 항목에서 강한 의견보다는 “Uncertain”이 많은 건 당연한 결과일지 모르겠다.&lt;/li&gt;
+&lt;li&gt;그럼에도 거의 모든 견해에서 방향성이 같다는 것은? 경제학자들이 서로 공유하는 ‘합리성’이 있다는 의미일까 아니면 그 나물의 그 밥 혹은 ’제국주의’ 경제학의 한계일까? 나는 모르겠다만…&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;앞서 언급한 비교적 견해차이가 컸던 토픽과 질문들은 아래와 같다.&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr class=&#34;header&#34;&gt;
+&lt;th align=&#34;right&#34;&gt;id&lt;/th&gt;
+&lt;th align=&#34;center&#34;&gt;질문&lt;/th&gt;
+&lt;th align=&#34;center&#34;&gt;견해1&lt;/th&gt;
+&lt;th align=&#34;center&#34;&gt;견해2&lt;/th&gt;
+&lt;th align=&#34;center&#34;&gt;견해3&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;1–2&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;1–3&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;2–3&lt;/th&gt;
+&lt;th align=&#34;left&#34;&gt;URL&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;right&#34;&gt;3&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;1&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;5&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;5.0&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;3.0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;2.0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;2.0&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;&lt;a href=&#34;http://www.igmchicago.org/surveys/balanced-budget-amendment&#34; class=&#34;uri&#34;&gt;http://www.igmchicago.org/surveys/balanced-budget-amendment&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;right&#34;&gt;4&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;1&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;1&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;1.0&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;3.0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-2.0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-2.0&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;&lt;a href=&#34;http://www.igmchicago.org/surveys/behavioral-economics&#34; class=&#34;uri&#34;&gt;http://www.igmchicago.org/surveys/behavioral-economics&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;right&#34;&gt;12&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;2&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;5&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;5.0&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;3.0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;2.0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;2.0&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;&lt;a href=&#34;http://www.igmchicago.org/surveys/tax-reforms&#34; class=&#34;uri&#34;&gt;http://www.igmchicago.org/surveys/tax-reforms&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;right&#34;&gt;14&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;1&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;1&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;1.5&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;3.0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-0.5&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-2.0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-1.5&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;&lt;a href=&#34;http://www.igmchicago.org/surveys/the-cbo&#34; class=&#34;uri&#34;&gt;http://www.igmchicago.org/surveys/the-cbo&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;right&#34;&gt;22&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;1&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;5&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;4.5&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;3.0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.5&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;2.0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;1.5&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;&lt;a href=&#34;http://www.igmchicago.org/surveys/import-duties&#34; class=&#34;uri&#34;&gt;http://www.igmchicago.org/surveys/import-duties&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;right&#34;&gt;29&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;1&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;1&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;1.5&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;3.0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-0.5&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-2.0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-1.5&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;&lt;a href=&#34;http://www.igmchicago.org/surveys/bureau-of-labor-statistics&#34; class=&#34;uri&#34;&gt;http://www.igmchicago.org/surveys/bureau-of-labor-statistics&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;right&#34;&gt;29&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;2&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;1&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;2.0&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;3.0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-1.0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-2.0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-1.0&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;&lt;a href=&#34;http://www.igmchicago.org/surveys/bureau-of-labor-statistics&#34; class=&#34;uri&#34;&gt;http://www.igmchicago.org/surveys/bureau-of-labor-statistics&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;right&#34;&gt;31&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;1&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;1&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;1.0&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;3.0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-2.0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-2.0&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;&lt;a href=&#34;http://www.igmchicago.org/surveys/primary-voting&#34; class=&#34;uri&#34;&gt;http://www.igmchicago.org/surveys/primary-voting&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;right&#34;&gt;44&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;1&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;1&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;1.0&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;3.0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-2.0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-2.0&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;&lt;a href=&#34;http://www.igmchicago.org/surveys/nash-equilibrium&#34; class=&#34;uri&#34;&gt;http://www.igmchicago.org/surveys/nash-equilibrium&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;right&#34;&gt;49&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;1&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;1&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;1.0&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;3.0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-2.0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-2.0&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;&lt;a href=&#34;http://www.igmchicago.org/surveys/vaccines&#34; class=&#34;uri&#34;&gt;http://www.igmchicago.org/surveys/vaccines&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;right&#34;&gt;51&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;1&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;1&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;1.0&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;3.0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-2.0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-2.0&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;&lt;a href=&#34;http://www.igmchicago.org/surveys/dynamic-scoring&#34; class=&#34;uri&#34;&gt;http://www.igmchicago.org/surveys/dynamic-scoring&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;right&#34;&gt;60&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;1&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;1&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;1.0&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;3.0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-2.0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-2.0&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;&lt;a href=&#34;http://www.igmchicago.org/surveys/taxi-competition&#34; class=&#34;uri&#34;&gt;http://www.igmchicago.org/surveys/taxi-competition&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;right&#34;&gt;68&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;1&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;2&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;1.0&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;3.0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;1.0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-1.0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-2.0&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;&lt;a href=&#34;http://www.igmchicago.org/surveys/liquidity&#34; class=&#34;uri&#34;&gt;http://www.igmchicago.org/surveys/liquidity&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;right&#34;&gt;78&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;1&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;2&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;1.0&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;3.0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;1.0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-1.0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-2.0&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;&lt;a href=&#34;http://www.igmchicago.org/surveys/surge-pricing&#34; class=&#34;uri&#34;&gt;http://www.igmchicago.org/surveys/surge-pricing&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;right&#34;&gt;81&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;1&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;1&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;1.0&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;3.0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-2.0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-2.0&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;&lt;a href=&#34;http://www.igmchicago.org/surveys/diversification&#34; class=&#34;uri&#34;&gt;http://www.igmchicago.org/surveys/diversification&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;right&#34;&gt;109&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;1&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;1&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;3.0&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;2.0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-2.0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-1.0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;1.0&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;&lt;a href=&#34;http://www.igmchicago.org/surveys/2532&#34; class=&#34;uri&#34;&gt;http://www.igmchicago.org/surveys/2532&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;right&#34;&gt;111&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;1&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;1&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;3.0&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;2.0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-2.0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-1.0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;1.0&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;&lt;a href=&#34;http://www.igmchicago.org/surveys/u-s-state-budgets&#34; class=&#34;uri&#34;&gt;http://www.igmchicago.org/surveys/u-s-state-budgets&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;right&#34;&gt;113&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;2&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;1&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;3.0&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;2.0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-2.0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-1.0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;1.0&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;&lt;a href=&#34;http://www.igmchicago.org/surveys/ethanol&#34; class=&#34;uri&#34;&gt;http://www.igmchicago.org/surveys/ethanol&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;right&#34;&gt;145&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;1&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;4&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;3.0&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;5.0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;1.0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-1.0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-2.0&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;&lt;a href=&#34;http://www.igmchicago.org/surveys/gold-standard&#34; class=&#34;uri&#34;&gt;http://www.igmchicago.org/surveys/gold-standard&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;right&#34;&gt;145&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;2&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;1&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;3.0&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;1.0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-2.0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;2.0&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;&lt;a href=&#34;http://www.igmchicago.org/surveys/gold-standard&#34; class=&#34;uri&#34;&gt;http://www.igmchicago.org/surveys/gold-standard&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;right&#34;&gt;146&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;1&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;1&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;3.0&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;1.0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-2.0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;2.0&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;&lt;a href=&#34;http://www.igmchicago.org/surveys/congestion-pricing&#34; class=&#34;uri&#34;&gt;http://www.igmchicago.org/surveys/congestion-pricing&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;right&#34;&gt;147&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;1&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;1&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;3.0&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;2.0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-2.0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-1.0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;1.0&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;&lt;a href=&#34;http://www.igmchicago.org/surveys/carbon-tax&#34; class=&#34;uri&#34;&gt;http://www.igmchicago.org/surveys/carbon-tax&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;right&#34;&gt;150&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;1&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;5&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;3.0&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;4.0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;2.0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;1.0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-1.0&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;&lt;a href=&#34;http://www.igmchicago.org/surveys/healthcare&#34; class=&#34;uri&#34;&gt;http://www.igmchicago.org/surveys/healthcare&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;right&#34;&gt;153&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;1&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;1&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;3.0&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;1.5&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-2.0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-0.5&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;1.5&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;&lt;a href=&#34;http://www.igmchicago.org/surveys/stock-prices&#34; class=&#34;uri&#34;&gt;http://www.igmchicago.org/surveys/stock-prices&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;물론 학자 개개인의 차이는 클러스터링의 결과보다 클 것이고 자세히 들여다볼 만큼 흥미로운 경우가 있을 것이다. 이 글의 목적은 IGM 패널들의 개략적인 모습을 그려보는 데 있다. 그 정도에서 이해주시면 감사하겠다. 어차피 야매 활동일 뿐인 것을…&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;some-more-things&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Some more things&lt;/h1&gt;
+&lt;p&gt;더 해볼 수 있는 걸 생각해볼까? (내가 하겠다는 건 아니다…)&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;이 경제학자들의 추가 변수를 구한다면 뭔가 더 해 볼 수 있겠다. 전공 분야, 대학, 논문 수 등등&lt;/li&gt;
+&lt;li&gt;해당 자료에서 질문의 내용에 대한 성격 분류는 하지 않았다. 내가 경제학에 야매이기 때문에 섯부른 해석을 덧붙이지 못했다. 뛰어난 누군가가 해주면 감사하게 배우겠다.&lt;/li&gt;
+&lt;li&gt;European Panel은 뜯어내지 않았다. 관심 있는 분은 해보시라.&lt;/li&gt;
+&lt;li&gt;몇가지 시도해 볼만한 추가적인 클러스터링 기법이 더 있긴 하지만, 별로 기대는 안된다.&lt;/li&gt;
+&lt;li&gt;이 제한적인 자료로도 더 훌륭한 분석이 가능할 것이니 퍼가서 마음껏 활용하시라, 마!&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class=&#34;footnotes&#34;&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id=&#34;fn1&#34;&gt;&lt;p&gt;시중에서 흔히 볼 수 있는 매크로 프로그램들을 잘 쓰면 생각보다 쉽게 데이터를 얻을 수 있다. 실제로 스크래핑을 막아둔 곳들도 이런 방법으로 자료를 수집할 수 있다.&lt;a href=&#34;#fnref1&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&#34;fn2&#34;&gt;&lt;p&gt;RStudio에서 준비중인 RStudio Cloud에서는 조만간 “Automate Tasks”도 지원할 예정이다. 이렇게 되면, 자신의 local machine을 켜두지 않고서도 거의 실시간 급으로 웹사이트를 긁어 처리하는 것도 손쉽게 할 수 있을 것이다.&lt;a href=&#34;#fnref2&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&#34;fn3&#34;&gt;&lt;p&gt;하지만 중간에 답변 내용이 바뀌거나 사이트 css가 바뀐 부분이 있어서 약간의 삽질은 불가피했다. 하지만 삽질로 해결할 수 있는 문제라면 언제나 환영이다!&lt;a href=&#34;#fnref3&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&#34;fn4&#34;&gt;&lt;p&gt;보통 ’군집화’로 번역하지만 내 맘대로 클러스터링으로 쓰도록 하겠다.&lt;a href=&#34;#fnref4&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&#34;fn5&#34;&gt;&lt;p&gt;자세한 내용은 &lt;a href=&#34;https://en.wikipedia.org/wiki/Hierarchical_clustering&#34;&gt;이곳&lt;/a&gt;을 참고하라.&lt;a href=&#34;#fnref5&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&#34;fn6&#34;&gt;&lt;p&gt;이외에도 스피어만 코릴레이션 처럼 다름 자체를 측정해서 k-means의 방법을 수정한 k-modes 알고리즘 혹은 latent vairable model을 얼른 고려해볼 수 있겠다. 뭐 귀찮아서 일단 용서하시고 넘어가시라! 사실 k-modes는 divisive와 거의 동일한 결과를 내주었고, latent variable model은 좀 껄쩍지근 부분이 있어서 더 고민이 필요하다.&lt;a href=&#34;#fnref6&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+</description>
     </item>
     
     <item>
@@ -27,8 +844,714 @@ Scraping webMunging dataAnalyzing datasource data by csvMotivation집에
       <pubDate>Wed, 13 Dec 2017 00:00:00 +0000</pubDate>
       
       <guid>/post/2017/12/13/google-play-store-vs-apple-appstore-part-1/</guid>
-      <description>Disclaimer“part 1”이라고 거창하게 달아 놓았지만, 파트2가 나올까? I don’t think so…
-Google Play Store(GPS) vs Apple Apptore(AA)한국은 스마트폰 보급율의 차이 만큼이나 모바일 앱 시장의 마켓 비중 역시 안드로이드로 쏠려 있다. 정확한 통계는 찾을 수 없었지만 대체적인 그림은 그릴 수 있겠다. iOS의 경우 2016년에 20% 언저리로 점유율이 상승했으나, 2017년 현재 다시 10~15% 사이로 내려온 것으로 추정된다. 앱 시장의 크기는 어떨까? 선진국 시장의 경우 iOS 이용자들의 높은 구매력 때문에 앱 시장의 크기는 OS 점유율 만큼 차이가 나지 않는 것이 보통이다.</description>
+      <description>&lt;div id=&#34;disclaimer&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Disclaimer&lt;/h1&gt;
+&lt;p&gt;“part 1”이라고 거창하게 달아 놓았지만, 파트2가 나올까? I don’t think so…&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;google-play-storegps-vs-apple-apptoreaa&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Google Play Store(GPS) vs Apple Apptore(AA)&lt;/h1&gt;
+&lt;p&gt;한국은 스마트폰 보급율의 차이 만큼이나 모바일 앱 시장의 마켓 비중 역시 안드로이드로 쏠려 있다. 정확한 통계는 찾을 수 없었지만 대체적인 그림은 그릴 수 있겠다. iOS의 경우 2016년에 20% 언저리로 점유율이 상승했으나, 2017년 현재 다시 10~15% 사이로 내려온 것으로 추정된다. 앱 시장의 크기는 어떨까? 선진국 시장의 경우 iOS 이용자들의 높은 구매력 때문에 앱 시장의 크기는 OS 점유율 만큼 차이가 나지 않는 것이 보통이다. 게임 시장의 경우 이러한 현상이 보다 두드러진다. 미국과 일본 모두 대략 5:5로 시장을 반분하고 있다. 하지만 한국의 경우에는 앱 시장의 OS 점유율이 OS의 점유율과 비슷하다. 현재 모바일 게임 시장에서 매출의 90% 이상이 인앱결제(부분유료화)를 통해 발생하고 있고, 인앱결제를 통해 보다 자주 그리고 쉽게 지갑이 열리는 이용자 층이 안드로이드에 더 많이 포진해 있다는 추측 정도 가능하다. 어쨌든.&lt;/p&gt;
+&lt;p&gt;이 포스팅에서는 데이터로 초점을 좁혀 한국 게임 앱 시장 몇가지 흥미로운 특징과 더불어 GPS와 AA의 차이점을 다루고자 한다. 대상으로 삼은 게임 및 이 게임들의 데이터 범위는 아래와 같다.&lt;/p&gt;
+&lt;table class=&#34;table table-hover table-condensed table-responsive&#34; style=&#34;width: auto !important; margin-left: auto; margin-right: auto;&#34;&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&#34;text-align:left;&#34;&gt;
+게임
+&lt;/th&gt;
+&lt;th style=&#34;text-align:left;&#34;&gt;
+시작일
+&lt;/th&gt;
+&lt;th style=&#34;text-align:left;&#34;&gt;
+최종일
+&lt;/th&gt;
+&lt;th style=&#34;text-align:left;&#34;&gt;
+데이터 수
+&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+모두의마블
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+2013-06-12
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+2017-12-04
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+1636 days
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+세븐나이츠
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+2014-03-08
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+2017-12-06
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+1369 days
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+리니지2레볼루션
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+2016-12-16
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+2017-12-04
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+353 days
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+리니지M
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+2017-06-20
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+2017-12-04
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+167 days
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+소녀전선
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+2017-07-02
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+2017-12-04
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+155 days
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+액스
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+2017-09-12
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+2017-12-04
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+83 days
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+오버히트
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+2017-11-26
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+2017-12-04
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+8 days
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+테라M
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+2017-11-29
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+2017-12-04
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+5 days
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;넷마블게임즈의 장기 흥행작인 “모두의마블”, “세븐나이츠”, 그리고 모바일 MMORPG 히트작 “리니지2레볼루션”, “리니지M”, 그리고 최근에 등장한 신작인 “액스(AxE)”, “오버히트”, “테라M” 모두 7개다. “오버히트”와 “테라M”은 관찰 수가 부족하여 분석에서 거의 제외될 것이다. 데이터의 출처는 업계에서 많이 참고하는 ㅇㅇㄴ이다.&lt;a href=&#34;#fn1&#34; class=&#34;footnoteRef&#34; id=&#34;fnref1&#34;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt; 보통 분석 내용과 함께 원데이터 및 데이터 가공과 분석에 활용된 소스코드를 공개하는 것이 원칙이다. 아쉽게도 이용한 원자료를 공개할 권리가 나에게 없다. 이 점 양해 부탁한다. 요청이 있다면 데이터 정리 및 분석에 동원된 코드는 공개할 수 있다.&lt;/p&gt;
+&lt;p&gt;이 포스팅에서 탐색할 질문은 크게 다음의 세 가지다.&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;7개 게임들의 GPS 점유율은 어느 정도인가?&lt;/li&gt;
+&lt;li&gt;게임 사이의 경합관계는 존재하는가?&lt;/li&gt;
+&lt;li&gt;GPS의 비율이 높아지는 것이 매출을 견인하는가? 한다면 어느 정도나 하는가?&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div id=&#34;one-ratio-of-google-play-store&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;ONE: Ratio of Google Play Store&lt;/h1&gt;
+&lt;p&gt;먼저 전체적인 GPS의 비율은 다음과 같다.&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr class=&#34;header&#34;&gt;
+&lt;th align=&#34;left&#34;&gt;게임&lt;/th&gt;
+&lt;th align=&#34;left&#34;&gt;GPS 매출비&lt;/th&gt;
+&lt;th align=&#34;left&#34;&gt;GPS 다운로드비&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;세븐나이츠&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;0.862&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;0.881&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;액스&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;0.857&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;0.798&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;모두의마블&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;0.849&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;0.876&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;리니지M&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;0.846&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;0.798&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;소녀전선&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;0.844&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;0.859&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;리니지2레볼루션&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;0.842&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;0.808&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;오버히트&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;0.747&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;0.753&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;테라M&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;0.625&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;0.754&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;“오버히트”와 “테라M”의 비율이 낮은 것은 자료의 정확성이 떨어지기 때문이다. 데이터가 좀 더 모이고 적절한 보정이 이루어지면 다른 게임과 비슷한 수준으로 올라올 것으로 추측해본다. 일단 매출 비중의 경우 대체로 85%에 가까운 매출이 GPS를 통해 발생하고 있다. 일자별로는 어떤 패턴을 보일까? “오버히트”와 “테라M”을 제외하고 그려보면 다음과 같다.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;../../post/2017-12-13-GPS_AA_eda_files/figure-html/unnamed-chunk-4-1.png&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;“모두의 마블”과 “세븐나이츠”와 같은 장수 게임의 경우 서비스 초반의 높은 비중에서 이제는 75% 선까지 GPS 매출비가 낮아진 상태다. 서비스 개시 후 1년 이하의 다른 인기 게임은 여전히 85%~90% 가까운 높은 비중을 유지하고 있다.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;two-rivalry-among-games&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;TWO: Rivalry among games&lt;/h1&gt;
+&lt;p&gt;보통 언론이나 대중의 인식에서는 마켓 1위 게임들에 관심이 쏠리기 마련이다. “&lt;span class=&#34;math inline&#34;&gt;\(x\)&lt;/span&gt;가 &lt;span class=&#34;math inline&#34;&gt;\(y\)&lt;/span&gt;를 누르고 1위를 차지했다”더라 이런 기사 제목을 떠올리면 되겠다. 이런 통념은 게임 사이에 ’경합관계’가 있음을 암묵적으로 가정한다. “리니지M”이 “리니지2레볼루션”을 매출에서 앞질렀다고 하자. 이때 우리는 “리니지2레볼루션”의 매출과 “리니지M” 매출 사이 음의 상관관계를 볼 수 있을까? PerformanceAnalytics 패키지에서 제공하는 &lt;code&gt;chart.Coreelation&lt;/code&gt; 명령을 통해 탐색적인 수준에서 이 문제를 살펴보자. 데이터가 충분하지 않은 “액스”, “오버히트”, “테라M”을 제외한 결과는 다음과 같다.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;../../post/2017-12-13-GPS_AA_eda_files/figure-html/unnamed-chunk-5-1.png&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;결과에서 보듯이 상관관계로 확인 가능한 ‘경합관계’를 드러내는 게임 쌍은 없다. 오히려 양의 상관관계가 보다 두드러진다. 즉 게임 이용자는 대체로 남들이 ’지르는’ 시기에 함께 지른다. 물론 상관관계로 할 수 있는 이야기는 몹시 제한적이다. 다만 매출 추이로 명백히 확인할 수 있는 경합관계는 관찰할 수 없다는 것이다.&lt;/p&gt;
+&lt;p&gt;앞서의 상관관계는 전체기간에 대해서 계산했다. 데이터가 일 단위로 생성된다는 측면을 고려하면, 상관관계 역시 시간이 흐르면서 함께 변할 수 있다. 이 점을 보기 위해 이동 상관관계(rolling correlation)를 보도록 하자. 이동 상관관계란 기간을 고정하고 날짜를 하나씩 밀어내면서 일련의 상관관계를 계산하는 방법을 말한다. 이동평균(moving average)을 떠올리면 좋다.&lt;/p&gt;
+&lt;p&gt;넷마블의 “모두의 마블”, “세븐나이츠”, 그리고 엔씨소프트의 “리니지M”에 대해 이동 상관계수를 계산한 결과는 다음의 그림과 같다. “리니지2레볼루션”에 대한 데이터가 안정화된 2017년 1월 1일부터 2017년 12월 4일까지를 계산 기간으로 삼았고, 게임의 매출이 주를 기준으로 많이 움직이는 점을 고려하여 28일을 상관관계의 주기로 두었다.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;../../post/2017-12-13-GPS_AA_eda_files/figure-html/unnamed-chunk-6-1.png&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;일단 세 개의 이동 상관관계 모두 변동성이 생각보다 컸다. 이 이슈는 별도로 다뤄볼만한 가치가 있는 흥미로운 발견이지만, 여기서는 더 이상 논하지 않겠다. 이동 상관관계 사이에 어떤 체계적인 경향성이 없다는 점 역시 관심을 가져볼 만하다. 또한 같은 장르의 경쟁작으로 회자되는 “리니지2레볼루션”과 리니지M“의 경우 앞서 전 기간에 대한 상관관계와 마찬가지로 경합성이 관찰되지 않고, 오히려 꽤 강한 양의 상관성이 지속적으로 존재해왔다.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;three-high-gps-ratio-high-revenue&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;THREE: High GPS ratio, high revenue?&lt;/h1&gt;
+&lt;p&gt;GPS의 비율이 높다는 사실이 매출에 기여할까? 기여한다면 얼마나 기여할까? 이를 엄밀하게 밝히기 위해서는 더 많은 고민과 데이터를 쥐어짜는 고통이 수반되어야 할 터이다. 하지만 언제나 그렇듯이 야매정신에 충만한 나는 ‘까이꺼 대에충’ 한번 해볼 뿐이다.&lt;/p&gt;
+&lt;table style=&#34;border-collapse:collapse; border:none;&#34;&gt;
+&lt;tr&gt;
+&lt;td style=&#34;padding:0.2cm; border-top:double;&#34; rowspan=&#34;2&#34;&gt;
+&lt;em&gt;Predictors&lt;/em&gt;
+&lt;/td&gt;
+&lt;td colspan=&#34;8&#34; style=&#34;padding:0.2cm; border-top:double; text-align:center; border-bottom:1px solid;&#34;&gt;
+&lt;em&gt;Dependent Variables&lt;/em&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;td style=&#34; padding-left:0.5em; padding-right:0.5em;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center; &#34;&gt;
+log(마켓매출)
+&lt;/td&gt;
+&lt;td style=&#34; padding-left:0.5em; padding-right:0.5em;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center; &#34;&gt;
+log(마켓매출)
+&lt;/td&gt;
+&lt;td style=&#34; padding-left:0.5em; padding-right:0.5em;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center; &#34;&gt;
+log(마켓매출)
+&lt;/td&gt;
+&lt;td style=&#34; padding-left:0.5em; padding-right:0.5em;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center; &#34;&gt;
+log(마켓매출)
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;padding:0.2cm; font-style:italic;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding-left:0.5em; padding-right:0.5em; font-style:italic;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center; font-style:italic; &#34;&gt;
+B (CI)
+&lt;/td&gt;
+&lt;td style=&#34;padding-left:0.5em; padding-right:0.5em; font-style:italic;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center; font-style:italic; &#34;&gt;
+B (CI)
+&lt;/td&gt;
+&lt;td style=&#34;padding-left:0.5em; padding-right:0.5em; font-style:italic;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center; font-style:italic; &#34;&gt;
+B (CI)
+&lt;/td&gt;
+&lt;td style=&#34;padding-left:0.5em; padding-right:0.5em; font-style:italic;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center; font-style:italic; &#34;&gt;
+B (CI)
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;padding:0.2cm; border-top:1px solid; text-align:left;&#34;&gt;
+(Intercept)
+&lt;/td&gt;
+&lt;td style=&#34;padding-left:0.5em; padding-right:0.5em; border-top:1px solid; &#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center; border-top:1px solid; &#34;&gt;
+11.295&lt;br&gt;(11.03 – 11.56) ***
+&lt;/td&gt;
+&lt;td style=&#34;padding-left:0.5em; padding-right:0.5em; border-top:1px solid; &#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center; border-top:1px solid; &#34;&gt;
+10.213&lt;br&gt;(9.84 – 10.59) ***
+&lt;/td&gt;
+&lt;td style=&#34;padding-left:0.5em; padding-right:0.5em; border-top:1px solid; &#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center; border-top:1px solid; &#34;&gt;
+11.137&lt;br&gt;(10.92 – 11.36) ***
+&lt;/td&gt;
+&lt;td style=&#34;padding-left:0.5em; padding-right:0.5em; border-top:1px solid; &#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center; border-top:1px solid; &#34;&gt;
+9.313&lt;br&gt;(9.04 – 9.59) ***
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:left;&#34;&gt;
+GPS매출비율(%)
+&lt;/td&gt;
+&lt;td style=&#34;padding-left:0.5em; padding-right:0.5em;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center; &#34;&gt;
+0.014&lt;br&gt;(0.01 – 0.02) ***
+&lt;/td&gt;
+&lt;td style=&#34;padding-left:0.5em; padding-right:0.5em;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center; &#34;&gt;
+0.010&lt;br&gt;(0.01 – 0.01) ***
+&lt;/td&gt;
+&lt;td style=&#34;padding-left:0.5em; padding-right:0.5em;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center; &#34;&gt;
+0.013&lt;br&gt;(0.01 – 0.02) ***
+&lt;/td&gt;
+&lt;td style=&#34;padding-left:0.5em; padding-right:0.5em;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center; &#34;&gt;
+0.006&lt;br&gt;(0.00 – 0.01) ***
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:left;&#34;&gt;
+log(다운로드)
+&lt;/td&gt;
+&lt;td style=&#34;padding-left:0.5em; padding-right:0.5em;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center; &#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding-left:0.5em; padding-right:0.5em;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center; &#34;&gt;
+0.155&lt;br&gt;(0.11 – 0.20) ***
+&lt;/td&gt;
+&lt;td style=&#34;padding-left:0.5em; padding-right:0.5em;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center; &#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding-left:0.5em; padding-right:0.5em;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center; &#34;&gt;
+0.259&lt;br&gt;(0.23 – 0.29) ***
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:left;&#34;&gt;
+액스_더미
+&lt;/td&gt;
+&lt;td style=&#34;padding-left:0.5em; padding-right:0.5em;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center; &#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding-left:0.5em; padding-right:0.5em;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center; &#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding-left:0.5em; padding-right:0.5em;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center; &#34;&gt;
+-0.098&lt;br&gt;(-0.13 – -0.07) ***
+&lt;/td&gt;
+&lt;td style=&#34;padding-left:0.5em; padding-right:0.5em;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center; &#34;&gt;
+0.071&lt;br&gt;(0.04 – 0.11) ***
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:left;&#34;&gt;
+리니지2레볼루션_더미
+&lt;/td&gt;
+&lt;td style=&#34;padding-left:0.5em; padding-right:0.5em;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center; &#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding-left:0.5em; padding-right:0.5em;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center; &#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding-left:0.5em; padding-right:0.5em;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center; &#34;&gt;
+1.631&lt;br&gt;(1.54 – 1.72) ***
+&lt;/td&gt;
+&lt;td style=&#34;padding-left:0.5em; padding-right:0.5em;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center; &#34;&gt;
+1.855&lt;br&gt;(1.79 – 1.92) ***
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:left;&#34;&gt;
+리니지M_더미
+&lt;/td&gt;
+&lt;td style=&#34;padding-left:0.5em; padding-right:0.5em;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center; &#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding-left:0.5em; padding-right:0.5em;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center; &#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding-left:0.5em; padding-right:0.5em;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center; &#34;&gt;
+2.566&lt;br&gt;(2.49 – 2.64) ***
+&lt;/td&gt;
+&lt;td style=&#34;padding-left:0.5em; padding-right:0.5em;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center; &#34;&gt;
+2.630&lt;br&gt;(2.56 – 2.70) ***
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:left;&#34;&gt;
+세븐나이츠 _더미
+&lt;/td&gt;
+&lt;td style=&#34;padding-left:0.5em; padding-right:0.5em;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center; &#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding-left:0.5em; padding-right:0.5em;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center; &#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding-left:0.5em; padding-right:0.5em;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center; &#34;&gt;
+0.190&lt;br&gt;(0.04 – 0.34) *
+&lt;/td&gt;
+&lt;td style=&#34;padding-left:0.5em; padding-right:0.5em;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center; &#34;&gt;
+0.272&lt;br&gt;(0.16 – 0.38) ***
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:left;&#34;&gt;
+소녀전선_더미
+&lt;/td&gt;
+&lt;td style=&#34;padding-left:0.5em; padding-right:0.5em;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center; &#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding-left:0.5em; padding-right:0.5em;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center; &#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding-left:0.5em; padding-right:0.5em;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center; &#34;&gt;
+0.298&lt;br&gt;(-0.05 – 0.64) 
+&lt;/td&gt;
+&lt;td style=&#34;padding-left:0.5em; padding-right:0.5em;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center; &#34;&gt;
+-0.178&lt;br&gt;(-0.51 – 0.16) 
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:left;&#34;&gt;
+오버히트_더미
+&lt;/td&gt;
+&lt;td style=&#34;padding-left:0.5em; padding-right:0.5em;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center; &#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding-left:0.5em; padding-right:0.5em;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center; &#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding-left:0.5em; padding-right:0.5em;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center; &#34;&gt;
+1.549&lt;br&gt;(1.27 – 1.83) ***
+&lt;/td&gt;
+&lt;td style=&#34;padding-left:0.5em; padding-right:0.5em;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center; &#34;&gt;
+0.998&lt;br&gt;(0.71 – 1.28) ***
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:left;&#34;&gt;
+테라M_더미
+&lt;/td&gt;
+&lt;td style=&#34;padding-left:0.5em; padding-right:0.5em;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center; &#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding-left:0.5em; padding-right:0.5em;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center; &#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding-left:0.5em; padding-right:0.5em;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center; &#34;&gt;
+-0.245&lt;br&gt;(-0.35 – -0.14) ***
+&lt;/td&gt;
+&lt;td style=&#34;padding-left:0.5em; padding-right:0.5em;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center; &#34;&gt;
+-0.131&lt;br&gt;(-0.22 – -0.04) **
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;padding:0.2cm; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left; border-top:1px solid;&#34;&gt;
+Observations
+&lt;/td&gt;
+&lt;td style=&#34;padding-left:0.5em; padding-right:0.5em; border-top:1px solid;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; padding-top:0.1cm; padding-bottom:0.1cm; text-align:center; border-top:1px solid;&#34;&gt;
+3783
+&lt;/td&gt;
+&lt;td style=&#34;padding-left:0.5em; padding-right:0.5em; border-top:1px solid;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; padding-top:0.1cm; padding-bottom:0.1cm; text-align:center; border-top:1px solid;&#34;&gt;
+3783
+&lt;/td&gt;
+&lt;td style=&#34;padding-left:0.5em; padding-right:0.5em; border-top:1px solid;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; padding-top:0.1cm; padding-bottom:0.1cm; text-align:center; border-top:1px solid;&#34;&gt;
+3783
+&lt;/td&gt;
+&lt;td style=&#34;padding-left:0.5em; padding-right:0.5em; border-top:1px solid;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; padding-top:0.1cm; padding-bottom:0.1cm; text-align:center; border-top:1px solid;&#34;&gt;
+3783
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;&#34;&gt;
+R&lt;sup&gt;2&lt;/sup&gt; / adj. R&lt;sup&gt;2&lt;/sup&gt;
+&lt;/td&gt;
+&lt;td style=&#34;padding-left:0.5em; padding-right:0.5em;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center; padding-top:0.1cm; padding-bottom:0.1cm;&#34;&gt;
+.016 / .016
+&lt;/td&gt;
+&lt;td style=&#34;padding-left:0.5em; padding-right:0.5em;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center; padding-top:0.1cm; padding-bottom:0.1cm;&#34;&gt;
+.041 / .040
+&lt;/td&gt;
+&lt;td style=&#34;padding-left:0.5em; padding-right:0.5em;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center; padding-top:0.1cm; padding-bottom:0.1cm;&#34;&gt;
+.664 / .664
+&lt;/td&gt;
+&lt;td style=&#34;padding-left:0.5em; padding-right:0.5em;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center; padding-top:0.1cm; padding-bottom:0.1cm;&#34;&gt;
+.722 / .721
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;&#34;&gt;
+F-statistics
+&lt;/td&gt;
+&lt;td style=&#34;padding-left:0.5em; padding-right:0.5em;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center; padding-top:0.1cm; padding-bottom:0.1cm;&#34;&gt;
+61.252***
+&lt;/td&gt;
+&lt;td style=&#34;padding-left:0.5em; padding-right:0.5em;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center; padding-top:0.1cm; padding-bottom:0.1cm;&#34;&gt;
+80.286***
+&lt;/td&gt;
+&lt;td style=&#34;padding-left:0.5em; padding-right:0.5em;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center; padding-top:0.1cm; padding-bottom:0.1cm;&#34;&gt;
+933.761***
+&lt;/td&gt;
+&lt;td style=&#34;padding-left:0.5em; padding-right:0.5em;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center; padding-top:0.1cm; padding-bottom:0.1cm;&#34;&gt;
+1088.898***
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;&#34;&gt;
+AIC
+&lt;/td&gt;
+&lt;td style=&#34;padding-left:0.5em; padding-right:0.5em;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center; padding-top:0.1cm; padding-bottom:0.1cm;&#34;&gt;
+9697.911
+&lt;/td&gt;
+&lt;td style=&#34;padding-left:0.5em; padding-right:0.5em;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center; padding-top:0.1cm; padding-bottom:0.1cm;&#34;&gt;
+9603.324
+&lt;/td&gt;
+&lt;td style=&#34;padding-left:0.5em; padding-right:0.5em;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center; padding-top:0.1cm; padding-bottom:0.1cm;&#34;&gt;
+5642.778
+&lt;/td&gt;
+&lt;td style=&#34;padding-left:0.5em; padding-right:0.5em;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center; padding-top:0.1cm; padding-bottom:0.1cm;&#34;&gt;
+4931.639
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr style=&#34;padding:0.2cm; border-top:1px solid;&#34;&gt;
+&lt;td style=&#34;padding:0.2cm;&#34;&gt;
+Notes
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:right;&#34; colspan=&#34;8&#34;&gt;
+&lt;em&gt;* p&amp;lt;.05   ** p&amp;lt;.01   *** p&amp;lt;.001&lt;/em&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;p&gt;머리 속에 떠오르는 대로 4개의 회귀분석을 돌려보았다. 자세한 해설은 생략하도록 한다! &lt;span class=&#34;math inline&#34;&gt;\(\textrm{R}^2\)&lt;/span&gt; 값이 높은 3, 4열의 결과에 따르면, 1%의 GPS 비율 증가에 대해 낮게는 0.6%에서 높게는 1.3% 매출 증가를 기대할 수 있다. 물론 더 자세한 것은 regression diagnotics 등을 거쳐 꼼꼼하게 따져봐야 할 일이다. 설명 변수들 사이의 다중공선성은 크게 걱정할 필요는 없을 듯 하다. 다만, &lt;code&gt;GPS매출비율&lt;/code&gt;과 &lt;code&gt;log(다운로드)&lt;/code&gt; 사이는 살짝 의심스러워서 둘의 관계를 쓱 그려보았다.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;../../post/2017-12-13-GPS_AA_eda_files/figure-html/unnamed-chunk-8-1.png&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;img src=&#34;../../post/2017-12-13-GPS_AA_eda_files/figure-html/unnamed-chunk-8-2.png&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;이 결과에 따르면 GPS의 비율을 높여서 매출을 견인할 수는 있지만 현실적으로 활용하기는 어려울 것이다. 인기작들의 GPS의 매출 비율이 이미 85% 근방으로 높기 때문에 여기서 이 비율을 더 끌어올리기는 쉽지 않을 것이다. 만일 새롭게 론칭하는 게임이라면 매출 확대라는 측면에서 타겟 OS를 안드로이드로 잡는 것이 유리할 수 있겠다. 혹은 AA의 매출이 GPS와 비교해 훨씬 높은 게임이 있다면 별도의 타겟 마케팅을 시도해볼 만하겠다.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;footnotes&#34;&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id=&#34;fn1&#34;&gt;&lt;p&gt;ㅇㅇㄴ 서비스에 대해서 여러가지 불만이 있는 것으로 안다. 가장 많이 들을 수 있는 불만은 ’데이터의 정확도’에 관한 내용이다. 이에 대해서 몇 가지 ’변명’을 언급해두도록 하자. 우선, ㅇㅇㄴ데이터는 마켓 수수료 30%가 빠진 자료다. 따라서 값을 0.7로 나누어야 통상적으로 익숙한 매출액이 나온다. 둘째, ㅇㅇㄴ자료는 패널을 통한 데이터 샘플링과 자체적인 데이터 가공을 거쳐 발표된다. 회사별로 정확하게 볼 수 있는 데이터에 비해서는 정확도가 떨어질 수 밖에 없다. 하지만 (많은 경우에 그렇듯이) 없는 것보다는 낫지 않은가? 셋째, 데이터 자체의 정확성과는 별도로 추세는 비교적 맞아 떨어진다. 즉, 레퍼런스 포인트가 다를 뿐 어느 방향으로 움직이는지는 상당히 정확하게 반영되어 있다고 보면 된다.&lt;a href=&#34;#fnref1&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+</description>
     </item>
     
     <item>
@@ -37,8 +1560,90 @@ Scraping webMunging dataAnalyzing datasource data by csvMotivation집에
       <pubDate>Tue, 28 Nov 2017 00:00:00 +0000</pubDate>
       
       <guid>/note/2017/11/28/let-in-wrapr/</guid>
-      <description>Non Standard EvaluationR에는 Non Standard Evaluation(NSE)라고 불리는 녀석이 있다. 어떤 선배님은 변수를 선언하지 않는 R이 처음부터 무척 마음에 들지 않았다, 라고 툴툴대셨다. 하지만 역시 대충 사는 나에게는 ‘까이꺼 대충’ 알아서 해주는 건 편한 장점이다. 좌간, NSE 역시 이와 비슷한 차원에서 이해하면 될 것 같다.
-library(tidyverse)library(&amp;#39;tidyverse&amp;#39;)위의 코드에서 둘 중 어떤 문법이 맞을까? 사실 둘 다 써도 된다. library라는 함수는 string과 expression 모두를 input으로 받는다. 전자가 원래 R이 정한 규칙이라면 후자는 이런 표준에서 벗어났지만 실행되는 규칙, Non Standard Evaluation(NSE)이다.</description>
+      <description>&lt;div id=&#34;non-standard-evaluation&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Non Standard Evaluation&lt;/h1&gt;
+&lt;p&gt;R에는 Non Standard Evaluation(NSE)라고 불리는 녀석이 있다. 어떤 선배님은 변수를 선언하지 않는 R이 처음부터 무척 마음에 들지 않았다, 라고 툴툴대셨다. 하지만 역시 대충 사는 나에게는 ‘까이꺼 대충’ 알아서 해주는 건 편한 장점이다. 좌간, NSE 역시 이와 비슷한 차원에서 이해하면 될 것 같다.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyverse)
+library(&amp;#39;tidyverse&amp;#39;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;위의 코드에서 둘 중 어떤 문법이 맞을까? 사실 둘 다 써도 된다. &lt;code&gt;library&lt;/code&gt;라는 함수는 string과 expression 모두를 input으로 받는다. 전자가 원래 R이 정한 규칙이라면 후자는 이런 표준에서 벗어났지만 실행되는 규칙, Non Standard Evaluation(NSE)이다. 사실 NSE가 딱히 정해진 무엇은 아니다. R이 원래 정해놓은 문법을 따르지 않지만 의도를 실현하는 활용을 통칭한다.&lt;/p&gt;
+&lt;p&gt;우리가 애용하는 dplyr 패키지가 NSE을 광범위하게 활용한다. dplyr를 쓸 때 &lt;code&gt;filter(df, x==1, y==2, z==3)&lt;/code&gt; 같이 흔하게 쓴다. 말로 풀어보면, df라는 data.frame의 &lt;code&gt;x==1&lt;/code&gt;, &lt;code&gt;y==2&lt;/code&gt;, &lt;code&gt;z==3&lt;/code&gt;을 동시 충족하는 조건을 필터링하라는 것이다. R을 (처음부터 차근차근) 익힌 사람이라면 갸우뚱 할 것이다. 이걸 원래 문법대로 풀면 &lt;code&gt;df[df$x==1 &amp;amp; df$y==2 &amp;amp; df$z ==3, ]&lt;/code&gt;이라고 써야 한다. dplyr는 패키지라는 매직서클 안에서 더 간단하고 쉬운 문법을 허용해준다. 일단 NSE가 왜 채택되었는지 수긍이 간다. 편하기 때문이다. 하지만 그래서 치뤄야 하는 비용도 있다.&lt;/p&gt;
+&lt;p&gt;우선 NSE로 쓴 내용은 다른 변수로 대체할 수 없다. 단순하게 활용할 때는 크게 문제가 되지 않는다. 하지만, dplyr로 함수를 만들고자 할 때 심각해진다. 위캠에 제시한 사례를 보자.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;tibble(x=1:3, y=3:1) -&amp;gt; df 
+df %&amp;gt;% filter(x==1)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 1 x 2
+##       x     y
+##   &amp;lt;int&amp;gt; &amp;lt;int&amp;gt;
+## 1     1     3&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;내가 x라는 변수를 임의의 어떤 것으로 바꿀 수 있을까?&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;my_var &amp;lt;- x
+#&amp;gt; Error in eval(expr, envir, enclos): object &amp;#39;x&amp;#39; not found
+filter(df, my_var==1)
+#&amp;gt; Error in filter_impl(.data, quo): Evaluation error: object &amp;#39;my_var&amp;#39; not found.&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;my_var &amp;lt;- &amp;quot;x&amp;quot;
+filter(df, my_var==1)
+#&amp;gt; # A tibble: 0 x 2
+#&amp;gt; # ... with 2 variables: x &amp;lt;int&amp;gt;, y &amp;lt;int&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;둘 다 먹히지 않는다. 나는 df에서 x라는 컬럼을 택하고 싶다. 다만 NSE를 이용해서 하는 게 아니라 다른 방법으로 하고 싶다. 내가 원하는 변수를 ’임의화’하여 이를 함수를 만드는 데 활용하고 싶다. NSE에 익숙해지면 위에서 보다시피 이런 단순하고 필수적인 작업이 생각만큼 쉽지 않다. 물론 이런 NSE의 문제점을 뛰어넘기 위해서는 quosures와 tidyval의 개념을 꼼꼼히 두루두루 익혀두는 편이 좋다.&lt;a href=&#34;#fn1&#34; class=&#34;footnoteRef&#34; id=&#34;fnref1&#34;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt; 하지만 역시 야매정신에 충만한 나로서는 쉽게 떠올리기 좋은 간편한 해결책에 눈길이 좀 더 간다.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;let-in-wrapr&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;&lt;code&gt;let&lt;/code&gt; in wrapr&lt;/h1&gt;
+&lt;p&gt;이전에 Win-Vector에서 만든 wrapr 패키지를 소개한 적이 있다. 이 패키지 안에 &lt;code&gt;let&lt;/code&gt;이라는 괜찮은 명령어가 있는데 이 명령어는 함수를 만들 때 만큼은 별다른 불편함 없이 NSE의 문제점을 극복하도록 돕는다.&lt;a href=&#34;#fn2&#34; class=&#34;footnoteRef&#34; id=&#34;fnref2&#34;&gt;&lt;sup&gt;2&lt;/sup&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(wrapr)
+
+tibble(x=1:3, y=3:1) -&amp;gt; df 
+getOne2Filter &amp;lt;- function(df, col_filter){
+  let(
+    c(COL_1=col_filter), 
+    
+    df %&amp;gt;% filter(COL_1==1)
+  )
+}
+
+df %&amp;gt;% getOne2Filter(&amp;#39;x&amp;#39;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 1 x 2
+##       x     y
+##   &amp;lt;int&amp;gt; &amp;lt;int&amp;gt;
+## 1     1     3&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;위에서 보듯이 let 내부에 고립된 환경을 만들어 NSE의 문제를 손쉽게 극복할 수 있다. 즉, let 안에 내가 만들고 싶은 함수를 다 때려박으면 된다. 함수가 한번 더 걸치게 되지만 속도 상의 손실은 미미하다. 아쉬우니 예를 하나 더 살펴보자.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(wrapr)
+
+d &amp;lt;- data.frame(x=c(15, 30, 40))
+
+addOneToColumn &amp;lt;- function(df, 
+                           result_column_name, 
+                           input_column_name) {
+  let(
+    c(RESULT_COL=result_column_name,
+      INPUT_COL=input_column_name),
+    
+    df %&amp;gt;% mutate( RESULT_COL=INPUT_COL+1 )
+    
+  )
+}
+
+d %&amp;gt;% addOneToColumn(&amp;#39;v2&amp;#39;, &amp;#39;x&amp;#39;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##    x v2
+## 1 15 16
+## 2 30 31
+## 3 40 41&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;컬럼의 이름을 스트링(‘v2’, ‘x’)으로 선택할 수 있다. 지적 결벽보다는 필요한 것 만큼만 익히는 야매도 때로는 나쁘지 않다. Calm down!&lt;/p&gt;
+&lt;!----
+### Resources 
+http://dplyr.tidyverse.org/articles/programming.html 
+http://www.win-vector.com/blog/2017/05/why-to-use-wraprlet/
+http://www.win-vector.com/blog/2017/06/in-defense-of-wraprlet/
+http://www.win-vector.com/blog/2017/06/wrapr-implementation-update/
+####
+----&gt;
+&lt;/div&gt;
+&lt;div class=&#34;footnotes&#34;&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id=&#34;fn1&#34;&gt;&lt;p&gt;상세한 내용은 &lt;a href=&#34;http://dplyr.tidyverse.org/articles/programming.html&#34;&gt;LINK&lt;/a&gt;를 참고하라.&lt;a href=&#34;#fnref1&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&#34;fn2&#34;&gt;&lt;p&gt;뭐 위대하신 Wickham 님께서 이것은 야매다, 라고 에둘러까시기도 했지만 쓰기 편하고 속도 잘나오면 그만 아닌가! 위캠의 비판에 대한 Win-Vector 반론은 &lt;a href=&#34;http://www.win-vector.com/blog/2017/06/in-defense-of-wraprlet/&#34;&gt;LINK&lt;/a&gt;를 참고하라.&lt;a href=&#34;#fnref2&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+</description>
     </item>
     
     <item>
@@ -47,7 +1652,65 @@ library(tidyverse)library(&amp;#39;tidyverse&amp;#39;)위의 코드에서 둘 
       <pubDate>Fri, 24 Nov 2017 00:00:00 +0000</pubDate>
       
       <guid>/note/2017/11/24/relativity-matters/</guid>
-      <description>Font sizing그림에 폰트를 심을 때 당황했던 경우가 몇 번 있어서 틈난 김에 몇 자 적겠다. 어차피 이 공간에서는 좀스럽고 잡스런 내용을 주로 다룰 예정이니 관심 없는 분들을 패스하시라. 어차피 JPG, PNG와 같은 비트맵 이미지를 쓰지 않으면서 일정한 호환성을 얻고 싶다면 이미지도 PDF를 쓰면 좋다. 벡터 처리 덕분에 확대와 축소가 자유롭게 때문이다. 아울러 \(\rm \LaTeX\)을 쓰시는 분들이라면 pdflatex로 컴파일 할 때 그림을 쉽게 넣을 수 있다. 이 이야기는 여기서 끊도록 하자.</description>
+      <description>&lt;div id=&#34;font-sizing&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Font sizing&lt;/h1&gt;
+&lt;p&gt;그림에 폰트를 심을 때 당황했던 경우가 몇 번 있어서 틈난 김에 몇 자 적겠다. 어차피 이 공간에서는 좀스럽고 잡스런 내용을 주로 다룰 예정이니 관심 없는 분들을 패스하시라. 어차피 JPG, PNG와 같은 비트맵 이미지를 쓰지 않으면서 일정한 호환성을 얻고 싶다면 이미지도 PDF를 쓰면 좋다. 벡터 처리 덕분에 확대와 축소가 자유롭게 때문이다. 아울러 &lt;span class=&#34;math inline&#34;&gt;\(\rm \LaTeX\)&lt;/span&gt;을 쓰시는 분들이라면 pdflatex로 컴파일 할 때 그림을 쉽게 넣을 수 있다. 이 이야기는 여기서 끊도록 하자.&lt;/p&gt;
+&lt;p&gt;이미지에 폰트를 심을 때 크기가 문제가 될 수 있다. 타이틀, X-Y축에 들어가는 축라벨, 그리고 범례(legend) 정도를 떠올려보자. 흔히 ggplot2 등의 그래픽 패키지를 쓸 때 폰트 사이즈를 지정할 수 있다. 매뉴얼이나 사용 예를 봐도 그렇다. 그런데 이때 지정하는 폰트 사이즈가 대개는 절대치다. 즉, 10이라고 지정하면 (어떤 기준점에 의거한) 절대 크기로 생성된다. 이 상태에서 생성되는 이미지의 사이즈를 R에서 줄이면 문제가 발생한다.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyverse)
+library(showtext)
+
+showtext_auto()
+
+font_add(family=&amp;quot;notosanskr&amp;quot;, regular=&amp;quot;./fonts/NotoSansCJKkr-Regular.otf&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;ggplot(mtcars, aes(x=wt, y=mpg)) + geom_point() +
+  ggtitle(&amp;quot;Fuel Efficiency of 32 Cars 32개 자동차의 연료 효율&amp;quot;) +
+  xlab(&amp;quot;Weight (x1000 lb) 무게&amp;quot;) + ylab(&amp;quot;Miles per Gallon 갤론 당 마일&amp;quot;) +
+  theme(
+    title=element_text(family=&amp;quot;notosanskr&amp;quot;, size=10),
+    axis.title=element_text(family=&amp;quot;notosanskr&amp;quot;, size=9) -&amp;gt; p
+    
+ggsave(filename=&amp;quot;./foo_wrong1.pdf&amp;quot;, p, width=10, height=5, unit=&amp;quot;cm&amp;quot;)
+ggsave(filename=&amp;quot;./foo_wrong2.pdf&amp;quot;, p, width=30, height=15, unit=&amp;quot;cm&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://lostineconomics.netlify.com/note/download/foo_wrong1.pdf/&#34;&gt;foo_wrong1.pdf&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://lostineconomics.netlify.com/note/download/foo_wrong2.pdf/&#34;&gt;foo_wrong2.pdf&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;pdf를 열어서 확인해보라. &lt;code&gt;foo_wrong1.pdf&lt;/code&gt;가 이상해보이는 까닭은 이미지를 저장할 때 &lt;code&gt;width&lt;/code&gt;를 명시적으로 지정했기 때문이다. 해당 폭과 글자 크기의 절대치 사이에서 오는 문제라고 보면 되겠다.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;solutions&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Solutions&lt;/h1&gt;
+&lt;div id=&#34;as-simple-as-it-gets&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;As simple as it gets&lt;/h2&gt;
+&lt;p&gt;앞서 PDF는 어차피 벡터이미지 이기 떄문에 어떤 크기로 뽑든 확대나 축소가 자유롭다고 했다. 그렇다면 취향에 맞게 폰트 사이즈를 지정한 후 &lt;code&gt;ggsave&lt;/code&gt;를 때려서 적당하다 싶으면 그 이미지를 쓰면 되겠다. 이때 &lt;code&gt;width&lt;/code&gt;나 &lt;code&gt;height&lt;/code&gt;를 지정하는 것은 삼가해라. 정 지정해야 겠다면 해당 사이즈에서 원하는 크기로 폰트가 나오는지 반드시 확인하라.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;be-relative&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Be relative&lt;/h2&gt;
+&lt;p&gt;폰트 크기를 상대적으로 지정할 수 있다. 즉, 기준점을 두고 이를 기준으로 배율 지정이 가능하다.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;#
+ggplot(mtcars, aes(x=wt, y=mpg)) + geom_point() +
+  ggtitle(&amp;quot;Fuel Efficiency of 32 Cars 32개 자동차의 연료 효율&amp;quot;) +
+  xlab(&amp;quot;Weight (x1000 lb) 무게&amp;quot;) + ylab(&amp;quot;Miles per Gallon 갤론 당 마일&amp;quot;) +
+  theme(
+    text=element_text(size=10), 
+    title=element_text(family=&amp;quot;notosanskr&amp;quot;, size=rel(1.5)),
+    axis.title=element_text(family=&amp;quot;notosanskr&amp;quot;, size=rel(0.8))) -&amp;gt; q
+#&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;위 코드는 &lt;code&gt;element_text&lt;/code&gt;의 기본크기를 10으로 정해주고, 타이틀은 1.5배, 그리고 액시스 라벨은 0.8로 “상대적으로” 지정해주었다. ggplot2에서 &lt;code&gt;rel&lt;/code&gt;이라는 명령어를 쓰면 된다. 이렇게 상대적으로 지정해주면 그림을 확대하거나 축소해 생성할 때 &lt;code&gt;rel&lt;/code&gt;로 저징된 부분이 영향을 받게 된다.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;#
+ggsave(filename=&amp;quot;./foo_rel1.pdf&amp;quot;, q, scale=1)
+ggsave(filename=&amp;quot;./foo_rel2.pdf&amp;quot;, q, scale=1.5)
+ggsave(filename=&amp;quot;./foo_rel3.pdf&amp;quot;, q, scale=2)
+#&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://lostineconomics.netlify.com/note/download/foo_rel1.pdf/&#34;&gt;foo_rel1.pdf&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://lostineconomics.netlify.com/note/download/foo_rel2.pdf/&#34;&gt;foo_rel2.pdf&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://lostineconomics.netlify.com/note/download/foo_rel3.pdf/&#34;&gt;foo_rel3.pdf&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;위의 결과에서 보듯이 &lt;code&gt;scale=2&lt;/code&gt;는 그림을 두 배로 키운 것이므로 글자들은 전부 50%씩 줄어들게 된다. 물론 각 카테고리의 텍스트들 사이의 상대적인 비율은 위의 지정한 대로 움직인다. 이렇게 쓰면 무엇이 좋을까? 대체로 그림을 생성한 후 원하는 크기를 얻게 위해 개별적으로 크기를 이렇게 저렇게 뜯어 맞추는 경우가 많다. 이렇게 상대치로 해 놓으면, 대체로 그럴 필요가 없다. 스케일을 조정하는 것만으로 훨씬 편하게 원하는 최종 이미지를 얻을 수 있다.&lt;/p&gt;
+&lt;p&gt;앞서 말했듯이 어차피 PDF 이미지를 쓴다면 원하는 그림 하나만 얻으면 되지만, 그 과정도 조금 더 폼나게 하자, 뭐 이 정도다.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
     </item>
     
     <item>
@@ -56,7 +1719,122 @@ library(tidyverse)library(&amp;#39;tidyverse&amp;#39;)위의 코드에서 둘 
       <pubDate>Tue, 21 Nov 2017 00:00:00 +0000</pubDate>
       
       <guid>/note/2017/11/21/bizarro-magrittr/</guid>
-      <description>pre.bluebox {background-color: #aabbff !important;}pre.redbox {background-color: #ffbbbb !important;}Bizarro!이전 포스팅에서 Magrittr 패키지 이름이 재미있다고 말했지만, 이번 패키지 이름도 못지 않게 재미있다. 수학과 코딩의 경계에서 R의 한계를 시험하는 집단인 Win-Vector에서 만든 패키지인 “Bizarro Magrittr” 혹은 “Bizarro pipe”가 오늘의 주인공이다. DC 만화를 즐겨 보시는 분들은 이미 눈치를 챘으리라. Bizarro는 수퍼맨의 모든 능력을 살짝 다르게 갖고 있는 빌런이다. 흑화한 수퍼맨으로 이해하면 빠르겠다. Bizarro Magrittr(이하 Bizarro) 역시 Magrittr의 거의 모든 능력을 지니고 있지만 ‘흑화’ 변종이다.</description>
+      <description>&lt;style&gt;
+pre.bluebox {
+    background-color: #aabbff !important;
+}
+pre.redbox {
+    background-color: #ffbbbb !important;
+}
+&lt;/style&gt;
+&lt;div id=&#34;bizarro&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Bizarro!&lt;/h1&gt;
+&lt;p&gt;&lt;a href=&#34;http://lostineconomics.netlify.com/note/2017/11/15/magrittr---ceci-nest-pas-un-pipe./&#34;&gt;이전 포스팅&lt;/a&gt;에서 Magrittr 패키지 이름이 재미있다고 말했지만, 이번 패키지 이름도 못지 않게 재미있다. 수학과 코딩의 경계에서 R의 한계를 시험하는 집단인 &lt;a href=&#34;http://www.win-vector.com/site/&#34;&gt;Win-Vector&lt;/a&gt;에서 만든 패키지인 “Bizarro Magrittr” 혹은 “Bizarro pipe”가 오늘의 주인공이다. DC 만화를 즐겨 보시는 분들은 이미 눈치를 챘으리라. Bizarro는 수퍼맨의 모든 능력을 살짝 다르게 갖고 있는 빌런이다. 흑화한 수퍼맨으로 이해하면 빠르겠다. &lt;a href=&#34;http://www.win-vector.com/blog/tag/bizarro-magrittr/&#34;&gt;Bizarro Magrittr&lt;/a&gt;(이하 Bizarro) 역시 Magrittr의 거의 모든 능력을 지니고 있지만 ‘흑화’ 변종이다. 어떻게 다를까?&lt;/p&gt;
+&lt;center&gt;
+&lt;img src=&#34;http://www.dccomics.com/sites/default/files/GalleryChar_1900x900_Bizarro_52ab94a953d5b4.45219154.jpg&#34; alt=&#34;이 분이 바로 Bizarro!&#34; /&gt;
+&lt;/center&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;#devtools::install_github(&amp;quot;smbache/magrittr&amp;quot;) # if lastest release is needed
+library(&amp;#39;tidyverse&amp;#39;)
+library(&amp;#39;wrapr&amp;#39;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;wrapr 패키지는 Win-Vector에서 제공하는 몇가지 편의성 패키지 모음이다. 피가 되고 살이 되는 패키지인 만큼 Bizarro만 깔지 말고 이 녀석으로 깔아보자. 혹시 기회가 되면 wrapr에 담긴 다른 라이브러리도 소개하도록 하겠다.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;dot-definitely&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;DOT definitely&lt;/h1&gt;
+&lt;p&gt;앞서 Magrittr에서 별도의 처리가 없을 때 좌변(lhs)이 우변(rhs)의 첫번째 인자로 들어간다고 설명했다. 이런 규칙이 편한 듯 보이지만, 코드의 명확함을 해친다. 코딩에서 명확하지 않은 건 혼란을 초래하기 마련. 일단, Bizarro의 문법은 이 점을 분명하게 포함하고 있다. 닷(&lt;code&gt;.&lt;/code&gt;)을 찍어서 lhs가 rhs에 어디에 위치할지를 분명하게 정한다. 앞서 다루었던 예를 보자.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;tibble(
+  type = c(&amp;quot;Fast&amp;quot;, &amp;quot;Slow&amp;quot;, &amp;quot;Fast&amp;quot;, &amp;quot;Fast&amp;quot;, &amp;quot;Slow&amp;quot;),
+  colour = c(&amp;quot;Blue&amp;quot;, &amp;quot;Blue&amp;quot;, &amp;quot;Red&amp;quot;, &amp;quot;Red&amp;quot;, &amp;quot;Red&amp;quot;)
+) %&amp;gt;% table(.$type, .$colour)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;에러가 발생한다. 이제 Bizarro로 연결해보자. Bizarro의 “then”, 즉 파이프라이닝 명령어는 &lt;code&gt;%.&amp;gt;%&lt;/code&gt;이다. 닷(&lt;code&gt;.&lt;/code&gt;)이 하나 더 붙어 있다.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;tibble(
+  type = c(&amp;quot;Fast&amp;quot;, &amp;quot;Slow&amp;quot;, &amp;quot;Fast&amp;quot;, &amp;quot;Fast&amp;quot;, &amp;quot;Slow&amp;quot;),
+  colour = c(&amp;quot;Blue&amp;quot;, &amp;quot;Blue&amp;quot;, &amp;quot;Red&amp;quot;, &amp;quot;Red&amp;quot;, &amp;quot;Red&amp;quot;)
+) %.&amp;gt;% table(.$type, .$colour)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##       
+##        Blue Red
+##   Fast    1   2
+##   Slow    1   1&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;아무런 문제를 일으키지 않는다! 점 하나 더 찍는 습관을 들이고 명확함을 얻으니 꽤 이득이다.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;more-than-clarity&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;More than clarity&lt;/h1&gt;
+&lt;p&gt;코드가 명확해진다는 것 이외에 사실 숨은 ’개이득’은 따로 있다. 파이프라인의 큰 문제점 중 하나가 “then”(&lt;code&gt;%&amp;gt;%&lt;/code&gt;)으로 길게 파이프를 이을 경우 디버깅하기 어렵다는 데 있다. 중간에 뭔가 문제가 생겼는데 이걸 찾아내려면 파이프를 하나씩 끊어서 볼 수 밖에 없다. 불가능하진 않지만 귀찮다. Bizarro의 능력은 이 대목에서 발휘된다.&lt;/p&gt;
+&lt;p&gt;사실 이 녀석이 Bizarro라고 불리는 이유는 &lt;code&gt;%&amp;gt;%&lt;/code&gt;을 대체할 수 있는 명령으로 &lt;code&gt;-&amp;gt;.;&lt;/code&gt;을 쓸 수 있기 때문이다. &lt;code&gt;-&amp;gt;.;&lt;/code&gt; 명령을 대충 읽어보자. lhs를 &lt;code&gt;.&lt;/code&gt;으로 던지고(&lt;code&gt;-&amp;gt;&lt;/code&gt;) 스테이트먼트를 나누라(&lt;code&gt;;&lt;/code&gt;)는 것이다. 예를 보자.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;mtcars %&amp;gt;% 
+  split(.$cyl) %&amp;gt;% 
+  map(~lm(mpg ~ wt, data = .)) %&amp;gt;% 
+  map(summary) %&amp;gt;% 
+  map_dbl(&amp;quot;r.squared&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##         4         6         8 
+## 0.5086326 0.4645102 0.4229655&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;앞의 코드는 mtcars data.frame을 cyl 변수에 따라서 쪼개고, mpg를 wt에 대해서 회귀한 후 &lt;span class=&#34;math inline&#34;&gt;\({\mathrm R^2}\)&lt;/span&gt; 값만을 뽑아내는 것이다. 아래의 코드를 보자.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;mtcars -&amp;gt;.;
+  split(., .$cyl) -&amp;gt;.;
+  map(., ~lm(mpg ~ wt, data = .)) -&amp;gt;.;
+  map(., summary) -&amp;gt;.; 
+  map_dbl(., &amp;quot;r.squared&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##         4         6         8 
+## 0.5086326 0.4645102 0.4229655&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;lhs를 rhs에서 정확히 &lt;code&gt;.&lt;/code&gt;으로 표현한 것만 뺀다면 &lt;code&gt;%&amp;gt;%&lt;/code&gt;과 거의 동일하다. 만일 Bizarro를 쓴다면 &lt;code&gt;-&amp;gt;.;&lt;/code&gt;을 &lt;code&gt;%.&amp;gt;%&lt;/code&gt;로 바꿔쓰면 될 얼이다.&lt;/p&gt;
+&lt;p&gt;magrittr의 &lt;code&gt;%&amp;gt;%&lt;/code&gt; 연쇄는 나누어 실행할 수 없다. 물론 디버깅 명령어가 따로 있긴 하지만 그리 편하지는 않다. 하지만 &lt;code&gt;-&amp;gt;.;&lt;/code&gt;은 한줄씩 실행이 가능하고 결과는 &lt;code&gt;.Last.value&lt;/code&gt; 항목에 저장된다. 왼쪽 Environemt 창의 value에서 쉽게 확인할 수 있다.&lt;a href=&#34;#fn1&#34; class=&#34;footnoteRef&#34; id=&#34;fnref1&#34;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt; 즉 파이프 단계별로 뭐가 어떻게 되는지 추적할 수 있게 된다.&lt;/p&gt;
+&lt;p&gt;이제 &lt;code&gt;%&amp;gt;%&lt;/code&gt; 대신 &lt;code&gt;%.&amp;gt;%&lt;/code&gt;을 써야 하는지 이유를 알겠는가? 디버깅할 때 영역지정 후 찾기–바꾸기로 &lt;code&gt;%.&amp;gt;%&lt;/code&gt;를 &lt;code&gt;-&amp;gt;.;&lt;/code&gt;으로 바꾼 후에 편안하게 디버깅을 하면 된다.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;what-really-bizarre-is&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;What really bizarre is…&lt;/h1&gt;
+&lt;p&gt;이 패키지가 진정 “Bizarro”라는 이름을 얻을 수 있는 이유는 그런데 따로 있으니…&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;#install.packages(&amp;#39;microbenchmark&amp;#39;) 
+library(&amp;quot;microbenchmark&amp;quot;)
+library(&amp;quot;magrittr&amp;quot;)
+library(&amp;quot;ggplot2&amp;quot;)
+set.seed(234634)
+
+
+fmagrittr &amp;lt;- function(d) {
+  d %&amp;gt;% sin() %&amp;gt;% cos() %&amp;gt;% tan() %&amp;gt;% sqrt()
+}
+fmagrittrdot &amp;lt;- function(d) {
+  d %&amp;gt;% sin(.) %&amp;gt;% cos(.) %&amp;gt;% tan(.) %&amp;gt;% sqrt(.)
+}
+fbizarro &amp;lt;- function(d) {
+  d %.&amp;gt;% sin(.)  %.&amp;gt;% cos(.) %.&amp;gt;% tan(.) %.&amp;gt;% sqrt(.)
+}
+fsemicolon &amp;lt;- function(d) {
+  d -&amp;gt;.; sin(.) -&amp;gt;.; cos(.) -&amp;gt;.; tan(.) -&amp;gt;.; sqrt(.)
+}
+
+bm &amp;lt;- microbenchmark(
+  fmagrittr(7),
+  fmagrittrdot(7),
+  fbizarro(7),
+  fsemicolon(7),
+  control=list(warmup=100L,
+               order=&amp;#39;random&amp;#39;),
+  times=10000L
+)
+
+summary(bm) %.&amp;gt;% as_tibble(.)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 4 x 8
+##              expr    min     lq      mean median     uq      max neval
+##            &amp;lt;fctr&amp;gt;  &amp;lt;dbl&amp;gt;  &amp;lt;dbl&amp;gt;     &amp;lt;dbl&amp;gt;  &amp;lt;dbl&amp;gt;  &amp;lt;dbl&amp;gt;    &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt;
+## 1    fmagrittr(7) 137953 154451 180835.86 160994 177775  3665575 10000
+## 2 fmagrittrdot(7) 127998 143643 173475.13 149900 164122 58184427 10000
+## 3     fbizarro(7)  15360  19911  25367.23  21333  22756  3687193 10000
+## 4   fsemicolon(7)      0    569   1232.80    854    854  3105798 10000&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;헐! &lt;code&gt;-&amp;gt;.;&lt;/code&gt;이 가장 빠르고 Bizarro도 원래 Magrittr보다는 훨씬 빠르다!&lt;a href=&#34;#fn2&#34; class=&#34;footnoteRef&#34; id=&#34;fnref2&#34;&gt;&lt;sup&gt;2&lt;/sup&gt;&lt;/a&gt; ㅎㄷㄷ&lt;/p&gt;
+&lt;!---
+REFERENCE 
+# http://www.win-vector.com/blog/2017/01/using-the-bizarro-pipe-to-debug-magrittr-pipelines-in-r/
+
+---&gt;
+&lt;/div&gt;
+&lt;div class=&#34;footnotes&#34;&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id=&#34;fn1&#34;&gt;&lt;p&gt;혹시 &lt;code&gt;.Last.value&lt;/code&gt; 같은 게 안보인다는 분은 옵션에서 조정해주면 된다. 상단 메뉴바에서 “Tools → Global optons → General” 탭 항목 중에서 “Show .Last.value in environmental listing”을 체크해주자.&lt;a href=&#34;#fnref1&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&#34;fn2&#34;&gt;&lt;p&gt;출처는 &lt;a href=&#34;http://www.win-vector.com/blog/2016/12/magrittrs-doppelganger/&#34;&gt;여기&lt;/a&gt;다.&lt;a href=&#34;#fnref2&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+</description>
     </item>
     
     <item>
@@ -65,7 +1843,126 @@ library(tidyverse)library(&amp;#39;tidyverse&amp;#39;)위의 코드에서 둘 
       <pubDate>Thu, 16 Nov 2017 00:00:00 +0000</pubDate>
       
       <guid>/note/2017/11/16/use-your-font/</guid>
-      <description>pre.bluebox {background-color: #aabbff !important;}pre.redbox {background-color: #ffbbbb !important;}Non-alphabetical폰트 문제는 쉬운 듯 어려운 문제다. 그냥 OS에서 폰트 깔아서 쓰듯 쓸 수 있으면 좋으련만 ‘그렇게’ 쉽게 쓸 수는 없다. R에서 그래프를 그려본 사람이라면, 어 “왜 (그래프에서) 폰트가 네모박스로 나와”하는 상황을 한번은 마주쳐 봤을 것이다. 이는 R과 RStudio가 OS에서 끌어다 쓰는 부분이 제한적이기 때문에 생기는 일이다. 그렇다고 못생긴 굴림체와 계속 살 수는 없는 노릇이니 방법을 찾긴 해야 한다.</description>
+      <description>&lt;style&gt;
+pre.bluebox {
+    background-color: #aabbff !important;
+}
+pre.redbox {
+    background-color: #ffbbbb !important;
+}
+&lt;/style&gt;
+&lt;div id=&#34;non-alphabetical&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Non-alphabetical&lt;/h1&gt;
+&lt;p&gt;폰트 문제는 쉬운 듯 어려운 문제다. 그냥 OS에서 폰트 깔아서 쓰듯 쓸 수 있으면 좋으련만 ‘그렇게’ 쉽게 쓸 수는 없다. R에서 그래프를 그려본 사람이라면, 어 “왜 (그래프에서) 폰트가 네모박스로 나와”하는 상황을 한번은 마주쳐 봤을 것이다. 이는 R과 RStudio가 OS에서 끌어다 쓰는 부분이 제한적이기 때문에 생기는 일이다. 그렇다고 못생긴 굴림체와 계속 살 수는 없는 노릇이니 방법을 찾긴 해야 한다.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;extrafont-showtext&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;extrafont? showtext!&lt;/h1&gt;
+&lt;p&gt;언제나 그렇듯이 구글 검색을 해보면 extrafont 패키지가 주로 검색된다.&lt;a href=&#34;#fn1&#34; class=&#34;footnoteRef&#34; id=&#34;fnref1&#34;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt; 이 패키지는 로컬 머신에 설치된 폰트를 끌어다가 그림에 심는 것을 구현한다. 다만 이 경우 로컬 머신을 오가며 작업할 경우 폰트 사용을 일관되게 하기 곤란해질 수 있다. 아울러 패키지가 트루타입(ttf)만 지원하기 때문에 폰트 이용 자체에도 다소 한계가 있다.&lt;/p&gt;
+&lt;p&gt;Yixuan Qiu가 개발한 showtext는 보다 일관된 폰트 사용을 목표로 한다. 우선 이 패키지를 쓰면 폰트를 꼭 시스템에 미리 설치해 둘 필요가 없다. 설치되지 않은 폰트도 파일의 경로만 지정해주면 그래프 등의 시각 결과물에서 해당 폰트를 잘 구현해준다. 아울러 TrueType, OpenType, Type 1, web font 등 다양한 포맷을 지원한다. 구글에서 제공하는 폰트의 경우에는 파일 경로로 필요 없다. 이름만 지정해주면 온라인에서 다운로드 받아서 알아서 구현한다. 물론 구글 폰트 데이터베이스에 등재된 한글 폰트가 없다는 것이 살짝 아쉬운 대목이다.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;basic&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Basic&lt;/h1&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;#### Start of testing code 
+library(tidyverse)
+library(showtext)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;a href=&#34;https://fonts.google.com/&#34;&gt;구글&lt;/a&gt;에 등록된 폰트는 쉽게 불러올 수 있다.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;font_add_google(&amp;quot;Gochi Hand&amp;quot;, &amp;quot;gochi&amp;quot;)
+font_add_google(&amp;quot;Schoolbell&amp;quot;, &amp;quot;bell&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;이렇게 호출하면 구글 리포지터리에서 폰트를 불러와 설정한다. 1번 인자가 구글의 fullname이고 2번 인자가 내가 코드에서 호출할 이름이다.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;showtext_auto()
+
+#windows() # if your local os is Windows 
+# x11() # if your local os is Macos 
+
+set.seed(123)
+hist(rnorm(1000), breaks = 30, col = &amp;quot;steelblue&amp;quot;, border = &amp;quot;white&amp;quot;,
+     main = &amp;quot;&amp;quot;, xlab = &amp;quot;&amp;quot;, ylab = &amp;quot;&amp;quot;)
+title(&amp;quot;Histogram of Normal Random Numbers&amp;quot;, family = &amp;quot;bell&amp;quot;, cex.main = 2)
+title(ylab = &amp;quot;Frequency&amp;quot;, family = &amp;quot;gochi&amp;quot;, cex.lab = 2)
+text(2, 70, &amp;quot;N = 1000&amp;quot;, family = &amp;quot;bell&amp;quot;, cex = 2.5)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;../../note/2017-11-16-myfont_files/figure-html/unnamed-chunk-3-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;안타깝지만 RStudio의 기본 그래픽 장치는 showtext와 호환되지 않는다. 즉, RStudio 화면 우측 하단에는 폰트가 위의 그림처럼 표현되지 않는다. 당황하지 말자. 그냥 명령어로 별도의 그래픽 장치를 호출하면 된다. Windows라면 &lt;code&gt;windows()&lt;/code&gt;를, Macos라면 &lt;code&gt;x11()&lt;/code&gt;을 적절한 위치에 넣어주자. 이 문서가 작성된 rmarkdown에서도 폰트가 제대로 표현되지 않는다. 이때 코드 옵션에 &lt;code&gt;fig.showtext=TRUE&lt;/code&gt;를 추가하면 위의 그림처럼 잘 나온다. 즉, 마크다운 코드 옵션의 윗단을 아래와 같이 적절하게 처리해주면 되겠다.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;{R message=FALSE, warning=FALSE, fig.showtext=TRUE}&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;그림 출력 상태를 온오프 하기 위해서는 &lt;code&gt;showtext_auto()&lt;/code&gt;로 자동화할 수도 있고, &lt;code&gt;showtext_begin()&lt;/code&gt;, &lt;code&gt;showtext_end()&lt;/code&gt;로 미세조정을 추구할 수도 있다.&lt;a href=&#34;#fn2&#34; class=&#34;footnoteRef&#34; id=&#34;fnref2&#34;&gt;&lt;sup&gt;2&lt;/sup&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;what-about-korean-font&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;What about Korean font?&lt;/h1&gt;
+&lt;p&gt;앞서도 이야기 했지만 Google fonts에는 안타깝게도 한글이 없다. early access에는 10종 정도가 포함되어 있지만 정식 리포지터리에는 없으므로 &lt;code&gt;font_add_google()&lt;/code&gt;로는 한글을 구현할 수 없다. 이 경우 적절한 위치에 폰트 원본 파일을 놓고 이를 불러오면 된다.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;font_add(family = &amp;quot;hwhitecat&amp;quot;, regular = &amp;quot;./fonts/HoonWhitecatR.ttf&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;위의 코드는 현재 디렉토리의 하위에 위치한 &lt;code&gt;./fonts/HoonWhitecatR.ttf&lt;/code&gt; 폰트를 “hwitecat”이라는 패밀리의 레귤러로 심어준다. 레귤러, 이탤릭, 볼드 등을 아래 명령과 같이 별도로 지정할 수도 있다.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;font_add(&amp;quot;constan&amp;quot;, regular = &amp;quot;./fonts/constan.ttf&amp;quot;, italic = &amp;quot;./fonts/constani.ttf&amp;quot;)
+font_add(&amp;quot;heiti&amp;quot;, regular = &amp;quot;./fonts/simhei.ttf&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;showtext_auto()
+
+p = ggplot(NULL, aes(x = 1, y = 1)) + ylim(0.8, 1.2) +
+  theme(axis.title = element_blank(), axis.ticks = element_blank(),
+        axis.text = element_blank()) +
+  annotate(&amp;quot;text&amp;quot;, 1, 1.1, family = &amp;quot;hwhitecat&amp;quot;, size = 17,
+           label = &amp;quot;안녕, 세상아! 나는 흰고양체야.&amp;quot;) + 
+  annotate(&amp;quot;text&amp;quot;, 1, 1, family = &amp;quot;heiti&amp;quot;, size = 15,
+           label = &amp;quot;\u4F60\u597D\uFF0C\u4E16\u754C&amp;quot;) +
+  annotate(&amp;quot;text&amp;quot;, 1, 0.9, label = &amp;#39;Chinese for &amp;quot;Hello, world!&amp;quot;&amp;#39;,
+           family = &amp;quot;constan&amp;quot;, fontface = &amp;quot;italic&amp;quot;, size = 12)
+
+print(p)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;../../note/2017-11-16-myfont_files/figure-html/unnamed-chunk-6-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;언제나 그렇지만 너무 많은 서체를 쓰는 것은 (단연코!) 보기 좋지 않다. 단정하게 그냥 나눔고딕 혹은 Noto Sans CJK KR 정도로 만족하면 어떨까?&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;digression&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Digression&lt;/h1&gt;
+&lt;div id=&#34;how-to-generate-and-save-graphs&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;How to generate and save graphs&lt;/h2&gt;
+&lt;p&gt;혹시나 하는 마음에서 부록 하나 덧붙여 본다. R도 그렇지만 대개의 오픈소스 소프트웨어들은 그림을 만들 때 “장치”를 사용해서 만든다. 그래픽을 생성해 출력하는 장치라고 보면 되고, 스크린, pdf, png 등등 여러가지 형태를 지닌다. 일반적으로 OS 상에서 화면에 있는 그림을 캡쳐해서 포맷에 맞게 저장하는 식으로 생각하지 말고, 필요한 그림은 장치를 통해 생성한다고 이해하면 쉽다.&lt;/p&gt;
+&lt;p&gt;바로 위에 예를 RStudio에 그대로 복붙했다면, 출력물 &lt;code&gt;p&lt;/code&gt;에서 폰트를 제대로 볼 수 없었을 것이다. 앞서도 말했지만, RStudio의 기본 화면 장치는 showtext를 아직 지원하지 않는다. 아래 처럼 해야 제대로 출력된다.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# windows()  # if your local os is Windows 
+# x11() # if your local os is Macos 
+print(p)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;여기까지 실행하면 화면에 팝업으로 출력물이 뜨게 된다. PDF로 저장하기 위해서는 PDF 장치를 부르면 된다. 이때 &lt;code&gt;dev.off()&lt;/code&gt;를 지정해줘야 pdf 저장이 완료된다는 점 명심하자. 화면 팝업은 수동으로 창을 끄면 &lt;code&gt;dev.off()&lt;/code&gt;가 되지만 파일은 그렇지 않다. 반드시 &lt;code&gt;dev.off()&lt;/code&gt;를 넣어줘야 파일을 쓰게 된다.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;pdf(&amp;quot;YOUR_FILENAME.pdf&amp;quot;, width = 7, height = 4) 
+print(p) 
+dev.off()&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;이게 귀찮다면 ggplot2 패키지를 쓰자. ggplot2는 장치를 포맷 별로 편리하게 기록할 수 있는 통일적인 방법을 제공한다. &lt;code&gt;ggsave&lt;/code&gt; 명령어를 쓰면 &lt;code&gt;dev.off()&lt;/code&gt;없이 대부분의 포맷으로 아래와 같이 편리하게 저장할 수 있다.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;ggsave(&amp;quot;YOUR_FILENAME.pdf&amp;quot;, p, width = 7, height = 4)
+ggsave(&amp;quot;YOUR_FILENAME.png&amp;quot;, p, width = 7, height = 4, dpi = 96)&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;font-embedding&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Font embedding&lt;/h2&gt;
+&lt;p&gt;폰트를 PDF에 심는 문제는 문제가 될 수도 있고 아닐 수도 있다. 문제가 될 것 같으면 그냥 확실히 해두면 되겠다.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;#install.packages(&amp;#39;Cairo&amp;#39;)
+library(Cairo) 
+showtext_auto()
+
+font_add(family = &amp;quot;notosanskr&amp;quot;, regular = &amp;quot;./fonts/NotoSansCJKkr-Regular.otf&amp;quot;)
+
+q &amp;lt;- ggplot(mtcars, aes(x=wt, y=mpg)) + geom_point() +
+  ggtitle(&amp;quot;Fuel Efficiency of 32 Cars 32개 자동차의 연료 효율&amp;quot;) +
+  xlab(&amp;quot;Weight (x1000 lb) 무게&amp;quot;) + ylab(&amp;quot;Miles per Gallon 갤론 당 마일&amp;quot;) +
+  theme(
+        text=element_text(size=10), 
+        title=element_text(family=&amp;quot;notosanskr&amp;quot;, size = rel(2)),
+        axis.title=element_text(family=&amp;quot;notosanskr&amp;quot;, size = rel(1)),
+        strip.text=element_text(family=&amp;quot;notosanskr&amp;quot;, size = rel(1)))
+
+print(q);&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;../../note/2017-11-16-myfont_files/figure-html/unnamed-chunk-10-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;#
+ggsave(filename=&amp;quot;./foo.pdf&amp;quot;, q, device=cairo_pdf)
+#&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;위 처럼 명시적으로 device를 &lt;code&gt;cairo_pdf&lt;/code&gt;로 지정해주면 &lt;code&gt;foo.pdf&lt;/code&gt; 문서에 로딩한 폰트가 확실하게 포함된다. &lt;a href=&#34;http://lostineconomics.netlify.com/note/download/foo.pdf/&#34;&gt;여기서&lt;/a&gt; 확인해보시라.&lt;/p&gt;
+&lt;!--- 
+REFERENCE 
+https://cran.rstudio.com/web/packages/showtext/vignettes/introduction.html
+---&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;footnotes&#34;&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id=&#34;fn1&#34;&gt;&lt;p&gt;&lt;a href=&#34;http://freesearch.pe.kr/archives/3138&#34;&gt;여기&lt;/a&gt;를 참고하라.&lt;a href=&#34;#fnref1&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&#34;fn2&#34;&gt;&lt;p&gt;자세한 것은 &lt;a href=&#34;https://cran.rstudio.com/web/packages/showtext/vignettes/introduction.html&#34;&gt;여기&lt;/a&gt;를 참고하라.&lt;a href=&#34;#fnref2&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+</description>
     </item>
     
     <item>
@@ -74,8 +1971,130 @@ library(tidyverse)library(&amp;#39;tidyverse&amp;#39;)위의 코드에서 둘 
       <pubDate>Wed, 15 Nov 2017 00:00:00 +0000</pubDate>
       
       <guid>/note/2017/11/15/magrittr---ceci-nest-pas-un-pipe./</guid>
-      <description>pre.bluebox {background-color: #aabbff !important;}pre.redbox {background-color: #ffbbbb !important;}Magritt?\(~~\) magrittr, R 패키지 중에서 아마도 가장 재미있는 이름이 아닐까? 왜 마그리뜨일까? magrittr 패키지는 명령어 처리를 쭉 이어줄 수 있게 해준다. 즉, 파이프라인(pipeline)을 만들어주는 것이다. 이걸 파이프 담배와 연결시켜 “이것은 파이프가 아니다”라는 마그리뜨의 그림까지 연결된다. 우리가 만드는 것은 파이프라인이니 magrittr은 정말로 파이프는 아니다!
-이렇게 쭉 연결하는 것이 왜 좋을까? 글은 만연체가 좋지 않지만, 코딩에서 이렇게 파이프라인을 만드는 습관은 (황당할 정도로 길지 않은 이상) 일관된 형태의 작업을 가능하게 해준다.</description>
+      <description>&lt;style&gt;
+pre.bluebox {
+    background-color: #aabbff !important;
+}
+pre.redbox {
+    background-color: #ffbbbb !important;
+}
+&lt;/style&gt;
+&lt;div id=&#34;magritt&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Magritt?&lt;/h1&gt;
+&lt;center&gt;
+&lt;img src=&#34;https://upload.wikimedia.org/wikipedia/en/b/b9/MagrittePipe.jpg&#34; /&gt; &lt;span class=&#34;math inline&#34;&gt;\(~~\)&lt;/span&gt; &lt;img src=&#34;https://www.rstudio.com/wp-content/uploads/2014/04/magrittr-200x232.png&#34; /&gt;
+&lt;/center&gt;
+&lt;p&gt;magrittr, R 패키지 중에서 아마도 가장 재미있는 이름이 아닐까? 왜 마그리뜨일까? magrittr 패키지는 명령어 처리를 쭉 이어줄 수 있게 해준다. 즉, 파이프라인(pipeline)을 만들어주는 것이다. 이걸 파이프 담배와 연결시켜 “이것은 파이프가 아니다”라는 마그리뜨의 그림까지 연결된다. 우리가 만드는 것은 파이프라인이니 magrittr은 정말로 파이프는 아니다!&lt;/p&gt;
+&lt;p&gt;이렇게 쭉 연결하는 것이 왜 좋을까? 글은 만연체가 좋지 않지만, 코딩에서 이렇게 파이프라인을 만드는 습관은 (황당할 정도로 길지 않은 이상) 일관된 형태의 작업을 가능하게 해준다. 물 흐르듯 흐르며 코딩한다, 라는 느낌을 떠올리면 좋겠다. 아울러 블필요한 data.frame이나 기타 오브젝트를 만들지 않아도 된다. 거두 절미하고 일단 패키지부터 태우자.&lt;a href=&#34;#fn1&#34; class=&#34;footnoteRef&#34; id=&#34;fnref1&#34;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;#devtools::install_github(&amp;quot;smbache/magrittr&amp;quot;) # if lastest release is needed
+library(&amp;#39;tidyverse&amp;#39;)
+library(&amp;#39;magrittr&amp;#39;)&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;basic&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Basic&lt;/h1&gt;
+&lt;p&gt;magrittr 파이프라이닝 기본 원칙은 앞에서 주어진 혹은 계산된 결과가 뒤에 오는 명령어의 첫번째 인자argument로 들어가는 것이다. 즉, 좌변(lhs)의 내용을 우변(rhs)의 최초 인자로 던져주는 것이라고 보면 된다. 예를 보는 편이 빠르겠다.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;iris %&amp;gt;% head(10)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##    Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+## 1           5.1         3.5          1.4         0.2  setosa
+## 2           4.9         3.0          1.4         0.2  setosa
+## 3           4.7         3.2          1.3         0.2  setosa
+## 4           4.6         3.1          1.5         0.2  setosa
+## 5           5.0         3.6          1.4         0.2  setosa
+## 6           5.4         3.9          1.7         0.4  setosa
+## 7           4.6         3.4          1.4         0.3  setosa
+## 8           5.0         3.4          1.5         0.2  setosa
+## 9           4.4         2.9          1.4         0.2  setosa
+## 10          4.9         3.1          1.5         0.1  setosa&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;앞서의 내용은 보통 &lt;code&gt;head(iris, 10)&lt;/code&gt;라고 쓴다. 파이프라이닝은 두가지로 도움이 된다. 말의 어순을 떠올리면 좋겠다. “&lt;code&gt;iris&lt;/code&gt;라는 데이터의 앞쪽 10개를 출력해.” 앞서의 명령을 말로 할 수 있다면 이렇게 말할 것이다. 하지만, 코딩은 “앞쪽의 &lt;code&gt;iris&lt;/code&gt;의 10개” 이런 식으로 하고 있다. 뭔가 버벅대는 느낌 아닌가? &lt;code&gt;()&lt;/code&gt;를 쓰게 되면 적용할 명령(함수)을 먼저 생각하고 이후에 적용 대상(데이터, 변수, 객체 등등)을 생각하게 된다. 말로 하는 명령처럼 코딩하는게 보다 편리하지 않을까? 데이터를 먼저 생각하고 여기 적용할 방법을 따지는 게 생각 혹은 작업의 흐름상 자연스럽다. 두번째, 디버깅을 해본 분들을 알겠지만, &lt;code&gt;()&lt;/code&gt;가 계속 이어질 경우 열림 괄호와 닫힘 괄호를 잘못 쓸 가능성이 생각보다 높다. magrittr을 이용하면 이런 귀찮은 문제가 최소화된다.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;where-to-put-argument&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Where to put argument&lt;/h1&gt;
+&lt;p&gt;파이프라인에서 lhs에 있는 것은 뒤 명령어의 첫번째 인자로만 적용되어야 할까? 만일 &lt;code&gt;x %&amp;gt;% f(y,x)&lt;/code&gt;라는 스타일로 적용하고 싶다면? 물론 가능하다. 이떄는 닷(&lt;code&gt;.&lt;/code&gt;)을 사용할 수 있다.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;10 %&amp;gt;% head(iris, .)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##    Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+## 1           5.1         3.5          1.4         0.2  setosa
+## 2           4.9         3.0          1.4         0.2  setosa
+## 3           4.7         3.2          1.3         0.2  setosa
+## 4           4.6         3.1          1.5         0.2  setosa
+## 5           5.0         3.6          1.4         0.2  setosa
+## 6           5.4         3.9          1.7         0.4  setosa
+## 7           4.6         3.4          1.4         0.3  setosa
+## 8           5.0         3.4          1.5         0.2  setosa
+## 9           4.4         2.9          1.4         0.2  setosa
+## 10          4.9         3.1          1.5         0.1  setosa&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;여기서 주의할 사항 하나 짚고 가겠다. 닷(&lt;code&gt;.&lt;/code&gt;)을 지정할 때 앞의 예처럼 단순한 형태면 상관없다. 다만, 닷(&lt;code&gt;.&lt;/code&gt;)이 다른 또다른 명령에 앞뒤로 다시 걸치게 되면 (영어로 하면 nested), 원래 형태 즉 lhs가 첫번째 인자로 강제 인식된다. 이점을 이해하지 못하면 이해할 수 없는 에러와 마주치거나 잘못된 결과를 얻게 된다. 내가 이걸 몰라서 낭비한 시간을 떠올리면 눈물이 앞을 가린다. 두가지 사례를 보자. 숫자가 주어졌을 때, 이에 해당하는 순서의 알파벳을 찾는 것이 목적이다.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;sample(1:10) %&amp;gt;% paste0(LETTERS[.])&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##  [1] &amp;quot;4D&amp;quot;  &amp;quot;9I&amp;quot;  &amp;quot;1A&amp;quot;  &amp;quot;5E&amp;quot;  &amp;quot;10J&amp;quot; &amp;quot;7G&amp;quot;  &amp;quot;2B&amp;quot;  &amp;quot;8H&amp;quot;  &amp;quot;3C&amp;quot;  &amp;quot;6F&amp;quot;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;보는 바대로 숫자에 알파벳이 따라 붙었어 있다. 이는 &lt;code&gt;.&lt;/code&gt;이 &lt;code&gt;LETTERS&lt;/code&gt;의 인자로 활용되었기 때문이다. 그래서, lhs의 인자를 최초의 투입으로 보고 위와 같은 결과를 만든 것이다. 내가 원하는 결과물이 아니다.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;sample(1:10) %&amp;gt;% { paste0(LETTERS[.]) } &lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##  [1] &amp;quot;C&amp;quot; &amp;quot;B&amp;quot; &amp;quot;J&amp;quot; &amp;quot;I&amp;quot; &amp;quot;H&amp;quot; &amp;quot;E&amp;quot; &amp;quot;F&amp;quot; &amp;quot;D&amp;quot; &amp;quot;A&amp;quot; &amp;quot;G&amp;quot;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;다른 예를 하나 더 보자.&lt;a href=&#34;#fn2&#34; class=&#34;footnoteRef&#34; id=&#34;fnref2&#34;&gt;&lt;sup&gt;2&lt;/sup&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;tibble(
+  type = c(&amp;quot;Fast&amp;quot;, &amp;quot;Slow&amp;quot;, &amp;quot;Fast&amp;quot;, &amp;quot;Fast&amp;quot;, &amp;quot;Slow&amp;quot;),
+  colour = c(&amp;quot;Blue&amp;quot;, &amp;quot;Blue&amp;quot;, &amp;quot;Red&amp;quot;, &amp;quot;Red&amp;quot;, &amp;quot;Red&amp;quot;)
+) %&amp;gt;% table(.$type, .$colour)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;redbox&#34;&gt;&lt;code&gt;Error in sort.list(y) : &amp;#39;x&amp;#39; must be atomic for &amp;#39;sort.list&amp;#39; Have you called &amp;#39;sort&amp;#39; on a list?&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;뭐가 잘못되었을까? rhs에 들어간 &lt;code&gt;.&lt;/code&gt;은 &lt;code&gt;.$type&lt;/code&gt;, &lt;code&gt;.$colour&lt;/code&gt; 식으로 다른 명령어로 자신을 넘긴다. 이 경우는 lhs가 table의 첫번째 인자로 인식된다. &lt;code&gt;table(x, x$type, x$colour)&lt;/code&gt;가 되어 에러를 유발한다. 이를 해결하기 위해서는 파이프를 끊거나 아니면 &lt;code&gt;{}&lt;/code&gt;를 해주면 된다.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;tibble(
+  type = c(&amp;quot;Fast&amp;quot;, &amp;quot;Slow&amp;quot;, &amp;quot;Fast&amp;quot;, &amp;quot;Fast&amp;quot;, &amp;quot;Slow&amp;quot;),
+  colour = c(&amp;quot;Blue&amp;quot;, &amp;quot;Blue&amp;quot;, &amp;quot;Red&amp;quot;, &amp;quot;Red&amp;quot;, &amp;quot;Red&amp;quot;)
+) %&amp;gt;% { table(.$type, .$colour) }&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##       
+##        Blue Red
+##   Fast    1   2
+##   Slow    1   1&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;code&gt;{}&lt;/code&gt;로 감싸는 진짜 의미는 사실 lhs의 인자를 받아서 새롭게 함수를 구성하라는 것이다. 때문에 더 복잡한 형태로 구성할 수도 있다. magrittr에서는 이를 “lambda expression”이라 부른다.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;iris %&amp;gt;% 
+{
+  size &amp;lt;- sample(1:10, size = 1)
+  rbind(head(., size), tail(., size))
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##     Sepal.Length Sepal.Width Petal.Length Petal.Width   Species
+## 1            5.1         3.5          1.4         0.2    setosa
+## 2            4.9         3.0          1.4         0.2    setosa
+## 3            4.7         3.2          1.3         0.2    setosa
+## 4            4.6         3.1          1.5         0.2    setosa
+## 147          6.3         2.5          5.0         1.9 virginica
+## 148          6.5         3.0          5.2         2.0 virginica
+## 149          6.2         3.4          5.4         2.3 virginica
+## 150          5.9         3.0          5.1         1.8 virginica&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;tee-and-exposition&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Tee and exposition&lt;/h1&gt;
+&lt;p&gt;magrittr이 지원하는 기억할 만한 두 개의 파이프라인 명령은 Tee와 Exposition이다.&lt;/p&gt;
+&lt;div id=&#34;tee&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Tee&lt;/h2&gt;
+&lt;p&gt;Tee는 파이프라인을 끊어야 하는 상황을 수습해준다. &lt;code&gt;%T&amp;gt;%&lt;/code&gt;의 lhs는 일단 &lt;code&gt;plot&lt;/code&gt;으로 던져진다. 하지만, plot 객체는 다시 계산에 동원될 수 없다. 이 녀석은 그림 객체이므로 계산에 동원되는 것 자체가 말이 안된다. 이럴 경우 파이프가 끊어질 수 밖에 없다. &lt;code&gt;%T&amp;gt;%&lt;/code&gt;의 경우는 이러한 side effect(그림 등등)가 발생하는 발생한 후에 다시 원래 lhs로 복귀할 수 있게 해준다. &lt;code&gt;plot&lt;/code&gt; 뒤에 붙은 파이프라인의 경우 &lt;code&gt;%T&amp;gt;%&lt;/code&gt;앞의 lhs를 인자로 받는다.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;rnorm(200) %&amp;gt;%
+matrix(ncol = 2) %T&amp;gt;%
+plot %&amp;gt;% # plot usually does not return anything.
+colSums&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;../../note/2017-11-15-magrittr_files/figure-html/unnamed-chunk-9-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;## [1]  1.765235 -2.244304&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;exposition&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Exposition&lt;/h2&gt;
+&lt;p&gt;Exposition &lt;code&gt;%$%&lt;/code&gt;은 쉽게 말해 native R의 &lt;code&gt;with&lt;/code&gt; 명령어가 파이프 속에 들어 있다고 생각하면 된다.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;iris %&amp;gt;%
+  subset(Sepal.Length &amp;gt; mean(Sepal.Length)) %$%
+  cor(Sepal.Length, Sepal.Width)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 0.3361992&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;첫번째 파이프까지 끝나고 나면 &lt;code&gt;subset&lt;/code&gt;을 통해 data.frame이 생성된다. 이 데이터 프레임 내의 두 변수의 상관계수를 찾고자 한다. 위의 예를 그냥 통상적인 &lt;code&gt;%&amp;gt;%&lt;/code&gt;으로만 쓰고 싶다면 cor에 아래와 같이 써주면 된다.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;iris %&amp;gt;%
+  subset(Sepal.Length &amp;gt; mean(Sepal.Length)) %&amp;gt;%
+  { cor(.$Sepal.Length, .$Sepal.Width) }&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 0.3361992&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;code&gt;%$%&lt;/code&gt;는 위의 작업을 보다 직관적인 형태로 수행한다.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;footnotes&#34;&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id=&#34;fn1&#34;&gt;&lt;p&gt;tidyverse가 magrittr을 포괄하고 있는데 왜 두 번 로딩을 할까? 만일 앞서의 &lt;code&gt;install_github&lt;/code&gt;를 통해서 최신 패키지를 설치했다면 이 녀석은 tidyverse에 통합된 녀석과 다를 수도 있다. 최신 기능을 활용하기 위해서는 이렇게 순서를 다르게 패키지를 로딩하면 된다.&lt;a href=&#34;#fnref1&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&#34;fn2&#34;&gt;&lt;p&gt;출처는 &lt;a href=&#34;https://stackoverflow.com/questions/44528173/using-table-in-dplyr-chain&#34;&gt;여기&lt;/a&gt;다.&lt;a href=&#34;#fnref2&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+</description>
     </item>
     
     <item>
@@ -84,8 +2103,103 @@ library(tidyverse)library(&amp;#39;tidyverse&amp;#39;)위의 코드에서 둘 
       <pubDate>Fri, 03 Nov 2017 00:00:00 +0000</pubDate>
       
       <guid>/post/2017/11/03/sf-package-with-ggplot2/</guid>
-      <description>Motivation일반인이 지도로 할 수 있는 가장 쉬운 시각화는? 누구나 한번은 봤음직 한 단계구분도(cholopleth map)다. 이 작업을 직접 하기 위해 필요한 요소들부터 따져보자.
-지도를 그리기 위한 공간 데이터단계로 표현될 변수 (투표율, 소득 등등)1,2를 연결할 방법1,2를 지도로 구현할 방법상당히 직관적인 까닭에 단계구분도는 많이 활용된다. 하지막 막상 단계구분도를 생성하고자 할 때 작업이 그리 간단하지 않다. R로 이 작업을 어떻게 수행할 수 있을까? 단계구분도를 생성하는 것 자체가 그리 난이도가 높은 작업은 아니다.</description>
+      <description>&lt;div id=&#34;motivation&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Motivation&lt;/h1&gt;
+&lt;p&gt;일반인이 지도로 할 수 있는 가장 쉬운 시각화는? 누구나 한번은 봤음직 한 단계구분도(cholopleth map)다. 이 작업을 직접 하기 위해 필요한 요소들부터 따져보자.&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;지도를 그리기 위한 공간 데이터&lt;/li&gt;
+&lt;li&gt;단계로 표현될 변수 (투표율, 소득 등등)&lt;/li&gt;
+&lt;li&gt;1,2를 연결할 방법&lt;/li&gt;
+&lt;li&gt;1,2를 지도로 구현할 방법&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;상당히 직관적인 까닭에 단계구분도는 많이 활용된다. 하지막 막상 단계구분도를 생성하고자 할 때 작업이 그리 간단하지 않다. R로 이 작업을 어떻게 수행할 수 있을까? 단계구분도를 생성하는 것 자체가 그리 난이도가 높은 작업은 아니다. 오픈소스툴 답게 몇 가지 서로 다른 방법들이 R에 존재한다. 다만 이 작업을 일관되게, 즉 tidyverse의 틀 내에서 할 수 없을까?&lt;/p&gt;
+&lt;p&gt;한 가지 다른 문제도 있다. 사실 ggplot2에서 지도 데이터의 시각화가 생각 만큼 쉽게 구현되지는 않는다. 이는 대체로 지도 데이터를 구현하는 R 패키지의 데이터 표현 양식에서 비롯된다. 하지만 뜻이 있는 곳에 길이 있다고 하지 않는가!&lt;/p&gt;
+&lt;p&gt;이제 소개할 &lt;code&gt;sf&lt;/code&gt;패키지가 이러한 문제점을 해소하기 위해서 제작되었다.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;sf-package&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;&lt;code&gt;sf&lt;/code&gt; package&lt;/h1&gt;
+&lt;p&gt;sf는 ’simple feature’를 뜻한다. ’simple feature’는 실세계(real world)의 대상을 컴퓨터를 통해 어떻게 표현할지에 관한 표준이라고 한다.&lt;a href=&#34;#fn1&#34; class=&#34;footnoteRef&#34; id=&#34;fnref1&#34;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt; 자세한 내용을 적어봐야 밑지는 장사이니 이쯤에서 접어 두자. 문서의 설명에 따르면, R에서도 활용하는 공간 데이터베이스 및 라이브러리 그리고 표준이 대부분 sf와 호환되어 잘 작동한다. 단계구분도를 R을 통해 그려본 사람들은 알겠지만, 단계구분도 그리기 위해서는 방법에 따라 &lt;code&gt;sp&lt;/code&gt;, &lt;code&gt;rgdal&lt;/code&gt;, &lt;code&gt;rgeos&lt;/code&gt; 등의 패키지를 제각각 불러와야 하는 경우가 많다. &lt;code&gt;sf&lt;/code&gt;패키지를 쓰면 그럴 필요가 없다는 이야기다.&lt;a href=&#34;#fn2&#34; class=&#34;footnoteRef&#34; id=&#34;fnref2&#34;&gt;&lt;sup&gt;2&lt;/sup&gt;&lt;/a&gt; &lt;code&gt;sf&lt;/code&gt; 패키지로 할 수 있는 일이야 훨씬 많겠으나 단계구분도를 위해서 알아야 하는 건 몇 개 안된다. 글 앞에서 지적했던 네 가지 요소를 다시 챙겨보자.&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;지도 공간 데이터 (예를 들어, shp 파일)&lt;/li&gt;
+&lt;li&gt;단계로 표현할 변수&lt;/li&gt;
+&lt;li&gt;How?&lt;/li&gt;
+&lt;li&gt;How?&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;보통 R에서 shp 파일을 &lt;code&gt;sp&lt;/code&gt; 패키지를 통해 읽으면 꽤 복잡한 포맷으로 R에 기록된다. 데이터를 이해하고 필요한 것을 추출하기 위해서 한참 들여다 봐야 한다. 1, 2를 연결하기 위해서는 지도 공간 데이터를 R의 데이터프레임으로 풀어야 한다. &lt;code&gt;fortify&lt;/code&gt;라는 ggplot2의 함수를 써서 shp 파일의 데이터들을 data.frame으로 풀어낼 수 있다.&lt;a href=&#34;#fn3&#34; class=&#34;footnoteRef&#34; id=&#34;fnref3&#34;&gt;&lt;sup&gt;3&lt;/sup&gt;&lt;/a&gt; 하지만, 몇 가지 문제가 있다. 우선, &lt;code&gt;fortify&lt;/code&gt; 함수가 그리 직관적이지 않다. 쓰고도 뭔가 찜찜함이 남는 달까. &lt;code&gt;sf&lt;/code&gt; 패키지는 shp 파일의 지도 관련 데이터를 바로 data.frame으로 풀어준다. 이것만으로도 큰 도약이다.&lt;/p&gt;
+&lt;p&gt;이제 이렇게 지도 데이터가 data.frame으로 풀리면 3번이 자연스럽게 해소된다. 필요한 변수를 수집해서 &lt;code&gt;left_join&lt;/code&gt; 같은 명령어로 여기에 붙여주면 그만이다.&lt;/p&gt;
+&lt;p&gt;남은 것은 시각화인데, 편리하게도, &lt;code&gt;ggplot2&lt;/code&gt;의 베타버전에서 &lt;code&gt;geom_sf&lt;/code&gt;라는 문법을 통해서 sf 정보를 담고 있는 data.frame을 지도로 바로 쏴준다. 어이 없을 만큼 편리하다! 게다가 &lt;code&gt;ggplot2&lt;/code&gt;을 쓰는 만큼 손쉬운 커스터마이제이션이 가능하다.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;a-super-simple-example&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;A super simple example&lt;/h1&gt;
+&lt;p&gt;개념이야 아무리 떠들어봐야 소용없다. 보통 천조국 지도는 (서럽게도?) 패키지 안에 들어 있으니, 우리는 패키지에 포함되어 있지 않은 헬조선 지도로 몹시 간단한 사례를 하나 만들어 보자.&lt;/p&gt;
+&lt;div id=&#34;shp--&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;shp 파일 구하기&lt;/h2&gt;
+&lt;p&gt;고맙게도 shp 파일로 가지런히 만들어진 행정구역 파일을 &lt;a href=&#34;http://www.gisdeveloper.co.kr/?p=2332&#34;&gt;여기&lt;/a&gt;에서 구할 수 있다. 시도, 읍면동, 리까지 구할 수 있으니, 헬조선의 단계구분도를 그리는 데 크게 부족함은 없을 것이다. 일단 다운받아서 압축을 푼다.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;sf-&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;&lt;code&gt;sf&lt;/code&gt; 패키지&lt;/h2&gt;
+&lt;p&gt;필요한 패키지부터 설치/로딩하자.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;#install.packages(&amp;#39;sf&amp;#39;)
+#install.packages(&amp;#39;tidyverse&amp;#39;, dependencies = T)
+#devtools::install_github(&amp;quot;tidyverse/ggplot2&amp;quot;)
+library(&amp;#39;sf&amp;#39;)
+library(&amp;#39;tidyverse&amp;#39;)
+library(&amp;#39;ggplot2&amp;#39;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;최초 인스톨할 때 위의 주석(&lt;code&gt;#&lt;/code&gt;)은 빼고 돌려야 한다. 이미 인스톨되어 있다면 주석을 그대로 살려두면 된다.&lt;/p&gt;
+&lt;p&gt;다른 명령어들은 평범하지만, ggplot2의 경우 &lt;code&gt;geom_sf&lt;/code&gt;를 이용하기 위해서는 베타 버전을 인스톨해야 한다. 이미 인스톨되어 있더라도 그냥 &lt;code&gt;devtools&lt;/code&gt;를 써서 한번 더 인스톨 해주자. 어쨌든, 중요한 것은 잘 인스톨하고 잘 불러들이는 것이다.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;st_read(&amp;quot;YOUR_LOCATION/YOUR_SHPFILE.shp&amp;quot;) -&amp;gt; tdf &lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;code&gt;st_read&lt;/code&gt;는 적절한 위치(YOUR_LOCATION)에 있는 공간 파일(YOUR_SHPFILE.shp)을 로딩하기 위한 명령어다. 앞서 다운로드한 파일에서 읍면동에 해당하는 &lt;code&gt;TL_SCCO_EMD.shp&lt;/code&gt;파일을 로딩해 tdf라는 embedded data.frame를 생성했다. 이 data.frame의 컬럼은 4개다.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;Observations: 5,039
+Variables: 4
+$ EMD_CD     &amp;lt;fctr&amp;gt; 11110101, 11110102, 11110103, 11110104, 11110105, 11110106, 1...
+$ EMD_ENG_NM &amp;lt;fctr&amp;gt; Cheongun-dong, Singyo-dong, Gungjeong-dong, Hyoja-dong, Chang...
+$ EMD_KOR_NM &amp;lt;fctr&amp;gt; u&amp;lt;U+00BF&amp;gt;&amp;lt;U+ED7F&amp;gt;, &amp;lt;U+00BD&amp;gt;&amp;lt;U+0171&amp;gt;&amp;lt;U+00B3&amp;gt;&amp;lt;U+00B5&amp;gt;&amp;lt;U+00BF&amp;gt;, ...
+$ geometry   &amp;lt;simple_feature&amp;gt; MULTIPOLYGON (((953700.0221..., MULTIPOLYGON (((953...&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;code&gt;EMD_CD&lt;/code&gt;는 읍면동의 코드, &lt;code&gt;EMD_ENG_NM&lt;/code&gt;은 영문 이름, 그리고 &lt;code&gt;EMD_KOR_NM&lt;/code&gt;은 한글 이름이다. 마지막으로 &lt;code&gt;geometry&lt;/code&gt;는 simple feature로 해당 행정구역의 지도 모양을 (복잡한) 멀티폴리곤 데이터로 담고 있다. 이 녀석이 지도를 그릴 때 활용된다. data.frame의 용량이 커지는 것도 이 녀석 때문이다.&lt;/p&gt;
+&lt;p&gt;tdf 객체는 data.frame다. 데이터를 조작할 필요가 있으면 이 녀석 위에서 하면 된다. 위의 파일은 윈도에서 불러온 것인데, (언제나 그렇듯이 빌어먹을 마소의 고집 때문에 고통받는 헬조선 사람들의 고질적인 문제!) 인코딩 때문에 위에 보는 것처럼 한글 이름이 &lt;code&gt;&amp;lt;U+00BF&amp;gt;&lt;/code&gt;와 같이 바이트 코드로 노출되어 있다. 이걸 고쳐보자.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;tdf %&amp;gt;% 
+  as.tibble %&amp;gt;%
+  mutate( 
+    EMD_CD = as.character(EMD_CD), 
+    EMD_ENG_NM = as.character(EMD_ENG_NM),
+    EMD_KOR_NM = iconv(EMD_KOR_NM, localeToCharset(), &amp;quot;UTF-8&amp;quot;)
+  ) -&amp;gt; tdf_EMD&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;code&gt;tdf_EMD&lt;/code&gt;를 살펴보자.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;Classes ‘tbl_df’, ‘tbl’ and &amp;#39;data.frame&amp;#39;:   5039 obs. of  4 variables:
+ $ EMD_CD    : chr  &amp;quot;11110101&amp;quot; &amp;quot;11110102&amp;quot; &amp;quot;11110103&amp;quot; &amp;quot;11110104&amp;quot; ...
+ $ EMD_ENG_NM: chr  &amp;quot;Cheongun-dong&amp;quot; &amp;quot;Singyo-dong&amp;quot; &amp;quot;Gungjeong-dong&amp;quot; &amp;quot;Hyoja-dong&amp;quot; ...
+ $ EMD_KOR_NM: chr  &amp;quot;청운동&amp;quot; &amp;quot;신교동&amp;quot; &amp;quot;궁정동&amp;quot; &amp;quot;효자동&amp;quot; ...
+ $ geometry  :sfc_MULTIPOLYGON of length 5039; first list element: List of 1
+  ..$ :List of 1
+  .. ..$ : num [1:377, 1:2] 953700 953694 953691 953690 953688 ...
+  ..- attr(*, &amp;quot;class&amp;quot;)= chr  &amp;quot;XY&amp;quot; &amp;quot;MULTIPOLYGON&amp;quot; &amp;quot;sfg&amp;quot;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;마지막으로 단계구분도가 구현될 가상의 변수 하나를 만들어 관찰에 하나씩 붙여 보자. 헬조선 전체를 구현하기에는 용량이 좀 크다. 편의상 서울만 필터링하도록 하겠다. 지도 코드에서 앞 두자리가 &lt;span class=&#34;math inline&#34;&gt;\(11\)&lt;/span&gt;로 시작하는 것이 서울이다. 물론, 실제 구현에서는 그리고 싶은 지역에 구현하고 싶은 데이터를 구해서 이런 저런 추가 작업 후에 붙이면 되겠다. 여기서는 uniform 랜덤을 생성해서 몹시 성의 없이 갖다 붙였다.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;tdf_EMD %&amp;gt;% 
+  filter(substr(EMD_CD, start = 1, stop = 2) == &amp;quot;11&amp;quot;) %&amp;gt;% 
+  mutate(index_rnd = runif(n())) -&amp;gt; tdf_seoul &lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;visualization-with-ggplot2&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;visualization with ggplot2&lt;/h2&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;ggplot(tdf_seoul) + 
+  geom_sf(aes(fill = index_rnd))&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;../../post/2017-11-03-sf_ggplot2_files/figure-html/unnamed-chunk-3-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;너무나 간단하지 않은가! 이후에는 취향에 맞게 ggplot2의 문법을 따라서 컬러, 라벨링, 경계선 두께 등을 조정하면 된다. Voila!&lt;/p&gt;
+&lt;hr /&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;reference&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Reference&lt;/h1&gt;
+&lt;p&gt;&lt;a href=&#34;http://strimas.com/r/tidy-sf/&#34; class=&#34;uri&#34;&gt;http://strimas.com/r/tidy-sf/&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;footnotes&#34;&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id=&#34;fn1&#34;&gt;&lt;p&gt;자세한 내용은 &lt;a href=&#34;https://en.wikipedia.org/wiki/Simple_Features&#34;&gt;여기&lt;/a&gt;를 참고하라.&lt;a href=&#34;#fnref1&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&#34;fn2&#34;&gt;&lt;p&gt;자세한 내용은 &lt;a href=&#34;https://cran.r-project.org/web/packages/sf/vignettes/sf1.html&#34;&gt;여기&lt;/a&gt;를 참고하라.&lt;a href=&#34;#fnref2&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&#34;fn3&#34;&gt;&lt;p&gt;&lt;a href=&#34;https://www.rdocumentation.org/packages/ggplot2/versions/2.2.1/topics/fortify&#34;&gt;여기&lt;/a&gt;를 보면 &lt;code&gt;fortify&lt;/code&gt;는 곧 사라질 명령어이며 &lt;code&gt;broom&lt;/code&gt; 패키지를 대신 쓸 것을 권하고 있다.&lt;a href=&#34;#fnref3&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+</description>
     </item>
     
     <item>
@@ -94,9 +2208,127 @@ library(tidyverse)library(&amp;#39;tidyverse&amp;#39;)위의 코드에서 둘 
       <pubDate>Mon, 30 Oct 2017 00:00:00 +0000</pubDate>
       
       <guid>/post/2017/10/30/regression-modelling-with-tidyverse/</guid>
-      <description>tidyverse로 묶인 패키지 군에 대한 찬미는 뭐 이제… 이번 포스팅에서는 modelr, broom, purrr을 통해서 ‘유연하게’(MB말투로는 “스마아~트하게”) 회귀분석하는 방법을 간략하게 끄적이겠다.
-Unconventional data.framedata.frame에는 데이터만 들어갈 수 있을까? 아니다! data.frame을 엑셀 시트처럼만 생각하면 data.frame에게 송구할 일이다. data.frame 안에는 마트로쉬카 인형처럼 또다른 data.frame을 넣을 수 있다. H. Wickham은 이를 “nested data.frame”이라고 부른다.
-data.frame 뿐일까! 사실 R의 다른 객체들도 셀 안에 넣을 수 있다. 이 장점을 살리면, 필요한 데이터에 대한 필요한 모델을 유연하게 생성할 수 있다.</description>
+      <description>&lt;p&gt;&lt;code&gt;tidyverse&lt;/code&gt;로 묶인 패키지 군에 대한 찬미는 뭐 이제… 이번 포스팅에서는 &lt;code&gt;modelr&lt;/code&gt;, &lt;code&gt;broom&lt;/code&gt;, &lt;code&gt;purrr&lt;/code&gt;을 통해서 ‘유연하게’(MB말투로는 “스마아~트하게”) 회귀분석하는 방법을 간략하게 끄적이겠다.&lt;/p&gt;
+&lt;div id=&#34;unconventional-data.frame&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Unconventional &lt;code&gt;data.frame&lt;/code&gt;&lt;/h1&gt;
+&lt;p&gt;data.frame에는 데이터만 들어갈 수 있을까? 아니다! data.frame을 엑셀 시트처럼만 생각하면 data.frame에게 송구할 일이다. data.frame 안에는 마트로쉬카 인형처럼 또다른 data.frame을 넣을 수 있다. H. Wickham은 이를 “nested data.frame”이라고 부른다.&lt;/p&gt;
+&lt;p&gt;data.frame 뿐일까! 사실 R의 다른 객체들도 셀 안에 넣을 수 있다. 이 장점을 살리면, 필요한 데이터에 대한 필요한 모델을 유연하게 생성할 수 있다.&lt;/p&gt;
+&lt;p&gt;일단, 필요한 라이브러리를 불러오자.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyverse)
+library(modelr)
+library(broom)
+library(gapminder)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;편의상 네이티브 data.frame 대신 tidyverse의 data.frame 대체물인 &lt;code&gt;tibble&lt;/code&gt;을 쓰도록 하겠다. 여기서 활용할 &lt;code&gt;gapminder&lt;/code&gt; 데이터 셋은 각국의 기대 수명과 각종 변수들을 담고 있다. 데이터 셋의 대략적인 생김새는 아래와 같다. 각각의 컬럼은 국가, 대륙, 년도, 기대 수명, 인구, 그리고 1인당 GDP를 나타낸다.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;data(gapminder) 
+gapminder&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 1,704 x 6
+##        country continent  year lifeExp      pop gdpPercap
+##         &amp;lt;fctr&amp;gt;    &amp;lt;fctr&amp;gt; &amp;lt;int&amp;gt;   &amp;lt;dbl&amp;gt;    &amp;lt;int&amp;gt;     &amp;lt;dbl&amp;gt;
+##  1 Afghanistan      Asia  1952  28.801  8425333  779.4453
+##  2 Afghanistan      Asia  1957  30.332  9240934  820.8530
+##  3 Afghanistan      Asia  1962  31.997 10267083  853.1007
+##  4 Afghanistan      Asia  1967  34.020 11537966  836.1971
+##  5 Afghanistan      Asia  1972  36.088 13079460  739.9811
+##  6 Afghanistan      Asia  1977  38.438 14880372  786.1134
+##  7 Afghanistan      Asia  1982  39.854 12881816  978.0114
+##  8 Afghanistan      Asia  1987  40.822 13867957  852.3959
+##  9 Afghanistan      Asia  1992  41.674 16317921  649.3414
+## 10 Afghanistan      Asia  1997  41.763 22227415  635.3414
+## # ... with 1,694 more rows&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;이제 모델링 작업 들어간다.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;tribble(~funcs,  ~models,       ~dat,
+        glm,    &amp;quot;lifeExp ~ gdpPercap&amp;quot;,   gapminder,
+        glm,    &amp;quot;log(lifeExp) ~ log(gdpPercap)&amp;quot;,   gapminder,
+        lm,     &amp;quot;log(lifeExp) ~ log(gdpPercap)&amp;quot;,   filter(gapminder, continent == &amp;quot;Asia&amp;quot;), 
+        lm,     &amp;quot;log(lifeExp) ~ log(gdpPercap)&amp;quot;,   filter(gapminder, continent == &amp;quot;Africa&amp;quot;),
+        lm,     &amp;quot;log(lifeExp) ~ continent + log(gdpPercap)&amp;quot;,   gapminder
+) -&amp;gt; my_model_gapminder
+
+my_model_gapminder&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 5 x 3
+##    funcs                                    models                  dat
+##   &amp;lt;list&amp;gt;                                     &amp;lt;chr&amp;gt;               &amp;lt;list&amp;gt;
+## 1  &amp;lt;fun&amp;gt;                       lifeExp ~ gdpPercap &amp;lt;tibble [1,704 x 6]&amp;gt;
+## 2  &amp;lt;fun&amp;gt;             log(lifeExp) ~ log(gdpPercap) &amp;lt;tibble [1,704 x 6]&amp;gt;
+## 3  &amp;lt;fun&amp;gt;             log(lifeExp) ~ log(gdpPercap)   &amp;lt;tibble [396 x 6]&amp;gt;
+## 4  &amp;lt;fun&amp;gt;             log(lifeExp) ~ log(gdpPercap)   &amp;lt;tibble [624 x 6]&amp;gt;
+## 5  &amp;lt;fun&amp;gt; log(lifeExp) ~ continent + log(gdpPercap) &amp;lt;tibble [1,704 x 6]&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;code&gt;my_model_gapminder&lt;/code&gt;는 어떤 형태의 tibble일까? 먼저 &lt;code&gt;funcs&lt;/code&gt; 컬럼은 돌릴 (회귀)분석 방법이 담겨 있다. 쿼테이션 마크가 없음에 유의하자. 스트링이 아니라는 이야기다. &lt;code&gt;glm&lt;/code&gt;, &lt;code&gt;lm&lt;/code&gt; 등의 함수가 바로 들어가 있다. &lt;code&gt;models&lt;/code&gt; 칼럼은 분석 모형을 담고 있다. 마지막으로 dat는 해당 모델의 추정에 사용될 데이터셋을 의미한다. 보시면, 3, 4 모델에서는 각기 “Asia”와 “Africa” 대륙만 필터링한 데이터를 추정에 활용했음을 알 수 있다.&lt;/p&gt;
+&lt;p&gt;이런 형태가 왜 좋을까? &lt;code&gt;my_model_gapminder&lt;/code&gt;을 들여다보고 있으면 대충 감이 온다. 행 단위로 보면, funcs의 (회귀)분석 방법을 사용하되, arguments로 각각 models와 dat를 넣겠다는 의도다. 이 일만 구현해주면 된다. 즉, &lt;code&gt;my_model_gapminder&lt;/code&gt;은 일종의 modelling set인 셈이다.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;modelr&lt;/code&gt;패키지의 함수 &lt;code&gt;fit_with&lt;/code&gt;를 쓰면 이 작업을 간단하게 구현할 수 있다. &lt;code&gt;fit_with&lt;/code&gt;는 input arguments로 (분석) 함수, 모델, 그리고 데이터를 받는다. 위에서 만든 &lt;code&gt;my_model_gapminder&lt;/code&gt;의 매 열이 &lt;code&gt;fit_with&lt;/code&gt;의 arguments로 들어간다. 이렇게 3개 이상의 input이 있을 경우 &lt;code&gt;purrr&lt;/code&gt; 패키지의 &lt;code&gt;pmap&lt;/code&gt; 함수를 쓰면 된다.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;my_model_gapminder %&amp;gt;% 
+  mutate(fit = flatten(pmap(.l = list(.f = funcs, .formulas = models, data = dat), 
+                            .f = modelr::fit_with)))&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 5 x 4
+##    funcs                                    models                  dat
+##   &amp;lt;list&amp;gt;                                     &amp;lt;chr&amp;gt;               &amp;lt;list&amp;gt;
+## 1  &amp;lt;fun&amp;gt;                       lifeExp ~ gdpPercap &amp;lt;tibble [1,704 x 6]&amp;gt;
+## 2  &amp;lt;fun&amp;gt;             log(lifeExp) ~ log(gdpPercap) &amp;lt;tibble [1,704 x 6]&amp;gt;
+## 3  &amp;lt;fun&amp;gt;             log(lifeExp) ~ log(gdpPercap)   &amp;lt;tibble [396 x 6]&amp;gt;
+## 4  &amp;lt;fun&amp;gt;             log(lifeExp) ~ log(gdpPercap)   &amp;lt;tibble [624 x 6]&amp;gt;
+## 5  &amp;lt;fun&amp;gt; log(lifeExp) ~ continent + log(gdpPercap) &amp;lt;tibble [1,704 x 6]&amp;gt;
+## # ... with 1 more variables: fit &amp;lt;list&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;앞서 만든 &lt;code&gt;my_model_gapminder&lt;/code&gt;에 fit이라는 컬럼을 새로 붙였다. fit 안에는 회귀분석의 결과물이 통채로 담기게 된다. 이렇게 해두면 해당 결과물을 꺼내 예측을 하는 데 쓰거나 그림을 그리거나 하는 등 필요에 따라 손쉽게 활용할 수 있다. fit의 파라미터들의 추정치과 p-값을 정리해서 보고 싶다면 다음과 같이 작업하면 된다.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;my_format &amp;lt;- function(x){sprintf(&amp;quot;%0.3f&amp;quot;, x)}
+my_model_gapminder %&amp;gt;% 
+  mutate(fit = flatten(pmap(.l = list(.f = funcs, .formulas = models, data = dat), 
+                            .f = modelr::fit_with))) %&amp;gt;% 
+  .$fit %&amp;gt;% 
+  map_dfr(tidy, .id = &amp;quot;models&amp;quot;) %&amp;gt;% 
+  mutate_if(is.numeric, my_format) -&amp;gt; res1
+
+res1&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##    models              term estimate std.error statistic p.value
+## 1       1       (Intercept)   53.956     0.315   171.290   0.000
+## 2       1         gdpPercap    0.001     0.000    29.658   0.000
+## 3       2       (Intercept)    2.864     0.023   123.017   0.000
+## 4       2    log(gdpPercap)    0.147     0.003    51.945   0.000
+## 5       3       (Intercept)    3.196     0.051    63.247   0.000
+## 6       3    log(gdpPercap)    0.109     0.006    17.608   0.000
+## 7       4       (Intercept)    3.070     0.054    56.813   0.000
+## 8       4    log(gdpPercap)    0.111     0.007    14.943   0.000
+## 9       5       (Intercept)    3.062     0.026   117.692   0.000
+## 10      5 continentAmericas    0.133     0.011    12.519   0.000
+## 11      5     continentAsia    0.110     0.009    12.037   0.000
+## 12      5   continentEurope    0.166     0.012    14.357   0.000
+## 13      5  continentOceania    0.152     0.029     5.187   0.000
+## 14      5    log(gdpPercap)    0.112     0.004    31.843   0.000&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;code&gt;broom&lt;/code&gt; 패키지의 &lt;code&gt;tidy&lt;/code&gt; 함수는 복잡한 개체들로 구성된 대상을 tibble로 손쉽게 정리해주는 역할을 한다.&lt;a href=&#34;#fn1&#34; class=&#34;footnoteRef&#34; id=&#34;fnref1&#34;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;lazy-application&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Lazy application&lt;/h1&gt;
+&lt;p&gt;간단한 응용으로 각 terms들의 신뢰구간을 뽑아보도록 하자. 일단, 95%의 신뢰구간은 아래와 같이 간단하게 생성할 수 있다. &lt;code&gt;confint&lt;/code&gt; 함수를 쓰면 되지만, 신뢰구간을 tibble로 만들어 주기 위해서 &lt;code&gt;broom&lt;/code&gt;패키지에 포함된 &lt;code&gt;confint_tidy&lt;/code&gt;를 쓰면 된다. 게으른 응용이므로 추가는 생략한다.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;my_model_gapminder %&amp;gt;% 
+  mutate(fit = flatten(pmap(.l = list(.f = funcs, .formulas = models, data = dat), 
+                            .f = modelr::fit_with))) %&amp;gt;% 
+  .$fit %&amp;gt;% 
+  map_dfr(confint_tidy, .id = &amp;quot;models&amp;quot;) %&amp;gt;% 
+  mutate_if(is.numeric, my_format) %&amp;gt;% 
+  mutate(term = res1$term) %&amp;gt;% 
+  select(models, term, everything())&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##    models              term conf.low conf.high
+## 1       1       (Intercept)   53.338    54.573
+## 2       1         gdpPercap    0.001     0.001
+## 3       2       (Intercept)    2.819     2.910
+## 4       2    log(gdpPercap)    0.141     0.152
+## 5       3       (Intercept)    3.096     3.295
+## 6       3    log(gdpPercap)    0.097     0.121
+## 7       4       (Intercept)    2.964     3.176
+## 8       4    log(gdpPercap)    0.096     0.125
+## 9       5       (Intercept)    3.011     3.113
+## 10      5 continentAmericas    0.112     0.154
+## 11      5     continentAsia    0.092     0.128
+## 12      5   continentEurope    0.143     0.189
+## 13      5  continentOceania    0.095     0.210
+## 14      5    log(gdpPercap)    0.105     0.119&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div class=&#34;footnotes&#34;&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id=&#34;fn1&#34;&gt;&lt;p&gt;&lt;code&gt;tidy&lt;/code&gt; 명령어는 회귀분석 객체를 위에 보는 것처럼 tibble로 깔끔하게 정리한다. &lt;code&gt;broom&lt;/code&gt; 패키지는 모델의 분석 결과를 data.frame으로 가공해 활용도를 높이자는 취지를 갖고 있다. 보통 R의 경우 분석의 결과물들이 list의 복잡한 형태로 산출된다. R의 데이터 구조를 아주 잘 안다면 모를까, 그렇지 않은 사람들에게는 꽤 골치아픈 대목의 하나인데, &lt;code&gt;broom&lt;/code&gt;은 이러한 불편함을 해소한다. 말 그대로 빗자루의 역할을 하는 패키지다. &lt;a href=&#34;https://cran.r-project.org/web/packages/broom/vignettes/broom.html&#34;&gt;여기&lt;/a&gt;서 한번 둘러보기를 권한다.&lt;a href=&#34;#fnref1&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+</description>
     </item>
     
     <item>
@@ -105,8 +2337,87 @@ data.frame 뿐일까! 사실 R의 다른 객체들도 셀 안에 넣을 수 있�
       <pubDate>Mon, 02 Oct 2017 00:00:00 +0000</pubDate>
       
       <guid>/post/2017/10/02/how-to-manage-your-personal-project/</guid>
-      <description>Prologue코딩을 잘하는 것도 아니고 많이 하는 것도 아니고 그래서 많이 아는 것도 아니다. 하지만, 그 별 것 아닌 일도 하게 될 때 가장 고민스러운 대목은 다음의 두가지다.
-문제해결작업의 연속성아주 거대하고 어려운 문제가 아니라면 첫번째는 시간을 부으면 어떻게든 해결은 된다. 물론, 내 경우 능력이 부족해서 언제나 우아하게 해결되지 않은 경우가 많기는 하지만… 해결 이후 많이 하게 되는 고민은 일정 시간이 지니고 잊게 된다는 슬픈 사실이다. 해결의 열기와 집중은 시간이 지나면 가시기 마련이다.</description>
+      <description>&lt;div id=&#34;prologue&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Prologue&lt;/h1&gt;
+&lt;p&gt;코딩을 잘하는 것도 아니고 많이 하는 것도 아니고 그래서 많이 아는 것도 아니다. 하지만, 그 별 것 아닌 일도 하게 될 때 가장 고민스러운 대목은 다음의 두가지다.&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;문제해결&lt;/li&gt;
+&lt;li&gt;작업의 연속성&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;아주 거대하고 어려운 문제가 아니라면 첫번째는 시간을 부으면 어떻게든 해결은 된다. 물론, 내 경우 능력이 부족해서 언제나 우아하게 해결되지 않은 경우가 많기는 하지만… 해결 이후 많이 하게 되는 고민은 일정 시간이 지니고 잊게 된다는 슬픈 사실이다. 해결의 열기와 집중은 시간이 지나면 가시기 마련이다. 한마디로 ’어제의 나’를 ’오늘의 나’로 온전히 데려오지 못하는 것이다. 정말로 어제-오늘 간격이라면 크게 걱정할 필요가 없고 일주일 정도도 괜찮을 것 같다. 하지만, 3개월이라면? 6개월이라면? 더 안 좋은 경우도 있다. 프로젝트/연구가 길어서 한달 정도 걸린다고 하자. 달 끝에 달 초에 한 것을 소환하고 싶다! 하지만 안타깝게도 잘 기억이 잘 나지 않을지 모른다.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;-&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;문서화의 딜레마&lt;/h1&gt;
+&lt;p&gt;이럴 때 필요한 것이 문서화다. 문서화 작업은 꼭 협업에만 필요한 것은 아니다. 혼자 일할 때도 문서화 는 필요하다. 오히려 더 절실히 필요할지도 모르겠다. 그런데, 문서화 작업은 일종의 ‘무한회귀’의 문제를 낳을 때가 있다. 아마도 스터디노트 같은 것은 만들어본 분이라면 정도의 차이는 있겠지만 비슷한 것을 느껴보았을 것이다. 어떤 코드/내용을 설명하기 위해 문서화를 했다고 하자. 그런데, 문서의 양과 종류가 많아지면서 이 문서에 대한 문서가 필요하게 된다. 이렇듯 많은 경우 ’메타’ 문서의 증식을 막기 쉽지 않고, 그 와중에 길을 잃기 십상이다.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;---&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;(개인적) 프로젝트 관리의 필요성&lt;/h1&gt;
+&lt;p&gt;그래서 필요한 게 프로젝트 관리도구이다. 모두가 소통할 수 있는 방식으로 common knowledge를 정하고 이 틀 아래에서 작업하는 것이다. 어떤 프로젝트인지 조직의 성격이 어떤 것인지에 따라서 여러가지 선택지들이 있고, 이 문제는 여기서 다룰 문제는 아니 옆으로 치워두자. 일단 &lt;code&gt;R&lt;/code&gt;을 기반으로 프로젝트/연구를 한다고 가정하겠다. 필요한 요소가 무엇일까? 대충 생각나는대로 적어보자면,&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;수집한 원 데이터의 보관&lt;/li&gt;
+&lt;li&gt;원 데이터의 정리(munging; 발음은 “먼징”이다. 동사의 발음은 “먼지”다!)&lt;/li&gt;
+&lt;li&gt;2의 과정에서 동원된 코드의 보관 및 적절한 해설&lt;/li&gt;
+&lt;li&gt;필요한 연구 주제를 탐구하기 위한 코드들 및 비주얼라이제이션 결과물들&lt;/li&gt;
+&lt;li&gt;연구 주제에 필요한 참고 문헌&lt;/li&gt;
+&lt;li&gt;최종 리포트&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;일단 이정도가 떠오른다. 이 정도의 내용들이 이력관리가 가능하면서 가급적 빠른 ’회상’이 가능하다면 좋을 것이다. 일단, 이력관리에 관한한 git을 뛰어넘은 도구가 없으니 이 대목은 넘어가도록 하자.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;package-projecttemplate&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Package &lt;code&gt;ProjectTemplate&lt;/code&gt;&lt;/h1&gt;
+&lt;p&gt;나도 이런 요구를 어느 정도라도 만족시키는 툴 혹은 패키지가 있을까 싶었고 많이 찾았고 이것저것 많이 해보기도 했다. 최근에서야 아주 괜찮은 R 패키지를 만나게 되었다.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://projecttemplate.net&#34;&gt;Project Template&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;이 페키지를 (개인) 프로젝트 관리를 간단하고 비교적 완벽하게 지원한다. 패키지를 시작하는 흐름은 다음과 같다.&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;패키지 설치&lt;/li&gt;
+&lt;li&gt;프로젝트 생성&lt;/li&gt;
+&lt;li&gt;설치후 필요한 커스터마이즈&lt;/li&gt;
+&lt;li&gt;패키지 로드 후 작업&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;패키지 설치는 통상적으로 아래와 같이 그냥 하면 된다.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;install.packages(&amp;#39;ProjectTemplate&amp;#39;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;라이브러리를 로드하고 이후 프로젝트 생성은 프로젝트가 떨어졌으면 하는 위치에 작업 폴더를 맞추고 아래의 명령을 실행한다.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(&amp;#39;ProjectTemplate&amp;#39;)
+create.project(&amp;#39;letters&amp;#39;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;이후 letters라는 하위 폴더 안에 다음과 같은 구조의 폴더가 생성된다.&lt;/p&gt;
+&lt;div class=&#34;figure&#34;&gt;
+&lt;img src=&#34;http://projecttemplate.net/directories.png&#34; /&gt;
+
+&lt;/div&gt;
+&lt;hr /&gt;
+&lt;p&gt;각 폴더의 역할에 대해서는 &lt;a href=&#34;http://projecttemplate.net/architecture.html&#34;&gt;여기&lt;/a&gt;를 참고하면 되겠다. 일단, 주요한 폴더에 대해서만 설명해보자.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;config&lt;/code&gt;: 프로젝트 설정을 다룬다. 예를 들어, 시작시 라이브러리를 로드할 것인지 등등을 세세하게 설정할 수 있다.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;cache&lt;/code&gt;: 작업 과정에서 활용되는 중간재(데이터, 코드등) 중에서 미리 로드될 내용들을 넣는다.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;munge&lt;/code&gt;: 데이터 다루기에서 가장 중요한 데이터 정리 과정의 코드 및 문서를 넣는다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;대충 시험삼아 테스트 프로젝트를 시험해 해보았다. 아래와 같은 프로세스로 손쉽게 프로젝트를 생성하고 관리할 수 있었다.&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;&lt;code&gt;config&lt;/code&gt;를 적절하게 설정한다.&lt;/li&gt;
+&lt;li&gt;원자료를 구해서 &lt;code&gt;data&lt;/code&gt; 폴더에 적절하게 박아 넣는다.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;munge&lt;/code&gt; 폴더에 데이터 정리 코드를 넣는다.&lt;/li&gt;
+&lt;li&gt;정리된 중간 데이터 및 함수가 생성되면 &lt;code&gt;cache&lt;/code&gt;에 넣는다.&lt;/li&gt;
+&lt;li&gt;아직 미숙한 연구 질문 따위를 &lt;code&gt;tests&lt;/code&gt;를 통해서 이렇게 저렇게 시험해본다.&lt;/li&gt;
+&lt;li&gt;방향이 확실하게 정해지면 &lt;code&gt;src&lt;/code&gt;를 통해 코드 작업을 진행한다.&lt;/li&gt;
+&lt;li&gt;코드가 안정화되고 완성되고 흥미로운 결과가 발견되면 &lt;code&gt;reports&lt;/code&gt;를 통해 작업한다.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;이런 흐름으로 작업할 수 있겠다. 역시 상세한 내용은 앞서 링크한 프로젝트의 홈페이지를 읽어보시면 되겠다. 혹시 해당 구조가 너무 중후장대하다고 생각된다면, 패키지는 앞서의 구조보다 경파한 세팅도 지원한다.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;create.project(minimal = TRUE)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;이렇게 프로젝트를 생성하면, 아래와 같이 최소 폴더들만 생성된다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;cache/&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;config/&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;data/&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;munge/&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;src/&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;README&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div id=&#34;---&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;다른 대안 및 장점&lt;/h2&gt;
+&lt;p&gt;사실 RStudio 안에는 프로젝트 생성 기능이 포함되어 있다. 그런데, 써본 분들은 알겠지만 다소 직관적이지 않고, RStudio가 반드시 필요하다. 반면, &lt;code&gt;ProjectTemplate&lt;/code&gt; 패키지는 의존성도 없을 뿐 아니라, 훨씬 더 직관적이고 직접적이다.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
     </item>
     
   </channel>
