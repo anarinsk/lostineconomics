@@ -1,5 +1,5 @@
 ---
-title: "Mobile Game Market, part I"
+title: "Mobile Game Market of Y2017, part I"
 author: "Junsok Huhh"
 date: '2018-01-03'
 tags: ['R', 'economics', 'mobile-game', 'gini-coefficient']
