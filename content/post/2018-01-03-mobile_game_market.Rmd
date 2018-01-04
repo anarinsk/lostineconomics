@@ -45,7 +45,6 @@ font_add("square", regular = "fonts/NanumSquareR.otf")
 [^out]: "나는 Aㅇㅇ 서비스는 못 믿어!," 라고 하는 분들은 여기서 페이지를 닫으시라. 
 
 
-
 ```{r message=FALSE, warning=FALSE, echo=FALSE,  paged.print=FALSE}
 tdf %.>% 
   filter(., year == "2017") %.>% 
@@ -61,7 +60,7 @@ tdf %.>%
 
 시장 전체는 어땠을까? 2017년만 봐서는 알 수 없으니 내친 김에 앱애니 데이터가 모인 2012년부터 살펴보자. 
 
-```{r echo=FALSE, message=FALSE, warning=FALSE, fig.align='center', fig.height=4, fig.width=8, fig.show='asis', fig.showtext=T,  fig.retina=1}
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.showtext=TRUE, fig.align='center', fig.height=4, fig.width=8, fig.show='asis', fig.retina=1}
 # Yearly growth 
 p1
 ```
@@ -70,14 +69,14 @@ p1
 
 [^caution]: Aㅇㅇ 서비스는 2012년에 서비스를 시작했다. 이떄는 여러가지로 데이터도 부족했기 때문에 성장률로는 2012년에서 2013년이 200%가 넘는 수준이지만 이 시기는 성장률 계산에서 제외했다. 2012년을 전부 뺄까도 생각했지만 보는 사람이 감안하고 보는 편이 낫겠거니 싶어 그냥 두었다. 
 
-```{r echo=FALSE, message=FALSE, warning=FALSE, fig.align='center', fig.height=4, fig.width=8, fig.show='asis', fig.showtext=T,  fig.retina=1}
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.showtext=TRUE, fig.align='center', fig.height=4, fig.width=8, fig.show='asis', fig.retina=1}
 # donut chart 
 p3
 ```
 
 4년 동안 형성된 시장 총액을 지역별로 표시했다. 모바일은 "Asia First"다. 한중일을 합치면 시장 점유율이 50% 이상이다. "왕자영요", "몽환서유" 같은 엄청난 히트작이 나온 중국 시장이지만, 아직은 일본 시장이 더 두텁다. 다만 중국의 빠른 성장율을 고려할 때 2--3년 내에 세계 최대 시장으로 부상하게 될 것이다. 국가별 매출 변화의 추이는 다음의 그림과 같다. 
 
-```{r echo=FALSE, message=FALSE, warning=FALSE, fig.align='center', fig.height=4, fig.width=8, fig.show='asis', fig.showtext=T,  fig.retina=1}
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.showtext=TRUE, fig.align='center', fig.height=4, fig.width=8, fig.show='asis', fig.retina=1}
 #
 p4
 ```
@@ -94,7 +93,7 @@ p4
 
 지니 계수는 두 가지 자료에 대해 계산해 볼 예정이다. 해당 연도의 총매출의 지니 계수는 기본이다. 그런데 모든 게임이 1월 1일부터 서비스되지는 않을 것이고, 연중 나오는 게임도 있을 것이다. 이런 게임들에게 불이익을 주지 않기 위해서 당해 연도 매출을 당해 연도의 서비스 일수로 나눈 일간평균매출(Average Revenue Per Day: ARPD)라는 조작 지표를 도입할 예정이다. 다만 게임의 경우 초반에 매출이 압도적으로 높게 나오기 때문에 해당 연도에 서비스된 일수가 충분하지 않은 게임들을 제외했다. 대략, 어림잡아서 서비스된 일수가 1년의 1/3 쯤에 해당하는 122일에 미치지 못하는 게임들이 제외 대상이다. 
 
-```{r echo=FALSE, message=FALSE, warning=FALSE, fig.align='center', fig.height=3, fig.width=8, fig.show='asis', fig.showtext=T,  fig.retina=1}
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.showtext=TRUE, fig.align='center', fig.height=3, fig.width=8, fig.show='asis', fig.retina=1}
 # donut chart 
 p2
 ```
@@ -103,21 +102,21 @@ p2
 
 [^gini]: 지니 계수에 대해서 간략하게 해설하겠다. 쉽게 말해 일정한 분포를 지닌 수치열의 불평등도를 계산하는 것이다. 0에 가까울수록 평등하고 1에 가까울수록 불평등하다. 즉, 0.7 정도 되면 꽤나 높은 정도로 불평등한 것이다. 
 
-```{r echo=FALSE, message=FALSE, warning=FALSE, fig.align='center', fig.height=4, fig.width=8, fig.show='asis', fig.showtext=T,  fig.retina=1}
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.showtext=TRUE, fig.align='center', fig.height=4, fig.width=8, fig.show='asis', fig.retina=1}
 # donut chart 
 p5
 ```
 
 국가별로 지니 계수의 변동을 보자. 일본과 이외 국가들은 하향하는 추세이며 미국은 비슷한 수준을 유지하는 것으로 추측된다. 중국은 상향추세이다. 한국은 다소 미묘하다. 2012년 자료의 부정확성을 감안하면 대략 0.68--0.7 사이를 유지하다가, 2017년에는 크게 높아졌다. 이는 2017년 하반기에 출시된 엔씨소프트의 "리니지M" 때문에 발생한 것이다. 물론 2012년에서 2013년으로 건너오면서 한국의 모바일 게임 시장이 넷마블을 중심으로 재편되었기 떄문에 지니계수의 상승이 그럴 듯한 이야기처럼 느껴지기는 한다. 아울러, ARPD 역시 상승하는 추세라는 점을 함께 고려하면, 잘되는 게임이 더 잘되는 추세가 작용하고 있다고 조심스럽게 말할 수 있다.
 
-```{r echo=FALSE, message=FALSE, warning=FALSE, fig.align='center', fig.height=4, fig.width=8, fig.show='asis', fig.showtext=T,  fig.retina=1}
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.showtext=TRUE, fig.align='center', fig.height=4, fig.width=8, fig.show='asis', fig.retina=1}
 #
 p6
 ```
 
 산업집중도를 표시하는 H-H지수를 살펴보자. 대략, 0.15 값을 기준으로 이것보다 낮으면 경쟁적이라고 판단하고 0.15보다 높을수록 집중도가 높다고 판단한다. 일본은 매우 높은 집중도를 보이다가 최근들어 경쟁적인 환경으로 변했다. 중국은 경쟁이 치열해졌다는 것을 쉽게 확인할 수 있다. 한국의 경우 비교적 경쟁적인 환경을 유지하다가 2017년에 갑자기 상승했음을 알 수 있다. 이 역시 "리니지M"의 효과이기 때문에 집중도가 높아지는 것이 경향인지 판단하려면 앞으로 1~2년 후의 추이를 더 지켜봐야 할 것이다. 
 
-```{r echo=FALSE, message=FALSE, warning=FALSE, fig.align='center', fig.height=4, fig.width=8, fig.show='asis', fig.showtext=T,  fig.retina=1}
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.showtext=TRUE, fig.align='center', fig.height=4, fig.width=8, fig.show='asis', fig.retina=1}
 #
 p7
 p8
