@@ -17,10 +17,9 @@ library(ineq)
 library(knitr)
 library(showtext)
 library(here)
+
 load("data/2018-01-03_document.RData") 
 font_add("square", regular = "fonts/NanumSquareR.otf")
-#load(here::here("NC_Project", "2017", "document", "data", "document.RData") )
-#font_add("square", regular = here::here("NC_Project", "2017", "document", "fonts", "NanumSquareR.otf"))
 ```
 
 # tl; dr 
