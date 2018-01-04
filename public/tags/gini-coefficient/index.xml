@@ -18,8 +18,7 @@
 &lt;h1&gt;tl; dr&lt;/h1&gt;
 &lt;ol style=&#34;list-style-type: decimal&#34;&gt;
 &lt;li&gt;무서운 성장세로 보면 모바일 게임이 이제 대세다!&lt;/li&gt;
-&lt;li&gt;중국 모바일 게임 시장은 이미 세계 최대!&lt;br /&gt;
-&lt;/li&gt;
+&lt;li&gt;일본 시장이 아직은 짱짱맨!&lt;/li&gt;
 &lt;li&gt;한국 모바일 게임 시장은 매출 분포나 집중도에서 활력을 잃어가고 있을지 모른다.&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;
@@ -171,7 +170,7 @@
 &lt;p&gt;&lt;img src=&#34;../../post/2018-01-03-mobile_game_market_files/figure-html/unnamed-chunk-3-1.png&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;모바일 게임은 맹렬하고 지속적인 성장세를 유지하고 있다. 지금은 삼분지대계를 얼추 이루고 있지만, 앞으로 3–4년이 지나면 모바일 게임이 게임 업계에서 가장 큰 시장을 형성하지 않을까 싶다.&lt;a href=&#34;#fn4&#34; class=&#34;footnoteRef&#34; id=&#34;fnref4&#34;&gt;&lt;sup&gt;4&lt;/sup&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;../../post/2018-01-03-mobile_game_market_files/figure-html/unnamed-chunk-4-1.png&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;4년 동안 형성된 시장 총액을 지역별로 표시했다. 모바일은 “Asia First”다. 한중일을 합치면 시장 점유율이 50% 이상이다. “왕자영요”, “몽환서유” 같은 엄청난 히트작이 나온 시장 답게 중국이 세계 최대의 모바일 게임 시장으로 자리매김했다. 국가별 매출 변화의 추이는 다음의 그림과 같다.&lt;/p&gt;
+&lt;p&gt;4년 동안 형성된 시장 총액을 지역별로 표시했다. 모바일은 “Asia First”다. 한중일을 합치면 시장 점유율이 50% 이상이다. “왕자영요”, “몽환서유” 같은 엄청난 히트작이 나온 중국 시장이지만, 아직은 일본 시장이 더 두텁다. 다만 중국의 빠른 성장율을 고려할 때 2–3년 내에 세계 최대 시장으로 부상하게 될 것이다. 국가별 매출 변화의 추이는 다음의 그림과 같다.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;../../post/2018-01-03-mobile_game_market_files/figure-html/unnamed-chunk-5-1.png&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;indepth-anlysis&#34; class=&#34;section level1&#34;&gt;
@@ -196,10 +195,10 @@
 &lt;h1&gt;Part II?&lt;/h1&gt;
 &lt;p&gt;사실 좀 더 분석해야 하는 내용들이 남아 있다. 몇 가지 적어보자.&lt;/p&gt;
 &lt;ol style=&#34;list-style-type: decimal&#34;&gt;
-&lt;li&gt;회사별 분석&lt;/li&gt;
-&lt;li&gt;출시 후 1년이 지나서도 높은 인기를 누리는 타이틀들&lt;/li&gt;
+&lt;li&gt;회사별 분석: 위의 분석을 보면서 의문을 품은 분들이 있을 것이다. 지니 계수나 H-H 지수는 개별 게임이 아니라, 회사를 기반으로 계산해야 하는 것이 아닐까? 맞다. 다만, 위의 분석은 각국의 시장의 모습을 파악하기 위해서 이루어진 것임을 감안해주시면 좋겠다.&lt;/li&gt;
+&lt;li&gt;출시 후 1년이 지나서도 높은 인기를 누리는 게임: 모바일 게임의 생애주기는 여전히 논란거리다. 과연 여타 장르의 게임에 비해서 모바일 게임의 생애주기가 훨씬 짧을까?&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;하지만 귀찮아서 이 정도에서 그만! ㅎ&lt;/p&gt;
+&lt;p&gt;파트1은 귀찮아서 이 정도에서 그만! ㅎ&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&#34;footnotes&#34;&gt;
 &lt;hr /&gt;
