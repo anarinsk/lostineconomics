@@ -20,7 +20,7 @@ library(here)
 # When Blogdown 
 load("data/2018-01-03_document.RData") 
 font_add("square", regular = "fonts/NanumSquareR.otf")
-
+  
 # When inproject document 
 #load(here::here("2017", "document", "data", "2018-01-03_document.RData"))
 #font_add("square", regular = here::here("2017", "document", "fonts", "NanumSquareR.otf"))
