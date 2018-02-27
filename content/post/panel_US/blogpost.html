@@ -671,7 +671,7 @@ us_iOS
 <h1>Technincal PS</h1>
 <div id="broomtidy-and-its-limitation" class="section level2">
 <h2>broom::tidy, and its limitation</h2>
-<p>보통 R에서 regression(lm, plm, gls, rlm 등등)이든 뭐든 분석 패키지를 돌리면 summary로 결과를 보게 된다. 문제는 얘네들을 재활용하기는 쉽지 않다는 것이다. 결과를 다시 타이핑해 재활용하기에는 모양이 빠지지 않은가? 어쨌든 이 결롸를 재활용하려면 생성된 모델 혹은 summary 오브젝트를 잘 뜯어내야 한다. 이 작업이 아주 어렵진 않지만 꽤 귀찮다. 이를 위해 개발된 패키지가 broom다. 많은 패키지들의 분석 모데을 잘 뜯어내주긴 한다. plm패키지에서도 plm 모형은 잘 발라진다. 다만, 동태적 패널 모형인 plm::pgmm이나 평균 집단 모형인 plm::pmg는 지원하지 않는다. 이런 경우 어떻게 할 수 있을까?</p>
+<p>보통 R에서 regression(lm, plm, gls, rlm 등등)이든 뭐든 분석 패키지를 돌리면 summary로 결과를 보게 된다. 문제는 얘네들을 재활용하기는 쉽지 않다는 것이다. 결과를 다시 타이핑해 재활용하기에는 모양이 빠진다. 아울러 추정 결과가 바뀌면 참으로 곤란해진다. 어쨌든 재활용을 위해서는 생성된 모델 혹은 summary 오브젝트를 잘 뜯어내야 한다. 이 작업이 아주 어렵진 않지만 꽤 귀찮다. 이를 위해 개발된 패키지가 broom다. 많은 패키지들의 분석 모데을 잘 뜯어내주긴 한다. plm패키지에서도 plm 모형은 잘 발라진다. 다만, 동태적 패널 모형인 plm::pgmm이나 평균 집단 모형인 plm::pmg는 지원하지 않는다. 이런 경우 어떻게 할 수 있을까?</p>
 <p>정공법은 원래 대상을 보고 그 대상을 찬찬히 뜯어내 data.frame으로 가다듬는 것이다. 하지만, 꼼수도 있다. 어차피 필요한 게 summary에 다 있다면 말이다.</p>
 <ol style="list-style-type: decimal">
 <li>summary 테이블을 녹화하듯이 txt파일로 저장한다. <code>sink()</code> 명렁어를 활용한다.<br />
