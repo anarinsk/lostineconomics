@@ -94,32 +94,34 @@
 <h3>Duration</h3>
 <p>활성이용자가 ‘어떻게’ 게임을 했는지에 대한 자료도 있다. 아쉽게도 자료는 활성이용자의 게임 이용시간의 평균값만 제공한다. 만일 해당 게임 이용자의 플레이 패턴에 대한 분포가 있다면 좋았을 것이다. 하지만 이가 없으면 잇몸으로 버텨야지. 이용자들의 게임이용 시간의 평균값을 플레이의 지속성을 나타내는 변수로 활용하도록 하자.</p>
 <ul>
-<li>‘avg_time_per_user’: 인당 평균 이용 시간 (단위: 초)</li>
+<li><code>avg_time_per_user</code>: 인당 평균 이용 시간 (단위: 초)</li>
 </ul>
 </div>
 <div id="session" class="section level3">
 <h3>Session</h3>
 <p>모바일 게임에서 세션이란 한번 접속해서 플레이를 지속하고 끝낼 때까지를 나타낸다. 세션에 대한 정보는 게임 별 평균 세션 횟수, 그리고 1회 세션의 지속 시간 두 가지 정보가 있다. 보통 모바일 게임의 경우 게임 디자인의 단계에서 세션을 굉장히 중요하게 취급하곤 한다. 과연 게임 세션의 특징은 매출 증감과 관련이 있을까?</p>
 <ul>
-<li>‘avg_sessions_per_user’: 인당 평균 이용 세션 횟수<br />
+<li><code>avg_sessions_per_user</code>: 인당 평균 이용 세션 횟수<br />
 </li>
-<li>‘avg_session_duration’: 세션당 평균 이용 시간 (단위: 초)</li>
+<li><code>avg_session_duration</code>: 세션당 평균 이용 시간 (단위: 초)</li>
 </ul>
 </div>
 <div id="history" class="section level3">
 <h3>History</h3>
 <p>모바일 게임이 매출을 발생시키는 주기는 길까 짧을까? 보통은 매우 짧다고 알고 있다. 이 문제를 어림잡기 위해서 게임 최초 출시 이후 각 시점에서 경과 연도를 더미 변수로 활용하도록 하겠다.</p>
+<ul>
+<li><code>cat_history</code></li>
+</ul>
 </div>
 <div id="controls" class="section level3">
 <h3>Controls</h3>
 <p>이외 통제 변수로 아래와 같은 더미 변수들을 활용했다.</p>
-<ol style="list-style-type: decimal">
-<li>부분 유료화(in-app purchase) 여부</li>
-<li>프랜차이즈 게임 여부 (예를 들어, “캔디크러시사가” 시리즈의 파생 게임인지 여부)</li>
-<li>퍼브리셔 소속 지역<br />
-</li>
-<li>연도, 월</li>
-</ol>
+<ul>
+<li><code>cat_iap</code>: 부분 유료화(in-app purchase) 여부</li>
+<li><code>cat_franchise</code>: 프랜차이즈 게임 여부 (예를 들어, “캔디크러시사가” 시리즈의 파생 게임인지 여부)</li>
+<li><code>cat_hqcountry</code>: 퍼브리셔 소속 지역 (6지역으로 구분)</li>
+<li><code>factor(month)</code>: 월</li>
+</ul>
 <p>물론, 통제 변수들 중에서 패널 추정 방법에 따라서 활용할 수 없는 변수들이 있음을 미리 밝혀둔다.</p>
 <p>2015, 2016, 2017년 3개 년도와 iOS, AOS 두 개의 OS를 조합하고 자료가 없는 AOS의 2015년을 제외하면 모두 다섯 세트의 데이터가 분석의 대상이다. POLS의 분석 모형으로 아래 다섯 개의 회귀식을 적용한다. 표준 오차는 Stata에서 계산되는 클러스터 표준오차를 활용했다.</p>
 <ol style="list-style-type: decimal">
