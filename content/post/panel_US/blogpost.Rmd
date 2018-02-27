@@ -60,7 +60,7 @@ dfa_BP %.>%
 
 분석에 동원될 관심 변수의 주요 통계량에 대해서 살펴보자. 변수가 많아 따로 별도의 html 페이지를 만들었다. 예상대로 다른 변수에 비해서 매출(`revenue`), 다운로드(`download`) 등은 분포는 쏠림이 뚜렷하다. 
 
-[LINK](../us_iOS/summary.html)
+[LINK](http://htmlpreview.github.io/?https://github.com/anarinsk/lostineconomics/blob/master/content/post/panel_US/summary.html)
 
 # Correlation
 
