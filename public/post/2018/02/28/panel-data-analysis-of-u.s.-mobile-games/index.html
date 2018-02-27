@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Panel data analysis of U.S. mobile games | lost in economics</title>
+    <link rel="stylesheet" href="../../../../../css/style.css" />
+    <link rel="stylesheet" href="../../../../../css/fonts.css" />
+    <link href="//cdn.bootcss.com/highlight.js/9.12.0/styles/darcula.min.css" rel="stylesheet">
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  </head>
+
+  <body>
+    <nav>
+    <ul class="menu">
+      
+      <li><a href="../../../../../">Home</a></li>
+      
+      <li><a href="../../../../../categories/">Categories</a></li>
+      
+      <li><a href="../../../../../tags/">Tags</a></li>
+      
+      <li><a href="../../../../../cv/">CV</a></li>
+      
+    </ul>
+    <hr/>
+    </nav>
+
+<div class="article-meta">
+<h1><span class="title">Panel data analysis of U.S. mobile games</span></h1>
+<h2 class="author">Junsok Huhh</h2>
+<h2 class="date">2018/02/28</h2>
+</div>
+
+<main>
+<div id="tl-dr" class="section level1">
+<h1>tl; dr</h1>
+<ol style="list-style-type: decimal">
+<li>미국 iOS와 AOS(안드로이드) 모바일 게임 마켓 자료로 매출 신장에 기여하는 요인을 들여다보았다.</li>
+<li>업계의 정설과는 다르게 활성 이용자(active users)의 매출 영향력은 크지 않다.</li>
+<li>대개의 패널 기법들이 short panel에 기반하고 있어서 long panel을 들여다보는 데 애로사항이 있더라… (이것은 능력부족)</li>
+</ol>
+</div>
+<div id="motivation" class="section level1">
+<h1>Motivation</h1>
+<p>보통 어떤 연구 동기가 작용해서 이에 따라 문제를 잘 다듬어 문제를 살펴보는 게 보통의 순서다. 하지만 데이터를 구하기 어려운 영역에서는 반대의 경우가 더 많다. 데이터를 먼저 허겁지겁 찾고 혹은 구하고, 그 위에서 문제를 (짜?) 맞춘다. 물론 이런 접근의 한계는 분명하다. 하지만 역시 안하거나 못하는 것보다는 뭐라도 해보는 게 낫지 않나, 라고 스스로를 위로해본다.</p>
+<p>모바일 게임 관련 데이터를 제공하는 AOO 사의 데이터를 이리저리 뒤지다가 재미있는 데이터를 보게 되었다. AOO 사가 주간 단위로 여간해서는 구하기 힘든 자료를 광범위한 게임에 대해 제공하고 있었다. 추정치이긴 하나 같은 방법론에 따라서 연속적으로 수집되었다는 점에서 그나마 일관성과 신뢰성이 있다고 하겠다. 모바일 게임 별로 다운로드 수, 활성이용자(active users) 수, 설치율, 총 이용시간, 설치 수 대비 활성화 율, 이용 세션 수(평균), 세션 지속시간(평균) 등 제공하고 있었다.[^metrics] 이 숫자들을 보고 있으려니 이런 생각이 떠오르더라.</p>
+<blockquote>
+<p>저 변수들이 있으면 대략 업계의 몇 가지 속설들을 ’검증’할 있겠다. AOO 데이터의 매출 데이터 및 몇가지 다른 메타 데이터와 연결할 수 있겠네… 음. 주 단위 패널 데이터로 만들 수 있겠네…</p>
+</blockquote>
+<p>여기까지 왔으면 일단 한번 달려봐야하지 않겠는가! (가즈아~) 일단 문서 작성에 의의를 두어 세부적인 참고문헌 등등은 생략했다. 양해 바란다.</p>
+</div>
+<div id="basic" class="section level1">
+<h1>Basic</h1>
+<p>데이터는 2015, 2016, 2017년 3개 연도를 대상으로 한다. 일단 미국 iOS, AOS의 데이터를 열심히 모았다. 데이터를 긁는게 좀 짜증이 나긴 했다. 같은 짜증을 한번 더 견디면, 한국의 두 플랫폼에 대해서도 아래와 같은 분석이 가능하다. 먼저 데이터 크기나 패널 데이터로서의 구색은 그리 나쁘지 않다. iOS의 경우에는 2015, 2016, 2017년이 다 있었고, AOS의 경우는 집계상의 어려움이 있었는지 2016, 2017년 자료를 모아 정리할 수 있었다. 자료의 현황은 아래와 같다.</p>
+<pre><code>## # A tibble: 5 x 3
+##   cat_platform  year n_app
+##   &lt;chr&gt;        &lt;dbl&gt; &lt;dbl&gt;
+## 1 us_AOS        2016   123
+## 2 us_AOS        2017   115
+## 3 us_iOS        2015   124
+## 4 us_iOS        2016   129
+## 5 us_iOS        2017   106</code></pre>
+<p>위의 표에서 눈치챈 사람도 있겠지만, 좀 더 엄밀한 분석을 위해서 패널 데이터를 구축했고, 1년 52주 단위 데이터를 모두 갖춘 게임들만 걸러냈다. 불균형 패널(unbalanced panel)을 구축해 아쉬운 자료를 늘이는 것도 나쁘지 않다. 하지만 추정 결과에 큰 차이가 없음을 대략적으로 확인하고, 깔끔하고 원활한 추정 작업을 위해 먼저 균형 패널을 분석 대상으로 제한할 것이다.</p>
+<p>이 패널 데이터의 경우 횡단면(cross section)의 규모는 꽤 애매하다. 대개 전형적인 미시 자료의 경우 1,000 단위를 넘는 횡단면 규모를 지니고 있다. 반면, 시계열의 크기는 연도별로 52개 씩이다. 횡단면이 시게열보다는 길지만 그래도 시게열의 길이가 전형적인 패널 데이터에 비해서 짧지는 않기 때문에 추정 작업에 주의가 요구된다.</p>
+<div id="-" class="section level3">
+<h3>주요 변수설명</h3>
+<p>분석에 동원될 관심 변수의 주요 통계량에 대해서 살펴보자. 변수가 많아 따로 별도의 html 페이지를 만들었다. 예상대로 다른 변수에 비해서 매출(<code>revenue</code>), 다운로드(<code>download</code>) 등은 분포는 쏠림이 뚜렷하다.</p>
+<p><a href="./summary.html">LINK</a></p>
+</div>
+</div>
+<div id="correlation" class="section level1">
+<h1>Correlation</h1>
+<p>주요 설명변수로 활용할 변수들의 상관계수를 골라 시각화했다. 변수 해설은 아래 regressor에 대한 설명을 참고해주시면 되겠다.</p>
+<p><img src="../../../../../post/us_iOS/blogpost_files/figure-html/unnamed-chunk-3-1.png" width="672" style="display: block; margin: auto auto auto 0;" /></p>
+<p>분석에서 종속변수가 될 매출<code>revenue</code>과 상관관계가 가장 높은 변수는 순활성사용자<code>net_AU</code>다. 순활성사용자와 상관관계가 높은 설치 규모<code>install_base</code>는 설명변수에서 제외하는 것이 좋겠다. 평균이용시간<code>avg_time_per_user</code>과 평균세션수<code>avg_sessions_per_user</code>도 서로 상관성이 높다. 하지만 대체로 크게 문제될 것이 없으므로 이 둘은 모두 독립변수에 넣도록 하겠다.<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a></p>
+</div>
+<div id="pooled-ols" class="section level1">
+<h1>Pooled OLS</h1>
+<p>패널 데이터 모형으로 넘어가기 전에 몸풀이 겸 통합최소자승법(Pooled OLS; POLS)를 돌려보도록 하자. POLS란 패널 데이터의 고유한 차원인 개체-시간 축을 허물어 모든 데이터를 그냥 개체로 보는 것이다. 물론, 시간 변수나 개체 변수를 더미 변수로 보고 통제할 수는 있겠지만 패널 데이터 만의 장점을 활용하는 분석을 버리는 추정법이다. 일단, 이 추정법의 옳고 그름을 떠나서 우리의 관심 사안이 무엇이고 어떤 형태인지를 파악 하는 정도의 의미를 부여하자.</p>
+<div id="regressors" class="section level2">
+<h2>Regressors</h2>
+<p>회귀분석에 동원된 설명변수들을 살펴보도록 하자.</p>
+<div id="dissecting-active-users" class="section level3">
+<h3>Dissecting active users</h3>
+<p>앞서 말해듯 몇 개의 변수들이 있지만 사실상 동일한 지표인 경우가 있어서 회귀 변수 선택에 약간의 고민이 필요하다. 이 자료의 가장 좋은 점은 업계에서 가장 중요한 지표로 삼는 활성사용자의 규모를 둘로 쪼개서 볼 수 있게 해준다는 데 있다. 활성이용자란 해당 주 동안 해당 게임에 한번이라도 접속한 이용자다. 그리도 다행스럽게도 자료에는 주별로 발생한 신규 다운로드가 들어 있다. 이렇게 되면, 해당 주에 발생한 새로운 다운로드와 이외에 다운로드 없이 기존에 설치된 앱에서 들어온 이용자를 구별할 수 있다.<a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a></p>
+<ul>
+<li><code>download</code>: 해당 주에 발생한 다운로드 규모</li>
+<li><code>net_AU</code>: <code>active_user</code> - <code>download</code>. 즉, 해당 주 활성 이용자에서 다운로드 숫자를 뺀 순 활성 이용자 규모</li>
+</ul>
+</div>
+<div id="duration" class="section level3">
+<h3>Duration</h3>
+<p>활성이용자가 ‘어떻게’ 게임을 했는지에 대한 자료도 있다. 아쉽게도 자료는 활성이용자의 게임 이용시간의 평균값만 제공한다. 만일 해당 게임 이용자의 플레이 패턴에 대한 분포가 있다면 좋았을 것이다. 하지만 이가 없으면 잇몸으로 버텨야지. 이용자들의 게임이용 시간의 평균값을 플레이의 지속성을 나타내는 변수로 활용하도록 하자.</p>
+<ul>
+<li>‘avg_time_per_user’: 인당 평균 이용 시간 (단위: 초)</li>
+</ul>
+</div>
+<div id="session" class="section level3">
+<h3>Session</h3>
+<p>모바일 게임에서 세션이란 한번 접속해서 플레이를 지속하고 끝낼 때까지를 나타낸다. 세션에 대한 정보는 게임 별 평균 세션 횟수, 그리고 1회 세션의 지속 시간 두 가지 정보가 있다. 보통 모바일 게임의 경우 게임 디자인의 단계에서 세션을 굉장히 중요하게 취급하곤 한다. 과연 게임 세션의 특징은 매출 증감과 관련이 있을까?</p>
+<ul>
+<li>‘avg_sessions_per_user’: 인당 평균 이용 세션 횟수<br />
+</li>
+<li>‘avg_session_duration’: 세션당 평균 이용 시간 (단위: 초)</li>
+</ul>
+</div>
+<div id="history" class="section level3">
+<h3>History</h3>
+<p>모바일 게임이 매출을 발생시키는 주기는 길까 짧을까? 보통은 매우 짧다고 알고 있다. 이 문제를 어림잡기 위해서 게임 최초 출시 이후 각 시점에서 경과 연도를 더미 변수로 활용하도록 하겠다.</p>
+</div>
+<div id="controls" class="section level3">
+<h3>Controls</h3>
+<p>이외 통제 변수로 아래와 같은 더미 변수들을 활용했다.</p>
+<ol style="list-style-type: decimal">
+<li>부분 유료화(in-app purchase) 여부</li>
+<li>프랜차이즈 게임 여부 (예를 들어, “캔디크러시사가” 시리즈의 파생 게임인지 여부)</li>
+<li>퍼브리셔 소속 지역<br />
+</li>
+<li>연도, 월</li>
+</ol>
+<p>물론, 통제 변수들 중에서 패널 추정 방법에 따라서 활용할 수 없는 변수들이 있음을 미리 밝혀둔다.</p>
+<p>2015, 2016, 2017년 3개 년도와 iOS, AOS 두 개의 OS를 조합하고 자료가 없는 AOS의 2015년을 제외하면 모두 다섯 세트의 데이터가 분석의 대상이다. POLS의 분석 모형으로 아래 다섯 개의 회귀식을 적용한다. 표준 오차는 Stata에서 계산되는 클러스터 표준오차를 활용했다.</p>
+<ol style="list-style-type: decimal">
+<li>Model 1: <code>log(revenue) ~ log(net_AU)</code></li>
+<li>Model 2: <code>log(revenue) ~ log(download) + log(net_AU)</code></li>
+<li>Model 3: <code>log(revenue) ~ log(download) + log(net_AU) + log(avg_time_per_user)</code></li>
+<li>Model 4: <code>log(revenue) ~ log(download) + log(net_AU) + log(avg_time_per_user) + log(avg_session_duration) + avg_sessions_per_user</code></li>
+<li>Model 5: <code>log(revenue) ~ log(download) + log(net_AU) + log(avg_time_per_user) +  log(avg_session_duration) + avg_sessions_per_user + factor(month) + cat_iap + cat_franchise + cat_hqcountry + cat_history</code></li>
+</ol>
+</div>
+<div id="-" class="section level3">
+<h3>추정결과 링크</h3>
+<p>각 모형의 추정 결과를 년도별과 OS별 시각화해 표현해보도록 하자.</p>
+<p><img src="../../../../../post/us_iOS/blogpost_files/figure-html/unnamed-chunk-4-1.png" width="672" /><img src="../../../../../post/us_iOS/blogpost_files/figure-html/unnamed-chunk-4-2.png" width="672" /></p>
+<p>일단 몇가지 지적해두고 가자.</p>
+<ol style="list-style-type: decimal">
+<li>iOS와 AOS 모두 평균 플레이 시간의 매출 기여가 두드러진다. 특히 AOS에서는 1을 상회하는 계수치로 효과가 매우 높은 것으로 나타난다.</li>
+<li>연도별로 다소 차이는 있지만, 두 플랫폼 모두 순활성이용자, 다운로드 역시 매출에 영향을 주고 있다. 대체로 순활성이용자의 기여도가 다운로드에 비해서는 강한 것으로 나타나고 있다.</li>
+<li>세션의 평균 지속시간은 매출에 반대의 영향을 나타내고 있다.</li>
+<li>OS 내에서는 비교적 비슷한 형태의 효과를 관찰할 수 있으나, OS 사이에는 다소 뚜렷한 차이가 발견된다. AOS에서는 평균 이용시간의 영향력이 두드러지고, iOS에서는 순활성이용자의 효과가 가장 뚜렷한 것으로 관찰된다.</li>
+</ol>
+<p>물론 이 모형은 POLS를 돌려본 것에 불과하다. 패널 모형을 통해 다른 추정 방법을 사용할 경우 어떻게 바뀔까?</p>
+</div>
+</div>
+</div>
+<div id="panel-models" class="section level1">
+<h1>Panel Models</h1>
+<p>패널 데이터란 횡단면(같은 시점에 존재하는 서로 다른 개체들의 차원)과 시계열(같은 개체들에 대한 서로 다른 시점의 차원)을 모두 갖춘 데이터다. 패널 데이터의 가치는 비교적 안정적으로 같은 개체들에 대한 데이터를 모아놓았다는 데 있다. 아래 식에서 <span class="math inline">\(i\)</span>는 각 개체 즉 개별 게임을, <span class="math inline">\(t\)</span>는 관찰 시점 즉 주(week)를 나타낸다. 종속 변수(dependent variable)는 게임의 주간 매출이다. 여기서는 로그값으로 사용하도록 한다.</p>
+<p><span class="math display">\[ Y_{it} = \alpha + \beta^{&#39;} X_{it} + u_{it}\]</span></p>
+<p>분석할 패널 자료는 꽤 긴 시계열을 지니고 있다. 에러를 모델링 할 때 각 개체와 더불어 시점도 함께 고려하는 것이 좋겠다. 물론 경우에 따라서는 미봉책에 불과하다. 즉,</p>
+<p><span class="math display">\[ u_{it} = \mu_i +  \eta_t + \nu_{it} \]</span></p>
+<p>우선 패널 데이터의 보편적인 분석 방법으로 자료를 돌려보기로 하겠다. 개체의 잠재 속성을 제거하기 위해 일차차분(first-difference; FD) 모형, 고정효과(fixed effect; FE) 모형과 임의효과(random effect; RE) 모형을 살펴볼 것이다. 이들 모형과의 비교를 위해서 시계열을 평균으로 없앤 뒤 개체의 차이만 보는 개체간 모형(between; BE), 그리고 횡단면이나 시계열의 차이를 무시하고 모두 같은 개체로 보고 OLS를 돌리는 통합 모형(pooled OLS; POLS) 제시할 예정이다.</p>
+<p>일단 몸풀기 삼아서 위의 독립변수들로 몇가지 OLS를 돌려보도록 하자.</p>
+<div id="estimation-by-os-and-year" class="section level2">
+<h2>Estimation by OS and year</h2>
+<ul>
+<li>모형
+<ol style="list-style-type: decimal">
+<li>고정효과 모형(Fixed effect model: FE)</li>
+<li>랜덤효과 모형(Random effect model: RE)</li>
+<li>이차차분 모형(First difference model: FD)</li>
+<li>Between 모형 (BE)</li>
+<li>Pooling 모형 (POLS)</li>
+</ol></li>
+<li>패널 특성 반영
+<ol style="list-style-type: decimal">
+<li>개체 특성만 반영(individual: ID)</li>
+<li>개체와 시간 특성 모두 반영(twoways: TW)</li>
+</ol></li>
+</ul>
+<p>통상적인 패널 추정방법을 가능한 경우 거의 모두 활용해서 6가지 방법으로 추정했다. BE 모형을 제외한 모든 모형은 Driscoll and Kraay(1998)의 robust covariance를 사용했다. 사실 아래 모델을 정당화하려면 몇가지 검정들을 통과해야 할 것이다. 사실 FE냐 RE냐, FE냐 POLS냐, 류의 검정은 항상 FE가 우월하게 나온다. 또한, 거의 모든 모델에서 계열 상관serial correlation 및 횡단면 상관cross-sectional correlation이 존재한다. 여러가지 방법을 모두 보고해야 되곘지만, 추정 결과에 차이가 없어 두 종류의 상관을 어느 정도 보정할 수 있는 방법을 활용해 아래 검정에 활용했다.</p>
+<div id="ios-2015" class="section level3">
+<h3>iOS 2015</h3>
+
+<table style="text-align:center"><tr><td colspan="7" style="border-bottom: 1px solid black"></td></tr><tr><td style="text-align:left"></td><td colspan="6"><em>Dependent variable:</em></td></tr>
+<tr><td></td><td colspan="6" style="border-bottom: 1px solid black"></td></tr>
+<tr><td style="text-align:left"></td><td colspan="3">log(revenue)</td><td></td><td colspan="2">log(revenue)</td></tr>
+<tr><td style="text-align:left"></td><td colspan="3"><em>panel</em></td><td><em>coefficient</em></td><td colspan="2"><em>panel</em></td></tr>
+<tr><td style="text-align:left"></td><td colspan="3"><em>linear</em></td><td><em>test</em></td><td colspan="2"><em>linear</em></td></tr>
+<tr><td style="text-align:left"></td><td>FE-TW</td><td>FE-ID</td><td>RE-ID</td><td>FD-ID</td><td>BT-ID</td><td>POLS-TW</td></tr>
+<tr><td style="text-align:left"></td><td>(1)</td><td>(2)</td><td>(3)</td><td>(4)</td><td>(5)</td><td>(6)</td></tr>
+<tr><td colspan="7" style="border-bottom: 1px solid black"></td></tr><tr><td style="text-align:left">log(download)</td><td>0.305<sup>***</sup></td><td>0.322<sup>***</sup></td><td>0.322<sup>***</sup></td><td>0.178<sup>***</sup></td><td>0.128</td><td>0.207<sup>***</sup></td></tr>
+<tr><td style="text-align:left"></td><td>(0.017)</td><td>(0.025)</td><td>(0.025)</td><td>(0.034)</td><td>(0.173)</td><td>(0.025)</td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">log(net_AU)</td><td>0.720<sup>***</sup></td><td>0.700<sup>***</sup></td><td>0.694<sup>***</sup></td><td>0.136<sup>*</sup></td><td>0.647<sup>***</sup></td><td>0.592<sup>***</sup></td></tr>
+<tr><td style="text-align:left"></td><td>(0.030)</td><td>(0.035)</td><td>(0.038)</td><td>(0.081)</td><td>(0.153)</td><td>(0.021)</td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">log(avg_time_per_user)</td><td>0.130<sup>**</sup></td><td>0.134<sup>**</sup></td><td>0.140<sup>***</sup></td><td>0.026</td><td>0.774<sup>**</sup></td><td>0.669<sup>***</sup></td></tr>
+<tr><td style="text-align:left"></td><td>(0.055)</td><td>(0.054)</td><td>(0.046)</td><td>(0.045)</td><td>(0.377)</td><td>(0.026)</td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">log(avg_session_duration)</td><td>-0.195<sup>***</sup></td><td>-0.194<sup>***</sup></td><td>-0.198<sup>***</sup></td><td>0.037</td><td>-0.432</td><td>-0.428<sup>***</sup></td></tr>
+<tr><td style="text-align:left"></td><td>(0.055)</td><td>(0.054)</td><td>(0.045)</td><td>(0.050)</td><td>(0.416)</td><td>(0.040)</td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">avg_sessions_per_user</td><td>0.013<sup>***</sup></td><td>0.014<sup>***</sup></td><td>0.015<sup>***</sup></td><td>0.009<sup>**</sup></td><td>-0.003</td><td>0.004<sup>*</sup></td></tr>
+<tr><td style="text-align:left"></td><td>(0.004)</td><td>(0.004)</td><td>(0.003)</td><td>(0.004)</td><td>(0.029)</td><td>(0.002)</td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">cat_iapY</td><td></td><td></td><td>0.232</td><td></td><td>0.326</td><td>0.361<sup>***</sup></td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td>(1.022)</td><td></td><td>(0.796)</td><td>(0.033)</td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">cat_franchiseSpinoff</td><td></td><td></td><td>-0.551</td><td></td><td>-0.581<sup>**</sup></td><td>-0.558<sup>***</sup></td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td>(0.348)</td><td></td><td>(0.279)</td><td>(0.019)</td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">Constant</td><td></td><td></td><td>-1.207</td><td></td><td>-1.739</td><td>-1.421<sup>***</sup></td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td>(1.716)</td><td></td><td>(2.064)</td><td>(0.275)</td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td colspan="7" style="border-bottom: 1px solid black"></td></tr><tr><td style="text-align:left">Observations</td><td>6,396</td><td>6,396</td><td>6,396</td><td></td><td>123</td><td>6,396</td></tr>
+<tr><td style="text-align:left">R<sup>2</sup></td><td>0.477</td><td>0.496</td><td>0.493</td><td></td><td>0.546</td><td>0.529</td></tr>
+<tr><td style="text-align:left">Adjusted R<sup>2</sup></td><td>0.461</td><td>0.484</td><td>0.491</td><td></td><td>0.463</td><td>0.527</td></tr>
+<tr><td style="text-align:left">F Statistic</td><td>514.159<sup>***</sup> (df = 11; 6211)</td><td>279.142<sup>***</sup> (df = 22; 6251)</td><td>206.650<sup>***</sup> (df = 30; 6365)</td><td></td><td>6.526<sup>***</sup> (df = 19; 103)</td><td>238.231<sup>***</sup> (df = 30; 6365)</td></tr>
+<tr><td colspan="7" style="border-bottom: 1px solid black"></td></tr><tr><td style="text-align:left"><em>Note:</em></td><td colspan="6" style="text-align:right"><sup>*</sup>p<0.1; <sup>**</sup>p<0.05; <sup>***</sup>p<0.01</td></tr>
+</table>
+</div>
+<div id="ios-2016" class="section level3">
+<h3>iOS 2016</h3>
+
+<table style="text-align:center"><tr><td colspan="7" style="border-bottom: 1px solid black"></td></tr><tr><td style="text-align:left"></td><td colspan="6"><em>Dependent variable:</em></td></tr>
+<tr><td></td><td colspan="6" style="border-bottom: 1px solid black"></td></tr>
+<tr><td style="text-align:left"></td><td colspan="3">log(revenue)</td><td></td><td colspan="2">log(revenue)</td></tr>
+<tr><td style="text-align:left"></td><td colspan="3"><em>panel</em></td><td><em>coefficient</em></td><td colspan="2"><em>panel</em></td></tr>
+<tr><td style="text-align:left"></td><td colspan="3"><em>linear</em></td><td><em>test</em></td><td colspan="2"><em>linear</em></td></tr>
+<tr><td style="text-align:left"></td><td>FE-TW</td><td>FE-ID</td><td>RE-ID</td><td>FD-ID</td><td>BT-ID</td><td>POLS-TW</td></tr>
+<tr><td style="text-align:left"></td><td>(1)</td><td>(2)</td><td>(3)</td><td>(4)</td><td>(5)</td><td>(6)</td></tr>
+<tr><td colspan="7" style="border-bottom: 1px solid black"></td></tr><tr><td style="text-align:left">log(download)</td><td>0.300<sup>***</sup></td><td>0.310<sup>***</sup></td><td>0.309<sup>***</sup></td><td>0.200<sup>***</sup></td><td>-0.162</td><td>0.026</td></tr>
+<tr><td style="text-align:left"></td><td>(0.025)</td><td>(0.027)</td><td>(0.026)</td><td>(0.026)</td><td>(0.183)</td><td>(0.018)</td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">log(net_AU)</td><td>0.391<sup>***</sup></td><td>0.388<sup>***</sup></td><td>0.388<sup>***</sup></td><td>0.040</td><td>0.711<sup>***</sup></td><td>0.596<sup>***</sup></td></tr>
+<tr><td style="text-align:left"></td><td>(0.129)</td><td>(0.128)</td><td>(0.127)</td><td>(0.025)</td><td>(0.160)</td><td>(0.034)</td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">log(avg_time_per_user)</td><td>0.158<sup>**</sup></td><td>0.151<sup>**</sup></td><td>0.155<sup>***</sup></td><td>0.147<sup>***</sup></td><td>0.520</td><td>0.486<sup>***</sup></td></tr>
+<tr><td style="text-align:left"></td><td>(0.065)</td><td>(0.064)</td><td>(0.058)</td><td>(0.026)</td><td>(0.387)</td><td>(0.045)</td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">log(avg_session_duration)</td><td>-0.045</td><td>-0.034</td><td>-0.037</td><td>-0.124<sup>***</sup></td><td>-0.190</td><td>-0.235<sup>***</sup></td></tr>
+<tr><td style="text-align:left"></td><td>(0.085)</td><td>(0.084)</td><td>(0.080)</td><td>(0.038)</td><td>(0.464)</td><td>(0.032)</td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">avg_sessions_per_user</td><td>0.006<sup>***</sup></td><td>0.008<sup>***</sup></td><td>0.008<sup>***</sup></td><td>0.0002</td><td>0.025</td><td>0.026<sup>***</sup></td></tr>
+<tr><td style="text-align:left"></td><td>(0.002)</td><td>(0.002)</td><td>(0.003)</td><td>(0.002)</td><td>(0.029)</td><td>(0.003)</td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">cat_iapY</td><td></td><td></td><td>1.326</td><td></td><td>0.808</td><td>1.005<sup>***</sup></td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td>(1.962)</td><td></td><td>(1.267)</td><td>(0.061)</td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">cat_franchiseSpinoff</td><td></td><td></td><td>-0.508</td><td></td><td>-0.766<sup>**</sup></td><td>-0.685<sup>***</sup></td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td>(0.369)</td><td></td><td>(0.293)</td><td>(0.030)</td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">Constant</td><td></td><td></td><td>0.521</td><td></td><td>0.594</td><td>-0.021</td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td>(2.035)</td><td></td><td>(2.704)</td><td>(0.372)</td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td colspan="7" style="border-bottom: 1px solid black"></td></tr><tr><td style="text-align:left">Observations</td><td>6,708</td><td>6,708</td><td>6,708</td><td></td><td>129</td><td>6,708</td></tr>
+<tr><td style="text-align:left">R<sup>2</sup></td><td>0.355</td><td>0.376</td><td>0.373</td><td></td><td>0.428</td><td>0.396</td></tr>
+<tr><td style="text-align:left">Adjusted R<sup>2</sup></td><td>0.336</td><td>0.362</td><td>0.370</td><td></td><td>0.316</td><td>0.393</td></tr>
+<tr><td style="text-align:left">F Statistic</td><td>298.317<sup>***</sup> (df = 12; 6516)</td><td>171.865<sup>***</sup> (df = 23; 6556)</td><td>124.332<sup>***</sup> (df = 32; 6675)</td><td></td><td>3.818<sup>***</sup> (df = 21; 107)</td><td>136.703<sup>***</sup> (df = 32; 6675)</td></tr>
+<tr><td colspan="7" style="border-bottom: 1px solid black"></td></tr><tr><td style="text-align:left"><em>Note:</em></td><td colspan="6" style="text-align:right"><sup>*</sup>p<0.1; <sup>**</sup>p<0.05; <sup>***</sup>p<0.01</td></tr>
+</table>
+</div>
+<div id="ios-2017" class="section level3">
+<h3>iOS 2017</h3>
+
+<table style="text-align:center"><tr><td colspan="7" style="border-bottom: 1px solid black"></td></tr><tr><td style="text-align:left"></td><td colspan="6"><em>Dependent variable:</em></td></tr>
+<tr><td></td><td colspan="6" style="border-bottom: 1px solid black"></td></tr>
+<tr><td style="text-align:left"></td><td colspan="3">log(revenue)</td><td></td><td colspan="2">log(revenue)</td></tr>
+<tr><td style="text-align:left"></td><td colspan="3"><em>panel</em></td><td><em>coefficient</em></td><td colspan="2"><em>panel</em></td></tr>
+<tr><td style="text-align:left"></td><td colspan="3"><em>linear</em></td><td><em>test</em></td><td colspan="2"><em>linear</em></td></tr>
+<tr><td style="text-align:left"></td><td>FE-TW</td><td>FE-ID</td><td>RE-ID</td><td>FD-ID</td><td>BT-ID</td><td>POLS-TW</td></tr>
+<tr><td style="text-align:left"></td><td>(1)</td><td>(2)</td><td>(3)</td><td>(4)</td><td>(5)</td><td>(6)</td></tr>
+<tr><td colspan="7" style="border-bottom: 1px solid black"></td></tr><tr><td style="text-align:left">log(download)</td><td>0.387<sup>***</sup></td><td>0.400<sup>***</sup></td><td>0.398<sup>***</sup></td><td>0.305<sup>***</sup></td><td>-0.115</td><td>0.006</td></tr>
+<tr><td style="text-align:left"></td><td>(0.041)</td><td>(0.039)</td><td>(0.036)</td><td>(0.013)</td><td>(0.248)</td><td>(0.033)</td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">log(net_AU)</td><td>0.333<sup>**</sup></td><td>0.322<sup>**</sup></td><td>0.323<sup>**</sup></td><td>0.032</td><td>0.739<sup>***</sup></td><td>0.628<sup>***</sup></td></tr>
+<tr><td style="text-align:left"></td><td>(0.142)</td><td>(0.135)</td><td>(0.138)</td><td>(0.025)</td><td>(0.202)</td><td>(0.047)</td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">log(avg_time_per_user)</td><td>0.104<sup>***</sup></td><td>0.106<sup>***</sup></td><td>0.106<sup>***</sup></td><td>0.046<sup>*</sup></td><td>0.356</td><td>0.343<sup>***</sup></td></tr>
+<tr><td style="text-align:left"></td><td>(0.039)</td><td>(0.039)</td><td>(0.036)</td><td>(0.023)</td><td>(0.582)</td><td>(0.046)</td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">log(avg_session_duration)</td><td>0.006</td><td>0.005</td><td>0.005</td><td>-0.010</td><td>-0.101</td><td>-0.149<sup>**</sup></td></tr>
+<tr><td style="text-align:left"></td><td>(0.048)</td><td>(0.047)</td><td>(0.046)</td><td>(0.038)</td><td>(0.730)</td><td>(0.061)</td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">avg_sessions_per_user</td><td>-0.004</td><td>-0.004</td><td>-0.004</td><td>-0.0005</td><td>0.023</td><td>0.023<sup>***</sup></td></tr>
+<tr><td style="text-align:left"></td><td>(0.003)</td><td>(0.003)</td><td>(0.003)</td><td>(0.002)</td><td>(0.036)</td><td>(0.004)</td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">cat_iapY</td><td></td><td></td><td>2.069</td><td></td><td>1.273</td><td>1.467<sup>***</sup></td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td>(2.546)</td><td></td><td>(1.432)</td><td>(0.079)</td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">cat_franchiseSpinoff</td><td></td><td></td><td>-0.185</td><td></td><td>-0.525</td><td>-0.452<sup>***</sup></td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td>(0.412)</td><td></td><td>(0.365)</td><td>(0.029)</td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">Constant</td><td></td><td></td><td>0.142</td><td></td><td>-1.277</td><td>-0.533</td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td>(3.197)</td><td></td><td>(3.303)</td><td>(0.657)</td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td colspan="7" style="border-bottom: 1px solid black"></td></tr><tr><td style="text-align:left">Observations</td><td>5,512</td><td>5,512</td><td>5,512</td><td></td><td>106</td><td>5,512</td></tr>
+<tr><td style="text-align:left">R<sup>2</sup></td><td>0.357</td><td>0.381</td><td>0.378</td><td></td><td>0.389</td><td>0.339</td></tr>
+<tr><td style="text-align:left">Adjusted R<sup>2</sup></td><td>0.336</td><td>0.366</td><td>0.374</td><td></td><td>0.227</td><td>0.335</td></tr>
+<tr><td style="text-align:left">F Statistic</td><td>227.817<sup>***</sup> (df = 13; 5342)</td><td>138.060<sup>***</sup> (df = 24; 5382)</td><td>100.841<sup>***</sup> (df = 33; 5478)</td><td></td><td>2.399<sup>***</sup> (df = 22; 83)</td><td>85.153<sup>***</sup> (df = 33; 5478)</td></tr>
+<tr><td colspan="7" style="border-bottom: 1px solid black"></td></tr><tr><td style="text-align:left"><em>Note:</em></td><td colspan="6" style="text-align:right"><sup>*</sup>p<0.1; <sup>**</sup>p<0.05; <sup>***</sup>p<0.01</td></tr>
+</table>
+</div>
+<div id="aos-2016" class="section level3">
+<h3>AOS 2016</h3>
+
+<table style="text-align:center"><tr><td colspan="7" style="border-bottom: 1px solid black"></td></tr><tr><td style="text-align:left"></td><td colspan="6"><em>Dependent variable:</em></td></tr>
+<tr><td></td><td colspan="6" style="border-bottom: 1px solid black"></td></tr>
+<tr><td style="text-align:left"></td><td colspan="3">log(revenue)</td><td></td><td colspan="2">log(revenue)</td></tr>
+<tr><td style="text-align:left"></td><td colspan="3"><em>panel</em></td><td><em>coefficient</em></td><td colspan="2"><em>panel</em></td></tr>
+<tr><td style="text-align:left"></td><td colspan="3"><em>linear</em></td><td><em>test</em></td><td colspan="2"><em>linear</em></td></tr>
+<tr><td style="text-align:left"></td><td>FE-TW</td><td>FE-ID</td><td>RE-ID</td><td>FD-ID</td><td>BT-ID</td><td>POLS-TW</td></tr>
+<tr><td style="text-align:left"></td><td>(1)</td><td>(2)</td><td>(3)</td><td>(4)</td><td>(5)</td><td>(6)</td></tr>
+<tr><td colspan="7" style="border-bottom: 1px solid black"></td></tr><tr><td style="text-align:left">log(download)</td><td>0.265<sup>***</sup></td><td>0.273<sup>***</sup></td><td>0.273<sup>***</sup></td><td>0.120<sup>***</sup></td><td>0.210<sup>*</sup></td><td>0.300<sup>***</sup></td></tr>
+<tr><td style="text-align:left"></td><td>(0.026)</td><td>(0.030)</td><td>(0.028)</td><td>(0.030)</td><td>(0.110)</td><td>(0.017)</td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">log(net_AU)</td><td>0.034<sup>***</sup></td><td>0.031<sup>***</sup></td><td>0.032<sup>***</sup></td><td>-0.004</td><td>0.253<sup>***</sup></td><td>0.181<sup>***</sup></td></tr>
+<tr><td style="text-align:left"></td><td>(0.008)</td><td>(0.009)</td><td>(0.008)</td><td>(0.002)</td><td>(0.062)</td><td>(0.016)</td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">log(avg_time_per_user)</td><td>0.245<sup>***</sup></td><td>0.241<sup>***</sup></td><td>0.258<sup>***</sup></td><td>0.070</td><td>2.022<sup>***</sup></td><td>1.781<sup>***</sup></td></tr>
+<tr><td style="text-align:left"></td><td>(0.039)</td><td>(0.039)</td><td>(0.040)</td><td>(0.046)</td><td>(0.551)</td><td>(0.048)</td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">log(avg_session_duration)</td><td>-0.159<sup>***</sup></td><td>-0.142<sup>***</sup></td><td>-0.142<sup>***</sup></td><td>-0.029</td><td>-0.724</td><td>-0.653<sup>***</sup></td></tr>
+<tr><td style="text-align:left"></td><td>(0.047)</td><td>(0.048)</td><td>(0.054)</td><td>(0.044)</td><td>(0.654)</td><td>(0.060)</td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">avg_sessions_per_user</td><td>-0.001</td><td>-0.0003</td><td>-0.0003</td><td>0.001</td><td>-0.024</td><td>-0.016<sup>***</sup></td></tr>
+<tr><td style="text-align:left"></td><td>(0.002)</td><td>(0.002)</td><td>(0.002)</td><td>(0.002)</td><td>(0.025)</td><td>(0.002)</td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">cat_iapY</td><td></td><td></td><td>2.480</td><td></td><td>0.306</td><td>0.566<sup>***</sup></td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td>(2.304)</td><td></td><td>(1.015)</td><td>(0.079)</td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">cat_franchiseSpinoff</td><td></td><td></td><td>-0.742<sup>*</sup></td><td></td><td>-0.569<sup>***</sup></td><td>-0.545<sup>***</sup></td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td>(0.421)</td><td></td><td>(0.216)</td><td>(0.036)</td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">Constant</td><td></td><td></td><td>4.484<sup>**</sup></td><td></td><td>-5.918<sup>***</sup></td><td>-5.606<sup>***</sup></td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td>(2.248)</td><td></td><td>(2.196)</td><td>(0.181)</td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td colspan="7" style="border-bottom: 1px solid black"></td></tr><tr><td style="text-align:left">Observations</td><td>6,344</td><td>6,344</td><td>6,344</td><td></td><td>122</td><td>6,344</td></tr>
+<tr><td style="text-align:left">R<sup>2</sup></td><td>0.175</td><td>0.223</td><td>0.225</td><td></td><td>0.700</td><td>0.617</td></tr>
+<tr><td style="text-align:left">Adjusted R<sup>2</sup></td><td>0.151</td><td>0.205</td><td>0.222</td><td></td><td>0.644</td><td>0.615</td></tr>
+<tr><td style="text-align:left">F Statistic</td><td>131.136<sup>***</sup> (df = 10; 6161)</td><td>84.560<sup>***</sup> (df = 21; 6201)</td><td>61.196<sup>***</sup> (df = 30; 6313)</td><td></td><td>12.515<sup>***</sup> (df = 19; 102)</td><td>338.874<sup>***</sup> (df = 30; 6313)</td></tr>
+<tr><td colspan="7" style="border-bottom: 1px solid black"></td></tr><tr><td style="text-align:left"><em>Note:</em></td><td colspan="6" style="text-align:right"><sup>*</sup>p<0.1; <sup>**</sup>p<0.05; <sup>***</sup>p<0.01</td></tr>
+</table>
+</div>
+<div id="aos-2017" class="section level3">
+<h3>AOS 2017</h3>
+
+<table style="text-align:center"><tr><td colspan="7" style="border-bottom: 1px solid black"></td></tr><tr><td style="text-align:left"></td><td colspan="6"><em>Dependent variable:</em></td></tr>
+<tr><td></td><td colspan="6" style="border-bottom: 1px solid black"></td></tr>
+<tr><td style="text-align:left"></td><td colspan="3">log(revenue)</td><td></td><td colspan="2">log(revenue)</td></tr>
+<tr><td style="text-align:left"></td><td colspan="3"><em>panel</em></td><td><em>coefficient</em></td><td colspan="2"><em>panel</em></td></tr>
+<tr><td style="text-align:left"></td><td colspan="3"><em>linear</em></td><td><em>test</em></td><td colspan="2"><em>linear</em></td></tr>
+<tr><td style="text-align:left"></td><td>FE-TW</td><td>FE-ID</td><td>RE-ID</td><td>FD-ID</td><td>BT-ID</td><td>POLS-TW</td></tr>
+<tr><td style="text-align:left"></td><td>(1)</td><td>(2)</td><td>(3)</td><td>(4)</td><td>(5)</td><td>(6)</td></tr>
+<tr><td colspan="7" style="border-bottom: 1px solid black"></td></tr><tr><td style="text-align:left">log(download)</td><td>0.394<sup>***</sup></td><td>0.401<sup>***</sup></td><td>0.400<sup>***</sup></td><td>0.236<sup>***</sup></td><td>0.377<sup>**</sup></td><td>0.362<sup>***</sup></td></tr>
+<tr><td style="text-align:left"></td><td>(0.024)</td><td>(0.025)</td><td>(0.025)</td><td>(0.021)</td><td>(0.171)</td><td>(0.027)</td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">log(net_AU)</td><td>0.053<sup>***</sup></td><td>0.050<sup>***</sup></td><td>0.052<sup>***</sup></td><td>0.001</td><td>0.460<sup>***</sup></td><td>0.346<sup>***</sup></td></tr>
+<tr><td style="text-align:left"></td><td>(0.010)</td><td>(0.009)</td><td>(0.009)</td><td>(0.002)</td><td>(0.092)</td><td>(0.035)</td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">log(avg_time_per_user)</td><td>0.117<sup>***</sup></td><td>0.117<sup>***</sup></td><td>0.128<sup>***</sup></td><td>-0.003</td><td>2.109<sup>***</sup></td><td>1.643<sup>***</sup></td></tr>
+<tr><td style="text-align:left"></td><td>(0.029)</td><td>(0.028)</td><td>(0.029)</td><td>(0.023)</td><td>(0.530)</td><td>(0.066)</td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">log(avg_session_duration)</td><td>-0.014</td><td>-0.011</td><td>-0.014</td><td>0.050<sup>*</sup></td><td>-1.011</td><td>-0.612<sup>***</sup></td></tr>
+<tr><td style="text-align:left"></td><td>(0.042)</td><td>(0.040)</td><td>(0.044)</td><td>(0.028)</td><td>(0.619)</td><td>(0.101)</td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">avg_sessions_per_user</td><td>0.005<sup>***</sup></td><td>0.005<sup>***</sup></td><td>0.005<sup>***</sup></td><td>0.003<sup>***</sup></td><td>-0.025</td><td>-0.013<sup>***</sup></td></tr>
+<tr><td style="text-align:left"></td><td>(0.001)</td><td>(0.001)</td><td>(0.001)</td><td>(0.001)</td><td>(0.020)</td><td>(0.002)</td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">cat_iapY</td><td></td><td></td><td>2.957</td><td></td><td>0.042</td><td>0.548<sup>***</sup></td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td>(2.356)</td><td></td><td>(1.106)</td><td>(0.100)</td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">cat_franchiseSpinoff</td><td></td><td></td><td>-0.101</td><td></td><td>-0.392</td><td>-0.324<sup>***</sup></td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td>(0.388)</td><td></td><td>(0.267)</td><td>(0.017)</td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">Constant</td><td></td><td></td><td>3.261</td><td></td><td>-10.914<sup>***</sup></td><td>-7.808<sup>***</sup></td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td>(2.180)</td><td></td><td>(2.889)</td><td>(0.624)</td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td colspan="7" style="border-bottom: 1px solid black"></td></tr><tr><td style="text-align:left">Observations</td><td>5,980</td><td>5,980</td><td>5,980</td><td></td><td>115</td><td>5,980</td></tr>
+<tr><td style="text-align:left">R<sup>2</sup></td><td>0.254</td><td>0.278</td><td>0.278</td><td></td><td>0.680</td><td>0.597</td></tr>
+<tr><td style="text-align:left">Adjusted R<sup>2</sup></td><td>0.231</td><td>0.261</td><td>0.274</td><td></td><td>0.612</td><td>0.595</td></tr>
+<tr><td style="text-align:left">F Statistic</td><td>179.299<sup>***</sup> (df = 11; 5803)</td><td>102.150<sup>***</sup> (df = 22; 5843)</td><td>73.802<sup>***</sup> (df = 31; 5948)</td><td></td><td>9.988<sup>***</sup> (df = 20; 94)</td><td>284.219<sup>***</sup> (df = 31; 5948)</td></tr>
+<tr><td colspan="7" style="border-bottom: 1px solid black"></td></tr><tr><td style="text-align:left"><em>Note:</em></td><td colspan="6" style="text-align:right"><sup>*</sup>p<0.1; <sup>**</sup>p<0.05; <sup>***</sup>p<0.01</td></tr>
+</table>
+<p>몇가지 눈여겨 볼만한 차이를 살펴보자.</p>
+</div>
+</div>
+<div id="pols-vs-panel-models" class="section level2">
+<h2>POLS vs Panel Models</h2>
+<ol style="list-style-type: decimal">
+<li>iOS의 POLS에서 다운로드 수의 영향력이 POLS에 비해 안정적으로 관찰된다.</li>
+<li>AOS의 POLS에서 평균 플레이시간의 강력한 영향력은 크게 줄어든다.</li>
+</ol>
+</div>
+<div id="fe-vs-fd" class="section level2">
+<h2>FE vs FD</h2>
+<p>거의 모든 추정에서 FE와 FD의 결과가 꽤 다르다. 내생성이 없는 이상 두 추정법은 모두 불편 추정량이다. 따라서 두 모형의 비교를 통해 모형이 내생성을 지니고 있는지 여부에 관해 효과적으로 파악할 수 있다. 그리고 두 모형이 다를 경우, FE보다는 FD 쪽에 다소 믿을만 하다고 알려져 있다. 이렇게 본다면, 상관계수와는 달리 순활성이용자가 매출에 끼치는 영향은 크지 않은 반면, 다운로드는 1% 증가가 연도별 OS별로 0.12~0.3%의 증가 효과를 지니고 있다.</p>
+</div>
+<div id="ios-vs-aos" class="section level2">
+<h2>iOS vs AOS</h2>
+<p>편의를 감안하고 FE나 RE의 추정 결과를 비교하더라도, OS별 차이가 확연하다. 전반적으로 iOS에 순활성사용자가 일정한 강도의 효과를 지니고 있는 반면, AOS의 경우에는 다운로드의 영향력만 전반적으로 나타나고 있다. 또한 연도별로 비교를 해도 그다지 뚜렷한 경향을 확인하기는 힘들다.</p>
+</div>
+</div>
+<div id="modelling-strategy" class="section level1">
+<h1>Modelling strategy</h1>
+<p>일단 패널자료 분석이니 기본으로 pooling, 고정효과(fixed effect), 랜덤효과(random effect) 그리고 1차차분(first difference) 정도를 해주는 것이 예의이자 교과서적인 접근일 것이다. 그런데, 우리 자료는 약간의 애로사항이 있다.</p>
+<div id="fd-vs-fe" class="section level2">
+<h2>FD vs FE</h2>
+<p>FD와 FE는 비슷한 철학을 지닌 방법론이다. 두 모형은 패널 자료를 통해 개체 별 특성을 특성을 제거하는 방법을 구사한다. 두 모형의 추정치에 차이가 있다면 모델이 편의가 있다는 의미로 해석할 수 있다. 앞 결과에서 보듯이 두 모델의 추정치는 꽤 다르다. 아울러 몇 가지 검정을 해보면 모형 자체의 한계도 뚜렷하다. 추정 자체에 문제가 있다면 다른 추정 방법을 쓰지 않는 이상 바로 잡기는 쉽지 않다.</p>
+</div>
+<div id="endogeneity" class="section level2">
+<h2>Endogeneity</h2>
+<p>다운로드의 경우 다운로드가 발생한 이후 매출이 발생할 수 밖에 없기 때문에 내생성을 무시해도 좋다. 다른 변수에 대해서는 확신하기 힘들다. 특히, <code>net_AU</code>는 매출과 동시에 결정되는 측면을 무시할 수 없다. 이 문제를 해결하기 위해서는 적절한 도구변수를 찾아야 하지만, 패널 자료에서 도구변수를 찾는 것은 몹시 어렵지 않은가? 아주 방법이 없는 건 아니지만, 자신은 없다.</p>
+<p>내생성 문제에 대한 해법으로 동태적 패널(dynamic panel) 모형을 고려해볼 수 있겠다. Arellano and Bello에 제시된 차분적률법(difference GMM)에 따른 추정 결과는 아래와 같다.</p>
+
+<table style="text-align:center"><tr><td colspan="6" style="border-bottom: 1px solid black"></td></tr><tr><td style="text-align:left"></td><td colspan="5"><em>Dependent variable:</em></td></tr>
+<tr><td></td><td colspan="5" style="border-bottom: 1px solid black"></td></tr>
+<tr><td style="text-align:left"></td><td colspan="5">log(revenue)</td></tr>
+<tr><td style="text-align:left"></td><td>iOS15</td><td>iOS16</td><td>iOS17</td><td>AOS16</td><td>AOS17</td></tr>
+<tr><td style="text-align:left"></td><td>(1)</td><td>(2)</td><td>(3)</td><td>(4)</td><td>(5)</td></tr>
+<tr><td colspan="6" style="border-bottom: 1px solid black"></td></tr><tr><td style="text-align:left">lag(log(revenue), 1:2)1</td><td>0.392<sup>***</sup></td><td>0.430<sup>***</sup></td><td>0.359<sup>***</sup></td><td>0.425<sup>***</sup></td><td>0.296<sup>***</sup></td></tr>
+<tr><td style="text-align:left"></td><td>(0.056)</td><td>(0.053)</td><td>(0.055)</td><td>(0.065)</td><td>(0.081)</td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">lag(log(revenue), 1:2)2</td><td>0.049</td><td>0.091<sup>***</sup></td><td>0.021</td><td>0.019</td><td>-0.102<sup>***</sup></td></tr>
+<tr><td style="text-align:left"></td><td>(0.030)</td><td>(0.025)</td><td>(0.044)</td><td>(0.032)</td><td>(0.039)</td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">log(net_AU)</td><td>0.149<sup>**</sup></td><td>0.028</td><td>0.025</td><td>-0.006</td><td>-0.003</td></tr>
+<tr><td style="text-align:left"></td><td>(0.067)</td><td>(0.019)</td><td>(0.054)</td><td>(0.004)</td><td>(0.005)</td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">log(download)</td><td>0.177<sup>***</sup></td><td>0.164<sup>***</sup></td><td>0.206<sup>***</sup></td><td>0.074</td><td>0.177<sup>***</sup></td></tr>
+<tr><td style="text-align:left"></td><td>(0.045)</td><td>(0.049)</td><td>(0.036)</td><td>(0.053)</td><td>(0.036)</td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">log(avg_time_per_user)</td><td>0.085</td><td>0.043</td><td>0.077</td><td>0.058</td><td>-0.061</td></tr>
+<tr><td style="text-align:left"></td><td>(0.059)</td><td>(0.052)</td><td>(0.053)</td><td>(0.047)</td><td>(0.050)</td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">avg_sessions_per_user</td><td>0.001</td><td>0.002</td><td>-0.003</td><td>0.001</td><td>0.004<sup>**</sup></td></tr>
+<tr><td style="text-align:left"></td><td>(0.007)</td><td>(0.004)</td><td>(0.003)</td><td>(0.002)</td><td>(0.002)</td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td colspan="6" style="border-bottom: 1px solid black"></td></tr><tr><td style="text-align:left">Observations</td><td>124</td><td>129</td><td>106</td><td>123</td><td>115</td></tr>
+<tr><td colspan="6" style="border-bottom: 1px solid black"></td></tr><tr><td style="text-align:left"><em>Note:</em></td><td colspan="5" style="text-align:right"><sup>*</sup>p<0.1; <sup>**</sup>p<0.05; <sup>***</sup>p<0.01</td></tr>
+</table>
+<p>일단 동태적 패널 모형에 대해서 상세하게 다루지 않겠다. 다만, 앞서 정태적 모형과는 사뭇 다른 결과를 보여준다. 대체로 다운로드 규모의 효과만 확인할 수 있으며 나머지 변수의 효과들은 모두 사라지게 된다.</p>
+</div>
+<div id="mean-group-panel-model" class="section level2">
+<h2>‘Mean Group’ panel model</h2>
+<p>동태적 패널 모형이 지닌 가장 큰 문제는 시계열이 상대적으로 작은 짧은 패널에 특화되었다는 것이다. 여기서 약간의 이질성만 발생해도 모형의 불편성과 일치성이 크게 흔들리게 된다. 패널 데이터이 이질성은 두 축으로 발생할 수 있다. 하나는 시간 축이고 다른 하나는 횡단면 축이다. 이른바 ‘평균 집단’ 추정법은 이런 두 가지 이질성을 통제하려는 시도이다. 자세한 이야기는 일단 생략하고, 간편하게 적용할 수 있는 세가지 방법을 활용했다.</p>
+<ol style="list-style-type: decimal">
+<li>Mean Group (MG): 개별 시계열 단위로 추정한 후 이를 평균해 시계열의 이절성을 통제한다.</li>
+<li>Demean cross sectionally (DMG): 횡단면 평균을 차감해 횡단면에 존재하는 이질성을 통제한다.</li>
+<li>Common Correlated Effects Mean Group (CCEMG): regressor와 regressand 모두의 평균을 고려함으로써 공통 요소를 통제한다.</li>
+</ol>
+<p>세번째 모델은 공통 요소 모형이라고 블리기도 한다. 앞서 모든 추정법이 횡단면의 계열상관이 없다는 가정에 기반한 추정이다. 그런데, 만일 모든 게임에 영향을 주는 요소가 존재한다면 이러한 가정이 위배된다. CCEMG 추정법은 이러한 한계를 보정하기 위해 개발된 방법이다. 세가지 추정법에 따른 결과는 다음과 같다.</p>
+<div id="ios-2015-1" class="section level3">
+<h3>iOS 2015</h3>
+
+<table style="text-align:center"><tr><td colspan="4" style="border-bottom: 1px solid black"></td></tr><tr><td style="text-align:left"></td><td colspan="3"><em>Dependent variable:</em></td></tr>
+<tr><td></td><td colspan="3" style="border-bottom: 1px solid black"></td></tr>
+<tr><td style="text-align:left"></td><td colspan="3">log(revenue)</td></tr>
+<tr><td style="text-align:left"></td><td>MG</td><td>DMG</td><td>CMG</td></tr>
+<tr><td style="text-align:left"></td><td>(1)</td><td>(2)</td><td>(3)</td></tr>
+<tr><td colspan="4" style="border-bottom: 1px solid black"></td></tr><tr><td style="text-align:left">log(download)</td><td>0.391<sup>***</sup></td><td>0.315<sup>***</sup></td><td>0.270<sup>***</sup></td></tr>
+<tr><td style="text-align:left"></td><td>(0.030)</td><td>(0.028)</td><td>(0.030)</td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">log(net_AU)</td><td>0.389<sup>***</sup></td><td>0.491<sup>***</sup></td><td>0.289<sup>***</sup></td></tr>
+<tr><td style="text-align:left"></td><td>(0.049)</td><td>(0.049)</td><td>(0.089)</td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">log(avg_time_per_user)</td><td>0.291</td><td>0.067</td><td>0.509</td></tr>
+<tr><td style="text-align:left"></td><td>(0.615)</td><td>(0.183)</td><td>(0.789)</td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">log(avg_session_duration)</td><td>-0.186</td><td>-0.016</td><td>-0.416</td></tr>
+<tr><td style="text-align:left"></td><td>(0.615)</td><td>(0.186)</td><td>(0.797)</td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">avg_sessions_per_user</td><td>-0.052</td><td>0.023</td><td>-0.023</td></tr>
+<tr><td style="text-align:left"></td><td>(0.069)</td><td>(0.020)</td><td>(0.081)</td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">Constant</td><td>0.846</td><td>-0.031</td><td>-1.550</td></tr>
+<tr><td style="text-align:left"></td><td>(1.313)</td><td>(0.347)</td><td>(2.952)</td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td></tr>
+<tr><td colspan="4" style="border-bottom: 1px solid black"></td></tr><tr><td style="text-align:left">Observations</td><td>6,396</td><td>6,396</td><td>6,396</td></tr>
+<tr><td style="text-align:left">R<sup>2</sup></td><td>0.979</td><td>0.974</td><td>1.021</td></tr>
+<tr><td colspan="4" style="border-bottom: 1px solid black"></td></tr><tr><td style="text-align:left"><em>Note:</em></td><td colspan="3" style="text-align:right"><sup>*</sup>p<0.1; <sup>**</sup>p<0.05; <sup>***</sup>p<0.01</td></tr>
+</table>
+</div>
+<div id="ios-2016-1" class="section level3">
+<h3>iOS 2016</h3>
+
+<table style="text-align:center"><tr><td colspan="4" style="border-bottom: 1px solid black"></td></tr><tr><td style="text-align:left"></td><td colspan="3"><em>Dependent variable:</em></td></tr>
+<tr><td></td><td colspan="3" style="border-bottom: 1px solid black"></td></tr>
+<tr><td style="text-align:left"></td><td colspan="3">log(revenue)</td></tr>
+<tr><td style="text-align:left"></td><td>MG</td><td>DMG</td><td>CMG</td></tr>
+<tr><td style="text-align:left"></td><td>(1)</td><td>(2)</td><td>(3)</td></tr>
+<tr><td colspan="4" style="border-bottom: 1px solid black"></td></tr><tr><td style="text-align:left">log(download)</td><td>0.317<sup>***</sup></td><td>0.274<sup>***</sup></td><td>0.245<sup>***</sup></td></tr>
+<tr><td style="text-align:left"></td><td>(0.029)</td><td>(0.027)</td><td>(0.031)</td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">log(net_AU)</td><td>0.407<sup>***</sup></td><td>0.353<sup>***</sup></td><td>0.264<sup>***</sup></td></tr>
+<tr><td style="text-align:left"></td><td>(0.064)</td><td>(0.048)</td><td>(0.078)</td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">log(avg_time_per_user)</td><td>-0.360</td><td>0.158</td><td>0.235</td></tr>
+<tr><td style="text-align:left"></td><td>(0.396)</td><td>(0.160)</td><td>(0.451)</td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">log(avg_session_duration)</td><td>0.360</td><td>-0.098</td><td>-0.149</td></tr>
+<tr><td style="text-align:left"></td><td>(0.398)</td><td>(0.160)</td><td>(0.446)</td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">avg_sessions_per_user</td><td>0.061<sup>*</sup></td><td>0.007</td><td>-0.014</td></tr>
+<tr><td style="text-align:left"></td><td>(0.034)</td><td>(0.014)</td><td>(0.040)</td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">Constant</td><td>2.852<sup>**</sup></td><td>0.085</td><td>-0.549</td></tr>
+<tr><td style="text-align:left"></td><td>(1.211)</td><td>(0.302)</td><td>(2.619)</td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td></tr>
+<tr><td colspan="4" style="border-bottom: 1px solid black"></td></tr><tr><td style="text-align:left">Observations</td><td>6,708</td><td>6,708</td><td>6,708</td></tr>
+<tr><td style="text-align:left">R<sup>2</sup></td><td>0.981</td><td>0.978</td><td>1.011</td></tr>
+<tr><td colspan="4" style="border-bottom: 1px solid black"></td></tr><tr><td style="text-align:left"><em>Note:</em></td><td colspan="3" style="text-align:right"><sup>*</sup>p<0.1; <sup>**</sup>p<0.05; <sup>***</sup>p<0.01</td></tr>
+</table>
+</div>
+<div id="ios-2017-1" class="section level3">
+<h3>iOS 2017</h3>
+
+<table style="text-align:center"><tr><td colspan="4" style="border-bottom: 1px solid black"></td></tr><tr><td style="text-align:left"></td><td colspan="3"><em>Dependent variable:</em></td></tr>
+<tr><td></td><td colspan="3" style="border-bottom: 1px solid black"></td></tr>
+<tr><td style="text-align:left"></td><td colspan="3">log(revenue)</td></tr>
+<tr><td style="text-align:left"></td><td>MG</td><td>DMG</td><td>CMG</td></tr>
+<tr><td style="text-align:left"></td><td>(1)</td><td>(2)</td><td>(3)</td></tr>
+<tr><td colspan="4" style="border-bottom: 1px solid black"></td></tr><tr><td style="text-align:left">log(download)</td><td>0.336<sup>***</sup></td><td>0.284<sup>***</sup></td><td>0.238<sup>***</sup></td></tr>
+<tr><td style="text-align:left"></td><td>(0.035)</td><td>(0.031)</td><td>(0.036)</td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">log(net_AU)</td><td>0.117<sup>**</sup></td><td>0.258<sup>***</sup></td><td>0.229<sup>***</sup></td></tr>
+<tr><td style="text-align:left"></td><td>(0.058)</td><td>(0.058)</td><td>(0.080)</td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">log(avg_time_per_user)</td><td>-0.305</td><td>0.261<sup>*</sup></td><td>-0.132</td></tr>
+<tr><td style="text-align:left"></td><td>(0.208)</td><td>(0.147)</td><td>(0.276)</td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">log(avg_session_duration)</td><td>0.382<sup>*</sup></td><td>-0.180</td><td>0.150</td></tr>
+<tr><td style="text-align:left"></td><td>(0.215)</td><td>(0.151)</td><td>(0.276)</td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">avg_sessions_per_user</td><td>0.022</td><td>-0.008</td><td>0.014</td></tr>
+<tr><td style="text-align:left"></td><td>(0.014)</td><td>(0.011)</td><td>(0.021)</td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">Constant</td><td>6.634<sup>***</sup></td><td>-0.096</td><td>0.381</td></tr>
+<tr><td style="text-align:left"></td><td>(1.030)</td><td>(0.504)</td><td>(2.421)</td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td></tr>
+<tr><td colspan="4" style="border-bottom: 1px solid black"></td></tr><tr><td style="text-align:left">Observations</td><td>5,512</td><td>5,512</td><td>5,512</td></tr>
+<tr><td style="text-align:left">R<sup>2</sup></td><td>0.983</td><td>0.980</td><td>1.009</td></tr>
+<tr><td colspan="4" style="border-bottom: 1px solid black"></td></tr><tr><td style="text-align:left"><em>Note:</em></td><td colspan="3" style="text-align:right"><sup>*</sup>p<0.1; <sup>**</sup>p<0.05; <sup>***</sup>p<0.01</td></tr>
+</table>
+</div>
+<div id="aos-2016-1" class="section level3">
+<h3>AOS 2016</h3>
+
+<table style="text-align:center"><tr><td colspan="4" style="border-bottom: 1px solid black"></td></tr><tr><td style="text-align:left"></td><td colspan="3"><em>Dependent variable:</em></td></tr>
+<tr><td></td><td colspan="3" style="border-bottom: 1px solid black"></td></tr>
+<tr><td style="text-align:left"></td><td colspan="3">log(revenue)</td></tr>
+<tr><td style="text-align:left"></td><td>MG</td><td>DMG</td><td>CMG</td></tr>
+<tr><td style="text-align:left"></td><td>(1)</td><td>(2)</td><td>(3)</td></tr>
+<tr><td colspan="4" style="border-bottom: 1px solid black"></td></tr><tr><td style="text-align:left">log(download)</td><td>0.231<sup>***</sup></td><td>0.207<sup>***</sup></td><td>0.169<sup>***</sup></td></tr>
+<tr><td style="text-align:left"></td><td>(0.022)</td><td>(0.020)</td><td>(0.023)</td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">log(net_AU)</td><td>0.176<sup>***</sup></td><td>0.034<sup>**</sup></td><td>0.189<sup>***</sup></td></tr>
+<tr><td style="text-align:left"></td><td>(0.039)</td><td>(0.015)</td><td>(0.054)</td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">log(avg_time_per_user)</td><td>0.451</td><td>0.443<sup>*</sup></td><td>0.747<sup>*</sup></td></tr>
+<tr><td style="text-align:left"></td><td>(0.393)</td><td>(0.234)</td><td>(0.406)</td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">log(avg_session_duration)</td><td>-0.372</td><td>-0.415</td><td>-0.716<sup>*</sup></td></tr>
+<tr><td style="text-align:left"></td><td>(0.414)</td><td>(0.262)</td><td>(0.407)</td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">avg_sessions_per_user</td><td>-0.013</td><td>-0.012</td><td>-0.042</td></tr>
+<tr><td style="text-align:left"></td><td>(0.023)</td><td>(0.014)</td><td>(0.028)</td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">Constant</td><td>4.657<sup>***</sup></td><td>-0.245</td><td>-1.442</td></tr>
+<tr><td style="text-align:left"></td><td>(1.210)</td><td>(0.197)</td><td>(2.129)</td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td></tr>
+<tr><td colspan="4" style="border-bottom: 1px solid black"></td></tr><tr><td style="text-align:left">Observations</td><td>6,344</td><td>6,344</td><td>6,344</td></tr>
+<tr><td style="text-align:left">R<sup>2</sup></td><td>0.986</td><td>0.982</td><td>1.014</td></tr>
+<tr><td colspan="4" style="border-bottom: 1px solid black"></td></tr><tr><td style="text-align:left"><em>Note:</em></td><td colspan="3" style="text-align:right"><sup>*</sup>p<0.1; <sup>**</sup>p<0.05; <sup>***</sup>p<0.01</td></tr>
+</table>
+</div>
+<div id="aos-2017-1" class="section level3">
+<h3>AOS 2017</h3>
+
+<table style="text-align:center"><tr><td colspan="4" style="border-bottom: 1px solid black"></td></tr><tr><td style="text-align:left"></td><td colspan="3"><em>Dependent variable:</em></td></tr>
+<tr><td></td><td colspan="3" style="border-bottom: 1px solid black"></td></tr>
+<tr><td style="text-align:left"></td><td colspan="3">log(revenue)</td></tr>
+<tr><td style="text-align:left"></td><td>MG</td><td>DMG</td><td>CMG</td></tr>
+<tr><td style="text-align:left"></td><td>(1)</td><td>(2)</td><td>(3)</td></tr>
+<tr><td colspan="4" style="border-bottom: 1px solid black"></td></tr><tr><td style="text-align:left">log(download)</td><td>0.223<sup>***</sup></td><td>0.227<sup>***</sup></td><td>0.178<sup>***</sup></td></tr>
+<tr><td style="text-align:left"></td><td>(0.023)</td><td>(0.029)</td><td>(0.024)</td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">log(net_AU)</td><td>0.028</td><td>0.025</td><td>0.063</td></tr>
+<tr><td style="text-align:left"></td><td>(0.052)</td><td>(0.017)</td><td>(0.050)</td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">log(avg_time_per_user)</td><td>0.254</td><td>-0.007</td><td>0.385</td></tr>
+<tr><td style="text-align:left"></td><td>(0.460)</td><td>(0.194)</td><td>(0.628)</td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">log(avg_session_duration)</td><td>-0.179</td><td>0.094</td><td>-0.357</td></tr>
+<tr><td style="text-align:left"></td><td>(0.455)</td><td>(0.179)</td><td>(0.628)</td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">avg_sessions_per_user</td><td>-0.009</td><td>0.004</td><td>-0.019</td></tr>
+<tr><td style="text-align:left"></td><td>(0.023)</td><td>(0.006)</td><td>(0.032)</td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">Constant</td><td>7.632<sup>***</sup></td><td>-0.365</td><td>-0.680</td></tr>
+<tr><td style="text-align:left"></td><td>(1.086)</td><td>(0.241)</td><td>(2.529)</td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td></tr>
+<tr><td colspan="4" style="border-bottom: 1px solid black"></td></tr><tr><td style="text-align:left">Observations</td><td>5,980</td><td>5,980</td><td>5,980</td></tr>
+<tr><td style="text-align:left">R<sup>2</sup></td><td>0.986</td><td>0.982</td><td>1.011</td></tr>
+<tr><td colspan="4" style="border-bottom: 1px solid black"></td></tr><tr><td style="text-align:left"><em>Note:</em></td><td colspan="3" style="text-align:right"><sup>*</sup>p<0.1; <sup>**</sup>p<0.05; <sup>***</sup>p<0.01</td></tr>
+</table>
+<p><br> 이제 위 테이블의 결과를 시각화해보자.</p>
+<p><img src="../../../../../post/us_iOS/blogpost_files/figure-html/unnamed-chunk-16-1.png" width="672" /><img src="../../../../../post/us_iOS/blogpost_files/figure-html/unnamed-chunk-16-2.png" width="672" /></p>
+<p>세 모형 모두 에서 다운로드 규모와 순활성사용자의 효과를 비교적 안정적으로 확인할 수 있다. OS 모두 순활성이용자와 다운로드 규모가 매출에 영향을 끼치며, 시간 및 세션 이용 현황의 효과는 사라졌다. iOS의 경우 순활성이용자와 다운로드 규모가 비슷한 매출 견인효과를 지니는 반면, AOS의 경우 다운로드 효과가 안정적이며 순활성이용자의 효과는 2016년의 MG 모형에서만 관찰되었다.</p>
+</div>
+</div>
+</div>
+<div id="conclusion" class="section level1">
+<h1>Conclusion</h1>
+<p>다소 복잡해보이는 지금까지의 분석이 지닌 함의를 두가지로 요약해보자.</p>
+<ol style="list-style-type: decimal">
+<li>업계의 속설은 게임 디자인 및 플레이 요소, 즉 게임 내의 보상 등에 좌우되는 순활성이용자 수, 평균 플레이시간, 세션 정보 등이 중요하다는 것이다. 이러한 중요성은 단순 상관관계나 통합 모형을 통해 확인할 수 있다. 그런데 보다 정교한 분석 거친 결과를 보면, 적어도 미국 모바일 게임 시장에 대해서 이러한 정설은 과장되었을 것으로 판단할 수 있다.</li>
+<li>가장 안정적으로 매출을 견인하는 요소는 주당 다운로드 규모다. 물론 이 의미를 어떻게 해석해야 하는지에 대해서는 다소 추가적인 분석이 필요하다. 특히 각 변수들을 실행수단으로 볼 때 1%를 올리기 위한 비용이 다를 수 있다는 점에 주목해야 한다. 예를 들어, 1000만 명의 주당 순활성 이용자를 지닌 게임에서 순활성이용자 1%를 늘이기 위해서는 많은 비용을 요할 것이다. 반면, 이 게임에서도 주당 다운로드 숫자는 크지 않을 수 있다. 이 게임이 꽤 지난 게임이라면 오히려 게임 내 요소보다는 게임의 다운로드를 늘이는 외부적인 활동이 중요할 수 있다.</li>
+</ol>
+</div>
+<div id="technincal-ps" class="section level1">
+<h1>Technincal PS</h1>
+<div id="broomtidy-and-its-limitation" class="section level2">
+<h2>broom::tidy, and its limitation</h2>
+<p>보통 R에서 regression이든 패키지를 돌리면 summary를 돌려준다. 이는 각 분석 패키지 별로 출력되는 값인데, 얘네들을 재활용하기는 쉽지 않다. 재활용하려면 생성된 모델이나 summary 오브젝트를 뜯어내면 된다. 아주 어렵진 않지만 귀찮다. 이를 위해 개발된 패키지가 broom다. 많은 패키지들의 분석 모데을 잘 뜯어내주긴 한다. plm패키지에서도 plm 모형은 잘 발라진다. 다만, 동태적 패널 모형인 plm::pgmm이나 평균 집단 모형인 plm::pmg는 지원하지 않는다. 이런 경우 어떻게 할 수 있을까?</p>
+<p>정공법은 원래 대상을 보고 그 대상을 뜯어내 data.frame으로 가다듬는 것이다. 하지만, 꼼수도 있다.</p>
+<ol style="list-style-type: decimal">
+<li>summary 테이블을 녹화하듯이 txt파일로 저장한다. <code>sink()</code> 명렁어를 활용한다.</li>
+<li>txt를 다시 라인별로 읽어들인다.</li>
+<li>해당 라인에서 필요한 정보를 추출해서 data.frame으로 전환한다.</li>
+</ol>
+<p>이렇게 하면, 비교적 간단하게 summary 정보를 data.frame으로 바꿀 수 있다.</p>
+</div>
+<div id="model-with-customized-se" class="section level2">
+<h2>Model with customized SE</h2>
+<p>Panel 모형에서 가장 중요한 것은 SE(standard error)를 적당하게 집어넣는 것이다. 강건한(robust) 통계량를 구하기 위해서는 여러가지 개발된 모델을 써야 한다. 보통 plm 패키지가 구현되는 방식은 다음과 같다.</p>
+<ol style="list-style-type: decimal">
+<li>plm 모형을 추정한 결과를 R객체로 저장한다.</li>
+<li>해당 객체에서 summary function을 통해 필요한 정보를 출력한다.</li>
+</ol>
+<p>문제는 summary function이 아니라 다른 출력 함수를 쓸 때 발생한다. 회귀분석 결과를 html 혹은 <span class="math inline">\(\LaTeX\)</span> 테이블로 바꿔주는 stargazer 패키지만 해도 함수의 입력으로 모델을 받게 되어 있다. 이럴 경우에는 별도의 SE 정확하게는 분산-공분산 행렬(variance-covariance matrix)를 생성한 후 이를 모형에 다시 심어준다. 간단한 별도의 함수를 하나 짜면 된다. Stata에서 생성되는 클러스터 SE를 R에서 생성하기 위한 가짜 코드는 대충 다음과 같다.</p>
+<pre><code>gen_model_with_customizedSE &lt;- function(model_v, year_v, platform_v, y) {
+#  
+  plm(model_v, model =  &quot;pooling&quot;, effect = y, index = c(&quot;app_name&quot;, &quot;week_inyear&quot;), 
+      data = dfa_BP %.&gt;% filter(., year == year_v, cat_platform == platform_v)) -&gt; model 
+  my_vcovHC &lt;- function(x){plm::vcovHC(x, type = &quot;sss&quot;, cluster = &quot;group&quot;)}
+  my_vcovHC(model) -&gt; model$vcov
+  model %.&gt;% return(.)
+#  
+}
+</code></pre>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>모바일 게임에서 ’세션’의 의미란 게임을 시작한 후 게임 내 이용자의 인터랙션이 비활성화 될 때까지의 시간을 의미한다. 모바일 게에서 세션은 게임 콘텐츠에 의해 정의될 수도 있고, 이용자가 선택할 수도 있다. 이용자의 자발적인 비활성화가 발생하지 않는 이상 콘텐츠에 의해 정의되는 시간이 특정 세션의 상한이 된다.<a href="#fnref1">↩</a></p></li>
+<li id="fn2"><p>물론 여기에는 몇가지 가정이 필요하다. 다운로드를 하고 접속을 하지 않는 경우도 있고, 게임 계정을 이미 지니고 있으나 여러가지 이유(기기 교체, 자발적 삭제)로 앱을 지운 후 다시 다운로드 받은 경우가 섞여 있을 수 있다. 일단 문제를 단순하게 만들기 위해서 해당 주에 발생한 다운로드는 신규 이용자라고 간주하도록 하자.<a href="#fnref2">↩</a></p></li>
+</ol>
+</div>
+
+</main>
+
+ 
+<footer>
+
+  
+  <link rel="stylesheet" href="../../../../../css/barefoot.min.css">
+  <script src="../../../../../js/barefoot.min.js"></script>
+  <script>
+    lf = new BareFoot();
+    lf.init();
+  </script>
+
+  
+<script src="//yihui.name/js/math-code.js"></script>
+<script async src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script async src="//yihui.name/js/center-img.js"></script>
+
+
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/languages/r.min.js"></script>
+<script>
+ hljs.configure({languages: []});
+ hljs.initHighlightingOnLoad();
+</script>
+
+  
+  <hr/>
+  &copy; <a href="http://lostineconomics.com">Jun Sok Huhh</a> 2017 | <a href="https://github.com/anarinsk">Github</a>
+  
+  </footer>
+  </body>
+</html>
+

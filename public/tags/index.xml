@@ -86,7 +86,7 @@
     <item>
       <title>Economics</title>
       <link>/tags/economics/</link>
-      <pubDate>Wed, 03 Jan 2018 00:00:00 +0000</pubDate>
+      <pubDate>Wed, 28 Feb 2018 00:00:00 +0000</pubDate>
       
       <guid>/tags/economics/</guid>
       <description></description>
@@ -221,7 +221,7 @@
     <item>
       <title>Mobile-game</title>
       <link>/tags/mobile-game/</link>
-      <pubDate>Wed, 03 Jan 2018 00:00:00 +0000</pubDate>
+      <pubDate>Wed, 28 Feb 2018 00:00:00 +0000</pubDate>
       
       <guid>/tags/mobile-game/</guid>
       <description></description>
@@ -242,6 +242,15 @@
       <pubDate>Sun, 14 Feb 2016 00:00:00 +0000</pubDate>
       
       <guid>/tags/pandoc/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Panel-data</title>
+      <link>/tags/panel-data/</link>
+      <pubDate>Wed, 28 Feb 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/panel-data/</guid>
       <description></description>
     </item>
     
@@ -284,7 +293,7 @@
     <item>
       <title>R</title>
       <link>/tags/r/</link>
-      <pubDate>Wed, 03 Jan 2018 00:00:00 +0000</pubDate>
+      <pubDate>Wed, 28 Feb 2018 00:00:00 +0000</pubDate>
       
       <guid>/tags/r/</guid>
       <description></description>
