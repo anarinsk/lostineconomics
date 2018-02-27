@@ -182,7 +182,7 @@ pols_vis("us_AOS", "POLS for AOS in U.S.")
   * 모형
     1. 고정효과 모형(Fixed effect model: FE) 
     2. 랜덤효과 모형(Random effect model: RE) 
-    3. 이차차분 모형(First difference model: FD) 
+    3. 1차차분 모형(First difference model: FD) 
     4. Between 모형 (BE)
     5. Pooling 모형 (POLS)
 
