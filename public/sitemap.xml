@@ -242,13 +242,13 @@
   </url>
   
   <url>
-    <loc>/categories/clustering/</loc>
+    <loc>/tags/clustering/</loc>
     <lastmod>2017-12-17T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/tags/clustering/</loc>
+    <loc>/categories/clustering/</loc>
     <lastmod>2017-12-17T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
@@ -559,14 +559,14 @@
   </url>
   
   <url>
-    <loc>/categories/wrapr/</loc>
-    <lastmod>2017-11-28T00:00:00+00:00</lastmod>
+    <loc>/tags/wrapr/</loc>
+    <lastmod>2017-11-21T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/tags/wrapr/</loc>
-    <lastmod>2017-11-21T00:00:00+00:00</lastmod>
+    <loc>/categories/wrapr/</loc>
+    <lastmod>2017-11-28T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   

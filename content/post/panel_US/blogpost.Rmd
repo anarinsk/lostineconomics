@@ -225,7 +225,7 @@ htmltools::includeHTML("FRD_2017_us_AOS.html")
 
 # Modelling strategy 
 
-일단 패널자료 분석이니 기본으로 pooling, 고정효과(fixed effect), 랜덤효과(random effect) 그리고 1차차분(first difference) 정도를 해주는 것이 예의이자 교과서적인 접근일 것이다. 그런데, 우리 자료는 약간의 애로사항이 있다. 
+일단 패널 데이터 분석이니 기본으로 pooling, 고정효과(fixed effect), 랜덤효과(random effect) 그리고 1차차분(first difference) 정도를 해주는 것이 예의이자 교과서적인 접근일 것이다. 그런데, 우리 자료는 약간의 애로사항이 있다. 
 
 ## FD vs FE
 
