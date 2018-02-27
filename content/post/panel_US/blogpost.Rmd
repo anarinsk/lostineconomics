@@ -147,8 +147,8 @@ corrplot(tcorr, method = "number", tl.col="black", type = "upper", tl.srt = 45)
 각 모형의 추정 결과를 년도별과 OS별 시각화해 표현해보도록 하자. 링크의 분석 결과 중 관심 변수의 추정치와 신뢰구간을 표현한 것이다. 
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
-pols_vis("us_iOS", "POL for iOS in U.S.")
-pols_vis("us_AOS", "POL for AOS in U.S.")
+pols_vis("us_iOS", "POLS for iOS in U.S.")
+pols_vis("us_AOS", "POLS for AOS in U.S.")
 ```
 
 일단 몇가지 지적해두고 가자. 
@@ -288,8 +288,8 @@ htmltools::includeHTML("../../../html_link/panel_US/pmg_2017_us_AOS.html")
 이제 위 테이블의 결과를 시각화해보자. 
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
-pmg_vis("us_iOS", "iOS in U.S.")
-pmg_vis("us_AOS", "AOS in U.S.")
+pmg_vis("us_iOS", "Mean Group model for iOS in U.S.")
+pmg_vis("us_AOS", "Mean Group model for AOS in U.S.")
 ```
 
 세 모형 모두 에서 다운로드 규모와 순활성사용자의 효과를 비교적 안정적으로 확인할 수 있다. OS 모두 순활성이용자와 다운로드 규모가 매출에 영향을 끼치며, 시간 및 세션 이용 현황의 효과는 사라졌다. iOS의 경우 순활성이용자와 다운로드 규모가 비슷한 매출 견인효과를 지니는 반면, AOS의 경우 다운로드 효과가 안정적이며 순활성이용자의 효과는 2016년의 MG 모형에서만 관찰되었다. 
