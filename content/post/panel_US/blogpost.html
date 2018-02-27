@@ -19,7 +19,7 @@ categories: ['data', 'market-research']
 <div id="motivation" class="section level1">
 <h1>Motivation</h1>
 <p>보통 어떤 연구 동기가 작용해서 이에 따라 문제를 잘 다듬어 문제를 살펴보는 게 보통의 순서다. 하지만 데이터를 구하기 어려운 영역에서는 반대의 경우가 더 많다. 데이터를 먼저 허겁지겁 찾고 혹은 구하고, 그 위에서 문제를 (짜?) 맞춘다. 물론 이런 접근의 한계는 분명하다. 하지만 역시 안하거나 못하는 것보다는 뭐라도 해보는 게 낫지 않나, 라고 스스로를 위로해본다.</p>
-<p>모바일 게임 관련 데이터를 제공하는 AOO 사의 데이터를 이리저리 뒤지다가 재미있는 데이터를 보게 되었다. AOO 사가 주간 단위로 여간해서는 구하기 힘든 자료를 광범위한 게임에 대해 제공하고 있었다. 추정치이긴 하나 같은 방법론에 따라서 연속적으로 수집되었다는 점에서 그나마 일관성과 신뢰성이 있다고 하겠다. 모바일 게임 별로 다운로드 수, 활성이용자(active users) 수, 설치율, 총 이용시간, 설치 수 대비 활성화 율, 이용 세션 수(평균), 세션 지속시간(평균) 등 제공하고 있었다.[^metrics] 이 숫자들을 보고 있으려니 이런 생각이 떠오르더라.</p>
+<p>모바일 게임 관련 데이터를 제공하는 AOO 사의 데이터를 이리저리 뒤지다가 재미있는 데이터를 보게 되었다. AOO 사가 주간 단위로 여간해서는 구하기 힘든 자료를 광범위한 게임에 대해 제공하고 있었다. 추정치이긴 하나 같은 방법론에 따라서 연속적으로 수집되었다는 점에서 그나마 일관성과 신뢰성이 있다고 하겠다. 모바일 게임 별로 다운로드 수, 활성이용자(active users) 수, 설치율, 총 이용시간, 설치 수 대비 활성화 율, 이용 세션 수(평균), 세션 지속시간(평균) 등 제공하고 있었다. 이 숫자들을 보고 있으려니 이런 생각이 떠오르더라.</p>
 <blockquote>
 <p>저 변수들이 있으면 대략 업계의 몇 가지 속설들을 ’검증’할 있겠다. AOO 데이터의 매출 데이터 및 몇가지 다른 메타 데이터와 연결할 수 있겠네… 음. 주 단위 패널 데이터로 만들 수 있겠네…</p>
 </blockquote>
@@ -607,7 +607,7 @@ categories: ['data', 'market-research']
 <li>plm 모형을 추정한 결과를 R객체로 저장한다.</li>
 <li>해당 객체에서 summary function을 통해 필요한 정보를 출력한다.</li>
 </ol>
-<p>문제는 summary function이 아니라 다른 출력 함수를 쓸 때 발생한다. 회귀분석 결과를 html 혹은 <span class="math inline">\(\rm \LaTeX\)</span> 테이블로 바꿔주는 stargazer 패키지만 해도 함수의 입력으로 모델을 받게 되어 있다. 이럴 경우에는 별도의 SE 정확하게는 분산-공분산 행렬(variance-covariance matrix)를 생성한 후 이를 모형에 다시 심어준다. 간단한 별도의 함수를 하나 짜면 된다. Stata에서 생성되는 클러스터 SE를 R에서 생성하기 위한 가짜 코드는 대충 다음과 같다.</p>
+<p>문제는 summary function이 아니라 다른 출력 함수를 쓸 때 발생한다. 회귀분석 결과를 html 혹은 <span class="math inline">\(\rm \LaTeX\)</span> 테이블로 바꿔주는 stargazer 패키지만 해도 함수의 입력으로 모델을 받게 되어 있다. 이럴 경우에는 별도의 SE 정확하게는 분산-공분산 행렬(variance-covariance matrix)를 생성한 후 이를 모형에 다시 심어주면 된다. 아예 간단한 별도의 함수를 하나 짜면 편하다. Stata에서 생성되는 클러스터 SE를 R에서 생성하기 위한 가짜 코드는 대충 다음과 같다.</p>
 <pre><code>gen_model_with_customizedSE &lt;- function(model_v, year_v, platform_v, y) {
 #  
   plm(model_v, model =  &quot;pooling&quot;, effect = y, index = c(&quot;app_name&quot;, &quot;week_inyear&quot;), 
