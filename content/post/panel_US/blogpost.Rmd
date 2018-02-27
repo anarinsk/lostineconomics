@@ -165,11 +165,8 @@ pols_vis("us_AOS", "POL for AOS in U.S.")
 
 \[ u_{it} = \mu_i +  \eta_t + \nu_{it} \]
 
-우선 패널 데이터의 보편적인 분석 방법으로 자료를 돌려보기로 하겠다. 개체의 잠재 속성을 제거하기 위해 일차차분(first-difference; FD) 모형, 고정효과(fixed effect; FE) 모형과 임의효과(random effect; RE) 모형을 살펴볼 것이다. 이들 모형과의 비교를 위해서 시계열을 평균으로 없앤 뒤 개체의 차이만 보는 개체간 모형(between; BE), 그리고 횡단면이나 시계열의 차이를 무시하고 모두 같은 개체로 보고 OLS를 돌리는 통합 모형(pooled OLS; POLS) 제시할 예정이다. 
+우선 패널 데이터의 보편적인 분석 방법으로 자료를 돌려보기로 하겠다. 개체의 잠재 속성을 제거하기 위해 일차차분(first-difference; FD) 모형, 고정효과(fixed effect; FE) 모형과 임의효과(random effect; RE) 모형을 살펴볼 것이다. 이들 모형과의 비교를 위해서 시계열을 평균으로 없앤 뒤 개체의 차이만 보는 개체간 모형(between; BE)의 추정 결과를 살펴보자. 비교를 위해 앞서 보았던 POLS 역시 결과에 포함시켰다. 
 
-
-
-일단 몸풀기 삼아서 위의 독립변수들로 몇가지 OLS를 돌려보도록 하자. 
 
 ## Estimation by OS and year 
 
