@@ -607,7 +607,7 @@ categories: ['data', 'market-research']
 <li>plm 모형을 추정한 결과를 R객체로 저장한다.</li>
 <li>해당 객체에서 summary function을 통해 필요한 정보를 출력한다.</li>
 </ol>
-<p>문제는 summary function이 아니라 다른 출력 함수를 쓸 때 발생한다. 회귀분석 결과를 html 혹은 <span class="math inline">\(\LaTeX\)</span> 테이블로 바꿔주는 stargazer 패키지만 해도 함수의 입력으로 모델을 받게 되어 있다. 이럴 경우에는 별도의 SE 정확하게는 분산-공분산 행렬(variance-covariance matrix)를 생성한 후 이를 모형에 다시 심어준다. 간단한 별도의 함수를 하나 짜면 된다. Stata에서 생성되는 클러스터 SE를 R에서 생성하기 위한 가짜 코드는 대충 다음과 같다.</p>
+<p>문제는 summary function이 아니라 다른 출력 함수를 쓸 때 발생한다. 회귀분석 결과를 html 혹은 <span class="math inline">\(\rm \LaTeX\)</span> 테이블로 바꿔주는 stargazer 패키지만 해도 함수의 입력으로 모델을 받게 되어 있다. 이럴 경우에는 별도의 SE 정확하게는 분산-공분산 행렬(variance-covariance matrix)를 생성한 후 이를 모형에 다시 심어준다. 간단한 별도의 함수를 하나 짜면 된다. Stata에서 생성되는 클러스터 SE를 R에서 생성하기 위한 가짜 코드는 대충 다음과 같다.</p>
 <pre><code>gen_model_with_customizedSE &lt;- function(model_v, year_v, platform_v, y) {
 #  
   plm(model_v, model =  &quot;pooling&quot;, effect = y, index = c(&quot;app_name&quot;, &quot;week_inyear&quot;), 
