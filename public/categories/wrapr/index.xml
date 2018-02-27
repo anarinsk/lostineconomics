@@ -1,15 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Wrapr on lost in economics</title>
-    <link>/categories/wrapr/</link>
-    <description>Recent content in Wrapr on lost in economics</description>
+    <title>wrapr on lost in economics</title>
+    <link>/categories/wrapr/index.xml</link>
+    <description>Recent content in wrapr on lost in economics</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 28 Nov 2017 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="/categories/wrapr/index.xml" rel="self" type="application/rss+xml" />
-    
+    <atom:link href="/categories/wrapr/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>let in wrapr</title>
@@ -17,8 +14,90 @@
       <pubDate>Tue, 28 Nov 2017 00:00:00 +0000</pubDate>
       
       <guid>/note/2017/11/28/let-in-wrapr/</guid>
-      <description>Non Standard EvaluationR에는 Non Standard Evaluation(NSE)라고 불리는 녀석이 있다. 어떤 선배님은 변수를 선언하지 않는 R이 처음부터 무척 마음에 들지 않았다, 라고 툴툴대셨다. 하지만 역시 대충 사는 나에게는 ‘까이꺼 대충’ 알아서 해주는 건 편한 장점이다. 좌간, NSE 역시 이와 비슷한 차원에서 이해하면 될 것 같다.
-library(tidyverse)library(&amp;#39;tidyverse&amp;#39;)위의 코드에서 둘 중 어떤 문법이 맞을까? 사실 둘 다 써도 된다. library라는 함수는 string과 expression 모두를 input으로 받는다. 전자가 원래 R이 정한 규칙이라면 후자는 이런 표준에서 벗어났지만 실행되는 규칙, Non Standard Evaluation(NSE)이다.</description>
+      <description>&lt;div id=&#34;non-standard-evaluation&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Non Standard Evaluation&lt;/h1&gt;
+&lt;p&gt;R에는 Non Standard Evaluation(NSE)라고 불리는 녀석이 있다. 어떤 선배님은 변수를 선언하지 않는 R이 처음부터 무척 마음에 들지 않았다, 라고 툴툴대셨다. 하지만 역시 대충 사는 나에게는 ‘까이꺼 대충’ 알아서 해주는 건 편한 장점이다. 좌간, NSE 역시 이와 비슷한 차원에서 이해하면 될 것 같다.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyverse)
+library(&amp;#39;tidyverse&amp;#39;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;위의 코드에서 둘 중 어떤 문법이 맞을까? 사실 둘 다 써도 된다. &lt;code&gt;library&lt;/code&gt;라는 함수는 string과 expression 모두를 input으로 받는다. 전자가 원래 R이 정한 규칙이라면 후자는 이런 표준에서 벗어났지만 실행되는 규칙, Non Standard Evaluation(NSE)이다. 사실 NSE가 딱히 정해진 무엇은 아니다. R이 원래 정해놓은 문법을 따르지 않지만 의도를 실현하는 활용을 통칭한다.&lt;/p&gt;
+&lt;p&gt;우리가 애용하는 dplyr 패키지가 NSE을 광범위하게 활용한다. dplyr를 쓸 때 &lt;code&gt;filter(df, x==1, y==2, z==3)&lt;/code&gt; 같이 흔하게 쓴다. 말로 풀어보면, df라는 data.frame의 &lt;code&gt;x==1&lt;/code&gt;, &lt;code&gt;y==2&lt;/code&gt;, &lt;code&gt;z==3&lt;/code&gt;을 동시 충족하는 조건을 필터링하라는 것이다. R을 (처음부터 차근차근) 익힌 사람이라면 갸우뚱 할 것이다. 이걸 원래 문법대로 풀면 &lt;code&gt;df[df$x==1 &amp;amp; df$y==2 &amp;amp; df$z ==3, ]&lt;/code&gt;이라고 써야 한다. dplyr는 패키지라는 매직서클 안에서 더 간단하고 쉬운 문법을 허용해준다. 일단 NSE가 왜 채택되었는지 수긍이 간다. 편하기 때문이다. 하지만 그래서 치뤄야 하는 비용도 있다.&lt;/p&gt;
+&lt;p&gt;우선 NSE로 쓴 내용은 다른 변수로 대체할 수 없다. 단순하게 활용할 때는 크게 문제가 되지 않는다. 하지만, dplyr로 함수를 만들고자 할 때 심각해진다. 위캠에 제시한 사례를 보자.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;tibble(x=1:3, y=3:1) -&amp;gt; df 
+df %&amp;gt;% filter(x==1)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 1 x 2
+##       x     y
+##   &amp;lt;int&amp;gt; &amp;lt;int&amp;gt;
+## 1     1     3&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;내가 x라는 변수를 임의의 어떤 것으로 바꿀 수 있을까?&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;my_var &amp;lt;- x
+#&amp;gt; Error in eval(expr, envir, enclos): object &amp;#39;x&amp;#39; not found
+filter(df, my_var==1)
+#&amp;gt; Error in filter_impl(.data, quo): Evaluation error: object &amp;#39;my_var&amp;#39; not found.&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;my_var &amp;lt;- &amp;quot;x&amp;quot;
+filter(df, my_var==1)
+#&amp;gt; # A tibble: 0 x 2
+#&amp;gt; # ... with 2 variables: x &amp;lt;int&amp;gt;, y &amp;lt;int&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;둘 다 먹히지 않는다. 나는 df에서 x라는 컬럼을 택하고 싶다. 다만 NSE를 이용해서 하는 게 아니라 다른 방법으로 하고 싶다. 내가 원하는 변수를 ’임의화’하여 이를 함수를 만드는 데 활용하고 싶다. NSE에 익숙해지면 위에서 보다시피 이런 단순하고 필수적인 작업이 생각만큼 쉽지 않다. 물론 이런 NSE의 문제점을 뛰어넘기 위해서는 quosures와 tidyval의 개념을 꼼꼼히 두루두루 익혀두는 편이 좋다.&lt;a href=&#34;#fn1&#34; class=&#34;footnoteRef&#34; id=&#34;fnref1&#34;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt; 하지만 역시 야매정신에 충만한 나로서는 쉽게 떠올리기 좋은 간편한 해결책에 눈길이 좀 더 간다.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;let-in-wrapr&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;&lt;code&gt;let&lt;/code&gt; in wrapr&lt;/h1&gt;
+&lt;p&gt;이전에 Win-Vector에서 만든 wrapr 패키지를 소개한 적이 있다. 이 패키지 안에 &lt;code&gt;let&lt;/code&gt;이라는 괜찮은 명령어가 있는데 이 명령어는 함수를 만들 때 만큼은 별다른 불편함 없이 NSE의 문제점을 극복하도록 돕는다.&lt;a href=&#34;#fn2&#34; class=&#34;footnoteRef&#34; id=&#34;fnref2&#34;&gt;&lt;sup&gt;2&lt;/sup&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(wrapr)
+
+tibble(x=1:3, y=3:1) -&amp;gt; df 
+getOne2Filter &amp;lt;- function(df, col_filter){
+  let(
+    c(COL_1=col_filter), 
+    
+    df %&amp;gt;% filter(COL_1==1)
+  )
+}
+
+df %&amp;gt;% getOne2Filter(&amp;#39;x&amp;#39;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 1 x 2
+##       x     y
+##   &amp;lt;int&amp;gt; &amp;lt;int&amp;gt;
+## 1     1     3&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;위에서 보듯이 let 내부에 고립된 환경을 만들어 NSE의 문제를 손쉽게 극복할 수 있다. 즉, let 안에 내가 만들고 싶은 함수를 다 때려박으면 된다. 함수가 한번 더 걸치게 되지만 속도 상의 손실은 미미하다. 아쉬우니 예를 하나 더 살펴보자.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(wrapr)
+
+d &amp;lt;- data.frame(x=c(15, 30, 40))
+
+addOneToColumn &amp;lt;- function(df, 
+                           result_column_name, 
+                           input_column_name) {
+  let(
+    c(RESULT_COL=result_column_name,
+      INPUT_COL=input_column_name),
+    
+    df %&amp;gt;% mutate( RESULT_COL=INPUT_COL+1 )
+    
+  )
+}
+
+d %&amp;gt;% addOneToColumn(&amp;#39;v2&amp;#39;, &amp;#39;x&amp;#39;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##    x v2
+## 1 15 16
+## 2 30 31
+## 3 40 41&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;컬럼의 이름을 스트링(‘v2’, ‘x’)으로 선택할 수 있다. 지적 결벽보다는 필요한 것 만큼만 익히는 야매도 때로는 나쁘지 않다. Calm down!&lt;/p&gt;
+&lt;!----
+### Resources 
+http://dplyr.tidyverse.org/articles/programming.html 
+http://www.win-vector.com/blog/2017/05/why-to-use-wraprlet/
+http://www.win-vector.com/blog/2017/06/in-defense-of-wraprlet/
+http://www.win-vector.com/blog/2017/06/wrapr-implementation-update/
+####
+----&gt;
+&lt;/div&gt;
+&lt;div class=&#34;footnotes&#34;&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id=&#34;fn1&#34;&gt;&lt;p&gt;상세한 내용은 &lt;a href=&#34;http://dplyr.tidyverse.org/articles/programming.html&#34;&gt;LINK&lt;/a&gt;를 참고하라.&lt;a href=&#34;#fnref1&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&#34;fn2&#34;&gt;&lt;p&gt;뭐 위대하신 Wickham 님께서 이것은 야매다, 라고 에둘러까시기도 했지만 쓰기 편하고 속도 잘나오면 그만 아닌가! 위캠의 비판에 대한 Win-Vector 반론은 &lt;a href=&#34;http://www.win-vector.com/blog/2017/06/in-defense-of-wraprlet/&#34;&gt;LINK&lt;/a&gt;를 참고하라.&lt;a href=&#34;#fnref2&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+</description>
     </item>
     
   </channel>

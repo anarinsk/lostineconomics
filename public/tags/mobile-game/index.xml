@@ -1,15 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Mobile-game on lost in economics</title>
-    <link>/tags/mobile-game/</link>
-    <description>Recent content in Mobile-game on lost in economics</description>
+    <title>mobile-game on lost in economics</title>
+    <link>/tags/mobile-game/index.xml</link>
+    <description>Recent content in mobile-game on lost in economics</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 28 Feb 2018 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="/tags/mobile-game/index.xml" rel="self" type="application/rss+xml" />
-    
+    <atom:link href="/tags/mobile-game/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Panel data analysis of U.S. mobile games</title>
@@ -17,7 +14,659 @@
       <pubDate>Wed, 28 Feb 2018 00:00:00 +0000</pubDate>
       
       <guid>/post/2018/02/28/panel-data-analysis-of-u.s.-mobile-games/</guid>
-      <description>tl; dr미국 iOS와 AOS(안드로이드) 모바일 게임 마켓 자료로 매출 신장에 기여하는 요인을 들여다보았다.업계의 정설과는 다르게 활성 이용자(active users) 및 이용 시간 등 게임 내 요소들의 매출 영향력은 크지 않다.대개의 패널 기법들이 short panel에 기반하고 있어서 시간축이 좀 되는 녀석들을 다루는 데 애로사항이 있더라… (이거슨 능력부족)Motivation보통 어떤 연구 동기가 작용해서 이에 따라 문제를 잘 다듬어 문제를 살펴보는 게 보통의 순서다. 하지만 데이터를 구하기 어려운 영역에서는 반대의 경우가 더 많다.</description>
+      <description>&lt;div id=&#34;tl-dr&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;tl; dr&lt;/h1&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;미국 iOS와 AOS(안드로이드) 모바일 게임 마켓 자료로 매출 신장에 기여하는 요인을 들여다보았다.&lt;/li&gt;
+&lt;li&gt;업계의 정설과는 다르게 활성 이용자(active users) 및 이용 시간 등 게임 내 요소들의 매출 영향력은 크지 않다.&lt;/li&gt;
+&lt;li&gt;대개의 패널 기법들이 short panel에 기반하고 있어서 시간축이 좀 되는 녀석들을 다루는 데 애로사항이 있더라… (이거슨 능력부족)&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div id=&#34;motivation&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Motivation&lt;/h1&gt;
+&lt;p&gt;보통 어떤 연구 동기가 작용해서 이에 따라 문제를 잘 다듬어 문제를 살펴보는 게 보통의 순서다. 하지만 데이터를 구하기 어려운 영역에서는 반대의 경우가 더 많다. 데이터를 먼저 허겁지겁 찾고 혹은 구하고, 그 위에서 문제를 (짜?) 맞춘다. 물론 이런 접근의 한계는 분명하다. 하지만 역시 안하거나 못하는 것보다는 뭐라도 해보는 게 낫지 않나, 라고 스스로를 위로해본다.&lt;/p&gt;
+&lt;p&gt;모바일 게임 관련 데이터를 제공하는 AOO 사의 데이터를 이리저리 뒤지다가 재미있는 데이터를 보게 되었다. AOO 사가 주간 단위로 여간해서는 구하기 힘든 자료를 광범위한 게임에 대해 제공하고 있었다. 추정치이긴 하나 같은 방법론에 따라서 연속적으로 수집되었다는 점에서 그나마 일관성과 신뢰성이 있다고 하겠다. 모바일 게임 별로 다운로드 수, 활성이용자(active users) 수, 설치율, 총 이용시간, 설치 수 대비 활성화 율, 이용 세션 수(평균), 세션 지속시간(평균) 등 제공하고 있었다. 이 숫자들을 보고 있으려니 이런 생각이 떠오르더라.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;저 변수들이 있으면 대략 업계의 몇 가지 속설들을 ’검증’할 있겠다. AOO 데이터의 매출 데이터 및 몇가지 다른 메타 데이터와 연결할 수 있겠네… 음. 주 단위 패널 데이터로 만들 수 있겠네…&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;여기까지 왔으면 일단 한번 달려봐야하지 않겠는가! (가즈아~) 일단 문서 작성에 의의를 두어 세부적인 참고문헌 등등은 생략했다. 양해 바란다.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;basic&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Basic&lt;/h1&gt;
+&lt;p&gt;데이터는 2015, 2016, 2017년 3개 연도를 대상으로 한다. 일단 미국 iOS, AOS의 데이터를 열심히 모았다. 데이터를 긁는게 좀 짜증이 나긴 했다. 같은 짜증을 한번 더 견디면, 한국의 두 플랫폼에 대해서도 아래와 같은 분석이 가능하다. 먼저 데이터 크기나 패널 데이터로서의 구색은 그리 나쁘지 않다. iOS의 경우에는 2015, 2016, 2017년이 다 있었고, AOS의 경우는 집계상의 어려움이 있었는지 2016, 2017년 자료를 모아 정리할 수 있었다. 자료의 현황은 아래와 같다.&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr class=&#34;header&#34;&gt;
+&lt;th align=&#34;left&#34;&gt;OS&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;Year&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;# of Apps&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;# of Oservation&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;us_AOS&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;2016&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;123&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;6396&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;us_AOS&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;2017&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;115&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;5980&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;us_iOS&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;2015&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;124&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;6448&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;us_iOS&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;2016&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;129&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;6708&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;us_iOS&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;2017&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;106&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;5512&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;위의 표에서 눈치챈 사람도 있겠지만, 좀 더 엄밀한 분석을 위해서 패널 데이터를 구축했다. 1년 52주 단위 데이터를 모두 갖춘 게임들만 걸러냈다. 불균형 패널(unbalanced panel)을 구축해 아까운 자료를 늘이는 것도 나쁘지 않겠다. 하지만 추정 결과에 큰 차이가 없음을 대략적으로 확인했고, 깔끔하고 원활한 추정 작업을 위해 균형 패널로 분석 대상으로 제한하고자 한다.&lt;/p&gt;
+&lt;p&gt;분석 대상인 패널 데이터의 경우 횡단면(cross section)의 규모는 살짝 애매한 크기다. 대개 전형적인 미시 자료의 경우 1,000 단위를 넘는 횡단면 규모를 지니고 있다. 반면, 시계열의 크기는 연도별로 52개 씩이다. 횡단면이 시게열보다는 길지만 그래도 시게열의 길이가 전형적인 패널 데이터에 비해서 길기 때문에 추정 작업에 주의가 요구된다.&lt;/p&gt;
+&lt;div id=&#34;-&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;주요 변수설명&lt;/h3&gt;
+&lt;p&gt;분석에 동원될 관심 변수의 주요 통계량에 대해서 살펴보자. 변수가 많아 따로 별도의 html 페이지를 만들었다. 예상대로 다른 변수에 비해서 매출(&lt;code&gt;revenue&lt;/code&gt;), 다운로드(&lt;code&gt;download&lt;/code&gt;) 등은 분포는 쏠림이 뚜렷하다.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://htmlpreview.github.io/?https://github.com/anarinsk/lostineconomics/blob/master/html_link/panel_US/basic_summary.htm&#34;&gt;LINK&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;correlation&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Correlation&lt;/h1&gt;
+&lt;p&gt;주요 설명변수로 활용할 변수들의 상관계수를 골라 시각화했다. 변수 해설은 아래 regressor에 대한 설명을 참고해주시면 되겠다.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;../../post/panel_US/blogpost_files/figure-html/unnamed-chunk-3-1.png&#34; width=&#34;672&#34; style=&#34;display: block; margin: auto auto auto 0;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;분석에서 종속변수가 될 매출&lt;code&gt;revenue&lt;/code&gt;과 상관관계가 가장 높은 변수는 순활성사용자&lt;code&gt;net_AU&lt;/code&gt;다. 순활성사용자와 상관관계가 높은 설치 규모&lt;code&gt;install_base&lt;/code&gt;는 설명변수에서 제외하는 것이 좋겠다. 평균이용시간&lt;code&gt;avg_time_per_user&lt;/code&gt;과 평균세션수&lt;code&gt;avg_sessions_per_user&lt;/code&gt;도 서로 상관성이 높다. 하지만 대체로 크게 문제될 것이 없으므로 이 둘은 모두 독립변수(regressor)에 넣도록 하겠다.&lt;a href=&#34;#fn1&#34; class=&#34;footnoteRef&#34; id=&#34;fnref1&#34;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;pooled-ols&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Pooled OLS&lt;/h1&gt;
+&lt;p&gt;패널 데이터 모형으로 넘어가기 전에 몸풀이 겸 통합최소자승법(Pooled OLS; POLS)를 돌려보도록 하자. POLS란 패널 데이터의 고유한 차원인 개체-시간 축을 허물어 모든 데이터를 그냥 개체로 보는 것이다. 물론, 시간 변수나 개체 변수를 더미 변수로 보고 통제할 수는 있겠지만 패널 데이터 만의 장점을 활용하는 분석을 버리는 추정법이다. 일단, 이 추정법의 옳고 그름을 떠나서 우리의 관심 사안이 무엇이고 어떤 형태인지를 파악 하는 정도의 의미를 부여하자.&lt;/p&gt;
+&lt;div id=&#34;regressors&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Regressors&lt;/h2&gt;
+&lt;p&gt;회귀분석에 동원된 설명변수들을 살펴보도록 하자.&lt;/p&gt;
+&lt;div id=&#34;dissecting-active-users&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Dissecting active users&lt;/h3&gt;
+&lt;p&gt;앞서 말해듯 몇 개의 변수들이 있지만 사실상 동일한 지표인 경우가 있어서 회귀 변수 선택에 약간의 고민이 필요하다. 이 자료의 가장 좋은 점은 업계에서 가장 중요한 지표로 삼는 활성사용자의 규모를 둘로 쪼개서 볼 수 있게 해준다는 데 있다. 활성이용자란 해당 주 동안 해당 게임에 한번이라도 접속한 이용자다. 그리도 다행스럽게도 자료에는 주별로 발생한 신규 다운로드가 들어 있다. 이렇게 되면, 해당 주에 발생한 새로운 다운로드와 이외에 다운로드 없이 기존에 설치된 앱에서 들어온 이용자를 구별할 수 있다.&lt;a href=&#34;#fn2&#34; class=&#34;footnoteRef&#34; id=&#34;fnref2&#34;&gt;&lt;sup&gt;2&lt;/sup&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;download&lt;/code&gt;: 해당 주에 발생한 다운로드 규모&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;net_AU&lt;/code&gt;: &lt;code&gt;active_user&lt;/code&gt; &lt;span class=&#34;math inline&#34;&gt;\(-\)&lt;/span&gt; &lt;code&gt;download&lt;/code&gt;. 즉, 해당 주 활성 이용자에서 다운로드 숫자를 뺀 순 활성 이용자 규모&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;duration&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Duration&lt;/h3&gt;
+&lt;p&gt;활성이용자가 ‘어떻게’ 게임을 했는지에 대한 자료도 있다. 아쉽게도 자료는 활성이용자의 게임 이용시간의 평균값만 제공한다. 만일 해당 게임 이용자의 플레이 패턴에 대한 분포가 있다면 좋았을 것이다. 하지만 이가 없으면 잇몸으로 버텨야지. 이용자들의 게임이용 시간의 평균값을 플레이의 지속성을 나타내는 변수로 활용하도록 하자.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;avg_time_per_user&lt;/code&gt;: 인당 평균 이용 시간 (단위: 초)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;session&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Session&lt;/h3&gt;
+&lt;p&gt;모바일 게임에서 세션이란 한번 접속해서 플레이를 지속하고 끝낼 때까지를 나타낸다. 세션에 대한 정보는 게임 별 평균 세션 횟수, 그리고 1회 세션의 지속 시간 두 가지 정보가 있다. 보통 모바일 게임의 경우 게임 디자인의 단계에서 세션을 굉장히 중요하게 취급하곤 한다. 과연 게임 세션의 특징은 매출 증감과 관련이 있을까?&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;avg_sessions_per_user&lt;/code&gt;: 인당 평균 이용 세션 횟수&lt;br /&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;avg_session_duration&lt;/code&gt;: 세션당 평균 이용 시간 (단위: 초)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;history&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;History&lt;/h3&gt;
+&lt;p&gt;모바일 게임이 매출을 발생시키는 주기는 길까 짧을까? 보통은 매우 짧다고 알고 있다. 이 문제를 어림잡기 위해서 게임 최초 출시 이후 각 시점에서 경과 연도를 더미 변수로 활용하도록 하겠다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;cat_history&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;controls&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Controls&lt;/h3&gt;
+&lt;p&gt;이외 통제 변수로 아래와 같은 더미 변수들을 활용했다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;cat_iap&lt;/code&gt;: 부분 유료화(in-app purchase) 여부&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;cat_franchise&lt;/code&gt;: 프랜차이즈 게임 여부 (예를 들어, “캔디크러시사가” 시리즈의 파생 게임인지 여부)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;cat_hqcountry&lt;/code&gt;: 퍼브리셔 소속 지역 (6지역으로 구분)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;factor(month)&lt;/code&gt;: 월&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;물론, 통제 변수들 중에서 패널 추정 방법에 따라서 활용할 수 없는 변수들이 있음을 미리 밝혀둔다.&lt;/p&gt;
+&lt;p&gt;2015, 2016, 2017년 3개 년도와 iOS, AOS 두 개의 OS를 조합하고 자료가 없는 AOS의 2015년을 제외하면 모두 다섯 세트의 데이터가 분석의 대상이다. POLS의 분석 모형으로 아래 다섯 개의 회귀식을 적용한다. 표준 오차는 Stata에서 계산되는 클러스터 표준오차를 활용했다.&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;Model 1: &lt;code&gt;log(revenue) ~ log(net_AU)&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Model 2: &lt;code&gt;log(revenue) ~ log(download) + log(net_AU)&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Model 3: &lt;code&gt;log(revenue) ~ log(download) + log(net_AU) + log(avg_time_per_user)&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Model 4: &lt;code&gt;log(revenue) ~ log(download) + log(net_AU) + log(avg_time_per_user) + log(avg_session_duration) + avg_sessions_per_user&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Model 5: &lt;code&gt;log(revenue) ~ log(download) + log(net_AU) + log(avg_time_per_user) +  log(avg_session_duration) + avg_sessions_per_user + factor(month) + cat_iap + cat_franchise + cat_hqcountry + cat_history&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;각 모형의 추정결과는 아래의 링크와 같다.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://htmlpreview.github.io/?https://github.com/anarinsk/lostineconomics/blob/master/html_link/panel_US/pols_2015_us_iOS.htm&#34;&gt;iOS 2015&lt;/a&gt; &lt;a href=&#34;http://htmlpreview.github.io/?https://github.com/anarinsk/lostineconomics/blob/master/html_link/panel_US/pols_2016_us_iOS.htm&#34;&gt;iOS 2016&lt;/a&gt; &lt;a href=&#34;http://htmlpreview.github.io/?https://github.com/anarinsk/lostineconomics/blob/master/html_link/panel_US/pols_2017_us_iOS.htm&#34;&gt;iOS 2017&lt;/a&gt; &lt;a href=&#34;http://htmlpreview.github.io/?https://github.com/anarinsk/lostineconomics/blob/master/html_link/panel_US/pols_2016_us_AOS.htm&#34;&gt;AOS 2016&lt;/a&gt; &lt;a href=&#34;http://htmlpreview.github.io/?https://github.com/anarinsk/lostineconomics/blob/master/html_link/panel_US/pols_2017_us_AOS.htm&#34;&gt;AOS 2017&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;각 모형의 추정 결과를 년도별과 OS별 시각화해 표현해보도록 하자. 링크의 분석 결과 중 관심 변수의 추정치와 신뢰구간을 표현한 것이다.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;../../post/panel_US/blogpost_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;672&#34; /&gt;&lt;img src=&#34;../../post/panel_US/blogpost_files/figure-html/unnamed-chunk-4-2.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;일단 몇가지 지적해두고 가자.&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;iOS와 AOS 모두 평균 플레이 시간의 매출 기여가 두드러진다. 특히 AOS에서는 1을 상회하는 계수치로 효과가 매우 높은 것으로 나타난다.&lt;/li&gt;
+&lt;li&gt;연도별로 다소 차이는 있지만, 두 플랫폼 모두 순활성이용자, 다운로드 역시 매출에 영향을 주고 있다. 대체로 순활성이용자의 기여도가 다운로드에 비해서는 강한 것으로 나타나고 있다.&lt;/li&gt;
+&lt;li&gt;세션의 평균 지속시간은 매출에 반대의 영향을 나타내고 있다.&lt;/li&gt;
+&lt;li&gt;OS 내에서는 비교적 비슷한 형태의 효과를 관찰할 수 있으나, OS 사이에는 다소 뚜렷한 차이가 발견된다. AOS에서는 평균 이용시간의 영향력이 두드러지고, iOS에서는 순활성이용자의 효과가 가장 뚜렷한 것으로 관찰된다.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;물론 이 모형은 POLS를 돌려본 것에 불과하다. 패널 모형을 통해 다른 추정 방법을 사용할 경우 어떻게 바뀔까?&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;panel-models&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Panel Models&lt;/h1&gt;
+&lt;p&gt;패널 데이터란 횡단면(같은 시점에 존재하는 서로 다른 개체들의 차원)과 시계열(같은 개체들에 대한 서로 다른 시점의 차원)을 모두 갖춘 데이터다. 패널 데이터의 가치는 비교적 안정적으로 같은 개체들에 대한 데이터를 모아놓았다는 데 있다. 아래 식에서 &lt;span class=&#34;math inline&#34;&gt;\(i\)&lt;/span&gt;는 각 개체 즉 개별 게임을, &lt;span class=&#34;math inline&#34;&gt;\(t\)&lt;/span&gt;는 관찰 시점 즉 주(week)를 나타낸다. 종속 변수(dependent variable)는 게임의 주간 매출이다. 여기서는 로그값으로 사용하도록 한다.&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[ Y_{it} = \alpha + \beta^{&amp;#39;} X_{it} + u_{it}\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;분석할 패널 자료는 꽤 긴 시계열을 지니고 있다. 에러를 모델링 할 때 각 개체와 더불어 시점도 함께 고려하는 것이 좋겠다. 물론 경우에 따라서는 미봉책에 불과하다. 즉,&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[ u_{it} = \mu_i +  \eta_t + \nu_{it} \]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;우선 패널 데이터의 보편적인 분석 방법으로 자료를 돌려보기로 하겠다. 개체의 잠재 속성을 제거하기 위해 일차차분(first-difference; FD) 모형, 고정효과(fixed effect; FE) 모형과 임의효과(random effect; RE) 모형을 살펴볼 것이다. 이들 모형과의 비교를 위해서 시계열을 평균으로 없앤 뒤 개체의 차이만 보는 개체간 모형(between; BE)의 추정 결과를 살펴보자. 비교를 위해 앞서 보았던 POLS 역시 결과에 포함시켰다.&lt;/p&gt;
+&lt;div id=&#34;estimation-by-os-and-year&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Estimation by OS and year&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;모형
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;고정효과 모형(Fixed effect model: FE)&lt;/li&gt;
+&lt;li&gt;랜덤효과 모형(Random effect model: RE)&lt;/li&gt;
+&lt;li&gt;1차차분 모형(First difference model: FD)&lt;/li&gt;
+&lt;li&gt;Between 모형 (BE)&lt;/li&gt;
+&lt;li&gt;Pooling 모형 (POLS)&lt;/li&gt;
+&lt;/ol&gt;&lt;/li&gt;
+&lt;li&gt;패널 특성 반영
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;개체 특성만 반영(individual: ID)&lt;/li&gt;
+&lt;li&gt;개체와 시간 특성 모두 반영(twoways: TW)&lt;/li&gt;
+&lt;/ol&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;통상적인 패널 추정방법을 가능한 경우 거의 모두 활용해서 6가지 방법으로 추정했다. BE 모형을 제외한 모든 모형은 Driscoll and Kraay(1998)의 robust covariance를 사용했다. 사실 아래 모델을 정당화하려면 몇가지 검정들을 통과해야 할 것이다. 사실 FE냐 RE냐, FE냐 POLS냐, 류의 검정은 항상 FE가 우월하게 나온다. 또한, 거의 모든 모델에서 계열 상관serial correlation 및 횡단면 상관cross-sectional correlation이 존재한다. 여러가지 방법을 모두 보고해야 되곘지만, 추정 결과에 차이가 없어 두 종류의 상관을 어느 정도 보정할 수 있는 방법을 활용해 아래 검정에 활용했다.&lt;/p&gt;
+&lt;div id=&#34;ios-2015&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;iOS 2015&lt;/h3&gt;
+
+&lt;table style=&#34;text-align:center&#34;&gt;&lt;tr&gt;&lt;td colspan=&#34;7&#34; style=&#34;border-bottom: 1px solid black&#34;&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td colspan=&#34;6&#34;&gt;&lt;em&gt;Dependent variable:&lt;/em&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td colspan=&#34;6&#34; style=&#34;border-bottom: 1px solid black&#34;&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td colspan=&#34;3&#34;&gt;log(revenue)&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td colspan=&#34;2&#34;&gt;log(revenue)&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td colspan=&#34;3&#34;&gt;&lt;em&gt;panel&lt;/em&gt;&lt;/td&gt;&lt;td&gt;&lt;em&gt;coefficient&lt;/em&gt;&lt;/td&gt;&lt;td colspan=&#34;2&#34;&gt;&lt;em&gt;panel&lt;/em&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td colspan=&#34;3&#34;&gt;&lt;em&gt;linear&lt;/em&gt;&lt;/td&gt;&lt;td&gt;&lt;em&gt;test&lt;/em&gt;&lt;/td&gt;&lt;td colspan=&#34;2&#34;&gt;&lt;em&gt;linear&lt;/em&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;FE-TW&lt;/td&gt;&lt;td&gt;FE-ID&lt;/td&gt;&lt;td&gt;RE-ID&lt;/td&gt;&lt;td&gt;FD-ID&lt;/td&gt;&lt;td&gt;BT-ID&lt;/td&gt;&lt;td&gt;POLS-TW&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;(1)&lt;/td&gt;&lt;td&gt;(2)&lt;/td&gt;&lt;td&gt;(3)&lt;/td&gt;&lt;td&gt;(4)&lt;/td&gt;&lt;td&gt;(5)&lt;/td&gt;&lt;td&gt;(6)&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td colspan=&#34;7&#34; style=&#34;border-bottom: 1px solid black&#34;&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;log(download)&lt;/td&gt;&lt;td&gt;0.305&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;0.322&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;0.322&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;0.178&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;0.128&lt;/td&gt;&lt;td&gt;0.207&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;(0.017)&lt;/td&gt;&lt;td&gt;(0.025)&lt;/td&gt;&lt;td&gt;(0.025)&lt;/td&gt;&lt;td&gt;(0.034)&lt;/td&gt;&lt;td&gt;(0.173)&lt;/td&gt;&lt;td&gt;(0.025)&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;log(net_AU)&lt;/td&gt;&lt;td&gt;0.720&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;0.700&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;0.694&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;0.136&lt;sup&gt;*&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;0.647&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;0.592&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;(0.030)&lt;/td&gt;&lt;td&gt;(0.035)&lt;/td&gt;&lt;td&gt;(0.038)&lt;/td&gt;&lt;td&gt;(0.081)&lt;/td&gt;&lt;td&gt;(0.153)&lt;/td&gt;&lt;td&gt;(0.021)&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;log(avg_time_per_user)&lt;/td&gt;&lt;td&gt;0.130&lt;sup&gt;**&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;0.134&lt;sup&gt;**&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;0.140&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;0.026&lt;/td&gt;&lt;td&gt;0.774&lt;sup&gt;**&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;0.669&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;(0.055)&lt;/td&gt;&lt;td&gt;(0.054)&lt;/td&gt;&lt;td&gt;(0.046)&lt;/td&gt;&lt;td&gt;(0.045)&lt;/td&gt;&lt;td&gt;(0.377)&lt;/td&gt;&lt;td&gt;(0.026)&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;log(avg_session_duration)&lt;/td&gt;&lt;td&gt;-0.195&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;-0.194&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;-0.198&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;0.037&lt;/td&gt;&lt;td&gt;-0.432&lt;/td&gt;&lt;td&gt;-0.428&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;(0.055)&lt;/td&gt;&lt;td&gt;(0.054)&lt;/td&gt;&lt;td&gt;(0.045)&lt;/td&gt;&lt;td&gt;(0.050)&lt;/td&gt;&lt;td&gt;(0.416)&lt;/td&gt;&lt;td&gt;(0.040)&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;avg_sessions_per_user&lt;/td&gt;&lt;td&gt;0.013&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;0.014&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;0.015&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;0.009&lt;sup&gt;**&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;-0.003&lt;/td&gt;&lt;td&gt;0.004&lt;sup&gt;*&lt;/sup&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;(0.004)&lt;/td&gt;&lt;td&gt;(0.004)&lt;/td&gt;&lt;td&gt;(0.003)&lt;/td&gt;&lt;td&gt;(0.004)&lt;/td&gt;&lt;td&gt;(0.029)&lt;/td&gt;&lt;td&gt;(0.002)&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;cat_iapY&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;0.232&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;0.326&lt;/td&gt;&lt;td&gt;0.361&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;(1.022)&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;(0.796)&lt;/td&gt;&lt;td&gt;(0.033)&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;cat_franchiseSpinoff&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;-0.551&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;-0.581&lt;sup&gt;**&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;-0.558&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;(0.348)&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;(0.279)&lt;/td&gt;&lt;td&gt;(0.019)&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;Constant&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;-1.207&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;-1.739&lt;/td&gt;&lt;td&gt;-1.421&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;(1.716)&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;(2.064)&lt;/td&gt;&lt;td&gt;(0.275)&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td colspan=&#34;7&#34; style=&#34;border-bottom: 1px solid black&#34;&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;Observations&lt;/td&gt;&lt;td&gt;6,396&lt;/td&gt;&lt;td&gt;6,396&lt;/td&gt;&lt;td&gt;6,396&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;123&lt;/td&gt;&lt;td&gt;6,396&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;R&lt;sup&gt;2&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;0.477&lt;/td&gt;&lt;td&gt;0.496&lt;/td&gt;&lt;td&gt;0.493&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;0.546&lt;/td&gt;&lt;td&gt;0.529&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;Adjusted R&lt;sup&gt;2&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;0.461&lt;/td&gt;&lt;td&gt;0.484&lt;/td&gt;&lt;td&gt;0.491&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;0.463&lt;/td&gt;&lt;td&gt;0.527&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;F Statistic&lt;/td&gt;&lt;td&gt;514.159&lt;sup&gt;***&lt;/sup&gt; (df = 11; 6211)&lt;/td&gt;&lt;td&gt;279.142&lt;sup&gt;***&lt;/sup&gt; (df = 22; 6251)&lt;/td&gt;&lt;td&gt;206.650&lt;sup&gt;***&lt;/sup&gt; (df = 30; 6365)&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;6.526&lt;sup&gt;***&lt;/sup&gt; (df = 19; 103)&lt;/td&gt;&lt;td&gt;238.231&lt;sup&gt;***&lt;/sup&gt; (df = 30; 6365)&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td colspan=&#34;7&#34; style=&#34;border-bottom: 1px solid black&#34;&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;em&gt;Note:&lt;/em&gt;&lt;/td&gt;&lt;td colspan=&#34;6&#34; style=&#34;text-align:right&#34;&gt;&lt;sup&gt;*&lt;/sup&gt;p&lt;0.1; &lt;sup&gt;**&lt;/sup&gt;p&lt;0.05; &lt;sup&gt;***&lt;/sup&gt;p&lt;0.01&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;div id=&#34;ios-2016&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;iOS 2016&lt;/h3&gt;
+
+&lt;table style=&#34;text-align:center&#34;&gt;&lt;tr&gt;&lt;td colspan=&#34;7&#34; style=&#34;border-bottom: 1px solid black&#34;&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td colspan=&#34;6&#34;&gt;&lt;em&gt;Dependent variable:&lt;/em&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td colspan=&#34;6&#34; style=&#34;border-bottom: 1px solid black&#34;&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td colspan=&#34;3&#34;&gt;log(revenue)&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td colspan=&#34;2&#34;&gt;log(revenue)&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td colspan=&#34;3&#34;&gt;&lt;em&gt;panel&lt;/em&gt;&lt;/td&gt;&lt;td&gt;&lt;em&gt;coefficient&lt;/em&gt;&lt;/td&gt;&lt;td colspan=&#34;2&#34;&gt;&lt;em&gt;panel&lt;/em&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td colspan=&#34;3&#34;&gt;&lt;em&gt;linear&lt;/em&gt;&lt;/td&gt;&lt;td&gt;&lt;em&gt;test&lt;/em&gt;&lt;/td&gt;&lt;td colspan=&#34;2&#34;&gt;&lt;em&gt;linear&lt;/em&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;FE-TW&lt;/td&gt;&lt;td&gt;FE-ID&lt;/td&gt;&lt;td&gt;RE-ID&lt;/td&gt;&lt;td&gt;FD-ID&lt;/td&gt;&lt;td&gt;BT-ID&lt;/td&gt;&lt;td&gt;POLS-TW&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;(1)&lt;/td&gt;&lt;td&gt;(2)&lt;/td&gt;&lt;td&gt;(3)&lt;/td&gt;&lt;td&gt;(4)&lt;/td&gt;&lt;td&gt;(5)&lt;/td&gt;&lt;td&gt;(6)&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td colspan=&#34;7&#34; style=&#34;border-bottom: 1px solid black&#34;&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;log(download)&lt;/td&gt;&lt;td&gt;0.300&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;0.310&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;0.309&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;0.200&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;-0.162&lt;/td&gt;&lt;td&gt;0.026&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;(0.025)&lt;/td&gt;&lt;td&gt;(0.027)&lt;/td&gt;&lt;td&gt;(0.026)&lt;/td&gt;&lt;td&gt;(0.026)&lt;/td&gt;&lt;td&gt;(0.183)&lt;/td&gt;&lt;td&gt;(0.018)&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;log(net_AU)&lt;/td&gt;&lt;td&gt;0.391&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;0.388&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;0.388&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;0.040&lt;/td&gt;&lt;td&gt;0.711&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;0.596&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;(0.129)&lt;/td&gt;&lt;td&gt;(0.128)&lt;/td&gt;&lt;td&gt;(0.127)&lt;/td&gt;&lt;td&gt;(0.025)&lt;/td&gt;&lt;td&gt;(0.160)&lt;/td&gt;&lt;td&gt;(0.034)&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;log(avg_time_per_user)&lt;/td&gt;&lt;td&gt;0.158&lt;sup&gt;**&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;0.151&lt;sup&gt;**&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;0.155&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;0.147&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;0.520&lt;/td&gt;&lt;td&gt;0.486&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;(0.065)&lt;/td&gt;&lt;td&gt;(0.064)&lt;/td&gt;&lt;td&gt;(0.058)&lt;/td&gt;&lt;td&gt;(0.026)&lt;/td&gt;&lt;td&gt;(0.387)&lt;/td&gt;&lt;td&gt;(0.045)&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;log(avg_session_duration)&lt;/td&gt;&lt;td&gt;-0.045&lt;/td&gt;&lt;td&gt;-0.034&lt;/td&gt;&lt;td&gt;-0.037&lt;/td&gt;&lt;td&gt;-0.124&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;-0.190&lt;/td&gt;&lt;td&gt;-0.235&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;(0.085)&lt;/td&gt;&lt;td&gt;(0.084)&lt;/td&gt;&lt;td&gt;(0.080)&lt;/td&gt;&lt;td&gt;(0.038)&lt;/td&gt;&lt;td&gt;(0.464)&lt;/td&gt;&lt;td&gt;(0.032)&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;avg_sessions_per_user&lt;/td&gt;&lt;td&gt;0.006&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;0.008&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;0.008&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;0.0002&lt;/td&gt;&lt;td&gt;0.025&lt;/td&gt;&lt;td&gt;0.026&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;(0.002)&lt;/td&gt;&lt;td&gt;(0.002)&lt;/td&gt;&lt;td&gt;(0.003)&lt;/td&gt;&lt;td&gt;(0.002)&lt;/td&gt;&lt;td&gt;(0.029)&lt;/td&gt;&lt;td&gt;(0.003)&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;cat_iapY&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;1.326&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;0.808&lt;/td&gt;&lt;td&gt;1.005&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;(1.962)&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;(1.267)&lt;/td&gt;&lt;td&gt;(0.061)&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;cat_franchiseSpinoff&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;-0.508&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;-0.766&lt;sup&gt;**&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;-0.685&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;(0.369)&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;(0.293)&lt;/td&gt;&lt;td&gt;(0.030)&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;Constant&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;0.521&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;0.594&lt;/td&gt;&lt;td&gt;-0.021&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;(2.035)&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;(2.704)&lt;/td&gt;&lt;td&gt;(0.372)&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td colspan=&#34;7&#34; style=&#34;border-bottom: 1px solid black&#34;&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;Observations&lt;/td&gt;&lt;td&gt;6,708&lt;/td&gt;&lt;td&gt;6,708&lt;/td&gt;&lt;td&gt;6,708&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;129&lt;/td&gt;&lt;td&gt;6,708&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;R&lt;sup&gt;2&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;0.355&lt;/td&gt;&lt;td&gt;0.376&lt;/td&gt;&lt;td&gt;0.373&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;0.428&lt;/td&gt;&lt;td&gt;0.396&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;Adjusted R&lt;sup&gt;2&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;0.336&lt;/td&gt;&lt;td&gt;0.362&lt;/td&gt;&lt;td&gt;0.370&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;0.316&lt;/td&gt;&lt;td&gt;0.393&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;F Statistic&lt;/td&gt;&lt;td&gt;298.317&lt;sup&gt;***&lt;/sup&gt; (df = 12; 6516)&lt;/td&gt;&lt;td&gt;171.865&lt;sup&gt;***&lt;/sup&gt; (df = 23; 6556)&lt;/td&gt;&lt;td&gt;124.332&lt;sup&gt;***&lt;/sup&gt; (df = 32; 6675)&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;3.818&lt;sup&gt;***&lt;/sup&gt; (df = 21; 107)&lt;/td&gt;&lt;td&gt;136.703&lt;sup&gt;***&lt;/sup&gt; (df = 32; 6675)&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td colspan=&#34;7&#34; style=&#34;border-bottom: 1px solid black&#34;&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;em&gt;Note:&lt;/em&gt;&lt;/td&gt;&lt;td colspan=&#34;6&#34; style=&#34;text-align:right&#34;&gt;&lt;sup&gt;*&lt;/sup&gt;p&lt;0.1; &lt;sup&gt;**&lt;/sup&gt;p&lt;0.05; &lt;sup&gt;***&lt;/sup&gt;p&lt;0.01&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;div id=&#34;ios-2017&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;iOS 2017&lt;/h3&gt;
+
+&lt;table style=&#34;text-align:center&#34;&gt;&lt;tr&gt;&lt;td colspan=&#34;7&#34; style=&#34;border-bottom: 1px solid black&#34;&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td colspan=&#34;6&#34;&gt;&lt;em&gt;Dependent variable:&lt;/em&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td colspan=&#34;6&#34; style=&#34;border-bottom: 1px solid black&#34;&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td colspan=&#34;3&#34;&gt;log(revenue)&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td colspan=&#34;2&#34;&gt;log(revenue)&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td colspan=&#34;3&#34;&gt;&lt;em&gt;panel&lt;/em&gt;&lt;/td&gt;&lt;td&gt;&lt;em&gt;coefficient&lt;/em&gt;&lt;/td&gt;&lt;td colspan=&#34;2&#34;&gt;&lt;em&gt;panel&lt;/em&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td colspan=&#34;3&#34;&gt;&lt;em&gt;linear&lt;/em&gt;&lt;/td&gt;&lt;td&gt;&lt;em&gt;test&lt;/em&gt;&lt;/td&gt;&lt;td colspan=&#34;2&#34;&gt;&lt;em&gt;linear&lt;/em&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;FE-TW&lt;/td&gt;&lt;td&gt;FE-ID&lt;/td&gt;&lt;td&gt;RE-ID&lt;/td&gt;&lt;td&gt;FD-ID&lt;/td&gt;&lt;td&gt;BT-ID&lt;/td&gt;&lt;td&gt;POLS-TW&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;(1)&lt;/td&gt;&lt;td&gt;(2)&lt;/td&gt;&lt;td&gt;(3)&lt;/td&gt;&lt;td&gt;(4)&lt;/td&gt;&lt;td&gt;(5)&lt;/td&gt;&lt;td&gt;(6)&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td colspan=&#34;7&#34; style=&#34;border-bottom: 1px solid black&#34;&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;log(download)&lt;/td&gt;&lt;td&gt;0.387&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;0.400&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;0.398&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;0.305&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;-0.115&lt;/td&gt;&lt;td&gt;0.006&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;(0.041)&lt;/td&gt;&lt;td&gt;(0.039)&lt;/td&gt;&lt;td&gt;(0.036)&lt;/td&gt;&lt;td&gt;(0.013)&lt;/td&gt;&lt;td&gt;(0.248)&lt;/td&gt;&lt;td&gt;(0.033)&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;log(net_AU)&lt;/td&gt;&lt;td&gt;0.333&lt;sup&gt;**&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;0.322&lt;sup&gt;**&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;0.323&lt;sup&gt;**&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;0.032&lt;/td&gt;&lt;td&gt;0.739&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;0.628&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;(0.142)&lt;/td&gt;&lt;td&gt;(0.135)&lt;/td&gt;&lt;td&gt;(0.138)&lt;/td&gt;&lt;td&gt;(0.025)&lt;/td&gt;&lt;td&gt;(0.202)&lt;/td&gt;&lt;td&gt;(0.047)&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;log(avg_time_per_user)&lt;/td&gt;&lt;td&gt;0.104&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;0.106&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;0.106&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;0.046&lt;sup&gt;*&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;0.356&lt;/td&gt;&lt;td&gt;0.343&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;(0.039)&lt;/td&gt;&lt;td&gt;(0.039)&lt;/td&gt;&lt;td&gt;(0.036)&lt;/td&gt;&lt;td&gt;(0.023)&lt;/td&gt;&lt;td&gt;(0.582)&lt;/td&gt;&lt;td&gt;(0.046)&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;log(avg_session_duration)&lt;/td&gt;&lt;td&gt;0.006&lt;/td&gt;&lt;td&gt;0.005&lt;/td&gt;&lt;td&gt;0.005&lt;/td&gt;&lt;td&gt;-0.010&lt;/td&gt;&lt;td&gt;-0.101&lt;/td&gt;&lt;td&gt;-0.149&lt;sup&gt;**&lt;/sup&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;(0.048)&lt;/td&gt;&lt;td&gt;(0.047)&lt;/td&gt;&lt;td&gt;(0.046)&lt;/td&gt;&lt;td&gt;(0.038)&lt;/td&gt;&lt;td&gt;(0.730)&lt;/td&gt;&lt;td&gt;(0.061)&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;avg_sessions_per_user&lt;/td&gt;&lt;td&gt;-0.004&lt;/td&gt;&lt;td&gt;-0.004&lt;/td&gt;&lt;td&gt;-0.004&lt;/td&gt;&lt;td&gt;-0.0005&lt;/td&gt;&lt;td&gt;0.023&lt;/td&gt;&lt;td&gt;0.023&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;(0.003)&lt;/td&gt;&lt;td&gt;(0.003)&lt;/td&gt;&lt;td&gt;(0.003)&lt;/td&gt;&lt;td&gt;(0.002)&lt;/td&gt;&lt;td&gt;(0.036)&lt;/td&gt;&lt;td&gt;(0.004)&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;cat_iapY&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;2.069&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;1.273&lt;/td&gt;&lt;td&gt;1.467&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;(2.546)&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;(1.432)&lt;/td&gt;&lt;td&gt;(0.079)&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;cat_franchiseSpinoff&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;-0.185&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;-0.525&lt;/td&gt;&lt;td&gt;-0.452&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;(0.412)&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;(0.365)&lt;/td&gt;&lt;td&gt;(0.029)&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;Constant&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;0.142&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;-1.277&lt;/td&gt;&lt;td&gt;-0.533&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;(3.197)&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;(3.303)&lt;/td&gt;&lt;td&gt;(0.657)&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td colspan=&#34;7&#34; style=&#34;border-bottom: 1px solid black&#34;&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;Observations&lt;/td&gt;&lt;td&gt;5,512&lt;/td&gt;&lt;td&gt;5,512&lt;/td&gt;&lt;td&gt;5,512&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;106&lt;/td&gt;&lt;td&gt;5,512&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;R&lt;sup&gt;2&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;0.357&lt;/td&gt;&lt;td&gt;0.381&lt;/td&gt;&lt;td&gt;0.378&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;0.389&lt;/td&gt;&lt;td&gt;0.339&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;Adjusted R&lt;sup&gt;2&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;0.336&lt;/td&gt;&lt;td&gt;0.366&lt;/td&gt;&lt;td&gt;0.374&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;0.227&lt;/td&gt;&lt;td&gt;0.335&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;F Statistic&lt;/td&gt;&lt;td&gt;227.817&lt;sup&gt;***&lt;/sup&gt; (df = 13; 5342)&lt;/td&gt;&lt;td&gt;138.060&lt;sup&gt;***&lt;/sup&gt; (df = 24; 5382)&lt;/td&gt;&lt;td&gt;100.841&lt;sup&gt;***&lt;/sup&gt; (df = 33; 5478)&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;2.399&lt;sup&gt;***&lt;/sup&gt; (df = 22; 83)&lt;/td&gt;&lt;td&gt;85.153&lt;sup&gt;***&lt;/sup&gt; (df = 33; 5478)&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td colspan=&#34;7&#34; style=&#34;border-bottom: 1px solid black&#34;&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;em&gt;Note:&lt;/em&gt;&lt;/td&gt;&lt;td colspan=&#34;6&#34; style=&#34;text-align:right&#34;&gt;&lt;sup&gt;*&lt;/sup&gt;p&lt;0.1; &lt;sup&gt;**&lt;/sup&gt;p&lt;0.05; &lt;sup&gt;***&lt;/sup&gt;p&lt;0.01&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;div id=&#34;aos-2016&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;AOS 2016&lt;/h3&gt;
+
+&lt;table style=&#34;text-align:center&#34;&gt;&lt;tr&gt;&lt;td colspan=&#34;7&#34; style=&#34;border-bottom: 1px solid black&#34;&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td colspan=&#34;6&#34;&gt;&lt;em&gt;Dependent variable:&lt;/em&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td colspan=&#34;6&#34; style=&#34;border-bottom: 1px solid black&#34;&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td colspan=&#34;3&#34;&gt;log(revenue)&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td colspan=&#34;2&#34;&gt;log(revenue)&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td colspan=&#34;3&#34;&gt;&lt;em&gt;panel&lt;/em&gt;&lt;/td&gt;&lt;td&gt;&lt;em&gt;coefficient&lt;/em&gt;&lt;/td&gt;&lt;td colspan=&#34;2&#34;&gt;&lt;em&gt;panel&lt;/em&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td colspan=&#34;3&#34;&gt;&lt;em&gt;linear&lt;/em&gt;&lt;/td&gt;&lt;td&gt;&lt;em&gt;test&lt;/em&gt;&lt;/td&gt;&lt;td colspan=&#34;2&#34;&gt;&lt;em&gt;linear&lt;/em&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;FE-TW&lt;/td&gt;&lt;td&gt;FE-ID&lt;/td&gt;&lt;td&gt;RE-ID&lt;/td&gt;&lt;td&gt;FD-ID&lt;/td&gt;&lt;td&gt;BT-ID&lt;/td&gt;&lt;td&gt;POLS-TW&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;(1)&lt;/td&gt;&lt;td&gt;(2)&lt;/td&gt;&lt;td&gt;(3)&lt;/td&gt;&lt;td&gt;(4)&lt;/td&gt;&lt;td&gt;(5)&lt;/td&gt;&lt;td&gt;(6)&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td colspan=&#34;7&#34; style=&#34;border-bottom: 1px solid black&#34;&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;log(download)&lt;/td&gt;&lt;td&gt;0.265&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;0.273&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;0.273&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;0.120&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;0.210&lt;sup&gt;*&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;0.300&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;(0.026)&lt;/td&gt;&lt;td&gt;(0.030)&lt;/td&gt;&lt;td&gt;(0.028)&lt;/td&gt;&lt;td&gt;(0.030)&lt;/td&gt;&lt;td&gt;(0.110)&lt;/td&gt;&lt;td&gt;(0.017)&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;log(net_AU)&lt;/td&gt;&lt;td&gt;0.034&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;0.031&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;0.032&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;-0.004&lt;/td&gt;&lt;td&gt;0.253&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;0.181&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;(0.008)&lt;/td&gt;&lt;td&gt;(0.009)&lt;/td&gt;&lt;td&gt;(0.008)&lt;/td&gt;&lt;td&gt;(0.002)&lt;/td&gt;&lt;td&gt;(0.062)&lt;/td&gt;&lt;td&gt;(0.016)&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;log(avg_time_per_user)&lt;/td&gt;&lt;td&gt;0.245&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;0.241&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;0.258&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;0.070&lt;/td&gt;&lt;td&gt;2.022&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;1.781&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;(0.039)&lt;/td&gt;&lt;td&gt;(0.039)&lt;/td&gt;&lt;td&gt;(0.040)&lt;/td&gt;&lt;td&gt;(0.046)&lt;/td&gt;&lt;td&gt;(0.551)&lt;/td&gt;&lt;td&gt;(0.048)&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;log(avg_session_duration)&lt;/td&gt;&lt;td&gt;-0.159&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;-0.142&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;-0.142&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;-0.029&lt;/td&gt;&lt;td&gt;-0.724&lt;/td&gt;&lt;td&gt;-0.653&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;(0.047)&lt;/td&gt;&lt;td&gt;(0.048)&lt;/td&gt;&lt;td&gt;(0.054)&lt;/td&gt;&lt;td&gt;(0.044)&lt;/td&gt;&lt;td&gt;(0.654)&lt;/td&gt;&lt;td&gt;(0.060)&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;avg_sessions_per_user&lt;/td&gt;&lt;td&gt;-0.001&lt;/td&gt;&lt;td&gt;-0.0003&lt;/td&gt;&lt;td&gt;-0.0003&lt;/td&gt;&lt;td&gt;0.001&lt;/td&gt;&lt;td&gt;-0.024&lt;/td&gt;&lt;td&gt;-0.016&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;(0.002)&lt;/td&gt;&lt;td&gt;(0.002)&lt;/td&gt;&lt;td&gt;(0.002)&lt;/td&gt;&lt;td&gt;(0.002)&lt;/td&gt;&lt;td&gt;(0.025)&lt;/td&gt;&lt;td&gt;(0.002)&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;cat_iapY&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;2.480&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;0.306&lt;/td&gt;&lt;td&gt;0.566&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;(2.304)&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;(1.015)&lt;/td&gt;&lt;td&gt;(0.079)&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;cat_franchiseSpinoff&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;-0.742&lt;sup&gt;*&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;-0.569&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;-0.545&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;(0.421)&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;(0.216)&lt;/td&gt;&lt;td&gt;(0.036)&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;Constant&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;4.484&lt;sup&gt;**&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;-5.918&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;-5.606&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;(2.248)&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;(2.196)&lt;/td&gt;&lt;td&gt;(0.181)&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td colspan=&#34;7&#34; style=&#34;border-bottom: 1px solid black&#34;&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;Observations&lt;/td&gt;&lt;td&gt;6,344&lt;/td&gt;&lt;td&gt;6,344&lt;/td&gt;&lt;td&gt;6,344&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;122&lt;/td&gt;&lt;td&gt;6,344&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;R&lt;sup&gt;2&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;0.175&lt;/td&gt;&lt;td&gt;0.223&lt;/td&gt;&lt;td&gt;0.225&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;0.700&lt;/td&gt;&lt;td&gt;0.617&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;Adjusted R&lt;sup&gt;2&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;0.151&lt;/td&gt;&lt;td&gt;0.205&lt;/td&gt;&lt;td&gt;0.222&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;0.644&lt;/td&gt;&lt;td&gt;0.615&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;F Statistic&lt;/td&gt;&lt;td&gt;131.136&lt;sup&gt;***&lt;/sup&gt; (df = 10; 6161)&lt;/td&gt;&lt;td&gt;84.560&lt;sup&gt;***&lt;/sup&gt; (df = 21; 6201)&lt;/td&gt;&lt;td&gt;61.196&lt;sup&gt;***&lt;/sup&gt; (df = 30; 6313)&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;12.515&lt;sup&gt;***&lt;/sup&gt; (df = 19; 102)&lt;/td&gt;&lt;td&gt;338.874&lt;sup&gt;***&lt;/sup&gt; (df = 30; 6313)&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td colspan=&#34;7&#34; style=&#34;border-bottom: 1px solid black&#34;&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;em&gt;Note:&lt;/em&gt;&lt;/td&gt;&lt;td colspan=&#34;6&#34; style=&#34;text-align:right&#34;&gt;&lt;sup&gt;*&lt;/sup&gt;p&lt;0.1; &lt;sup&gt;**&lt;/sup&gt;p&lt;0.05; &lt;sup&gt;***&lt;/sup&gt;p&lt;0.01&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;div id=&#34;aos-2017&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;AOS 2017&lt;/h3&gt;
+
+&lt;table style=&#34;text-align:center&#34;&gt;&lt;tr&gt;&lt;td colspan=&#34;7&#34; style=&#34;border-bottom: 1px solid black&#34;&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td colspan=&#34;6&#34;&gt;&lt;em&gt;Dependent variable:&lt;/em&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td colspan=&#34;6&#34; style=&#34;border-bottom: 1px solid black&#34;&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td colspan=&#34;3&#34;&gt;log(revenue)&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td colspan=&#34;2&#34;&gt;log(revenue)&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td colspan=&#34;3&#34;&gt;&lt;em&gt;panel&lt;/em&gt;&lt;/td&gt;&lt;td&gt;&lt;em&gt;coefficient&lt;/em&gt;&lt;/td&gt;&lt;td colspan=&#34;2&#34;&gt;&lt;em&gt;panel&lt;/em&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td colspan=&#34;3&#34;&gt;&lt;em&gt;linear&lt;/em&gt;&lt;/td&gt;&lt;td&gt;&lt;em&gt;test&lt;/em&gt;&lt;/td&gt;&lt;td colspan=&#34;2&#34;&gt;&lt;em&gt;linear&lt;/em&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;FE-TW&lt;/td&gt;&lt;td&gt;FE-ID&lt;/td&gt;&lt;td&gt;RE-ID&lt;/td&gt;&lt;td&gt;FD-ID&lt;/td&gt;&lt;td&gt;BT-ID&lt;/td&gt;&lt;td&gt;POLS-TW&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;(1)&lt;/td&gt;&lt;td&gt;(2)&lt;/td&gt;&lt;td&gt;(3)&lt;/td&gt;&lt;td&gt;(4)&lt;/td&gt;&lt;td&gt;(5)&lt;/td&gt;&lt;td&gt;(6)&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td colspan=&#34;7&#34; style=&#34;border-bottom: 1px solid black&#34;&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;log(download)&lt;/td&gt;&lt;td&gt;0.394&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;0.401&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;0.400&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;0.236&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;0.377&lt;sup&gt;**&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;0.362&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;(0.024)&lt;/td&gt;&lt;td&gt;(0.025)&lt;/td&gt;&lt;td&gt;(0.025)&lt;/td&gt;&lt;td&gt;(0.021)&lt;/td&gt;&lt;td&gt;(0.171)&lt;/td&gt;&lt;td&gt;(0.027)&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;log(net_AU)&lt;/td&gt;&lt;td&gt;0.053&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;0.050&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;0.052&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;0.001&lt;/td&gt;&lt;td&gt;0.460&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;0.346&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;(0.010)&lt;/td&gt;&lt;td&gt;(0.009)&lt;/td&gt;&lt;td&gt;(0.009)&lt;/td&gt;&lt;td&gt;(0.002)&lt;/td&gt;&lt;td&gt;(0.092)&lt;/td&gt;&lt;td&gt;(0.035)&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;log(avg_time_per_user)&lt;/td&gt;&lt;td&gt;0.117&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;0.117&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;0.128&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;-0.003&lt;/td&gt;&lt;td&gt;2.109&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;1.643&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;(0.029)&lt;/td&gt;&lt;td&gt;(0.028)&lt;/td&gt;&lt;td&gt;(0.029)&lt;/td&gt;&lt;td&gt;(0.023)&lt;/td&gt;&lt;td&gt;(0.530)&lt;/td&gt;&lt;td&gt;(0.066)&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;log(avg_session_duration)&lt;/td&gt;&lt;td&gt;-0.014&lt;/td&gt;&lt;td&gt;-0.011&lt;/td&gt;&lt;td&gt;-0.014&lt;/td&gt;&lt;td&gt;0.050&lt;sup&gt;*&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;-1.011&lt;/td&gt;&lt;td&gt;-0.612&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;(0.042)&lt;/td&gt;&lt;td&gt;(0.040)&lt;/td&gt;&lt;td&gt;(0.044)&lt;/td&gt;&lt;td&gt;(0.028)&lt;/td&gt;&lt;td&gt;(0.619)&lt;/td&gt;&lt;td&gt;(0.101)&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;avg_sessions_per_user&lt;/td&gt;&lt;td&gt;0.005&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;0.005&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;0.005&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;0.003&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;-0.025&lt;/td&gt;&lt;td&gt;-0.013&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;(0.001)&lt;/td&gt;&lt;td&gt;(0.001)&lt;/td&gt;&lt;td&gt;(0.001)&lt;/td&gt;&lt;td&gt;(0.001)&lt;/td&gt;&lt;td&gt;(0.020)&lt;/td&gt;&lt;td&gt;(0.002)&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;cat_iapY&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;2.957&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;0.042&lt;/td&gt;&lt;td&gt;0.548&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;(2.356)&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;(1.106)&lt;/td&gt;&lt;td&gt;(0.100)&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;cat_franchiseSpinoff&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;-0.101&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;-0.392&lt;/td&gt;&lt;td&gt;-0.324&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;(0.388)&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;(0.267)&lt;/td&gt;&lt;td&gt;(0.017)&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;Constant&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;3.261&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;-10.914&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;-7.808&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;(2.180)&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;(2.889)&lt;/td&gt;&lt;td&gt;(0.624)&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td colspan=&#34;7&#34; style=&#34;border-bottom: 1px solid black&#34;&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;Observations&lt;/td&gt;&lt;td&gt;5,980&lt;/td&gt;&lt;td&gt;5,980&lt;/td&gt;&lt;td&gt;5,980&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;115&lt;/td&gt;&lt;td&gt;5,980&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;R&lt;sup&gt;2&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;0.254&lt;/td&gt;&lt;td&gt;0.278&lt;/td&gt;&lt;td&gt;0.278&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;0.680&lt;/td&gt;&lt;td&gt;0.597&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;Adjusted R&lt;sup&gt;2&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;0.231&lt;/td&gt;&lt;td&gt;0.261&lt;/td&gt;&lt;td&gt;0.274&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;0.612&lt;/td&gt;&lt;td&gt;0.595&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;F Statistic&lt;/td&gt;&lt;td&gt;179.299&lt;sup&gt;***&lt;/sup&gt; (df = 11; 5803)&lt;/td&gt;&lt;td&gt;102.150&lt;sup&gt;***&lt;/sup&gt; (df = 22; 5843)&lt;/td&gt;&lt;td&gt;73.802&lt;sup&gt;***&lt;/sup&gt; (df = 31; 5948)&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;9.988&lt;sup&gt;***&lt;/sup&gt; (df = 20; 94)&lt;/td&gt;&lt;td&gt;284.219&lt;sup&gt;***&lt;/sup&gt; (df = 31; 5948)&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td colspan=&#34;7&#34; style=&#34;border-bottom: 1px solid black&#34;&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;em&gt;Note:&lt;/em&gt;&lt;/td&gt;&lt;td colspan=&#34;6&#34; style=&#34;text-align:right&#34;&gt;&lt;sup&gt;*&lt;/sup&gt;p&lt;0.1; &lt;sup&gt;**&lt;/sup&gt;p&lt;0.05; &lt;sup&gt;***&lt;/sup&gt;p&lt;0.01&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;
+&lt;p&gt;몇가지 눈여겨 볼만한 차이를 살펴보자.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;pols-vs-panel-models&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;POLS vs Panel Models&lt;/h2&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;iOS의 POLS에서 다운로드 수의 영향력이 POLS에 비해 안정적으로 관찰된다.&lt;/li&gt;
+&lt;li&gt;AOS의 POLS에서 평균 플레이시간의 강력한 영향력은 크게 줄어든다.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div id=&#34;fe-vs-fd&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;FE vs FD&lt;/h2&gt;
+&lt;p&gt;거의 모든 추정에서 FE와 FD의 결과가 꽤 다르다. 내생성이 없는 이상 두 추정법은 모두 불편 추정량이다. 따라서 두 모형의 비교를 통해 모형이 내생성을 지니고 있는지 여부에 관해 효과적으로 파악할 수 있다. 그리고 두 모형이 다를 경우, FE보다는 FD 쪽에 다소 믿을만 하다고 알려져 있다. 이렇게 본다면, 상관계수와는 달리 순활성이용자가 매출에 끼치는 영향은 크지 않은 반면, 다운로드는 1% 증가가 연도별 OS별로 0.12~0.3%의 증가 효과를 지니고 있다.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;ios-vs-aos&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;iOS vs AOS&lt;/h2&gt;
+&lt;p&gt;편의를 감안하고 비교하더라도, FE나 RE에서 OS별 차이가 뚜렷하다. 전반적으로 iOS에서 순활성사용자가 일정한 강도의 효과를 지니고 있는 반면, AOS의 경우에는 다운로드의 영향력만 효과가 있는 것으로 나타난다. 또한 연도별로 비교를 해도 연도별로 OS를 아우르는 공통된 경향을 확인하기는 어렵다.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;modelling-strategy&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Modelling strategy&lt;/h1&gt;
+&lt;p&gt;일단 패널 데이터 분석이니 기본으로 pooling, 고정효과(fixed effect), 랜덤효과(random effect) 그리고 1차차분(first difference) 정도를 해주는 것이 예의이자 교과서적인 접근일 것이다. 그런데, 우리 자료는 약간의 애로사항이 있다.&lt;/p&gt;
+&lt;div id=&#34;fd-vs-fe&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;FD vs FE&lt;/h2&gt;
+&lt;p&gt;FD와 FE는 비슷한 철학을 지닌 방법론이다. 두 모형은 패널 자료를 통해 개체 별 특성을 특성을 제거하는 방법을 구사한다. 두 모형의 추정치에 차이가 있다면 모델이 편의가 있다는 의미로 해석할 수 있다. 앞 결과에서 보듯이 두 모델의 추정치는 꽤 다르다. 아울러 몇 가지 검정을 해보면 모형 자체의 한계도 뚜렷하다. 추정 자체에 문제가 있다면 다른 추정 방법을 쓰지 않는 이상 바로 잡기는 쉽지 않다.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;endogeneity&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Endogeneity&lt;/h2&gt;
+&lt;p&gt;다운로드의 경우 다운로드가 발생한 이후 매출이 발생할 수 밖에 없기 때문에 내생성을 무시해도 좋다. 다른 변수에 대해서는 확신하기 힘들다. 특히, &lt;code&gt;net_AU&lt;/code&gt;는 매출과 동시에 결정되는 측면을 무시할 수 없다. 이 문제를 해결하기 위해서는 적절한 도구변수를 찾아야 하지만, 패널 자료에서 도구변수를 찾는 것은 몹시 어렵지 않은가? 아주 방법이 없는 건 아니지만, 자신은 없다.&lt;/p&gt;
+&lt;p&gt;내생성 문제에 대한 해법으로 동태적 패널(dynamic panel) 모형을 고려해볼 수 있겠다. Arellano and Bello에 제시된 차분적률법(difference GMM)에 따른 추정 결과는 아래와 같다.&lt;/p&gt;
+
+&lt;table style=&#34;text-align:center&#34;&gt;&lt;tr&gt;&lt;td colspan=&#34;6&#34; style=&#34;border-bottom: 1px solid black&#34;&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td colspan=&#34;5&#34;&gt;&lt;em&gt;Dependent variable:&lt;/em&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td colspan=&#34;5&#34; style=&#34;border-bottom: 1px solid black&#34;&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td colspan=&#34;5&#34;&gt;log(revenue)&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;iOS15&lt;/td&gt;&lt;td&gt;iOS16&lt;/td&gt;&lt;td&gt;iOS17&lt;/td&gt;&lt;td&gt;AOS16&lt;/td&gt;&lt;td&gt;AOS17&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;(1)&lt;/td&gt;&lt;td&gt;(2)&lt;/td&gt;&lt;td&gt;(3)&lt;/td&gt;&lt;td&gt;(4)&lt;/td&gt;&lt;td&gt;(5)&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td colspan=&#34;6&#34; style=&#34;border-bottom: 1px solid black&#34;&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;lag(log(revenue), 1:2)1&lt;/td&gt;&lt;td&gt;0.392&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;0.430&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;0.359&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;0.425&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;0.296&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;(0.056)&lt;/td&gt;&lt;td&gt;(0.053)&lt;/td&gt;&lt;td&gt;(0.055)&lt;/td&gt;&lt;td&gt;(0.065)&lt;/td&gt;&lt;td&gt;(0.081)&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;lag(log(revenue), 1:2)2&lt;/td&gt;&lt;td&gt;0.049&lt;/td&gt;&lt;td&gt;0.091&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;0.021&lt;/td&gt;&lt;td&gt;0.019&lt;/td&gt;&lt;td&gt;-0.102&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;(0.030)&lt;/td&gt;&lt;td&gt;(0.025)&lt;/td&gt;&lt;td&gt;(0.044)&lt;/td&gt;&lt;td&gt;(0.032)&lt;/td&gt;&lt;td&gt;(0.039)&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;log(net_AU)&lt;/td&gt;&lt;td&gt;0.149&lt;sup&gt;**&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;0.028&lt;/td&gt;&lt;td&gt;0.025&lt;/td&gt;&lt;td&gt;-0.006&lt;/td&gt;&lt;td&gt;-0.003&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;(0.067)&lt;/td&gt;&lt;td&gt;(0.019)&lt;/td&gt;&lt;td&gt;(0.054)&lt;/td&gt;&lt;td&gt;(0.004)&lt;/td&gt;&lt;td&gt;(0.005)&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;log(download)&lt;/td&gt;&lt;td&gt;0.177&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;0.164&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;0.206&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;0.074&lt;/td&gt;&lt;td&gt;0.177&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;(0.045)&lt;/td&gt;&lt;td&gt;(0.049)&lt;/td&gt;&lt;td&gt;(0.036)&lt;/td&gt;&lt;td&gt;(0.053)&lt;/td&gt;&lt;td&gt;(0.036)&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;log(avg_time_per_user)&lt;/td&gt;&lt;td&gt;0.085&lt;/td&gt;&lt;td&gt;0.043&lt;/td&gt;&lt;td&gt;0.077&lt;/td&gt;&lt;td&gt;0.058&lt;/td&gt;&lt;td&gt;-0.061&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;(0.059)&lt;/td&gt;&lt;td&gt;(0.052)&lt;/td&gt;&lt;td&gt;(0.053)&lt;/td&gt;&lt;td&gt;(0.047)&lt;/td&gt;&lt;td&gt;(0.050)&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;avg_sessions_per_user&lt;/td&gt;&lt;td&gt;0.001&lt;/td&gt;&lt;td&gt;0.002&lt;/td&gt;&lt;td&gt;-0.003&lt;/td&gt;&lt;td&gt;0.001&lt;/td&gt;&lt;td&gt;0.004&lt;sup&gt;**&lt;/sup&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;(0.007)&lt;/td&gt;&lt;td&gt;(0.004)&lt;/td&gt;&lt;td&gt;(0.003)&lt;/td&gt;&lt;td&gt;(0.002)&lt;/td&gt;&lt;td&gt;(0.002)&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td colspan=&#34;6&#34; style=&#34;border-bottom: 1px solid black&#34;&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;Observations&lt;/td&gt;&lt;td&gt;124&lt;/td&gt;&lt;td&gt;129&lt;/td&gt;&lt;td&gt;106&lt;/td&gt;&lt;td&gt;123&lt;/td&gt;&lt;td&gt;115&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td colspan=&#34;6&#34; style=&#34;border-bottom: 1px solid black&#34;&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;em&gt;Note:&lt;/em&gt;&lt;/td&gt;&lt;td colspan=&#34;5&#34; style=&#34;text-align:right&#34;&gt;&lt;sup&gt;*&lt;/sup&gt;p&lt;0.1; &lt;sup&gt;**&lt;/sup&gt;p&lt;0.05; &lt;sup&gt;***&lt;/sup&gt;p&lt;0.01&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;
+&lt;p&gt;일단 동태적 패널 모형에 대해서 상세하게 다루지 않겠다. 다만, 앞서 정태적 모형과는 사뭇 다른 결과를 보여준다. 대체로 다운로드 규모의 효과만 확인할 수 있으며 나머지 변수의 효과들은 모두 사라지게 된다.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;mean-group-panel-model&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;‘Mean Group’ panel model&lt;/h2&gt;
+&lt;p&gt;동태적 패널 모형이 지닌 가장 큰 문제는 시계열이 상대적으로 작은 짧은 패널에 특화되었다는 것이다. 여기서 약간의 이질성만 발생해도 모형의 불편성과 일치성이 크게 흔들리게 된다. 패널 데이터이 이질성은 두 축으로 발생할 수 있다. 하나는 시간 축이고 다른 하나는 횡단면 축이다. 이른바 ‘평균 집단’ 추정법은 이런 두 가지 이질성을 통제하려는 시도이다. 자세한 이야기는 일단 생략하고, 간편하게 적용할 수 있는 세가지 방법을 활용했다.&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;Mean Group (MG): 개별 시계열 단위로 추정한 후 이를 평균해 시계열의 이절성을 통제한다.&lt;/li&gt;
+&lt;li&gt;Demean cross sectionally (DMG): 횡단면 평균을 차감해 횡단면에 존재하는 이질성을 통제한다.&lt;/li&gt;
+&lt;li&gt;Common Correlated Effects Mean Group (CCEMG): regressor와 regressand 모두의 평균을 고려함으로써 공통 요소를 통제한다.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;세번째 모델은 공통 요소 모형이라고 블리기도 한다. 앞서 모든 추정법이 횡단면의 계열상관이 없다는 가정에 기반한 추정이다. 그런데, 만일 모든 게임에 영향을 주는 요소가 존재한다면 이러한 가정이 위배된다. CCEMG 추정법은 이러한 한계를 보정하기 위해 개발된 방법이다. 세가지 추정법에 따른 결과는 다음과 같다.&lt;/p&gt;
+&lt;div id=&#34;ios-2015-1&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;iOS 2015&lt;/h3&gt;
+
+&lt;table style=&#34;text-align:center&#34;&gt;&lt;tr&gt;&lt;td colspan=&#34;4&#34; style=&#34;border-bottom: 1px solid black&#34;&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td colspan=&#34;3&#34;&gt;&lt;em&gt;Dependent variable:&lt;/em&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td colspan=&#34;3&#34; style=&#34;border-bottom: 1px solid black&#34;&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td colspan=&#34;3&#34;&gt;log(revenue)&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;MG&lt;/td&gt;&lt;td&gt;DMG&lt;/td&gt;&lt;td&gt;CMG&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;(1)&lt;/td&gt;&lt;td&gt;(2)&lt;/td&gt;&lt;td&gt;(3)&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td colspan=&#34;4&#34; style=&#34;border-bottom: 1px solid black&#34;&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;log(download)&lt;/td&gt;&lt;td&gt;0.391&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;0.315&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;0.270&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;(0.030)&lt;/td&gt;&lt;td&gt;(0.028)&lt;/td&gt;&lt;td&gt;(0.030)&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;log(net_AU)&lt;/td&gt;&lt;td&gt;0.389&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;0.491&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;0.289&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;(0.049)&lt;/td&gt;&lt;td&gt;(0.049)&lt;/td&gt;&lt;td&gt;(0.089)&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;log(avg_time_per_user)&lt;/td&gt;&lt;td&gt;0.291&lt;/td&gt;&lt;td&gt;0.067&lt;/td&gt;&lt;td&gt;0.509&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;(0.615)&lt;/td&gt;&lt;td&gt;(0.183)&lt;/td&gt;&lt;td&gt;(0.789)&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;log(avg_session_duration)&lt;/td&gt;&lt;td&gt;-0.186&lt;/td&gt;&lt;td&gt;-0.016&lt;/td&gt;&lt;td&gt;-0.416&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;(0.615)&lt;/td&gt;&lt;td&gt;(0.186)&lt;/td&gt;&lt;td&gt;(0.797)&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;avg_sessions_per_user&lt;/td&gt;&lt;td&gt;-0.052&lt;/td&gt;&lt;td&gt;0.023&lt;/td&gt;&lt;td&gt;-0.023&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;(0.069)&lt;/td&gt;&lt;td&gt;(0.020)&lt;/td&gt;&lt;td&gt;(0.081)&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;Constant&lt;/td&gt;&lt;td&gt;0.846&lt;/td&gt;&lt;td&gt;-0.031&lt;/td&gt;&lt;td&gt;-1.550&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;(1.313)&lt;/td&gt;&lt;td&gt;(0.347)&lt;/td&gt;&lt;td&gt;(2.952)&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td colspan=&#34;4&#34; style=&#34;border-bottom: 1px solid black&#34;&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;Observations&lt;/td&gt;&lt;td&gt;6,396&lt;/td&gt;&lt;td&gt;6,396&lt;/td&gt;&lt;td&gt;6,396&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;R&lt;sup&gt;2&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;0.979&lt;/td&gt;&lt;td&gt;0.974&lt;/td&gt;&lt;td&gt;1.021&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td colspan=&#34;4&#34; style=&#34;border-bottom: 1px solid black&#34;&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;em&gt;Note:&lt;/em&gt;&lt;/td&gt;&lt;td colspan=&#34;3&#34; style=&#34;text-align:right&#34;&gt;&lt;sup&gt;*&lt;/sup&gt;p&lt;0.1; &lt;sup&gt;**&lt;/sup&gt;p&lt;0.05; &lt;sup&gt;***&lt;/sup&gt;p&lt;0.01&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;div id=&#34;ios-2016-1&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;iOS 2016&lt;/h3&gt;
+
+&lt;table style=&#34;text-align:center&#34;&gt;&lt;tr&gt;&lt;td colspan=&#34;4&#34; style=&#34;border-bottom: 1px solid black&#34;&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td colspan=&#34;3&#34;&gt;&lt;em&gt;Dependent variable:&lt;/em&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td colspan=&#34;3&#34; style=&#34;border-bottom: 1px solid black&#34;&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td colspan=&#34;3&#34;&gt;log(revenue)&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;MG&lt;/td&gt;&lt;td&gt;DMG&lt;/td&gt;&lt;td&gt;CMG&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;(1)&lt;/td&gt;&lt;td&gt;(2)&lt;/td&gt;&lt;td&gt;(3)&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td colspan=&#34;4&#34; style=&#34;border-bottom: 1px solid black&#34;&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;log(download)&lt;/td&gt;&lt;td&gt;0.317&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;0.274&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;0.245&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;(0.029)&lt;/td&gt;&lt;td&gt;(0.027)&lt;/td&gt;&lt;td&gt;(0.031)&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;log(net_AU)&lt;/td&gt;&lt;td&gt;0.407&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;0.353&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;0.264&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;(0.064)&lt;/td&gt;&lt;td&gt;(0.048)&lt;/td&gt;&lt;td&gt;(0.078)&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;log(avg_time_per_user)&lt;/td&gt;&lt;td&gt;-0.360&lt;/td&gt;&lt;td&gt;0.158&lt;/td&gt;&lt;td&gt;0.235&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;(0.396)&lt;/td&gt;&lt;td&gt;(0.160)&lt;/td&gt;&lt;td&gt;(0.451)&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;log(avg_session_duration)&lt;/td&gt;&lt;td&gt;0.360&lt;/td&gt;&lt;td&gt;-0.098&lt;/td&gt;&lt;td&gt;-0.149&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;(0.398)&lt;/td&gt;&lt;td&gt;(0.160)&lt;/td&gt;&lt;td&gt;(0.446)&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;avg_sessions_per_user&lt;/td&gt;&lt;td&gt;0.061&lt;sup&gt;*&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;0.007&lt;/td&gt;&lt;td&gt;-0.014&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;(0.034)&lt;/td&gt;&lt;td&gt;(0.014)&lt;/td&gt;&lt;td&gt;(0.040)&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;Constant&lt;/td&gt;&lt;td&gt;2.852&lt;sup&gt;**&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;0.085&lt;/td&gt;&lt;td&gt;-0.549&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;(1.211)&lt;/td&gt;&lt;td&gt;(0.302)&lt;/td&gt;&lt;td&gt;(2.619)&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td colspan=&#34;4&#34; style=&#34;border-bottom: 1px solid black&#34;&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;Observations&lt;/td&gt;&lt;td&gt;6,708&lt;/td&gt;&lt;td&gt;6,708&lt;/td&gt;&lt;td&gt;6,708&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;R&lt;sup&gt;2&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;0.981&lt;/td&gt;&lt;td&gt;0.978&lt;/td&gt;&lt;td&gt;1.011&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td colspan=&#34;4&#34; style=&#34;border-bottom: 1px solid black&#34;&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;em&gt;Note:&lt;/em&gt;&lt;/td&gt;&lt;td colspan=&#34;3&#34; style=&#34;text-align:right&#34;&gt;&lt;sup&gt;*&lt;/sup&gt;p&lt;0.1; &lt;sup&gt;**&lt;/sup&gt;p&lt;0.05; &lt;sup&gt;***&lt;/sup&gt;p&lt;0.01&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;div id=&#34;ios-2017-1&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;iOS 2017&lt;/h3&gt;
+
+&lt;table style=&#34;text-align:center&#34;&gt;&lt;tr&gt;&lt;td colspan=&#34;4&#34; style=&#34;border-bottom: 1px solid black&#34;&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td colspan=&#34;3&#34;&gt;&lt;em&gt;Dependent variable:&lt;/em&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td colspan=&#34;3&#34; style=&#34;border-bottom: 1px solid black&#34;&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td colspan=&#34;3&#34;&gt;log(revenue)&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;MG&lt;/td&gt;&lt;td&gt;DMG&lt;/td&gt;&lt;td&gt;CMG&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;(1)&lt;/td&gt;&lt;td&gt;(2)&lt;/td&gt;&lt;td&gt;(3)&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td colspan=&#34;4&#34; style=&#34;border-bottom: 1px solid black&#34;&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;log(download)&lt;/td&gt;&lt;td&gt;0.336&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;0.284&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;0.238&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;(0.035)&lt;/td&gt;&lt;td&gt;(0.031)&lt;/td&gt;&lt;td&gt;(0.036)&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;log(net_AU)&lt;/td&gt;&lt;td&gt;0.117&lt;sup&gt;**&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;0.258&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;0.229&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;(0.058)&lt;/td&gt;&lt;td&gt;(0.058)&lt;/td&gt;&lt;td&gt;(0.080)&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;log(avg_time_per_user)&lt;/td&gt;&lt;td&gt;-0.305&lt;/td&gt;&lt;td&gt;0.261&lt;sup&gt;*&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;-0.132&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;(0.208)&lt;/td&gt;&lt;td&gt;(0.147)&lt;/td&gt;&lt;td&gt;(0.276)&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;log(avg_session_duration)&lt;/td&gt;&lt;td&gt;0.382&lt;sup&gt;*&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;-0.180&lt;/td&gt;&lt;td&gt;0.150&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;(0.215)&lt;/td&gt;&lt;td&gt;(0.151)&lt;/td&gt;&lt;td&gt;(0.276)&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;avg_sessions_per_user&lt;/td&gt;&lt;td&gt;0.022&lt;/td&gt;&lt;td&gt;-0.008&lt;/td&gt;&lt;td&gt;0.014&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;(0.014)&lt;/td&gt;&lt;td&gt;(0.011)&lt;/td&gt;&lt;td&gt;(0.021)&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;Constant&lt;/td&gt;&lt;td&gt;6.634&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;-0.096&lt;/td&gt;&lt;td&gt;0.381&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;(1.030)&lt;/td&gt;&lt;td&gt;(0.504)&lt;/td&gt;&lt;td&gt;(2.421)&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td colspan=&#34;4&#34; style=&#34;border-bottom: 1px solid black&#34;&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;Observations&lt;/td&gt;&lt;td&gt;5,512&lt;/td&gt;&lt;td&gt;5,512&lt;/td&gt;&lt;td&gt;5,512&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;R&lt;sup&gt;2&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;0.983&lt;/td&gt;&lt;td&gt;0.980&lt;/td&gt;&lt;td&gt;1.009&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td colspan=&#34;4&#34; style=&#34;border-bottom: 1px solid black&#34;&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;em&gt;Note:&lt;/em&gt;&lt;/td&gt;&lt;td colspan=&#34;3&#34; style=&#34;text-align:right&#34;&gt;&lt;sup&gt;*&lt;/sup&gt;p&lt;0.1; &lt;sup&gt;**&lt;/sup&gt;p&lt;0.05; &lt;sup&gt;***&lt;/sup&gt;p&lt;0.01&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;div id=&#34;aos-2016-1&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;AOS 2016&lt;/h3&gt;
+
+&lt;table style=&#34;text-align:center&#34;&gt;&lt;tr&gt;&lt;td colspan=&#34;4&#34; style=&#34;border-bottom: 1px solid black&#34;&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td colspan=&#34;3&#34;&gt;&lt;em&gt;Dependent variable:&lt;/em&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td colspan=&#34;3&#34; style=&#34;border-bottom: 1px solid black&#34;&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td colspan=&#34;3&#34;&gt;log(revenue)&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;MG&lt;/td&gt;&lt;td&gt;DMG&lt;/td&gt;&lt;td&gt;CMG&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;(1)&lt;/td&gt;&lt;td&gt;(2)&lt;/td&gt;&lt;td&gt;(3)&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td colspan=&#34;4&#34; style=&#34;border-bottom: 1px solid black&#34;&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;log(download)&lt;/td&gt;&lt;td&gt;0.231&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;0.207&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;0.169&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;(0.022)&lt;/td&gt;&lt;td&gt;(0.020)&lt;/td&gt;&lt;td&gt;(0.023)&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;log(net_AU)&lt;/td&gt;&lt;td&gt;0.176&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;0.034&lt;sup&gt;**&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;0.189&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;(0.039)&lt;/td&gt;&lt;td&gt;(0.015)&lt;/td&gt;&lt;td&gt;(0.054)&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;log(avg_time_per_user)&lt;/td&gt;&lt;td&gt;0.451&lt;/td&gt;&lt;td&gt;0.443&lt;sup&gt;*&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;0.747&lt;sup&gt;*&lt;/sup&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;(0.393)&lt;/td&gt;&lt;td&gt;(0.234)&lt;/td&gt;&lt;td&gt;(0.406)&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;log(avg_session_duration)&lt;/td&gt;&lt;td&gt;-0.372&lt;/td&gt;&lt;td&gt;-0.415&lt;/td&gt;&lt;td&gt;-0.716&lt;sup&gt;*&lt;/sup&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;(0.414)&lt;/td&gt;&lt;td&gt;(0.262)&lt;/td&gt;&lt;td&gt;(0.407)&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;avg_sessions_per_user&lt;/td&gt;&lt;td&gt;-0.013&lt;/td&gt;&lt;td&gt;-0.012&lt;/td&gt;&lt;td&gt;-0.042&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;(0.023)&lt;/td&gt;&lt;td&gt;(0.014)&lt;/td&gt;&lt;td&gt;(0.028)&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;Constant&lt;/td&gt;&lt;td&gt;4.657&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;-0.245&lt;/td&gt;&lt;td&gt;-1.442&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;(1.210)&lt;/td&gt;&lt;td&gt;(0.197)&lt;/td&gt;&lt;td&gt;(2.129)&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td colspan=&#34;4&#34; style=&#34;border-bottom: 1px solid black&#34;&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;Observations&lt;/td&gt;&lt;td&gt;6,344&lt;/td&gt;&lt;td&gt;6,344&lt;/td&gt;&lt;td&gt;6,344&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;R&lt;sup&gt;2&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;0.986&lt;/td&gt;&lt;td&gt;0.982&lt;/td&gt;&lt;td&gt;1.014&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td colspan=&#34;4&#34; style=&#34;border-bottom: 1px solid black&#34;&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;em&gt;Note:&lt;/em&gt;&lt;/td&gt;&lt;td colspan=&#34;3&#34; style=&#34;text-align:right&#34;&gt;&lt;sup&gt;*&lt;/sup&gt;p&lt;0.1; &lt;sup&gt;**&lt;/sup&gt;p&lt;0.05; &lt;sup&gt;***&lt;/sup&gt;p&lt;0.01&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;div id=&#34;aos-2017-1&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;AOS 2017&lt;/h3&gt;
+
+&lt;table style=&#34;text-align:center&#34;&gt;&lt;tr&gt;&lt;td colspan=&#34;4&#34; style=&#34;border-bottom: 1px solid black&#34;&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td colspan=&#34;3&#34;&gt;&lt;em&gt;Dependent variable:&lt;/em&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td colspan=&#34;3&#34; style=&#34;border-bottom: 1px solid black&#34;&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td colspan=&#34;3&#34;&gt;log(revenue)&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;MG&lt;/td&gt;&lt;td&gt;DMG&lt;/td&gt;&lt;td&gt;CMG&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;(1)&lt;/td&gt;&lt;td&gt;(2)&lt;/td&gt;&lt;td&gt;(3)&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td colspan=&#34;4&#34; style=&#34;border-bottom: 1px solid black&#34;&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;log(download)&lt;/td&gt;&lt;td&gt;0.223&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;0.227&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;0.178&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;(0.023)&lt;/td&gt;&lt;td&gt;(0.029)&lt;/td&gt;&lt;td&gt;(0.024)&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;log(net_AU)&lt;/td&gt;&lt;td&gt;0.028&lt;/td&gt;&lt;td&gt;0.025&lt;/td&gt;&lt;td&gt;0.063&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;(0.052)&lt;/td&gt;&lt;td&gt;(0.017)&lt;/td&gt;&lt;td&gt;(0.050)&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;log(avg_time_per_user)&lt;/td&gt;&lt;td&gt;0.254&lt;/td&gt;&lt;td&gt;-0.007&lt;/td&gt;&lt;td&gt;0.385&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;(0.460)&lt;/td&gt;&lt;td&gt;(0.194)&lt;/td&gt;&lt;td&gt;(0.628)&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;log(avg_session_duration)&lt;/td&gt;&lt;td&gt;-0.179&lt;/td&gt;&lt;td&gt;0.094&lt;/td&gt;&lt;td&gt;-0.357&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;(0.455)&lt;/td&gt;&lt;td&gt;(0.179)&lt;/td&gt;&lt;td&gt;(0.628)&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;avg_sessions_per_user&lt;/td&gt;&lt;td&gt;-0.009&lt;/td&gt;&lt;td&gt;0.004&lt;/td&gt;&lt;td&gt;-0.019&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;(0.023)&lt;/td&gt;&lt;td&gt;(0.006)&lt;/td&gt;&lt;td&gt;(0.032)&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;Constant&lt;/td&gt;&lt;td&gt;7.632&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;-0.365&lt;/td&gt;&lt;td&gt;-0.680&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;(1.086)&lt;/td&gt;&lt;td&gt;(0.241)&lt;/td&gt;&lt;td&gt;(2.529)&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td colspan=&#34;4&#34; style=&#34;border-bottom: 1px solid black&#34;&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;Observations&lt;/td&gt;&lt;td&gt;5,980&lt;/td&gt;&lt;td&gt;5,980&lt;/td&gt;&lt;td&gt;5,980&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;R&lt;sup&gt;2&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;0.986&lt;/td&gt;&lt;td&gt;0.982&lt;/td&gt;&lt;td&gt;1.011&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td colspan=&#34;4&#34; style=&#34;border-bottom: 1px solid black&#34;&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&#34;text-align:left&#34;&gt;&lt;em&gt;Note:&lt;/em&gt;&lt;/td&gt;&lt;td colspan=&#34;3&#34; style=&#34;text-align:right&#34;&gt;&lt;sup&gt;*&lt;/sup&gt;p&lt;0.1; &lt;sup&gt;**&lt;/sup&gt;p&lt;0.05; &lt;sup&gt;***&lt;/sup&gt;p&lt;0.01&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;br&gt; 이제 위 테이블의 결과를 시각화해보자.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;../../post/panel_US/blogpost_files/figure-html/unnamed-chunk-16-1.png&#34; width=&#34;672&#34; /&gt;&lt;img src=&#34;../../post/panel_US/blogpost_files/figure-html/unnamed-chunk-16-2.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;세 모형 모두 에서 다운로드 규모와 순활성사용자의 효과를 비교적 안정적으로 확인할 수 있다. 평균 그룹 추정 결과 OS 구분 없이 순활성이용자와 다운로드 규모가 매출에 영향을 끼치며, 시간 및 세션 이용 현황의 효과는 사라졌다. iOS의 경우 순활성이용자와 다운로드 규모가 비슷한 매출 견인효과를 지니는 반면, AOS의 경우 다운로드 효과가 안정적이며 순활성이용자의 효과는 2016년의 MG 모형에서만 관찰되었다.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;conclusion&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Conclusion&lt;/h1&gt;
+&lt;p&gt;다소 복잡해보이는 지금까지의 분석이 지닌 함의를 두가지로 요약해보자.&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;업계의 정설은 게임 디자인 및 플레이 요소, 즉 게임 내의 보상 등에 좌우되는 순활성이용자 수, 평균 플레이시간, 세션 정보 등이 중요하다는 것이다. 이 정설은 단순 상관관계나 통합 모형을 통해 확인된다. 그런데 패널 데이터에 특화된 분석 결과를 보면, 적어도 미국 모바일 게임 시장에 대해서 이러한 정설은 다소 과장된 것으로 볼 수 있겠다.&lt;/li&gt;
+&lt;li&gt;가장 안정적으로 매출을 견인하는 요소는 주당 다운로드 규모다. 물론 결과의 의미를 어떻게 해석해야 하는지에 대해서는 추가적인 분석이 필요하다. 특히 각 변수들을 실행수단으로 볼 때 1%를 올리기 위한 비용이 다를 수 있다는 점에 주의해야 한다. 예를 들어, 1,000만 명의 주당 순활성 이용자를 지닌 게임에서 순활성이용자 1%를 늘이기 위해서는 많은 비용을 요할 것이다. 반면, 활성 이용자가의 규모가 커도 주당 다운로드 숫자는 크지 않을 수 있다. 게임이 꽤 시간이 지난 게임이라면 매출 견인을 위해서는 게임의 다운로드를 늘이는 단순한 외부 활동이 오히려 효과적일 수 있다.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div id=&#34;technincal-ps&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Technincal PS&lt;/h1&gt;
+&lt;div id=&#34;broomtidy-and-its-limitation&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;broom::tidy, and its limitation&lt;/h2&gt;
+&lt;p&gt;보통 R에서 regression(lm, plm, gls, rlm 등등)이든 뭐든 분석 패키지를 돌리면 summary로 결과를 보게 된다. 문제는 얘네들을 재활용하기는 쉽지 않다는 것이다. 결과를 다시 타이핑해 재활용하기에는 모양이 빠진다. 아울러 추정 결과가 바뀌면 참으로 곤란해진다. 어쨌든 재활용을 위해서는 생성된 모델 혹은 summary 오브젝트를 잘 뜯어내야 한다. 이 작업이 아주 어렵진 않지만 꽤 귀찮다. 이를 위해 개발된 패키지가 broom다. 많은 패키지들의 분석 모데을 잘 뜯어내주긴 한다. plm패키지에서도 plm 모형은 잘 발라진다. 다만, 동태적 패널 모형인 plm::pgmm이나 평균 집단 모형인 plm::pmg는 지원하지 않는다. 이런 경우 어떻게 할 수 있을까?&lt;/p&gt;
+&lt;p&gt;정공법은 원래 대상을 보고 그 대상을 찬찬히 뜯어내 data.frame으로 가다듬는 것이다. 하지만, 꼼수도 있다. 어차피 필요한 게 summary에 다 있다면 말이다.&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;summary 테이블을 녹화하듯이 txt파일로 저장한다. &lt;code&gt;sink()&lt;/code&gt; 명렁어를 활용한다.&lt;br /&gt;
+&lt;/li&gt;
+&lt;li&gt;txt를 다시 라인별로 읽어들인다.&lt;/li&gt;
+&lt;li&gt;해당 라인에서 필요한 정보를 추출해서 data.frame으로 전환한다.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;이렇게 하면, 비교적 간단하게 summary 정보를 data.frame으로 바꿀 수 있다.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;model-with-customized-se&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Model with customized SE&lt;/h2&gt;
+&lt;p&gt;Panel 모형에서 가장 중요한 것은 SE(standard error)를 적당하게 집어넣는 것이다. 강건한(robust) 통계량를 구하기 위해서는 여러가지 개발된 모델을 써야 한다. 보통 plm 패키지가 구현되는 방식은 다음과 같다.&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;plm 모형을 추정한 결과를 R객체로 저장한다.&lt;/li&gt;
+&lt;li&gt;해당 객체에서 summary function을 통해 필요한 정보를 출력한다.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;문제는 summary function이 아니라 다른 출력 함수를 쓸 때 발생한다. 회귀분석 결과를 html 혹은 &lt;span class=&#34;math inline&#34;&gt;\(\rm \LaTeX\)&lt;/span&gt; 테이블로 바꿔주는 stargazer 패키지만 해도 함수의 입력으로 모델을 받게 되어 있다. 이럴 경우에는 별도의 SE 정확하게는 분산-공분산 행렬(variance-covariance matrix)를 생성한 후 이를 모형에 다시 심어주면 된다. 아예 간단한 별도의 함수를 하나 짜면 편하다. Stata에서 생성되는 클러스터 SE를 R에서 생성하기 위한 가짜 코드는 대충 다음과 같다.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;gen_model_with_customizedSE &amp;lt;- function(model_v, year_v, platform_v, y) {
+#  
+  plm(model_v, model =  &amp;quot;pooling&amp;quot;, effect = y, index = c(&amp;quot;app_name&amp;quot;, &amp;quot;week_inyear&amp;quot;), 
+      data = dfa_BP %.&amp;gt;% filter(., year == year_v, cat_platform == platform_v)) -&amp;gt; model 
+  my_vcovHC &amp;lt;- function(x){plm::vcovHC(x, type = &amp;quot;sss&amp;quot;, cluster = &amp;quot;group&amp;quot;)}
+  my_vcovHC(model) -&amp;gt; model$vcov
+  model %.&amp;gt;% return(.)
+#  
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;footnotes&#34;&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id=&#34;fn1&#34;&gt;&lt;p&gt;모바일 게임에서 ’세션’의 의미란 게임을 시작한 후 게임 내 이용자의 인터랙션이 비활성화 될 때까지의 시간을 의미한다. 모바일 게에서 세션은 게임 콘텐츠에 의해 정의될 수도 있고, 이용자가 선택할 수도 있다. 이용자의 자발적인 비활성화가 발생하지 않는 이상 콘텐츠에 의해 정의되는 시간이 특정 세션의 상한이 된다.&lt;a href=&#34;#fnref1&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&#34;fn2&#34;&gt;&lt;p&gt;물론 여기에는 몇가지 가정이 필요하다. 다운로드를 하고 접속을 하지 않는 경우도 있고, 게임 계정을 이미 지니고 있으나 여러가지 이유(기기 교체, 자발적 삭제)로 앱을 지운 후 다시 다운로드 받은 경우가 섞여 있을 수 있다. 일단 문제를 단순하게 만들기 위해서 해당 주에 발생한 다운로드는 신규 이용자라고 간주하도록 하자.&lt;a href=&#34;#fnref2&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+</description>
     </item>
     
     <item>
@@ -26,8 +675,203 @@
       <pubDate>Wed, 03 Jan 2018 00:00:00 +0000</pubDate>
       
       <guid>/post/2018/01/03/mobile-game-market-of-y2017-part-1/</guid>
-      <description>tl; dr무서운 성장세로 보면 모바일 게임이 이제 대세다!일본 시장이 아직은 짱짱맨!한국 모바일 게임 시장은 매출 분포나 집중도에서 활력을 잃어가고 있을지 모른다.Motivation남들도 2017년 결산을 하길래 나도 한번 해보기로 한다. 그런데 변변하게 아는 내용도 별다른 재주도 없으니 그나마 할 수 있는 것 중에서 재미있어 보이는 것으로 해보는 걸로…
-Go West!오늘날 게임 업계의 서부는 단연 “모바일”이다. 올해 기점으로 한국이나 해외나 모바일 게임 시장이 기존의 온라인 게임 및 콘솔 게임 시장과 비슷한 규모로 성장했다.</description>
+      <description>&lt;div id=&#34;tl-dr&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;tl; dr&lt;/h1&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;무서운 성장세로 보면 모바일 게임이 이제 대세다!&lt;/li&gt;
+&lt;li&gt;일본 시장이 아직은 짱짱맨!&lt;/li&gt;
+&lt;li&gt;한국 모바일 게임 시장은 매출 분포나 집중도에서 활력을 잃어가고 있을지 모른다.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div id=&#34;motivation&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Motivation&lt;/h1&gt;
+&lt;p&gt;남들도 2017년 결산을 하길래 나도 한번 해보기로 한다. 그런데 변변하게 아는 내용도 별다른 재주도 없으니 그나마 할 수 있는 것 중에서 재미있어 보이는 것으로 해보는 걸로…&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;go-west&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Go West!&lt;/h1&gt;
+&lt;p&gt;오늘날 게임 업계의 서부는 단연 “모바일”이다. 올해 기점으로 한국이나 해외나 모바일 게임 시장이 기존의 온라인 게임 및 콘솔 게임 시장과 비슷한 규모로 성장했다. 그다지 좋아하지 않는 삼국지 비유를 들자면, 온라인-콘솔(게임기)-모바일이 천하삼분지계를 이루었다고나 할까?&lt;/p&gt;
+&lt;p&gt;모바일 앱 시장의 집계 데이터를 서비스하는 Aㅇㅇ를 통해 2017년 한해 동안 가장 많은 매출을 올린 게임 1,000개를 뽑아냈다. 일단 상위 15개의 게임부터 보자. 미리 말해두면, Aㅇㅇ 서비스의 자료는 실데이터가 아닌 추정치이다. 사실 구글이나 애플과 같은 플랫폼 홀더가 아닌 이상 정확한 데이터를 알 수 없으니, 그나마 신뢰 받는 데이터에 의지할 수 밖에 없다는 점, 널리 양해 바란다.&lt;a href=&#34;#fn1&#34; class=&#34;footnoteRef&#34; id=&#34;fnref1&#34;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt; 이하 제시되는 표나 그림에서 금액의 단위는 모두 미국 달러(USD)이며, Aㅇㅇ에서 집계햐는 액수는 플랫폼 수수료 30%를 제외한 금액이란 점을 미리 밝혀둔다.&lt;/p&gt;
+&lt;table&gt;
+&lt;caption&gt;&lt;span id=&#34;tab:unnamed-chunk-2&#34;&gt;Table 1: &lt;/span&gt;2017 모바일 게임 매출 순위&lt;/caption&gt;
+&lt;thead&gt;
+&lt;tr class=&#34;header&#34;&gt;
+&lt;th align=&#34;center&#34;&gt;매출순위&lt;/th&gt;
+&lt;th align=&#34;left&#34;&gt;게임&lt;/th&gt;
+&lt;th align=&#34;left&#34;&gt;매출(1억 $)&lt;/th&gt;
+&lt;th align=&#34;left&#34;&gt;앱 츨시일&lt;/th&gt;
+&lt;th align=&#34;left&#34;&gt;모기업&lt;/th&gt;
+&lt;th align=&#34;left&#34;&gt;모기업 국가&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;center&#34;&gt;1&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Honour of Kings&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;11.53&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;2015-10-26&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Tencent&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;China&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;center&#34;&gt;2&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Monster Strike&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;11.27&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;2013-09-27&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;mixi&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Japan&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;center&#34;&gt;3&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Fate/Grand Order&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;9.29&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;2015-07-31&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Sony&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Japan&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;center&#34;&gt;4&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Lineage 2 Revolution&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;7.20&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;2016-12-13&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Netmarble&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;South Korea&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;center&#34;&gt;5&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Fantasy Westward Journey&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;6.89&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;2015-04-21&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;NetEase&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;China&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;center&#34;&gt;6&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Clash Royale&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;5.97&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;2016-01-04&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Supercell&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Finland&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;center&#34;&gt;7&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Candy Crush Saga&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;5.93&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;2012-11-14&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Activision Blizzard&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;United Kingdom&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;center&#34;&gt;8&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Lineage M&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;5.81&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;2017-06-20&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;NCSOFT&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;South Korea&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;center&#34;&gt;9&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Clash of Clans&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;4.96&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;2012-06-14&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Supercell&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Finland&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;center&#34;&gt;10&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Pokemon GO&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;4.09&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;2016-07-05&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Niantic&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;United States&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;center&#34;&gt;11&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Puzzle &amp;amp; Dragons&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;3.93&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;2012-02-20&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;GungHo Online Entertainment&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Japan&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;center&#34;&gt;12&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Game of War - Fire Age&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;3.91&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;2013-07-25&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;MZ&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;United States&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;center&#34;&gt;13&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Dragon Ball Z Dokkan Battle&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;3.91&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;2015-01-29&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;BANDAI NAMCO&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Japan&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;center&#34;&gt;14&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Mobile Strike&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;3.67&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;2015-07-10&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;MZ&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;United States&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;center&#34;&gt;15&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Onmyoji&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;3.64&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;2016-09-01&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;NetEase&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;China&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;일단 첫눈에 알 수 있는 내용부터 보자. 이른바 ‘글로벌’ 히트 게임은 착시다. 수퍼셀에서 만든 “크래시로열”, “크래시오브클랜” 그리고 한국의 컴투스에서 내놓은 “서머너스워” 같은 히트작이 존재하지만 시장은 뚜렷하게 구분되어 있다. 올 한 해 동안 가장 많은 돈을 번 “왕자영요Honour of Kings”는 중국어권과 한국 등의 동남아 권역에서만 서비스된다.&lt;a href=&#34;#fn2&#34; class=&#34;footnoteRef&#34; id=&#34;fnref2&#34;&gt;&lt;sup&gt;2&lt;/sup&gt;&lt;/a&gt; 나머지 2017년의 흥행 게임들도 비슷하다. 한국에서 엄청난 흥행을 기록한 “리니지M” 역시 한국, 대만, 홍콩 이외의 지역에서는 아직 서비스되지 않고 있다. “리니지2레볼루션”이 그나마 글로벌 성과를 냈지만, 역시 한국 흥행과 비교할 수준은 아니다. 2위에 오른 “몬스터 스트라이크” 역시 일본에서만 잘되는 게임이다. 2017년에 흥행한 상위 15개 타이틀에서 보듯이, 모바일 게임 시장은 국가별로 혹은 지역별로 상당한 정도로 분절화되어 있다. 플랫폼이 글로벌하다고 해서, 문화적인 차이가 사라지는 것은 아니었다.&lt;a href=&#34;#fn3&#34; class=&#34;footnoteRef&#34; id=&#34;fnref3&#34;&gt;&lt;sup&gt;3&lt;/sup&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;시장 전체는 어땠을까? 2017년만 봐서는 알 수 없으니 내친 김에 앱애니 데이터가 모인 2012년부터 살펴보자.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;../../post/2018-01-03-mobile_game_market_files/figure-html/unnamed-chunk-3-1.png&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;모바일 게임은 맹렬하고 지속적인 성장세를 유지하고 있다. 지금은 삼분지대계를 얼추 이루고 있지만, 앞으로 3–4년이 지나면 모바일 게임이 게임 업계에서 가장 큰 시장을 형성하지 않을까 싶다.&lt;a href=&#34;#fn4&#34; class=&#34;footnoteRef&#34; id=&#34;fnref4&#34;&gt;&lt;sup&gt;4&lt;/sup&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;../../post/2018-01-03-mobile_game_market_files/figure-html/unnamed-chunk-4-1.png&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;4년 동안 형성된 시장 총액의 단순 합을 지역별로 표시했다. 모바일은 누가 뭐라도 “Asia First”다. 한중일을 합치면 시장 점유율이 50% 이상이다. “왕자영요”, “몽환서유” 같은 엄청난 히트작이 나온 중국 시장이지만, 아직은 일본 시장이 더 두텁다. 다만 중국의 빠른 성장이 주목할만 하다. 이미 2017년 중국 시장은 국가 단위로 세계 최대의 시장이 되었다. 국가별 매출 변화의 상세한 추이는 다음의 그림을 참고하라.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;../../post/2018-01-03-mobile_game_market_files/figure-html/unnamed-chunk-5-1.png&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;indepth-anlysis&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Indepth anlysis&lt;/h1&gt;
+&lt;p&gt;이제 국가별-연도별로 살짝 더 들춰보자. 내 질문은 다음과 같다.&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;게임업계의 매출 불평등의 정도는?&lt;/li&gt;
+&lt;li&gt;게임업계의 산업 집중도는?&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;배운게 도둑질이라고 돈버는 데 도움되는 날카로운 통찰보다는 이런게 더 관심이 가더라. 어쩔 수 없다! ㅠㅠ 하지만 어설프게 배운 도둑질인지라서 해당 질문은 철저하게 다 파보진 않겠다. 첫번째 질문은 지니 계수로, 두번째 질문은 히르쉬-허핀달 지수로 소략하게 살펴보자.&lt;/p&gt;
+&lt;p&gt;지니 계수는 두 가지 자료에 대해 계산해 볼 예정이다. 해당 연도의 총매출의 지니 계수는 기본이다. 그런데 모든 게임이 1월 1일부터 서비스되지는 않을 것이고, 연중 나오는 게임도 있을 것이다. 이런 게임들에게 불이익을 주지 않기 위해서 당해 연도 매출을 당해 연도의 서비스 일수로 나눈 일간평균매출(Average Revenue Per Day: ARPD)라는 조작 지표를 도입할 예정이다. 다만 게임의 경우 초반에 매출이 압도적으로 높게 나오기 때문에 해당 연도에 서비스된 일수가 충분하지 않은 게임들을 제외했다. 대략, 어림잡아서 서비스된 일수가 1년의 1/3 쯤에 해당하는 122일에 미치지 못하는 게임들이 제외 대상이다.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;../../post/2018-01-03-mobile_game_market_files/figure-html/unnamed-chunk-6-1.png&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;일단 연도별로 업계 전체의 지니 계수를 보자.&lt;a href=&#34;#fn5&#34; class=&#34;footnoteRef&#34; id=&#34;fnref5&#34;&gt;&lt;sup&gt;5&lt;/sup&gt;&lt;/a&gt; 꽤나 높은 수준이지만 여타 엔터테인먼트 업계에 비해 유달리 못은 수준이라고 보기는 힘들다. 영화 업계 혹은 음악 업계 역시 비슷한 양상을 보이는 것으로 알려져 있다. 유행에 민감한, 즉 네트워크 효과의 지배를 받을 수 밖에 없는 흥행 산업에서 “될놈될 잘놈잘”은 보편적인 현상이다.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;../../post/2018-01-03-mobile_game_market_files/figure-html/unnamed-chunk-7-1.png&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;국가별로 지니 계수의 변동을 보자. 일본과 이외 국가들은 하향하는 추세이며 미국은 비슷한 수준을 유지하는 것으로 추측된다. 중국은 상향추세이다. 한국은 다소 미묘하다. 2012년 자료의 부정확성을 감안하면 대략 0.68–0.7 사이를 유지하다가, 2017년에는 크게 높아졌다. 이는 2017년 하반기에 출시된 엔씨소프트의 “리니지M” 때문에 발생한 것이다. 물론 2012년에서 2013년으로 건너오면서 한국의 모바일 게임 시장이 넷마블을 중심으로 재편되었기 떄문에 지니계수의 상승이 그럴 듯한 이야기처럼 느껴지기는 한다. 아울러, ARPD 역시 상승하는 추세라는 점을 함께 고려하면, 잘되는 게임이 더 잘되는 추세가 작용하고 있다고 조심스럽게 말할 수 있다.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;../../post/2018-01-03-mobile_game_market_files/figure-html/unnamed-chunk-8-1.png&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;산업집중도를 표시하는 H-H지수를 살펴보자. 대략, 0.15 값을 기준으로 이것보다 낮으면 경쟁적이라고 판단하고 0.15보다 높을수록 집중도가 높다고 판단한다. 일본은 매우 높은 집중도를 보이다가 최근들어 경쟁적인 환경으로 변했다. 중국은 경쟁이 치열해졌다는 것을 쉽게 확인할 수 있다. 한국의 경우 비교적 경쟁적인 환경을 유지하다가 2017년에 갑자기 상승했음을 알 수 있다. 이 역시 “리니지M”의 효과이기 때문에 집중도가 높아지는 것이 경향인지 판단하려면 앞으로 1~2년 후의 추이를 더 지켜봐야 할 것이다.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;../../post/2018-01-03-mobile_game_market_files/figure-html/unnamed-chunk-9-1.png&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;img src=&#34;../../post/2018-01-03-mobile_game_market_files/figure-html/unnamed-chunk-9-2.png&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;마지막으로 각 국가별 그리고 연도별로 1,000위 안에 이름을 올린 회사 및 게임 앱의 갯수를 살펴보자. 이 숫자들 역시 한국 모바일 게임 시장이 여타 국가들에 비해서 다소 정체된 시장임을 보여주고 있다.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;part-ii&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Part II?&lt;/h1&gt;
+&lt;p&gt;사실 좀 더 분석해야 하는 내용들이 남아 있다. 몇 가지 적어보자.&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;회사별 분석: 위의 분석을 보면서 의문을 품은 분들이 있을 것이다. 지니 계수나 H-H 지수는 개별 게임이 아니라, 회사를 기반으로 계산해야 하는 것이 아닐까? 맞다. 다만, 위의 분석은 각국의 시장의 모습을 파악하기 위해서 이루어진 것임을 감안해주시면 좋겠다.&lt;/li&gt;
+&lt;li&gt;출시 후 1년이 지나서도 높은 인기를 누리는 게임: 모바일 게임의 생애주기는 여전히 논란거리다. 과연 여타 장르의 게임에 비해서 모바일 게임의 생애주기가 훨씬 짧을까?&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;파트1은 귀찮아서 이 정도에서 그만! ㅎ&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;footnotes&#34;&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id=&#34;fn1&#34;&gt;&lt;p&gt;“나는 Aㅇㅇ 서비스는 못 믿어!,” 라고 하는 분들은 여기서 페이지를 닫으시라.&lt;a href=&#34;#fnref1&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&#34;fn2&#34;&gt;&lt;p&gt;한국에서는 “팬타스톰”이라는 이름으로 서비스되고 있으나 중국 같은 대박을 이루지는 못했다.&lt;a href=&#34;#fnref2&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&#34;fn3&#34;&gt;&lt;p&gt;사실 아래 분석은 시장에 대해서 다소간의 혼란이 존재한다. 예를 들어 수퍼셀은 핀란드 기업이지만 실제로 주로 매출을 내는 곳은 전세계이다. 이렇듯 다소 혼란의 여지가 있으나, 글로벌로 활동하는 게임의 종류가 많지 않다는 점을 고려해, 다소간의 개념적 혼란을 무릅쓰고 둘을 혼용해서 사용하도록 하겠다.&lt;a href=&#34;#fnref3&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&#34;fn4&#34;&gt;&lt;p&gt;Aㅇㅇ 서비스는 2012년에 서비스를 시작했다. 이떄는 여러가지로 데이터도 부족했기 때문에 성장률로는 2012년에서 2013년이 200%가 넘는 수준이지만 이 시기는 성장률 계산에서 제외했다. 2012년을 전부 뺄까도 생각했지만 보는 사람이 감안하고 보는 편이 낫겠거니 싶어 그냥 두었다.&lt;a href=&#34;#fnref4&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&#34;fn5&#34;&gt;&lt;p&gt;지니 계수에 대해서 간략하게 해설하겠다. 쉽게 말해 일정한 분포를 지닌 수치열의 불평등도를 계산하는 것이다. 0에 가까울수록 평등하고 1에 가까울수록 불평등하다. 즉, 0.7 정도 되면 꽤나 높은 정도로 불평등한 것이다.&lt;a href=&#34;#fnref5&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+</description>
     </item>
     
     <item>
@@ -36,8 +880,714 @@
       <pubDate>Wed, 13 Dec 2017 00:00:00 +0000</pubDate>
       
       <guid>/post/2017/12/13/google-play-store-vs-apple-appstore-part-1/</guid>
-      <description>Disclaimer“part 1”이라고 거창하게 달아 놓았지만, 파트2가 나올까? I don’t think so…
-Google Play Store(GPS) vs Apple Apptore(AA)한국은 스마트폰 보급율의 차이 만큼이나 모바일 앱 시장의 마켓 비중 역시 안드로이드로 쏠려 있다. 정확한 통계는 찾을 수 없었지만 대체적인 그림은 그릴 수 있겠다. iOS의 경우 2016년에 20% 언저리로 점유율이 상승했으나, 2017년 현재 다시 10~15% 사이로 내려온 것으로 추정된다. 앱 시장의 크기는 어떨까? 선진국 시장의 경우 iOS 이용자들의 높은 구매력 때문에 앱 시장의 크기는 OS 점유율 만큼 차이가 나지 않는 것이 보통이다.</description>
+      <description>&lt;div id=&#34;disclaimer&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Disclaimer&lt;/h1&gt;
+&lt;p&gt;“part 1”이라고 거창하게 달아 놓았지만, 파트2가 나올까? I don’t think so…&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;google-play-storegps-vs-apple-apptoreaa&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Google Play Store(GPS) vs Apple Apptore(AA)&lt;/h1&gt;
+&lt;p&gt;한국은 스마트폰 보급율의 차이 만큼이나 모바일 앱 시장의 마켓 비중 역시 안드로이드로 쏠려 있다. 정확한 통계는 찾을 수 없었지만 대체적인 그림은 그릴 수 있겠다. iOS의 경우 2016년에 20% 언저리로 점유율이 상승했으나, 2017년 현재 다시 10~15% 사이로 내려온 것으로 추정된다. 앱 시장의 크기는 어떨까? 선진국 시장의 경우 iOS 이용자들의 높은 구매력 때문에 앱 시장의 크기는 OS 점유율 만큼 차이가 나지 않는 것이 보통이다. 게임 시장의 경우 이러한 현상이 보다 두드러진다. 미국과 일본 모두 대략 5:5로 시장을 반분하고 있다. 하지만 한국의 경우에는 앱 시장의 OS 점유율이 OS의 점유율과 비슷하다. 현재 모바일 게임 시장에서 매출의 90% 이상이 인앱결제(부분유료화)를 통해 발생하고 있고, 인앱결제를 통해 보다 자주 그리고 쉽게 지갑이 열리는 이용자 층이 안드로이드에 더 많이 포진해 있다는 추측 정도 가능하다. 어쨌든.&lt;/p&gt;
+&lt;p&gt;이 포스팅에서는 데이터로 초점을 좁혀 한국 게임 앱 시장 몇가지 흥미로운 특징과 더불어 GPS와 AA의 차이점을 다루고자 한다. 대상으로 삼은 게임 및 이 게임들의 데이터 범위는 아래와 같다.&lt;/p&gt;
+&lt;table class=&#34;table table-hover table-condensed table-responsive&#34; style=&#34;width: auto !important; margin-left: auto; margin-right: auto;&#34;&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&#34;text-align:left;&#34;&gt;
+게임
+&lt;/th&gt;
+&lt;th style=&#34;text-align:left;&#34;&gt;
+시작일
+&lt;/th&gt;
+&lt;th style=&#34;text-align:left;&#34;&gt;
+최종일
+&lt;/th&gt;
+&lt;th style=&#34;text-align:left;&#34;&gt;
+데이터 수
+&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+모두의마블
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+2013-06-12
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+2017-12-04
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+1636 days
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+세븐나이츠
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+2014-03-08
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+2017-12-06
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+1369 days
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+리니지2레볼루션
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+2016-12-16
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+2017-12-04
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+353 days
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+리니지M
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+2017-06-20
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+2017-12-04
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+167 days
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+소녀전선
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+2017-07-02
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+2017-12-04
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+155 days
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+액스
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+2017-09-12
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+2017-12-04
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+83 days
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+오버히트
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+2017-11-26
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+2017-12-04
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+8 days
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+테라M
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+2017-11-29
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+2017-12-04
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+5 days
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;넷마블게임즈의 장기 흥행작인 “모두의마블”, “세븐나이츠”, 그리고 모바일 MMORPG 히트작 “리니지2레볼루션”, “리니지M”, 그리고 최근에 등장한 신작인 “액스(AxE)”, “오버히트”, “테라M” 모두 7개다. “오버히트”와 “테라M”은 관찰 수가 부족하여 분석에서 거의 제외될 것이다. 데이터의 출처는 업계에서 많이 참고하는 ㅇㅇㄴ이다.&lt;a href=&#34;#fn1&#34; class=&#34;footnoteRef&#34; id=&#34;fnref1&#34;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt; 보통 분석 내용과 함께 원데이터 및 데이터 가공과 분석에 활용된 소스코드를 공개하는 것이 원칙이다. 아쉽게도 이용한 원자료를 공개할 권리가 나에게 없다. 이 점 양해 부탁한다. 요청이 있다면 데이터 정리 및 분석에 동원된 코드는 공개할 수 있다.&lt;/p&gt;
+&lt;p&gt;이 포스팅에서 탐색할 질문은 크게 다음의 세 가지다.&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;7개 게임들의 GPS 점유율은 어느 정도인가?&lt;/li&gt;
+&lt;li&gt;게임 사이의 경합관계는 존재하는가?&lt;/li&gt;
+&lt;li&gt;GPS의 비율이 높아지는 것이 매출을 견인하는가? 한다면 어느 정도나 하는가?&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div id=&#34;one-ratio-of-google-play-store&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;ONE: Ratio of Google Play Store&lt;/h1&gt;
+&lt;p&gt;먼저 전체적인 GPS의 비율은 다음과 같다.&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr class=&#34;header&#34;&gt;
+&lt;th align=&#34;left&#34;&gt;게임&lt;/th&gt;
+&lt;th align=&#34;left&#34;&gt;GPS 매출비&lt;/th&gt;
+&lt;th align=&#34;left&#34;&gt;GPS 다운로드비&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;세븐나이츠&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;0.862&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;0.881&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;액스&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;0.857&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;0.798&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;모두의마블&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;0.849&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;0.876&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;리니지M&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;0.846&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;0.798&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;소녀전선&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;0.844&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;0.859&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;리니지2레볼루션&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;0.842&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;0.808&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;오버히트&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;0.747&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;0.753&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;테라M&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;0.625&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;0.754&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;“오버히트”와 “테라M”의 비율이 낮은 것은 자료의 정확성이 떨어지기 때문이다. 데이터가 좀 더 모이고 적절한 보정이 이루어지면 다른 게임과 비슷한 수준으로 올라올 것으로 추측해본다. 일단 매출 비중의 경우 대체로 85%에 가까운 매출이 GPS를 통해 발생하고 있다. 일자별로는 어떤 패턴을 보일까? “오버히트”와 “테라M”을 제외하고 그려보면 다음과 같다.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;../../post/2017-12-13-GPS_AA_eda_files/figure-html/unnamed-chunk-4-1.png&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;“모두의 마블”과 “세븐나이츠”와 같은 장수 게임의 경우 서비스 초반의 높은 비중에서 이제는 75% 선까지 GPS 매출비가 낮아진 상태다. 서비스 개시 후 1년 이하의 다른 인기 게임은 여전히 85%~90% 가까운 높은 비중을 유지하고 있다.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;two-rivalry-among-games&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;TWO: Rivalry among games&lt;/h1&gt;
+&lt;p&gt;보통 언론이나 대중의 인식에서는 마켓 1위 게임들에 관심이 쏠리기 마련이다. “&lt;span class=&#34;math inline&#34;&gt;\(x\)&lt;/span&gt;가 &lt;span class=&#34;math inline&#34;&gt;\(y\)&lt;/span&gt;를 누르고 1위를 차지했다”더라 이런 기사 제목을 떠올리면 되겠다. 이런 통념은 게임 사이에 ’경합관계’가 있음을 암묵적으로 가정한다. “리니지M”이 “리니지2레볼루션”을 매출에서 앞질렀다고 하자. 이때 우리는 “리니지2레볼루션”의 매출과 “리니지M” 매출 사이 음의 상관관계를 볼 수 있을까? PerformanceAnalytics 패키지에서 제공하는 &lt;code&gt;chart.Coreelation&lt;/code&gt; 명령을 통해 탐색적인 수준에서 이 문제를 살펴보자. 데이터가 충분하지 않은 “액스”, “오버히트”, “테라M”을 제외한 결과는 다음과 같다.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;../../post/2017-12-13-GPS_AA_eda_files/figure-html/unnamed-chunk-5-1.png&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;결과에서 보듯이 상관관계로 확인 가능한 ‘경합관계’를 드러내는 게임 쌍은 없다. 오히려 양의 상관관계가 보다 두드러진다. 즉 게임 이용자는 대체로 남들이 ’지르는’ 시기에 함께 지른다. 물론 상관관계로 할 수 있는 이야기는 몹시 제한적이다. 다만 매출 추이로 명백히 확인할 수 있는 경합관계는 관찰할 수 없다는 것이다.&lt;/p&gt;
+&lt;p&gt;앞서의 상관관계는 전체기간에 대해서 계산했다. 데이터가 일 단위로 생성된다는 측면을 고려하면, 상관관계 역시 시간이 흐르면서 함께 변할 수 있다. 이 점을 보기 위해 이동 상관관계(rolling correlation)를 보도록 하자. 이동 상관관계란 기간을 고정하고 날짜를 하나씩 밀어내면서 일련의 상관관계를 계산하는 방법을 말한다. 이동평균(moving average)을 떠올리면 좋다.&lt;/p&gt;
+&lt;p&gt;넷마블의 “모두의 마블”, “세븐나이츠”, 그리고 엔씨소프트의 “리니지M”에 대해 이동 상관계수를 계산한 결과는 다음의 그림과 같다. “리니지2레볼루션”에 대한 데이터가 안정화된 2017년 1월 1일부터 2017년 12월 4일까지를 계산 기간으로 삼았고, 게임의 매출이 주를 기준으로 많이 움직이는 점을 고려하여 28일을 상관관계의 주기로 두었다.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;../../post/2017-12-13-GPS_AA_eda_files/figure-html/unnamed-chunk-6-1.png&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;일단 세 개의 이동 상관관계 모두 변동성이 생각보다 컸다. 이 이슈는 별도로 다뤄볼만한 가치가 있는 흥미로운 발견이지만, 여기서는 더 이상 논하지 않겠다. 이동 상관관계 사이에 어떤 체계적인 경향성이 없다는 점 역시 관심을 가져볼 만하다. 또한 같은 장르의 경쟁작으로 회자되는 “리니지2레볼루션”과 리니지M“의 경우 앞서 전 기간에 대한 상관관계와 마찬가지로 경합성이 관찰되지 않고, 오히려 꽤 강한 양의 상관성이 지속적으로 존재해왔다.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;three-high-gps-ratio-high-revenue&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;THREE: High GPS ratio, high revenue?&lt;/h1&gt;
+&lt;p&gt;GPS의 비율이 높다는 사실이 매출에 기여할까? 기여한다면 얼마나 기여할까? 이를 엄밀하게 밝히기 위해서는 더 많은 고민과 데이터를 쥐어짜는 고통이 수반되어야 할 터이다. 하지만 언제나 그렇듯이 야매정신에 충만한 나는 ‘까이꺼 대에충’ 한번 해볼 뿐이다.&lt;/p&gt;
+&lt;table style=&#34;border-collapse:collapse; border:none;&#34;&gt;
+&lt;tr&gt;
+&lt;td style=&#34;padding:0.2cm; border-top:double;&#34; rowspan=&#34;2&#34;&gt;
+&lt;em&gt;Predictors&lt;/em&gt;
+&lt;/td&gt;
+&lt;td colspan=&#34;8&#34; style=&#34;padding:0.2cm; border-top:double; text-align:center; border-bottom:1px solid;&#34;&gt;
+&lt;em&gt;Dependent Variables&lt;/em&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;td style=&#34; padding-left:0.5em; padding-right:0.5em;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center; &#34;&gt;
+log(마켓매출)
+&lt;/td&gt;
+&lt;td style=&#34; padding-left:0.5em; padding-right:0.5em;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center; &#34;&gt;
+log(마켓매출)
+&lt;/td&gt;
+&lt;td style=&#34; padding-left:0.5em; padding-right:0.5em;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center; &#34;&gt;
+log(마켓매출)
+&lt;/td&gt;
+&lt;td style=&#34; padding-left:0.5em; padding-right:0.5em;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center; &#34;&gt;
+log(마켓매출)
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;padding:0.2cm; font-style:italic;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding-left:0.5em; padding-right:0.5em; font-style:italic;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center; font-style:italic; &#34;&gt;
+B (CI)
+&lt;/td&gt;
+&lt;td style=&#34;padding-left:0.5em; padding-right:0.5em; font-style:italic;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center; font-style:italic; &#34;&gt;
+B (CI)
+&lt;/td&gt;
+&lt;td style=&#34;padding-left:0.5em; padding-right:0.5em; font-style:italic;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center; font-style:italic; &#34;&gt;
+B (CI)
+&lt;/td&gt;
+&lt;td style=&#34;padding-left:0.5em; padding-right:0.5em; font-style:italic;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center; font-style:italic; &#34;&gt;
+B (CI)
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;padding:0.2cm; border-top:1px solid; text-align:left;&#34;&gt;
+(Intercept)
+&lt;/td&gt;
+&lt;td style=&#34;padding-left:0.5em; padding-right:0.5em; border-top:1px solid; &#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center; border-top:1px solid; &#34;&gt;
+11.295&lt;br&gt;(11.03 – 11.56) ***
+&lt;/td&gt;
+&lt;td style=&#34;padding-left:0.5em; padding-right:0.5em; border-top:1px solid; &#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center; border-top:1px solid; &#34;&gt;
+10.213&lt;br&gt;(9.84 – 10.59) ***
+&lt;/td&gt;
+&lt;td style=&#34;padding-left:0.5em; padding-right:0.5em; border-top:1px solid; &#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center; border-top:1px solid; &#34;&gt;
+11.137&lt;br&gt;(10.92 – 11.36) ***
+&lt;/td&gt;
+&lt;td style=&#34;padding-left:0.5em; padding-right:0.5em; border-top:1px solid; &#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center; border-top:1px solid; &#34;&gt;
+9.313&lt;br&gt;(9.04 – 9.59) ***
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:left;&#34;&gt;
+GPS매출비율(%)
+&lt;/td&gt;
+&lt;td style=&#34;padding-left:0.5em; padding-right:0.5em;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center; &#34;&gt;
+0.014&lt;br&gt;(0.01 – 0.02) ***
+&lt;/td&gt;
+&lt;td style=&#34;padding-left:0.5em; padding-right:0.5em;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center; &#34;&gt;
+0.010&lt;br&gt;(0.01 – 0.01) ***
+&lt;/td&gt;
+&lt;td style=&#34;padding-left:0.5em; padding-right:0.5em;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center; &#34;&gt;
+0.013&lt;br&gt;(0.01 – 0.02) ***
+&lt;/td&gt;
+&lt;td style=&#34;padding-left:0.5em; padding-right:0.5em;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center; &#34;&gt;
+0.006&lt;br&gt;(0.00 – 0.01) ***
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:left;&#34;&gt;
+log(다운로드)
+&lt;/td&gt;
+&lt;td style=&#34;padding-left:0.5em; padding-right:0.5em;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center; &#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding-left:0.5em; padding-right:0.5em;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center; &#34;&gt;
+0.155&lt;br&gt;(0.11 – 0.20) ***
+&lt;/td&gt;
+&lt;td style=&#34;padding-left:0.5em; padding-right:0.5em;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center; &#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding-left:0.5em; padding-right:0.5em;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center; &#34;&gt;
+0.259&lt;br&gt;(0.23 – 0.29) ***
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:left;&#34;&gt;
+액스_더미
+&lt;/td&gt;
+&lt;td style=&#34;padding-left:0.5em; padding-right:0.5em;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center; &#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding-left:0.5em; padding-right:0.5em;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center; &#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding-left:0.5em; padding-right:0.5em;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center; &#34;&gt;
+-0.098&lt;br&gt;(-0.13 – -0.07) ***
+&lt;/td&gt;
+&lt;td style=&#34;padding-left:0.5em; padding-right:0.5em;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center; &#34;&gt;
+0.071&lt;br&gt;(0.04 – 0.11) ***
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:left;&#34;&gt;
+리니지2레볼루션_더미
+&lt;/td&gt;
+&lt;td style=&#34;padding-left:0.5em; padding-right:0.5em;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center; &#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding-left:0.5em; padding-right:0.5em;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center; &#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding-left:0.5em; padding-right:0.5em;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center; &#34;&gt;
+1.631&lt;br&gt;(1.54 – 1.72) ***
+&lt;/td&gt;
+&lt;td style=&#34;padding-left:0.5em; padding-right:0.5em;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center; &#34;&gt;
+1.855&lt;br&gt;(1.79 – 1.92) ***
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:left;&#34;&gt;
+리니지M_더미
+&lt;/td&gt;
+&lt;td style=&#34;padding-left:0.5em; padding-right:0.5em;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center; &#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding-left:0.5em; padding-right:0.5em;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center; &#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding-left:0.5em; padding-right:0.5em;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center; &#34;&gt;
+2.566&lt;br&gt;(2.49 – 2.64) ***
+&lt;/td&gt;
+&lt;td style=&#34;padding-left:0.5em; padding-right:0.5em;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center; &#34;&gt;
+2.630&lt;br&gt;(2.56 – 2.70) ***
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:left;&#34;&gt;
+세븐나이츠 _더미
+&lt;/td&gt;
+&lt;td style=&#34;padding-left:0.5em; padding-right:0.5em;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center; &#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding-left:0.5em; padding-right:0.5em;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center; &#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding-left:0.5em; padding-right:0.5em;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center; &#34;&gt;
+0.190&lt;br&gt;(0.04 – 0.34) *
+&lt;/td&gt;
+&lt;td style=&#34;padding-left:0.5em; padding-right:0.5em;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center; &#34;&gt;
+0.272&lt;br&gt;(0.16 – 0.38) ***
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:left;&#34;&gt;
+소녀전선_더미
+&lt;/td&gt;
+&lt;td style=&#34;padding-left:0.5em; padding-right:0.5em;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center; &#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding-left:0.5em; padding-right:0.5em;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center; &#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding-left:0.5em; padding-right:0.5em;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center; &#34;&gt;
+0.298&lt;br&gt;(-0.05 – 0.64) 
+&lt;/td&gt;
+&lt;td style=&#34;padding-left:0.5em; padding-right:0.5em;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center; &#34;&gt;
+-0.178&lt;br&gt;(-0.51 – 0.16) 
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:left;&#34;&gt;
+오버히트_더미
+&lt;/td&gt;
+&lt;td style=&#34;padding-left:0.5em; padding-right:0.5em;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center; &#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding-left:0.5em; padding-right:0.5em;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center; &#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding-left:0.5em; padding-right:0.5em;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center; &#34;&gt;
+1.549&lt;br&gt;(1.27 – 1.83) ***
+&lt;/td&gt;
+&lt;td style=&#34;padding-left:0.5em; padding-right:0.5em;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center; &#34;&gt;
+0.998&lt;br&gt;(0.71 – 1.28) ***
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:left;&#34;&gt;
+테라M_더미
+&lt;/td&gt;
+&lt;td style=&#34;padding-left:0.5em; padding-right:0.5em;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center; &#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding-left:0.5em; padding-right:0.5em;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center; &#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding-left:0.5em; padding-right:0.5em;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center; &#34;&gt;
+-0.245&lt;br&gt;(-0.35 – -0.14) ***
+&lt;/td&gt;
+&lt;td style=&#34;padding-left:0.5em; padding-right:0.5em;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center; &#34;&gt;
+-0.131&lt;br&gt;(-0.22 – -0.04) **
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;padding:0.2cm; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left; border-top:1px solid;&#34;&gt;
+Observations
+&lt;/td&gt;
+&lt;td style=&#34;padding-left:0.5em; padding-right:0.5em; border-top:1px solid;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; padding-top:0.1cm; padding-bottom:0.1cm; text-align:center; border-top:1px solid;&#34;&gt;
+3783
+&lt;/td&gt;
+&lt;td style=&#34;padding-left:0.5em; padding-right:0.5em; border-top:1px solid;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; padding-top:0.1cm; padding-bottom:0.1cm; text-align:center; border-top:1px solid;&#34;&gt;
+3783
+&lt;/td&gt;
+&lt;td style=&#34;padding-left:0.5em; padding-right:0.5em; border-top:1px solid;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; padding-top:0.1cm; padding-bottom:0.1cm; text-align:center; border-top:1px solid;&#34;&gt;
+3783
+&lt;/td&gt;
+&lt;td style=&#34;padding-left:0.5em; padding-right:0.5em; border-top:1px solid;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; padding-top:0.1cm; padding-bottom:0.1cm; text-align:center; border-top:1px solid;&#34;&gt;
+3783
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;&#34;&gt;
+R&lt;sup&gt;2&lt;/sup&gt; / adj. R&lt;sup&gt;2&lt;/sup&gt;
+&lt;/td&gt;
+&lt;td style=&#34;padding-left:0.5em; padding-right:0.5em;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center; padding-top:0.1cm; padding-bottom:0.1cm;&#34;&gt;
+.016 / .016
+&lt;/td&gt;
+&lt;td style=&#34;padding-left:0.5em; padding-right:0.5em;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center; padding-top:0.1cm; padding-bottom:0.1cm;&#34;&gt;
+.041 / .040
+&lt;/td&gt;
+&lt;td style=&#34;padding-left:0.5em; padding-right:0.5em;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center; padding-top:0.1cm; padding-bottom:0.1cm;&#34;&gt;
+.664 / .664
+&lt;/td&gt;
+&lt;td style=&#34;padding-left:0.5em; padding-right:0.5em;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center; padding-top:0.1cm; padding-bottom:0.1cm;&#34;&gt;
+.722 / .721
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;&#34;&gt;
+F-statistics
+&lt;/td&gt;
+&lt;td style=&#34;padding-left:0.5em; padding-right:0.5em;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center; padding-top:0.1cm; padding-bottom:0.1cm;&#34;&gt;
+61.252***
+&lt;/td&gt;
+&lt;td style=&#34;padding-left:0.5em; padding-right:0.5em;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center; padding-top:0.1cm; padding-bottom:0.1cm;&#34;&gt;
+80.286***
+&lt;/td&gt;
+&lt;td style=&#34;padding-left:0.5em; padding-right:0.5em;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center; padding-top:0.1cm; padding-bottom:0.1cm;&#34;&gt;
+933.761***
+&lt;/td&gt;
+&lt;td style=&#34;padding-left:0.5em; padding-right:0.5em;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center; padding-top:0.1cm; padding-bottom:0.1cm;&#34;&gt;
+1088.898***
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;&#34;&gt;
+AIC
+&lt;/td&gt;
+&lt;td style=&#34;padding-left:0.5em; padding-right:0.5em;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center; padding-top:0.1cm; padding-bottom:0.1cm;&#34;&gt;
+9697.911
+&lt;/td&gt;
+&lt;td style=&#34;padding-left:0.5em; padding-right:0.5em;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center; padding-top:0.1cm; padding-bottom:0.1cm;&#34;&gt;
+9603.324
+&lt;/td&gt;
+&lt;td style=&#34;padding-left:0.5em; padding-right:0.5em;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center; padding-top:0.1cm; padding-bottom:0.1cm;&#34;&gt;
+5642.778
+&lt;/td&gt;
+&lt;td style=&#34;padding-left:0.5em; padding-right:0.5em;&#34;&gt;
+ 
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:center; padding-top:0.1cm; padding-bottom:0.1cm;&#34;&gt;
+4931.639
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr style=&#34;padding:0.2cm; border-top:1px solid;&#34;&gt;
+&lt;td style=&#34;padding:0.2cm;&#34;&gt;
+Notes
+&lt;/td&gt;
+&lt;td style=&#34;padding:0.2cm; text-align:right;&#34; colspan=&#34;8&#34;&gt;
+&lt;em&gt;* p&amp;lt;.05   ** p&amp;lt;.01   *** p&amp;lt;.001&lt;/em&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;p&gt;머리 속에 떠오르는 대로 4개의 회귀분석을 돌려보았다. 자세한 해설은 생략하도록 한다! &lt;span class=&#34;math inline&#34;&gt;\(\textrm{R}^2\)&lt;/span&gt; 값이 높은 3, 4열의 결과에 따르면, 1%의 GPS 비율 증가에 대해 낮게는 0.6%에서 높게는 1.3% 매출 증가를 기대할 수 있다. 물론 더 자세한 것은 regression diagnotics 등을 거쳐 꼼꼼하게 따져봐야 할 일이다. 설명 변수들 사이의 다중공선성은 크게 걱정할 필요는 없을 듯 하다. 다만, &lt;code&gt;GPS매출비율&lt;/code&gt;과 &lt;code&gt;log(다운로드)&lt;/code&gt; 사이는 살짝 의심스러워서 둘의 관계를 쓱 그려보았다.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;../../post/2017-12-13-GPS_AA_eda_files/figure-html/unnamed-chunk-8-1.png&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;img src=&#34;../../post/2017-12-13-GPS_AA_eda_files/figure-html/unnamed-chunk-8-2.png&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;이 결과에 따르면 GPS의 비율을 높여서 매출을 견인할 수는 있지만 현실적으로 활용하기는 어려울 것이다. 인기작들의 GPS의 매출 비율이 이미 85% 근방으로 높기 때문에 여기서 이 비율을 더 끌어올리기는 쉽지 않을 것이다. 만일 새롭게 론칭하는 게임이라면 매출 확대라는 측면에서 타겟 OS를 안드로이드로 잡는 것이 유리할 수 있겠다. 혹은 AA의 매출이 GPS와 비교해 훨씬 높은 게임이 있다면 별도의 타겟 마케팅을 시도해볼 만하겠다.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;footnotes&#34;&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id=&#34;fn1&#34;&gt;&lt;p&gt;ㅇㅇㄴ 서비스에 대해서 여러가지 불만이 있는 것으로 안다. 가장 많이 들을 수 있는 불만은 ’데이터의 정확도’에 관한 내용이다. 이에 대해서 몇 가지 ’변명’을 언급해두도록 하자. 우선, ㅇㅇㄴ데이터는 마켓 수수료 30%가 빠진 자료다. 따라서 값을 0.7로 나누어야 통상적으로 익숙한 매출액이 나온다. 둘째, ㅇㅇㄴ자료는 패널을 통한 데이터 샘플링과 자체적인 데이터 가공을 거쳐 발표된다. 회사별로 정확하게 볼 수 있는 데이터에 비해서는 정확도가 떨어질 수 밖에 없다. 하지만 (많은 경우에 그렇듯이) 없는 것보다는 낫지 않은가? 셋째, 데이터 자체의 정확성과는 별도로 추세는 비교적 맞아 떨어진다. 즉, 레퍼런스 포인트가 다를 뿐 어느 방향으로 움직이는지는 상당히 정확하게 반영되어 있다고 보면 된다.&lt;a href=&#34;#fnref1&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+</description>
     </item>
     
   </channel>
