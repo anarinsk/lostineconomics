@@ -60,7 +60,7 @@ dfa_BP %.>%
 
 분석에 동원될 관심 변수의 주요 통계량에 대해서 살펴보자. 변수가 많아 따로 별도의 html 페이지를 만들었다. 예상대로 다른 변수에 비해서 매출(`revenue`), 다운로드(`download`) 등은 분포는 쏠림이 뚜렷하다. 
 
-[LINK](http://htmlpreview.github.io/?https://github.com/anarinsk/lostineconomics/blob/master/content/post/panel_US/summary.html)
+[LINK](http://htmlpreview.github.io/?https://github.com/anarinsk/lostineconomics/blob/master/html_link/panel_US/basic_summary.htm)
 
 # Correlation
 
@@ -136,9 +136,15 @@ corrplot(tcorr, method = "number", tl.col="black", type = "upper", tl.srt = 45)
   4. Model 4: `log(revenue) ~ log(download) + log(net_AU) + log(avg_time_per_user) + log(avg_session_duration) + avg_sessions_per_user`
   5. Model 5: `log(revenue) ~ log(download) + log(net_AU) + log(avg_time_per_user) +  log(avg_session_duration) + avg_sessions_per_user + factor(month) + cat_iap + cat_franchise + cat_hqcountry + cat_history`
 
-### 추정결과 링크 
+각 모형의 추정결과는 아래의 링크와 같다. 
 
-각 모형의 추정 결과를 년도별과 OS별 시각화해 표현해보도록 하자. 
+[iOS 2015](http://htmlpreview.github.io/?https://github.com/anarinsk/lostineconomics/blob/master/html_link/panel_US/pols_2015_us_iOS.htm)
+[iOS 2016](http://htmlpreview.github.io/?https://github.com/anarinsk/lostineconomics/blob/master/html_link/panel_US/pols_2016_us_iOS.htm)
+[iOS 2017](http://htmlpreview.github.io/?https://github.com/anarinsk/lostineconomics/blob/master/html_link/panel_US/pols_2017_us_iOS.htm)
+[AOS 2016](http://htmlpreview.github.io/?https://github.com/anarinsk/lostineconomics/blob/master/html_link/panel_US/pols_2016_us_AOS.htm)
+[AOS 2017](http://htmlpreview.github.io/?https://github.com/anarinsk/lostineconomics/blob/master/html_link/panel_US/pols_2017_us_AOS.htm)
+   
+각 모형의 추정 결과를 년도별과 OS별 시각화해 표현해보도록 하자. 링크의 분석 결과 중 관심 변수의 추정치와 신뢰구간을 표현한 것이다. 
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 pols_vis("us_iOS", "POL for iOS in U.S.")
@@ -185,27 +191,27 @@ pols_vis("us_AOS", "POL for AOS in U.S.")
 
 ### iOS 2015 
 ```{r, echo=FALSE}
-htmltools::includeHTML("FRD_2015_us_iOS.html")
+htmltools::includeHTML("../../../html_link/panel_US/FRD_2015_us_iOS.html")
 ```
 
 ### iOS 2016
 ```{r, echo=FALSE}
-htmltools::includeHTML("FRD_2016_us_iOS.html")
+htmltools::includeHTML("../../../html_link/panel_US/FRD_2016_us_iOS.html")
 ```
 
 ### iOS 2017 
 ```{r, echo=FALSE}
-htmltools::includeHTML("FRD_2017_us_iOS.html")
+htmltools::includeHTML("../../../html_link/panel_US/FRD_2017_us_iOS.html")
 ```
 
 ### AOS 2016 
 ```{r, echo=FALSE}
-htmltools::includeHTML("FRD_2016_us_AOS.html")
+htmltools::includeHTML("../../../html_link/panel_US/FRD_2016_us_AOS.html")
 ```
 
 ### AOS 2017
 ```{r, echo=FALSE}
-htmltools::includeHTML("FRD_2017_us_AOS.html")
+htmltools::includeHTML("../../../html_link/panel_US/FRD_2017_us_AOS.html")
 ```
 
 몇가지 눈여겨 볼만한 차이를 살펴보자. 
@@ -238,7 +244,7 @@ FD와 FE는 비슷한 철학을 지닌 방법론이다. 두 모형은 패널 자
 내생성 문제에 대한 해법으로 동태적 패널(dynamic panel) 모형을 고려해볼 수 있겠다. Arellano and Bello에 제시된 차분적률법(difference GMM)에 따른 추정 결과는 아래와 같다.
 
 ```{r, echo=FALSE}
-htmltools::includeHTML("pgmm.html")
+htmltools::includeHTML("../../../html_link/panel_US/pgmm.html")
 ```
 
 일단 동태적 패널 모형에 대해서 상세하게 다루지 않겠다. 다만, 앞서 정태적 모형과는 사뭇 다른 결과를 보여준다. 대체로 다운로드 규모의 효과만 확인할 수 있으며 나머지 변수의 효과들은 모두 사라지게 된다. 
@@ -255,27 +261,27 @@ htmltools::includeHTML("pgmm.html")
 
 ### iOS 2015
 ```{r, echo=FALSE}
-htmltools::includeHTML("pmg_2015_us_iOS.html")
+htmltools::includeHTML("../../../html_link/panel_US/pmg_2015_us_iOS.html")
 ```
 
 ### iOS 2016
 ```{r, echo=FALSE}
-htmltools::includeHTML("pmg_2016_us_iOS.html")
+htmltools::includeHTML("../../../html_link/panel_US/pmg_2016_us_iOS.html")
 ```
 
 ### iOS 2017
 ```{r, echo=FALSE}
-htmltools::includeHTML("pmg_2017_us_iOS.html")
+htmltools::includeHTML("../../../html_link/panel_US/pmg_2017_us_iOS.html")
 ```
 
 ### AOS 2016
 ```{r, echo=FALSE}
-htmltools::includeHTML("pmg_2016_us_AOS.html")
+htmltools::includeHTML("../../../html_link/panel_US/pmg_2016_us_AOS.html")
 ```
 
 ### AOS 2017
 ```{r, echo=FALSE}
-htmltools::includeHTML("pmg_2017_us_AOS.html")
+htmltools::includeHTML("../../../html_link/panel_US/pmg_2017_us_AOS.html")
 ```
 
 <br> 

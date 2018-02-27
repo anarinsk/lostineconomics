@@ -67,7 +67,7 @@
 <div id="-" class="section level3">
 <h3>주요 변수설명</h3>
 <p>분석에 동원될 관심 변수의 주요 통계량에 대해서 살펴보자. 변수가 많아 따로 별도의 html 페이지를 만들었다. 예상대로 다른 변수에 비해서 매출(<code>revenue</code>), 다운로드(<code>download</code>) 등은 분포는 쏠림이 뚜렷하다.</p>
-<p><a href="http://htmlpreview.github.io/?https://github.com/anarinsk/lostineconomics/blob/master/content/post/panel_US/summary.html">LINK</a></p>
+<p><a href="http://htmlpreview.github.io/?https://github.com/anarinsk/lostineconomics/blob/master/html_link/panel_US/basic_summary.htm">LINK</a></p>
 </div>
 </div>
 <div id="correlation" class="section level1">
@@ -131,10 +131,9 @@
 <li>Model 4: <code>log(revenue) ~ log(download) + log(net_AU) + log(avg_time_per_user) + log(avg_session_duration) + avg_sessions_per_user</code></li>
 <li>Model 5: <code>log(revenue) ~ log(download) + log(net_AU) + log(avg_time_per_user) +  log(avg_session_duration) + avg_sessions_per_user + factor(month) + cat_iap + cat_franchise + cat_hqcountry + cat_history</code></li>
 </ol>
-</div>
-<div id="-" class="section level3">
-<h3>추정결과 링크</h3>
-<p>각 모형의 추정 결과를 년도별과 OS별 시각화해 표현해보도록 하자.</p>
+<p>각 모형의 추정결과는 아래의 링크와 같다.</p>
+<p><a href="http://htmlpreview.github.io/?https://github.com/anarinsk/lostineconomics/blob/master/html_link/panel_US/pols_2015_us_iOS.htm">iOS 2015</a> <a href="http://htmlpreview.github.io/?https://github.com/anarinsk/lostineconomics/blob/master/html_link/panel_US/pols_2016_us_iOS.htm">iOS 2016</a> <a href="http://htmlpreview.github.io/?https://github.com/anarinsk/lostineconomics/blob/master/html_link/panel_US/pols_2017_us_iOS.htm">iOS 2017</a> <a href="http://htmlpreview.github.io/?https://github.com/anarinsk/lostineconomics/blob/master/html_link/panel_US/pols_2016_us_AOS.htm">AOS 2016</a> <a href="http://htmlpreview.github.io/?https://github.com/anarinsk/lostineconomics/blob/master/html_link/panel_US/pols_2017_us_AOS.htm">AOS 2017</a></p>
+<p>각 모형의 추정 결과를 년도별과 OS별 시각화해 표현해보도록 하자. 링크의 분석 결과 중 관심 변수의 추정치와 신뢰구간을 표현한 것이다.</p>
 <p><img src="../../../../../post/panel_US/blogpost_files/figure-html/unnamed-chunk-4-1.png" width="672" /><img src="../../../../../post/panel_US/blogpost_files/figure-html/unnamed-chunk-4-2.png" width="672" /></p>
 <p>일단 몇가지 지적해두고 가자.</p>
 <ol style="list-style-type: decimal">

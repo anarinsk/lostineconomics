@@ -1,25 +1,0 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Lifelogs on lost in economics</title>
-    <link>/lifelog/</link>
-    <description>Recent content in Lifelogs on lost in economics</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Thu, 16 Nov 2017 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="/lifelog/index.xml" rel="self" type="application/rss+xml" />
-    
-    
-    <item>
-      <title>적로</title>
-      <link>/lifelog/2017-11-20-reddew/</link>
-      <pubDate>Thu, 16 Nov 2017 00:00:00 +0000</pubDate>
-      
-      <guid>/lifelog/2017-11-20-reddew/</guid>
-      <description>연극이란나는 보았다.
-</description>
-    </item>
-    
-  </channel>
-</rss>
