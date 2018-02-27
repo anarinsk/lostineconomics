@@ -29,7 +29,7 @@ dfa_BP %.>% mutate(., install_base = active_users / (open_rate * 0.01)) -> dfa_B
 
   1. 미국 iOS와 AOS(안드로이드) 모바일 게임 마켓 자료로 매출 신장에 기여하는 요인을 들여다보았다. 
   2. 업계의 정설과는 다르게 활성 이용자(active users) 및 이용 시간 등 게임 내 요소들의 매출 영향력은 크지 않다. 
-  3. 대개의 패널 기법들이 short panel에 기반하고 있어서 시간축이 좀 되는 녀석들을 다루는 데 애로사항이 있더라... (이거슨 능력부족) 
+  3. 대개의 패널 기법들이 short panel에 기반하고 있어서 시간축이 좀 되는 녀석들을 다루는 데 애로사항이 있더라... (이거슨 능력부족!) 
 
 # Motivation 
 
@@ -45,14 +45,58 @@ dfa_BP %.>% mutate(., install_base = active_users / (open_rate * 0.01)) -> dfa_B
 
 데이터는 2015, 2016, 2017년 3개 연도를 대상으로 한다. 일단 미국 iOS, AOS의 데이터를 열심히 모았다. 데이터를 긁는게 좀 짜증이 나긴 했다. 같은 짜증을 한번 더 견디면, 한국의 두 플랫폼에 대해서도 아래와 같은 분석이 가능하다. 먼저 데이터 크기나 패널 데이터로서의 구색은 그리 나쁘지 않다. iOS의 경우에는 2015, 2016, 2017년이 다 있었고, AOS의 경우는 집계상의 어려움이 있었는지 2016, 2017년 자료를 모아 정리할 수 있었다. 자료의 현황은 아래와 같다. 
 
-```{r echo=FALSE, message=FALSE, warning=FALSE}
+```{r message=FALSE, warning=FALSE, include=FALSE}
 options(knitr.table.format = "html")
 dfa_BP %.>% 
   count(., cat_platform, year) %.>% 
   mutate(., n_app = n / 52) %.>% 
   dplyr::select(., cat_platform, year, n_app, n) %.>% 
-  kable(., col.names = c("OS", "Year", "# of Apps", "# of Oservation"))
+  kable(., col.names = c("OS", "Year", "# of Apps", "# of Oservation")) %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed"))
 ```
+
+<table class="table table-hover table-striped table-responsive" style="margin-left: auto; margin-right: auto;">
+ <thead>
+  <tr>
+   <th style="text-align:left;"> OS </th>
+   <th style="text-align:right;"> Year </th>
+   <th style="text-align:right;"> # of Apps </th>
+   <th style="text-align:right;"> # of Oservation </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> us_AOS </td>
+   <td style="text-align:right;"> 2016 </td>
+   <td style="text-align:right;"> 123 </td>
+   <td style="text-align:right;"> 6396 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> us_AOS </td>
+   <td style="text-align:right;"> 2017 </td>
+   <td style="text-align:right;"> 115 </td>
+   <td style="text-align:right;"> 5980 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> us_iOS </td>
+   <td style="text-align:right;"> 2015 </td>
+   <td style="text-align:right;"> 124 </td>
+   <td style="text-align:right;"> 6448 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> us_iOS </td>
+   <td style="text-align:right;"> 2016 </td>
+   <td style="text-align:right;"> 129 </td>
+   <td style="text-align:right;"> 6708 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> us_iOS </td>
+   <td style="text-align:right;"> 2017 </td>
+   <td style="text-align:right;"> 106 </td>
+   <td style="text-align:right;"> 5512 </td>
+  </tr>
+</tbody>
+</table>
 
 위의 표에서 눈치챈 사람도 있겠지만, 좀 더 엄밀한 분석을 위해서 패널 데이터를 구축했다. 1년 52주 단위 데이터를 모두 갖춘 게임들만 걸러냈다. 불균형 패널(unbalanced panel)을 구축해 아까운 자료를 늘이는 것도 나쁘지 않겠다. 하지만 추정 결과에 큰 차이가 없음을 대략적으로 확인했고, 깔끔하고 원활한 추정 작업을 위해 균형 패널로 분석 대상으로 제한하고자 한다. 
 
@@ -326,7 +370,7 @@ Panel 모형에서 가장 중요한 것은 SE(standard error)를 적당하게 �
   
 문제는 summary function이 아니라 다른 출력 함수를 쓸 때 발생한다. 회귀분석 결과를 html 혹은 $\rm \LaTeX$ 테이블로 바꿔주는 stargazer 패키지만 해도 함수의 입력으로 모델을 받게 되어 있다. 이럴 경우에는 별도의 SE 정확하게는 분산-공분산 행렬(variance-covariance matrix)를 생성한 후 이를 모형에 다시 심어주면 된다. 아예 간단한 별도의 함수를 하나 짜면 편하다. Stata에서 생성되는 클러스터 SE를 R에서 생성하기 위한 가짜 코드는 대충 다음과 같다. 
 
-```
+```{}
 gen_model_with_customizedSE <- function(model_v, year_v, platform_v, y) {
 #  
   plm(model_v, model =  "pooling", effect = y, index = c("app_name", "week_inyear"), 
