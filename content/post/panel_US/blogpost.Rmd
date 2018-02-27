@@ -312,7 +312,7 @@ pmg_vis("us_AOS", "Mean Group model for AOS in U.S.")
 
 정공법은 원래 대상을 보고 그 대상을 찬찬히 뜯어내 data.frame으로 가다듬는 것이다. 하지만, 꼼수도 있다. 어차피 필요한 게 summary에 다 있다면 말이다. 
 
-  1. summary 테이블을 녹화하듯이 txt파일로 저장한다. `sink()` 명렁어를 활용한다. 
+  1. summary 테이블을 녹화하듯이 txt파일로 저장한다. `sink()` 명렁어를 활용한다.  
   2. txt를 다시 라인별로 읽어들인다. 
   3. 해당 라인에서 필요한 정보를 추출해서 data.frame으로 전환한다. 
   
